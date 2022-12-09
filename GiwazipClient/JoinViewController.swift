@@ -43,7 +43,7 @@ class JoinViewController: UIViewController {
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             right: view.safeAreaLayoutGuide.rightAnchor,
             paddingLeft: 16,
-            paddingBottom: 16,
+            paddingBottom: 8,
             paddingRight: 16,
             height: 50
         )
