@@ -17,6 +17,7 @@ class JoinViewController: UIViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.setTitleColor(.white, for: .normal)
         $0.layer.cornerRadius = 16
+        $0.addTarget(self, action: #selector(tapJoinButton), for: .touchUpInside)
         return $0
     }(UIButton())
 
@@ -47,5 +48,9 @@ class JoinViewController: UIViewController {
             paddingRight: 16,
             height: 50
         )
+    }
+
+    @objc func tapJoinButton() {
+        navigationController?.pushViewController(InviteCodeViewController(), animated: true)
     }
 }
