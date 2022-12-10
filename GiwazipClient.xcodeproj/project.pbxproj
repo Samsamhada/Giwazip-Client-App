@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		267F095D2942494E00D0A27F /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F095C2942494E00D0A27F /* JoinViewController.swift */; };
 		267F095F294249E400D0A27F /* AutoLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F095E294249E400D0A27F /* AutoLayout+.swift */; };
+		267F09612943ACB300D0A27F /* InviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F09602943ACB300D0A27F /* InviteCodeViewController.swift */; };
 		98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B712941DD4B00386AA4 /* AppDelegate.swift */; };
 		98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B732941DD4B00386AA4 /* SceneDelegate.swift */; };
 		98D44B762941DD4B00386AA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B752941DD4B00386AA4 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		267F095C2942494E00D0A27F /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		267F095E294249E400D0A27F /* AutoLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoLayout+.swift"; sourceTree = "<group>"; };
+		267F09602943ACB300D0A27F /* InviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCodeViewController.swift; sourceTree = "<group>"; };
 		98D44B6E2941DD4B00386AA4 /* GiwazipClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiwazipClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D44B712941DD4B00386AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98D44B732941DD4B00386AA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		267C1B2A29446A9500673074 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98D44B752941DD4B00386AA4 /* ViewController.swift */,
+				267F095C2942494E00D0A27F /* JoinViewController.swift */,
+				267F09602943ACB300D0A27F /* InviteCodeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		267C1B2B29446AA400673074 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				98D44B712941DD4B00386AA4 /* AppDelegate.swift */,
+				98D44B732941DD4B00386AA4 /* SceneDelegate.swift */,
+				267C1B2C29446AB500673074 /* Extension */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		267C1B2C29446AB500673074 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				267F095E294249E400D0A27F /* AutoLayout+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		98D44B652941DD4B00386AA4 = {
 			isa = PBXGroup;
 			children = (
@@ -58,11 +88,8 @@
 		98D44B702941DD4B00386AA4 /* GiwazipClient */ = {
 			isa = PBXGroup;
 			children = (
-				98D44B712941DD4B00386AA4 /* AppDelegate.swift */,
-				98D44B732941DD4B00386AA4 /* SceneDelegate.swift */,
-				98D44B752941DD4B00386AA4 /* ViewController.swift */,
-				267F095C2942494E00D0A27F /* JoinViewController.swift */,
-				267F095E294249E400D0A27F /* AutoLayout+.swift */,
+				267C1B2B29446AA400673074 /* Global */,
+				267C1B2A29446A9500673074 /* ViewController */,
 				98D44B7A2941DD4D00386AA4 /* Assets.xcassets */,
 				98D44B7C2941DD4D00386AA4 /* LaunchScreen.storyboard */,
 				98D44B7F2941DD4D00386AA4 /* Info.plist */,
@@ -142,6 +169,7 @@
 			files = (
 				98D44B762941DD4B00386AA4 /* ViewController.swift in Sources */,
 				267F095F294249E400D0A27F /* AutoLayout+.swift in Sources */,
+				267F09612943ACB300D0A27F /* InviteCodeViewController.swift in Sources */,
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				267F095D2942494E00D0A27F /* JoinViewController.swift in Sources */,
 				98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */,
