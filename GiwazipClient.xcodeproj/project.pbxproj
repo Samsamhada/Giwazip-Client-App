@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1188A3CAA0A6EB2492825704 /* Pods_GiwazipClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */; };
 		260A63CA29710725004034AD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63C929710725004034AD /* Model.swift */; };
 		260A63D429710784004034AD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D329710784004034AD /* ViewModel.swift */; };
 		260A63D8297107AA004034AD /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D7297107AA004034AD /* Cell.swift */; };
@@ -39,12 +40,15 @@
 		260A63E729710A7F004034AD /* SubCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCoordinator.swift; sourceTree = "<group>"; };
 		260A63E929711307004034AD /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		260A63EB297118A8004034AD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
 		98D44B6E2941DD4B00386AA4 /* GiwazipClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiwazipClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D44B712941DD4B00386AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98D44B732941DD4B00386AA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		98D44B7A2941DD4D00386AA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98D44B7D2941DD4D00386AA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98D44B7F2941DD4D00386AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA55A12FB784D2A6D8435CDD /* Pods-GiwazipClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.debug.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.debug.xcconfig"; sourceTree = "<group>"; };
+		F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiwazipClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1188A3CAA0A6EB2492825704 /* Pods_GiwazipClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,11 +141,21 @@
 			path = "Extensions+";
 			sourceTree = "<group>";
 		};
+		4289EDBCD104F8B3B3E61B14 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		98D44B652941DD4B00386AA4 = {
 			isa = PBXGroup;
 			children = (
 				98D44B702941DD4B00386AA4 /* GiwazipClient */,
 				98D44B6F2941DD4B00386AA4 /* Products */,
+				A86A375602E6B7DEAF58F3B0 /* Pods */,
+				4289EDBCD104F8B3B3E61B14 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,6 +185,16 @@
 			path = GiwazipClient;
 			sourceTree = "<group>";
 		};
+		A86A375602E6B7DEAF58F3B0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BA55A12FB784D2A6D8435CDD /* Pods-GiwazipClient.debug.xcconfig */,
+				8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,9 +202,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98D44B822941DD4D00386AA4 /* Build configuration list for PBXNativeTarget "GiwazipClient" */;
 			buildPhases = (
+				932B5E72D2AA0E53DDC1B1AB /* [CP] Check Pods Manifest.lock */,
 				98D44B6A2941DD4B00386AA4 /* Sources */,
 				98D44B6B2941DD4B00386AA4 /* Frameworks */,
 				98D44B6C2941DD4B00386AA4 /* Resources */,
+				64D1C910AFDBB860799103DC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,6 +261,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		64D1C910AFDBB860799103DC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		932B5E72D2AA0E53DDC1B1AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GiwazipClient-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		98D44B6A2941DD4B00386AA4 /* Sources */ = {
@@ -390,12 +459,13 @@
 		};
 		98D44B832941DD4D00386AA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA55A12FB784D2A6D8435CDD /* Pods-GiwazipClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N6LML762WM;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GiwazipClient/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "기와집-고객용";
@@ -412,6 +482,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.samsamhada.GiwazipClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -423,12 +494,13 @@
 		};
 		98D44B842941DD4D00386AA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N6LML762WM;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GiwazipClient/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "기와집-고객용";
@@ -445,6 +517,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.samsamhada.GiwazipClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
