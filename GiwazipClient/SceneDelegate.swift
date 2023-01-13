@@ -14,8 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let navi = UINavigationController(rootViewController: JoinViewController())
-        window?.rootViewController = navi
+
+        let navigationController = UINavigationController()
+        self.window?.rootViewController = navigationController
+
+        let coordinator = AppCoordinator(navigationController: navigationController)
+        coordinator.start()
+
         window?.makeKeyAndVisible()
     }
 
@@ -47,4 +52,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
-
