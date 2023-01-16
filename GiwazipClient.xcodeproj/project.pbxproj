@@ -7,25 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		267F095D2942494E00D0A27F /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F095C2942494E00D0A27F /* JoinViewController.swift */; };
-		267F095F294249E400D0A27F /* AutoLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F095E294249E400D0A27F /* AutoLayout+.swift */; };
+		1188A3CAA0A6EB2492825704 /* Pods_GiwazipClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */; };
+		260A63CA29710725004034AD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63C929710725004034AD /* Model.swift */; };
+		260A63D429710784004034AD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D329710784004034AD /* ViewModel.swift */; };
+		260A63D8297107AA004034AD /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D7297107AA004034AD /* Cell.swift */; };
+		260A63DA297107B8004034AD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D9297107B8004034AD /* Service.swift */; };
+		260A63DC297107C3004034AD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63DB297107C3004034AD /* BaseViewController.swift */; };
+		260A63DE297107E4004034AD /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63DD297107E4004034AD /* Extension+.swift */; };
+		260A63E029710834004034AD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63DF29710834004034AD /* AppCoordinator.swift */; };
+		260A63E229710846004034AD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E129710846004034AD /* MainCoordinator.swift */; };
+		260A63E429710A45004034AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E329710A45004034AD /* MainViewController.swift */; };
+		260A63E629710A5C004034AD /* SubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E529710A5C004034AD /* SubViewController.swift */; };
+		260A63E829710A7F004034AD /* SubCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E729710A7F004034AD /* SubCoordinator.swift */; };
+		260A63EA29711307004034AD /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E929711307004034AD /* BaseCoordinator.swift */; };
 		98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B712941DD4B00386AA4 /* AppDelegate.swift */; };
 		98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B732941DD4B00386AA4 /* SceneDelegate.swift */; };
-		98D44B762941DD4B00386AA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B752941DD4B00386AA4 /* ViewController.swift */; };
 		98D44B7B2941DD4D00386AA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D44B7A2941DD4D00386AA4 /* Assets.xcassets */; };
 		98D44B7E2941DD4D00386AA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D44B7C2941DD4D00386AA4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		267F095C2942494E00D0A27F /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
-		267F095E294249E400D0A27F /* AutoLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoLayout+.swift"; sourceTree = "<group>"; };
+		260A63C929710725004034AD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		260A63D329710784004034AD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		260A63D7297107AA004034AD /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		260A63D9297107B8004034AD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		260A63DB297107C3004034AD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		260A63DD297107E4004034AD /* Extension+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+.swift"; sourceTree = "<group>"; };
+		260A63DF29710834004034AD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		260A63E129710846004034AD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		260A63E329710A45004034AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		260A63E529710A5C004034AD /* SubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewController.swift; sourceTree = "<group>"; };
+		260A63E729710A7F004034AD /* SubCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCoordinator.swift; sourceTree = "<group>"; };
+		260A63E929711307004034AD /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		260A63EB297118A8004034AD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
 		98D44B6E2941DD4B00386AA4 /* GiwazipClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiwazipClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D44B712941DD4B00386AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98D44B732941DD4B00386AA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		98D44B752941DD4B00386AA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		98D44B7A2941DD4D00386AA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98D44B7D2941DD4D00386AA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98D44B7F2941DD4D00386AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA55A12FB784D2A6D8435CDD /* Pods-GiwazipClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.debug.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.debug.xcconfig"; sourceTree = "<group>"; };
+		F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiwazipClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +56,106 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1188A3CAA0A6EB2492825704 /* Pods_GiwazipClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260A63C829710707004034AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				260A63C929710725004034AD /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		260A63CB29710730004034AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				98D44B7C2941DD4D00386AA4 /* LaunchScreen.storyboard */,
+				260A63E329710A45004034AD /* MainViewController.swift */,
+				260A63E529710A5C004034AD /* SubViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		260A63CC29710741004034AD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				260A63D329710784004034AD /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		260A63CD2971074B004034AD /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				260A63DF29710834004034AD /* AppCoordinator.swift */,
+				260A63E129710846004034AD /* MainCoordinator.swift */,
+				260A63E729710A7F004034AD /* SubCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		260A63CE29710756004034AD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				260A63D7297107AA004034AD /* Cell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		260A63CF2971075B004034AD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				260A63D9297107B8004034AD /* Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		260A63D029710760004034AD /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				260A63DB297107C3004034AD /* BaseViewController.swift */,
+				260A63E929711307004034AD /* BaseCoordinator.swift */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		260A63D129710764004034AD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				98D44B7A2941DD4D00386AA4 /* Assets.xcassets */,
+				98D44B7F2941DD4D00386AA4 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		260A63D229710767004034AD /* Extensions+ */ = {
+			isa = PBXGroup;
+			children = (
+				260A63DD297107E4004034AD /* Extension+.swift */,
+			);
+			path = "Extensions+";
+			sourceTree = "<group>";
+		};
+		4289EDBCD104F8B3B3E61B14 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		98D44B652941DD4B00386AA4 = {
 			isa = PBXGroup;
 			children = (
 				98D44B702941DD4B00386AA4 /* GiwazipClient */,
 				98D44B6F2941DD4B00386AA4 /* Products */,
+				A86A375602E6B7DEAF58F3B0 /* Pods */,
+				4289EDBCD104F8B3B3E61B14 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,14 +172,27 @@
 			children = (
 				98D44B712941DD4B00386AA4 /* AppDelegate.swift */,
 				98D44B732941DD4B00386AA4 /* SceneDelegate.swift */,
-				98D44B752941DD4B00386AA4 /* ViewController.swift */,
-				267F095C2942494E00D0A27F /* JoinViewController.swift */,
-				267F095E294249E400D0A27F /* AutoLayout+.swift */,
-				98D44B7A2941DD4D00386AA4 /* Assets.xcassets */,
-				98D44B7C2941DD4D00386AA4 /* LaunchScreen.storyboard */,
-				98D44B7F2941DD4D00386AA4 /* Info.plist */,
+				260A63C829710707004034AD /* Models */,
+				260A63CB29710730004034AD /* Views */,
+				260A63CC29710741004034AD /* ViewModels */,
+				260A63CD2971074B004034AD /* Coordinators */,
+				260A63CE29710756004034AD /* Cells */,
+				260A63CF2971075B004034AD /* Services */,
+				260A63D029710760004034AD /* Supports */,
+				260A63D129710764004034AD /* Resources */,
+				260A63D229710767004034AD /* Extensions+ */,
 			);
 			path = GiwazipClient;
+			sourceTree = "<group>";
+		};
+		A86A375602E6B7DEAF58F3B0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BA55A12FB784D2A6D8435CDD /* Pods-GiwazipClient.debug.xcconfig */,
+				8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +202,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98D44B822941DD4D00386AA4 /* Build configuration list for PBXNativeTarget "GiwazipClient" */;
 			buildPhases = (
+				932B5E72D2AA0E53DDC1B1AB /* [CP] Check Pods Manifest.lock */,
 				98D44B6A2941DD4B00386AA4 /* Sources */,
 				98D44B6B2941DD4B00386AA4 /* Frameworks */,
 				98D44B6C2941DD4B00386AA4 /* Resources */,
+				64D1C910AFDBB860799103DC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -107,11 +234,11 @@
 			};
 			buildConfigurationList = 98D44B692941DD4B00386AA4 /* Build configuration list for PBXProject "GiwazipClient" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ko,
 			);
 			mainGroup = 98D44B652941DD4B00386AA4;
 			productRefGroup = 98D44B6F2941DD4B00386AA4 /* Products */;
@@ -135,16 +262,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		64D1C910AFDBB860799103DC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		932B5E72D2AA0E53DDC1B1AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GiwazipClient-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		98D44B6A2941DD4B00386AA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98D44B762941DD4B00386AA4 /* ViewController.swift in Sources */,
-				267F095F294249E400D0A27F /* AutoLayout+.swift in Sources */,
+				260A63E029710834004034AD /* AppCoordinator.swift in Sources */,
+				260A63D429710784004034AD /* ViewModel.swift in Sources */,
+				260A63DE297107E4004034AD /* Extension+.swift in Sources */,
+				260A63E429710A45004034AD /* MainViewController.swift in Sources */,
+				260A63DA297107B8004034AD /* Service.swift in Sources */,
+				260A63D8297107AA004034AD /* Cell.swift in Sources */,
+				260A63E629710A5C004034AD /* SubViewController.swift in Sources */,
+				260A63E229710846004034AD /* MainCoordinator.swift in Sources */,
+				260A63E829710A7F004034AD /* SubCoordinator.swift in Sources */,
+				260A63EA29711307004034AD /* BaseCoordinator.swift in Sources */,
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
-				267F095D2942494E00D0A27F /* JoinViewController.swift in Sources */,
 				98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */,
+				260A63CA29710725004034AD /* Model.swift in Sources */,
+				260A63DC297107C3004034AD /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +333,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				98D44B7D2941DD4D00386AA4 /* Base */,
+				260A63EB297118A8004034AD /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -166,6 +345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -212,7 +392,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -226,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -266,7 +447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -278,19 +459,22 @@
 		};
 		98D44B832941DD4D00386AA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA55A12FB784D2A6D8435CDD /* Pods-GiwazipClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N6LML762WM;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GiwazipClient/Info.plist;
+				INFOPLIST_FILE = GiwazipClient/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "기와집-고객용";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,6 +482,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.samsamhada.GiwazipClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -309,19 +494,22 @@
 		};
 		98D44B842941DD4D00386AA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N6LML762WM;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GiwazipClient/Info.plist;
+				INFOPLIST_FILE = GiwazipClient/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "기와집-고객용";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -329,6 +517,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.samsamhada.GiwazipClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
