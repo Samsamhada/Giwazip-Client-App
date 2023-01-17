@@ -29,10 +29,9 @@ class SplashViewController: BaseViewController {
         super.layout()
 
         view.addSubview(enterButton)
-        enterButton.snp.makeConstraints { make in
-            make.left.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.right.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
-            make.height.equalTo(50)
+        enterButton.snp.makeConstraints {
+            $0.left.right.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.height.equalTo(50)
         }
     }
 }
