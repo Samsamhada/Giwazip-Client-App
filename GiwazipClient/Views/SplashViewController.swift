@@ -19,7 +19,6 @@ class SplashViewController: BaseViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.backgroundColor = .gray
         $0.layer.cornerRadius = 16
-
         return $0
     }(UIButton())
 
