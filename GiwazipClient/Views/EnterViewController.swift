@@ -53,7 +53,7 @@ class EnterViewController: BaseViewController {
     }(UILabel())
     
     private let inviteCodeInput: UITextField = {
-        $0.placeholder = "AB12D"
+        $0.placeholder = "AB12D9"
         $0.font = UIFont.systemFont(ofSize: 16)
         return $0
     }(UITextField())
