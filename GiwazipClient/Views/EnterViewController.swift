@@ -88,8 +88,7 @@ class EnterViewController: BaseViewController {
         view.addSubview(enterButton)
         
         phoneNumberLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
-            $0.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.top.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
         
         hStackView.snp.makeConstraints {
