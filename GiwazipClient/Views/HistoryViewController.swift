@@ -35,6 +35,7 @@ class HistoryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
     }
     
     private func layout() {
@@ -75,6 +76,8 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
+            // TODO: - 게시물 데이터 반영
         return cell
     }
     
