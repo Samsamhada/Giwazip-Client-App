@@ -23,6 +23,7 @@
 		260A63F22975E01F004034AD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63F12975E01F004034AD /* SplashViewController.swift */; };
 		438BF0432977CA28005E4CF3 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438BF0422977CA28005E4CF3 /* EnterViewController.swift */; };
 		988C56D029768F2D00018F07 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* HistoryViewController.swift */; };
+		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
 		98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B712941DD4B00386AA4 /* AppDelegate.swift */; };
 		98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B732941DD4B00386AA4 /* SceneDelegate.swift */; };
 		98D44B7B2941DD4D00386AA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D44B7A2941DD4D00386AA4 /* Assets.xcassets */; };
@@ -46,7 +47,7 @@
 		260A63F12975E01F004034AD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		438BF0422977CA28005E4CF3 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
-		988C56CF29768F2D00018F07 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		98D44B6E2941DD4B00386AA4 /* GiwazipClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiwazipClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D44B712941DD4B00386AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98D44B732941DD4B00386AA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 				260A63F12975E01F004034AD /* SplashViewController.swift */,
 				438BF0422977CA28005E4CF3 /* EnterViewController.swift */,
 				988C56CF29768F2D00018F07 /* HistoryViewController.swift */,
+				988C56CF29768F2D00018F07 /* SegmentViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,7 +322,7 @@
 				260A63E029710834004034AD /* AppCoordinator.swift in Sources */,
 				260A63D429710784004034AD /* ViewModel.swift in Sources */,
 				260A63DE297107E4004034AD /* Extension+.swift in Sources */,
-				988C56D029768F2D00018F07 /* HistoryViewController.swift in Sources */,
+				988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */,
 				260A63E429710A45004034AD /* MainViewController.swift in Sources */,
 				260A63DA297107B8004034AD /* Service.swift in Sources */,
 				438BF0432977CA28005E4CF3 /* EnterViewController.swift in Sources */,
