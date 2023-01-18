@@ -35,7 +35,10 @@ class HistoryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.register(PostDateCell.self, forCellWithReuseIdentifier: PostDateCell.identifier)
         collectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
+        
+        collectionView.showsVerticalScrollIndicator = false
     }
     
     private func layout() {
@@ -76,8 +79,14 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
+        
+        if indexPath.row == 0 {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostDateCell.identifier, for: indexPath) as! PostDateCell
+            // TODO: - 날짜 데이터 반영
+        } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
             // TODO: - 게시물 데이터 반영
+        }
         return cell
     }
     

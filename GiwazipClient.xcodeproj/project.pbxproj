@@ -25,6 +25,7 @@
 		988C56D029768F2D00018F07 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* HistoryViewController.swift */; };
 		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
 		988C56D42976D3BA00018F07 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D32976D3BA00018F07 /* HistoryCell.swift */; };
+		988C56DA29779D2A00018F07 /* PostDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D929779D2A00018F07 /* PostDateCell.swift */; };
 		988C56DC2978349D00018F07 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56DB2978349D00018F07 /* HistoryViewController.swift */; };
 		98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B712941DD4B00386AA4 /* AppDelegate.swift */; };
 		98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B732941DD4B00386AA4 /* SceneDelegate.swift */; };
@@ -51,6 +52,7 @@
 		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
 		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		988C56D32976D3BA00018F07 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		988C56D929779D2A00018F07 /* PostDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDateCell.swift; sourceTree = "<group>"; };
 		988C56DB2978349D00018F07 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		98D44B6E2941DD4B00386AA4 /* GiwazipClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiwazipClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D44B712941DD4B00386AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				260A63D7297107AA004034AD /* Cell.swift */,
+				988C56D929779D2A00018F07 /* PostDateCell.swift */,
 				988C56D32976D3BA00018F07 /* HistoryCell.swift */,
 			);
 			path = Cells;
@@ -343,6 +346,7 @@
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */,
 				260A63CA29710725004034AD /* Model.swift in Sources */,
+				988C56DA29779D2A00018F07 /* PostDateCell.swift in Sources */,
 				260A63DC297107C3004034AD /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
