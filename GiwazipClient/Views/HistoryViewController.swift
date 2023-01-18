@@ -30,16 +30,42 @@ class HistoryViewController: UIViewController {
         return $0
     }(UILabel())
     
+    private let controlBar: UIView = {
+        $0.backgroundColor = .systemCyan
+        return $0
+    }(UIView())
+    
+    private let microCopy: UILabel = {
+        $0.text = "아직 진행 중인 시공이 없습니다."
+        $0.textColor = .gray
+        $0.textAlignment = .center
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return $0
+    }(UILabel())
+    
+    let collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: UICollectionViewFlowLayout())
+        return collectionView
+    }()
+    
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         attribute()
+        setupNavigationTitle()
         layout()
     }
     
+    // MARK: - Method
+    
     private func attribute() {
         view.backgroundColor = .white
-        navigationItem.titleView = titleView
+    private func setupNavigationTitle() {
+        navigationLayout()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
             style: .plain,
@@ -49,19 +75,46 @@ class HistoryViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
-    private func layout() {
+    private func navigationLayout() {
+        navigationItem.titleView = titleView
         titleView.addSubview(titleName)
         titleView.addSubview(titleDate)
-        
+
         titleView.snp.makeConstraints {
-            $0.top.bottom.equalTo(self.navigationItem.titleView!)
+            $0.height.equalTo(self.navigationItem.titleView!.snp.height)
         }
+
         titleName.snp.makeConstraints {
             $0.top.left.right.equalTo(titleView)
             $0.bottom.equalTo(titleDate.snp.top)
         }
+
         titleDate.snp.makeConstraints {
             $0.bottom.left.right.equalTo(titleView)
         }
     }
+    
+    private func layout() {
+        view.addSubview(controlBar)
+//        view.addSubview(microCopy)
+        view.addSubview(collectionView)
+
+        controlBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
+            $0.left.equalTo(16)
+            $0.right.equalTo(-16)
+            $0.height.equalTo(20)
+        }
+        
+//        microCopy.snp.makeConstraints {
+//            $0.center.equalTo(view.snp.center)
+//        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(controlBar.snp.bottom).offset(16)
+            $0.width.equalTo(view.snp.width)
+            $0.bottom.equalTo(view.snp.bottom)
+        }
+    }
+}
 }
