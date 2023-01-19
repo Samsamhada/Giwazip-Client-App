@@ -18,7 +18,7 @@ class HistoryCell: UICollectionViewCell {
     private let chipFrame: UIView = {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 16
-        $0.layer.borderColor = CGColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.borderWidth = 2
         $0.layer.opacity = 0.8
         return $0
