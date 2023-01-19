@@ -15,7 +15,7 @@ class SegmentViewController: BaseViewController {
     
     private lazy var segmentedViewControllers: [UIViewController] = [workingView, inquiryView]
     
-    var currentViewNum: Int = 0 {
+    private var currentViewNum: Int = 0 {
         didSet {
             let direction: UIPageViewController.NavigationDirection = (oldValue <= currentViewNum ? .forward : .reverse)
             pageViewController.setViewControllers([segmentedViewControllers[currentViewNum]], direction: direction, animated: true)
