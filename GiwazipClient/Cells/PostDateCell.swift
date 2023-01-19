@@ -17,7 +17,7 @@ class PostDateCell: UICollectionViewCell {
     
     private let dateStack = UIView()
     
-    private let divider1: UIView = {
+    private let leftLineDot: UIView = {
         $0.backgroundColor = .gray
         return $0
     }(UIView())
@@ -30,7 +30,7 @@ class PostDateCell: UICollectionViewCell {
         return $0
     }(UILabel())
     
-    private let divider2: UIView = {
+    private let rightLineDot: UIView = {
         $0.backgroundColor = .gray
         return $0
     }(UIView())
@@ -51,15 +51,15 @@ class PostDateCell: UICollectionViewCell {
     
     private func setupCell() {
         self.addSubview(dateStack)
-        dateStack.addSubview(divider1)
+        dateStack.addSubview(leftLineDot)
         dateStack.addSubview(postingDate)
-        dateStack.addSubview(divider2)
+        dateStack.addSubview(rightLineDot)
         
         dateStack.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
         }
         
-        divider1.snp.makeConstraints {
+        leftLineDot.snp.makeConstraints {
             $0.left.centerY.equalToSuperview()
             $0.right.equalTo(postingDate.snp.left)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
@@ -67,12 +67,12 @@ class PostDateCell: UICollectionViewCell {
         }
         
         postingDate.snp.makeConstraints {
-            $0.right.equalTo(divider2.snp.left)
+            $0.right.equalTo(rightLineDot.snp.left)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.centerY.equalToSuperview()
         }
         
-        divider2.snp.makeConstraints {
+        rightLineDot.snp.makeConstraints {
             $0.right.centerY.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
