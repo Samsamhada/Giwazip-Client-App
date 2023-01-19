@@ -64,21 +64,14 @@ class SegmentViewController: BaseViewController {
     }(UIPageViewController(transitionStyle: .scroll,
                            navigationOrientation: .horizontal))
     
-    // MARK: - LifeCycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        attribute()
-        setupNavigationTitle()
-        layout()
-        setupSegmentedControl()
-    }
-    
     // MARK: - Method
     
     override func attribute() {
         super.attribute()
+        
+        setupNavigationTitle()
+        setupSegmentedControl()
+        
         pageViewController.delegate = self
         pageViewController.dataSource = self
     }

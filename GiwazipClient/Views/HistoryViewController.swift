@@ -24,13 +24,6 @@ class HistoryViewController: BaseViewController {
         return $0
     }(UILabel())
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        attribute()
-        layout()
-    }
-    
     override func attribute() {
         super.attribute()
         
