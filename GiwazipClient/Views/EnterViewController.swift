@@ -192,6 +192,7 @@ class EnterViewController: BaseViewController {
     
     @objc func tapEnterButton() {
         guard let inviteCode = inviteCodeInput.text else { return }
+        // TODO: - 추후 API 통신이 되면 if문 로직 고칠 예정
         if inviteCode == "aaabbb" {
             print("다음 뷰로 이동")
         } else {
