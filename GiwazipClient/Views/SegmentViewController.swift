@@ -110,7 +110,6 @@ class SegmentViewController: BaseViewController {
         
         view.addSubview(segmentedControl)
         view.addSubview(pageContentView)
-        self.addChild(pageViewController)
         pageContentView.addSubview(pageViewController.view)
 
         segmentedControl.snp.makeConstraints {
@@ -128,7 +127,6 @@ class SegmentViewController: BaseViewController {
         pageViewController.view.snp.makeConstraints {
             $0.width.height.equalToSuperview()
         }
-        pageViewController.didMove(toParent: self)
     }
     
     private func setupSegmentedControl() {
