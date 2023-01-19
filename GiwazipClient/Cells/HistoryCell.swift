@@ -82,7 +82,7 @@ class HistoryCell: UICollectionViewCell {
         }
         
         chipFrame.snp.makeConstraints {
-            $0.top.left.equalTo(8)
+            $0.top.left.equalToSuperview().offset(8)
         }
         
         chipLabel.snp.makeConstraints {
