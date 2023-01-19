@@ -9,7 +9,7 @@ import UIKit
 
 class HistoryViewController: BaseViewController {
     
-    private let collectionView: UICollectionView = {
+    private let historyCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: UICollectionViewFlowLayout())
         return collectionView
@@ -34,21 +34,21 @@ class HistoryViewController: BaseViewController {
     override func attribute() {
         super.attribute()
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        historyCollectionView.delegate = self
+        historyCollectionView.dataSource = self
         
-        collectionView.register(ProgressHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProgressHeader.identifier)
-        collectionView.register(PostDateCell.self, forCellWithReuseIdentifier: PostDateCell.identifier)
-        collectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
+        historyCollectionView.register(ProgressHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProgressHeader.identifier)
+        historyCollectionView.register(PostDateCell.self, forCellWithReuseIdentifier: PostDateCell.identifier)
+        historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
         
-        collectionView.showsVerticalScrollIndicator = false
+        historyCollectionView.showsVerticalScrollIndicator = false
     }
     
     override func layout() {
-        view.addSubview(collectionView)
+        view.addSubview(historyCollectionView)
         view.addSubview(microCopy)
         
-        collectionView.snp.makeConstraints {
+        historyCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
