@@ -56,12 +56,11 @@ class PostDateCell: UICollectionViewCell {
         dateStack.addSubview(divider2)
         
         dateStack.snp.makeConstraints {
-            $0.top.equalTo(snp.top).offset(16)
+            $0.top.equalToSuperview().offset(16)
         }
         
         divider1.snp.makeConstraints {
-            $0.centerY.equalTo(dateStack.snp.centerY)
-            $0.left.equalTo(dateStack.snp.left)
+            $0.left.centerY.equalToSuperview()
             $0.right.equalTo(postingDate.snp.left)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
@@ -70,12 +69,11 @@ class PostDateCell: UICollectionViewCell {
         postingDate.snp.makeConstraints {
             $0.right.equalTo(divider2.snp.left)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
-            $0.centerY.equalTo(dateStack.snp.centerY)
+            $0.centerY.equalToSuperview()
         }
         
         divider2.snp.makeConstraints {
-            $0.centerY.equalTo(dateStack.snp.centerY)
-            $0.right.equalTo(dateStack.snp.right)
+            $0.right.centerY.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
         }

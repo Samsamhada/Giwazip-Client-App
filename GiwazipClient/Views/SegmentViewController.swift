@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class SegmentViewController: UIViewController {
+class SegmentViewController: BaseViewController {
     
     // MARK: - Property
     
@@ -68,7 +68,7 @@ class SegmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         attribute()
         setupNavigationTitle()
         layout()
@@ -77,16 +77,13 @@ class SegmentViewController: UIViewController {
     
     // MARK: - Method
     
-    private func attribute() {
-        view.backgroundColor = .white
-        
+    override func attribute() {
+        super.attribute()
         pageViewController.delegate = self
         pageViewController.dataSource = self
     }
     
     private func setupNavigationTitle() {
-        navigationLayout()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
             style: .plain,
@@ -102,20 +99,22 @@ class SegmentViewController: UIViewController {
         titleView.addSubview(titleDate)
 
         titleView.snp.makeConstraints {
-            $0.height.equalTo(self.navigationItem.titleView!.snp.height)
+            $0.height.equalTo(navigationItem.titleView!.snp.height)
         }
 
         titleName.snp.makeConstraints {
-            $0.top.left.right.equalTo(titleView)
+            $0.top.left.right.equalToSuperview()
             $0.bottom.equalTo(titleDate.snp.top)
         }
 
         titleDate.snp.makeConstraints {
-            $0.bottom.left.right.equalTo(titleView)
+            $0.bottom.left.right.equalToSuperview()
         }
     }
     
-    private func layout() {
+    override func layout() {
+        navigationLayout()
+        
         view.addSubview(segmentedControl)
         view.addSubview(pageContentView)
         self.addChild(pageViewController)
@@ -124,19 +123,17 @@ class SegmentViewController: UIViewController {
         segmentedControl.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.bottom.equalTo(pageContentView.snp.top).offset(-12)
-            $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(16)
+            $0.left.equalToSuperview().offset(16)
             $0.width.equalTo(180)
             $0.height.equalTo(20)
         }
         
         pageContentView.snp.makeConstraints {
-            $0.width.equalTo(view.snp.width)
-            $0.bottom.equalTo(view.snp.bottom)
+            $0.bottom.width.equalToSuperview()
         }
         
         pageViewController.view.snp.makeConstraints {
-            $0.width.equalTo(pageContentView.snp.width)
-            $0.height.equalTo(pageContentView.snp.height)
+            $0.width.height.equalToSuperview()
         }
         pageViewController.didMove(toParent: self)
     }
@@ -155,12 +152,11 @@ class SegmentViewController: UIViewController {
         segmentedControl.addTarget(self, action: #selector(selectedSegmentControl), for: .valueChanged)
         
         removeSegmentDefaultConfigure()
-        selectedSegmentControl(control: segmentedControl)
     }
     
     private func removeSegmentDefaultConfigure() {
         let image = UIImage()
-        
+
         segmentedControl.setBackgroundImage(image,
                                             for: .normal,
                                             barMetrics: .default)
@@ -190,10 +186,10 @@ extension SegmentViewController: UIPageViewControllerDelegate, UIPageViewControl
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
+
         guard let vc = pageViewController.viewControllers?[0],
               let index = segmentedViewControllers.firstIndex(of: vc) else { return }
-        
+
         currentViewNum = index
         segmentedControl.selectedSegmentIndex = index
     }

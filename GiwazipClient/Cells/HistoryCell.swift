@@ -76,34 +76,27 @@ class HistoryCell: UICollectionViewCell {
         postImage.addSubview(postDescription)
         
         postImage.snp.makeConstraints {
-            $0.top.equalTo(snp.top)
-            $0.left.equalTo(snp.left).offset(16)
-            $0.right.equalTo(snp.right).offset(-16)
+            $0.top.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(UIScreen.main.bounds.width / 4 * 3)
         }
         
         chipFrame.snp.makeConstraints {
-            $0.topMargin.equalTo(8)
-            $0.leftMargin.equalTo(8)
+            $0.top.left.equalTo(8)
         }
         
         chipLabel.snp.makeConstraints {
-            $0.top.equalTo(chipFrame.snp.top).offset(8)
-            $0.left.equalTo(chipFrame.snp.left).offset(12)
-            $0.bottom.equalTo(chipFrame.snp.bottom).offset(-8)
-            $0.right.equalTo(chipFrame.snp.right).offset(-12)
+            $0.top.bottom.equalTo(chipFrame).inset(8)
+            $0.left.right.equalTo(chipFrame).inset(12)
         }
         
         descriptionBackground.snp.makeConstraints {
-            $0.width.equalTo(postImage.snp.width)
-            $0.bottom.equalTo(postImage.snp.bottom)
+            $0.bottom.width.equalToSuperview()
         }
         
         postDescription.snp.makeConstraints {
-            $0.left.equalTo(descriptionBackground.snp.left).offset(16)
-            $0.right.equalTo(descriptionBackground.snp.right).offset(-16)
-            $0.bottom.equalTo(descriptionBackground.snp.bottom).offset(-12)
-            $0.top.equalTo(descriptionBackground.snp.top).offset(12)
+            $0.top.bottom.equalTo(descriptionBackground).inset(12)
+            $0.left.right.equalTo(descriptionBackground).inset(16)
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: BaseViewController {
     
     private let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
@@ -31,7 +31,9 @@ class HistoryViewController: UIViewController {
         layout()
     }
     
-    private func attribute() {
+    override func attribute() {
+        super.attribute()
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -42,20 +44,20 @@ class HistoryViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
     }
     
-    private func layout() {
+    override func layout() {
         view.addSubview(collectionView)
         view.addSubview(microCopy)
         
         collectionView.snp.makeConstraints {
-            $0.top.left.bottom.right.equalTo(view)
+            $0.edges.equalToSuperview()
         }
         
         microCopy.snp.makeConstraints {
-            $0.center.equalTo(view.center)
+            $0.center.equalToSuperview()
         }
     }
-    
 }
+
 extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Section
