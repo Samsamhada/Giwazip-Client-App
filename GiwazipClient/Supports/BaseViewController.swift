@@ -16,6 +16,7 @@ class BaseViewController: UIViewController {
 
         attribute()
         layout()
+        hidekeyboardWhenTappedAround()
     }
 
     // MARK: - Method
