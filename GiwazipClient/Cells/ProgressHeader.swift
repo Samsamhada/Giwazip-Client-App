@@ -37,9 +37,8 @@ class ProgressHeader: UICollectionReusableView {
     
     private func setupCell() {
         addSubview(progressBlock)
-        
         progressBlock.snp.makeConstraints {
-            $0.top.width.height.equalToSuperview()
+            $0.top.size.equalToSuperview()
         }
     }
 }

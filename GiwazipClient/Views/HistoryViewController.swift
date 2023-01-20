@@ -41,12 +41,11 @@ class HistoryViewController: BaseViewController {
     
     override func layout() {
         view.addSubview(historyCollectionView)
-        view.addSubview(microCopy)
-        
         historyCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
+        view.addSubview(microCopy)
         microCopy.snp.makeConstraints {
             $0.center.equalToSuperview()
         }

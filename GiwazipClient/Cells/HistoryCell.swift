@@ -70,26 +70,24 @@ class HistoryCell: UICollectionViewCell {
     
     private func setupCell() {
         self.addSubview(postImage)
-        postImage.addSubview(chipFrame)
-        chipFrame.addSubview(chipLabel)
-        postImage.addSubview(descriptionBackground)
-        postImage.addSubview(postDescription)
-        
         postImage.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(UIScreen.main.bounds.width / 4 * 3)
         }
         
+        postImage.addSubview(chipFrame)
         chipFrame.snp.makeConstraints {
             $0.top.left.equalToSuperview().offset(8)
         }
         
+        chipFrame.addSubview(chipLabel)
         chipLabel.snp.makeConstraints {
             $0.verticalEdges.equalToSuperview().inset(8)
             $0.horizontalEdges.equalToSuperview().inset(12)
         }
         
+        postImage.addSubview(descriptionBackground)
         descriptionBackground.snp.makeConstraints {
             $0.bottom.width.equalToSuperview()
         }

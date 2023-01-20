@@ -88,20 +88,19 @@ class SegmentViewController: BaseViewController {
     
     private func navigationLayout() {
         self.navigationItem.titleView = titleView
-        titleView.addSubview(titleName)
-        titleView.addSubview(titleDate)
-
         titleView.snp.makeConstraints {
             $0.height.equalTo(navigationItem.titleView!.snp.height)
         }
-
+        
+        titleView.addSubview(titleName)
         titleName.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-            $0.bottom.equalTo(titleDate.snp.top)
+            $0.top.horizontalEdges.equalToSuperview()
         }
-
+        
+        titleView.addSubview(titleDate)
         titleDate.snp.makeConstraints {
-            $0.bottom.left.right.equalToSuperview()
+            $0.top.equalTo(titleName.snp.bottom)
+            $0.bottom.horizontalEdges.equalToSuperview()
         }
     }
     
