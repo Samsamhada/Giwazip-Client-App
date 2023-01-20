@@ -44,7 +44,7 @@ class EnterViewController: BaseViewController {
     }(UIView())
     
     private let inviteCodeLabel: UILabel = {
-        $0.text = "초대코드를 입력해주세요"
+        $0.text = "초대코드 6자리를 입력해주세요"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return $0
@@ -54,6 +54,7 @@ class EnterViewController: BaseViewController {
         $0.placeholder = "AB12D9"
         $0.font = UIFont.systemFont(ofSize: 16)
         $0.keyboardType = .asciiCapable
+        $0.addTarget(self, action: #selector(checkInviteCodeLength), for: .editingChanged)
         $0.addTarget(self, action: #selector(checkButtonCondition), for: .editingChanged)
         return $0
     }(UITextField())
@@ -142,14 +143,25 @@ class EnterViewController: BaseViewController {
         }
     }
     
+    private func checkStringLength(text: String, count: Int) -> String {
+        if text.count > count {
+            let endIndex = text.index(text.startIndex, offsetBy: count)
+            let fixedText = text[text.startIndex..<endIndex]
+            return String(fixedText)
+        }
+        return text
+    }
+    
     @objc func checkPhoneNumberLength() {
         guard let phoneNumber = phoneNumberInput.text?.replacingOccurrences(of: " - ", with: "")
         else { return }
-        if phoneNumber.count >= 8 {
-            let endIndex = phoneNumber.index(phoneNumber.startIndex, offsetBy: 8)
-            let fixedText = phoneNumber[phoneNumber.startIndex..<endIndex]
-            phoneNumberInput.text = String(fixedText).changePhoneNumberStyle()
-        }
+        phoneNumberInput.text = checkStringLength(text: phoneNumber, count: 8).changePhoneNumberStyle()
+    }
+    
+    @objc func checkInviteCodeLength() {
+        guard let inviteCode = inviteCodeInput.text
+        else { return }
+        inviteCodeInput.text = checkStringLength(text: inviteCode, count: 6)
     }
     
     @objc func checkButtonCondition() {
@@ -157,7 +169,7 @@ class EnterViewController: BaseViewController {
               let inviteCode = inviteCodeInput.text
         else { return }
         
-        if (phoneNumber.count == 8) && (inviteCode.count > 0) {
+        if (phoneNumber.count == 8) && (inviteCode.count == 6) {
             enterButton.isEnabled = true
             enterButton.backgroundColor = .blue
         } else {
