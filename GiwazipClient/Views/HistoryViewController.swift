@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class HistoryViewController: BaseViewController {
     
     private let historyCollectionView: UICollectionView = {

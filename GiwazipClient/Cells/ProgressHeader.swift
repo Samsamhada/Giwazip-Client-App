@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class ProgressHeader: UICollectionReusableView {
 
     // MARK: - Property

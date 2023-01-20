@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class PostDateCell: UICollectionViewCell {
     
     // MARK: - Property
