@@ -21,7 +21,7 @@ extension UIViewController {
         self.present(alertViewController, animated: true, completion: completion)
     }
     
-    func makeRequestAlert(title: String? = nil,
+    func makeAlert(title: String? = nil,
                           message: String? = nil,
                           okTitle: String = "확인",
                           cancelTitle: String = "취소",
