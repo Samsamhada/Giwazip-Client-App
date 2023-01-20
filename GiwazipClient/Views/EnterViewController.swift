@@ -95,12 +95,13 @@ class EnterViewController: BaseViewController {
         view.addSubview(enterButton)
         
         phoneNumberLabel.snp.makeConstraints {
-            $0.top.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.left.right.equalToSuperview().inset(16)
         }
         
         hStackView.snp.makeConstraints {
             $0.top.equalTo(phoneNumberLabel.snp.bottom).offset(5)
-            $0.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.left.right.equalToSuperview().inset(16)
         }
         
         startPhoneNumber.snp.makeConstraints {
@@ -114,28 +115,29 @@ class EnterViewController: BaseViewController {
         
         phoneNumberUnderLine.snp.makeConstraints {
             $0.top.equalTo(hStackView.snp.bottom).offset(3)
-            $0.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(1)
         }
         
         inviteCodeLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(100)
-            $0.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.left.right.equalToSuperview().inset(16)
         }
         
         inviteCodeInput.snp.makeConstraints {
             $0.top.equalTo(inviteCodeLabel.snp.bottom).offset(5)
-            $0.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.left.right.equalToSuperview().inset(16)
         }
         
         inviteCodeUnderLine.snp.makeConstraints {
             $0.top.equalTo(inviteCodeInput.snp.bottom).offset(3)
-            $0.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(1)
         }
         
         enterButton.snp.makeConstraints {
-            $0.left.bottom.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.left.right.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.height.equalTo(50)
         }
     }
