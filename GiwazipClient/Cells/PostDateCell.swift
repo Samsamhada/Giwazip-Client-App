@@ -19,7 +19,7 @@ class PostDateCell: UICollectionViewCell {
     
     private let dateStack = UIView()
     
-    private let leftLineDash: UIView = {
+    private let leftDashLine: UIView = {
         $0.backgroundColor = .gray
         return $0
     }(UIView())
@@ -31,8 +31,8 @@ class PostDateCell: UICollectionViewCell {
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return $0
     }(UILabel())
-    
-    private let rightLineDash: UIView = {
+     
+    private let rightDashLine: UIView = {
         $0.backgroundColor = .gray
         return $0
     }(UIView())
@@ -56,8 +56,8 @@ class PostDateCell: UICollectionViewCell {
             $0.top.equalToSuperview().offset(16)
         }
         
-        dateStack.addSubview(leftLineDash)
-        leftLineDash.snp.makeConstraints {
+        dateStack.addSubview(leftDashLine)
+        leftDashLine.snp.makeConstraints {
             $0.left.centerY.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
@@ -65,13 +65,13 @@ class PostDateCell: UICollectionViewCell {
         
         dateStack.addSubview(postingDate)
         postingDate.snp.makeConstraints {
-            $0.left.equalTo(leftLineDash.snp.right)
+            $0.left.equalTo(leftDashLine.snp.right)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.centerY.equalToSuperview()
         }
         
-        dateStack.addSubview(rightLineDash)
-        rightLineDash.snp.makeConstraints {
+        dateStack.addSubview(rightDashLine)
+        rightDashLine.snp.makeConstraints {
             $0.left.equalTo(postingDate.snp.right)
             $0.right.centerY.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
