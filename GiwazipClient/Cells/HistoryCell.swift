@@ -78,7 +78,7 @@ class HistoryCell: UICollectionViewCell {
         
         postImage.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.left.right.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(UIScreen.main.bounds.width / 4 * 3)
         }
         
@@ -96,8 +96,8 @@ class HistoryCell: UICollectionViewCell {
         }
         
         postDescription.snp.makeConstraints {
-            $0.top.bottom.equalTo(descriptionBackground).inset(12)
-            $0.left.right.equalTo(descriptionBackground).inset(16)
+            $0.verticalEdges.equalTo(descriptionBackground).inset(12)
+            $0.horizontalEdges.equalTo(descriptionBackground).inset(16)
         }
     }
 }
