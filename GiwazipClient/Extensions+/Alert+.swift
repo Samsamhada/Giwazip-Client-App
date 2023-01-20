@@ -9,28 +9,34 @@ import UIKit
 
 extension UIViewController {
     
-    func makeAlert(title: String? = nil, message: String? = nil) {
+    func makeAlert(title: String? = nil,
+                   message: String? = nil,
+                   okAction: ((UIAlertAction) -> Void)? = nil,
+                   completion : (() -> Void)? = nil) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "확인", style: .default)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: okAction)
         alertViewController.addAction(okAction)
         
-        self.present(alertViewController, animated: true)
+        self.present(alertViewController, animated: true, completion: completion)
     }
     
     func makeRequestAlert(title: String? = nil,
-                          message: String,
+                          message: String? = nil,
                           okTitle: String = "확인",
-                          cancelTitle: String = "취소") {
-
+                          cancelTitle: String = "취소",
+                          okAction: ((UIAlertAction) -> Void)?,
+                          cancelAction: ((UIAlertAction) -> Void)? = nil,
+                          completion : (() -> Void)? = nil) {
+        
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: okTitle, style: .destructive)
-        alertViewController.addAction(okAction)
-        
-        let cancelAction = UIAlertAction(title: cancelTitle, style: .default)
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .default, handler: cancelAction)
         alertViewController.addAction(cancelAction)
         
-        self.present(alertViewController, animated: true)
+        let okAction = UIAlertAction(title: okTitle, style: .destructive, handler: okAction)
+        alertViewController.addAction(okAction)
+        
+        self.present(alertViewController, animated: true, completion: completion)
     }
 }
