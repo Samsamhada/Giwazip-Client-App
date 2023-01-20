@@ -16,11 +16,10 @@ class HistoryCell: UICollectionViewCell {
     // MARK: - View
     
     private let chipFrame: UIView = {
-        $0.backgroundColor = .white
+        $0.backgroundColor = UIColor(white: 1, alpha: 0.8)
         $0.layer.cornerRadius = 16
         $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.borderWidth = 2
-        $0.layer.opacity = 0.8
         return $0
     }(UIView())
     
@@ -71,7 +70,7 @@ class HistoryCell: UICollectionViewCell {
     private func setupCell() {
         self.addSubview(postImage)
         postImage.addSubview(chipFrame)
-        postImage.addSubview(chipLabel)
+        chipFrame.addSubview(chipLabel)
         postImage.addSubview(descriptionBackground)
         postImage.addSubview(postDescription)
         
@@ -86,8 +85,8 @@ class HistoryCell: UICollectionViewCell {
         }
         
         chipLabel.snp.makeConstraints {
-            $0.top.bottom.equalTo(chipFrame).inset(8)
-            $0.left.right.equalTo(chipFrame).inset(12)
+            $0.verticalEdges.equalToSuperview().inset(8)
+            $0.horizontalEdges.equalToSuperview().inset(12)
         }
         
         descriptionBackground.snp.makeConstraints {
