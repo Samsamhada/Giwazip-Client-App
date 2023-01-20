@@ -19,7 +19,7 @@ class PostDateCell: UICollectionViewCell {
     
     private let dateStack = UIView()
     
-    private let leftLineDot: UIView = {
+    private let leftLineDash: UIView = {
         $0.backgroundColor = .gray
         return $0
     }(UIView())
@@ -32,7 +32,7 @@ class PostDateCell: UICollectionViewCell {
         return $0
     }(UILabel())
     
-    private let rightLineDot: UIView = {
+    private let rightLineDash: UIView = {
         $0.backgroundColor = .gray
         return $0
     }(UIView())
@@ -41,7 +41,6 @@ class PostDateCell: UICollectionViewCell {
     
     override private init(frame: CGRect) {
         super.init(frame: frame)
-
         setupCell()
     }
     
@@ -53,28 +52,27 @@ class PostDateCell: UICollectionViewCell {
     
     private func setupCell() {
         self.addSubview(dateStack)
-        dateStack.addSubview(leftLineDot)
-        dateStack.addSubview(postingDate)
-        dateStack.addSubview(rightLineDot)
-        
         dateStack.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
         }
         
-        leftLineDot.snp.makeConstraints {
+        dateStack.addSubview(leftLineDash)
+        leftLineDash.snp.makeConstraints {
             $0.left.centerY.equalToSuperview()
-            $0.right.equalTo(postingDate.snp.left)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
         }
         
+        dateStack.addSubview(postingDate)
         postingDate.snp.makeConstraints {
-            $0.right.equalTo(rightLineDot.snp.left)
+            $0.left.equalTo(leftLineDash.snp.right)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.centerY.equalToSuperview()
         }
         
-        rightLineDot.snp.makeConstraints {
+        dateStack.addSubview(rightLineDash)
+        rightLineDash.snp.makeConstraints {
+            $0.left.equalTo(postingDate.snp.right)
             $0.right.centerY.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
