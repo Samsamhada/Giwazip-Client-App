@@ -42,8 +42,7 @@ class HistoryCell: UICollectionViewCell {
     }(UIImageView())
     
     private let descriptionBackground: UIView = {
-        $0.backgroundColor = .black
-        $0.layer.opacity = 0.7
+        $0.backgroundColor = UIColor(white: 0, alpha: 0.7)
         return $0
     }(UIView())
     
@@ -95,9 +94,10 @@ class HistoryCell: UICollectionViewCell {
             $0.bottom.width.equalToSuperview()
         }
         
+        descriptionBackground.addSubview(postDescription)
         postDescription.snp.makeConstraints {
-            $0.verticalEdges.equalTo(descriptionBackground).inset(12)
-            $0.horizontalEdges.equalTo(descriptionBackground).inset(16)
+            $0.verticalEdges.equalToSuperview().inset(12)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }
