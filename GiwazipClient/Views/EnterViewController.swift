@@ -33,7 +33,7 @@ class EnterViewController: BaseViewController {
         $0.placeholder = "1234 - 5678"
         $0.font = UIFont.systemFont(ofSize: 16)
         $0.keyboardType = .numberPad
-        $0.addTarget(self, action: #selector(checkPhoneNumberLenght), for: .editingChanged)
+        $0.addTarget(self, action: #selector(checkPhoneNumberLength), for: .editingChanged)
         $0.addTarget(self, action: #selector(checkButtonCondition), for: .editingChanged)
         return $0
     }(CustomUITextField())
@@ -142,7 +142,7 @@ class EnterViewController: BaseViewController {
         }
     }
     
-    @objc func checkPhoneNumberLenght() {
+    @objc func checkPhoneNumberLength() {
         guard let phoneNumber = phoneNumberInput.text?.replacingOccurrences(of: " - ", with: "")
         else { return }
         if phoneNumber.count >= 8 {
@@ -166,7 +166,7 @@ class EnterViewController: BaseViewController {
         }
     }
     
-    private func makeAlert(title: String? = nil,message: String? = nil) {
+    private func makeAlert(title: String? = nil, message: String? = nil) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default)
         alertViewController.addAction(okAction)
@@ -186,7 +186,7 @@ class EnterViewController: BaseViewController {
         }
     }
 
-    @objc func keyboardWillHide(notification:NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
             self.enterButton.transform = .identity
         })
