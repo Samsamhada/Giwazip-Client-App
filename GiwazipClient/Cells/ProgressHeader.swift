@@ -1,0 +1,44 @@
+//
+//  ProgressCell.swift
+//  GiwazipClient
+//
+//  Created by 지준용 on 2023/01/18.
+//
+
+import UIKit
+
+import SnapKit
+
+class ProgressHeader: UICollectionReusableView {
+
+    // MARK: - Property
+    
+    static let identifier = "progressHeader"
+    
+    // MARK: - View
+    
+    private let progressBlock: UIView = {
+        $0.backgroundColor = .gray
+        return $0
+    }(UIView())
+    
+    // MARK: - LifeCycle
+    
+    override private init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCell()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Method
+    
+    private func setupCell() {
+        addSubview(progressBlock)
+        progressBlock.snp.makeConstraints {
+            $0.top.size.equalToSuperview()
+        }
+    }
+}
