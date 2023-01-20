@@ -166,13 +166,6 @@ class EnterViewController: BaseViewController {
         }
     }
     
-    private func makeAlert(title: String? = nil, message: String? = nil) {
-        let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default)
-        alertViewController.addAction(okAction)
-        self.present(alertViewController, animated: true)
-    }
-    
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
