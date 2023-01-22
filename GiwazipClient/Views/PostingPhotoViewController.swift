@@ -13,7 +13,7 @@ class PostingPhotoViewController: BaseViewController {
     
     // MARK: - View
     
-    private let guidancePhrase: UILabel = {
+    private let guidanceLabel: UILabel = {
         $0.text = """
                   문의할 사진을 추가해주세요.
                   (최대 5장까지 선택 가능합니다.)
@@ -52,15 +52,15 @@ class PostingPhotoViewController: BaseViewController {
     override func layout() {
         super.layout()
         
-        view.addSubview(guidancePhrase)
-        guidancePhrase.snp.makeConstraints {
+        view.addSubview(guidanceLabel)
+        guidanceLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.centerX.equalToSuperview()
         }
         
         view.addSubview(photoCollectionView)
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalTo(guidancePhrase.snp.bottom).offset(16)
+            $0.top.equalTo(guidanceLabel.snp.bottom).offset(16)
             $0.bottom.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
