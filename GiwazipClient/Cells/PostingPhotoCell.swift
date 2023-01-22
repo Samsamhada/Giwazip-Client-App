@@ -28,8 +28,7 @@ class PostingPhotoCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        attribute()
-        layout()
+        setupCell()
     }
     
     required init?(coder: NSCoder) {
@@ -38,11 +37,10 @@ class PostingPhotoCell: UICollectionViewCell {
     
     // MARK: - Method
     
-    private func layout() {
+    private func setupCell() {
         self.addSubview(postingImage)
         postingImage.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
 }
