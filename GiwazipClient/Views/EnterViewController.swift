@@ -172,9 +172,11 @@ class EnterViewController: BaseViewController {
         if (phoneNumber.count == 8) && (inviteCode.count == 6) {
             enterButton.isEnabled = true
             enterButton.backgroundColor = .blue
+            enterButton.setTitleColor(.white, for: .normal)
         } else {
             enterButton.isEnabled = false
             enterButton.backgroundColor = .gray
+            enterButton.setTitleColor(.black, for: .normal)
         }
     }
     
