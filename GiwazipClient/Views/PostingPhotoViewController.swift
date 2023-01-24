@@ -118,13 +118,25 @@ class PostingPhotoViewController: BaseViewController {
 
 extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: - 이미지 갯수
-        return 1
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostingPhotoCell.identifier, for: indexPath) as! PostingPhotoCell
-        
+
+
+        if (images.count == 6) && (images[0] == emptyImage) {
+            images.remove(at: 0)
+            photoCollectionView.reloadData()
+        } else {
+            cell.postingImage.image = self.images[indexPath.item]
+
+            if images.count < 5 && !images.contains(emptyImage) {
+                images.insert(emptyImage, at: 0)
+                photoCollectionView.reloadData()
+            }
+        }
+
         return cell
     }
 
@@ -135,6 +147,11 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
         return CGSize(width: width, height: height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath.item
+        setupPHPickerConfigure()
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
