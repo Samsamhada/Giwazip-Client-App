@@ -5,15 +5,18 @@
 //  Created by 지준용 on 2023/01/21.
 //
 
+import PhotosUI
 import UIKit
 
 import SnapKit
 
 class PostingPhotoViewController: BaseViewController {
-    
+
+    // MARK: - Property
+
     private var uiButtonConfiguration = UIButton.Configuration.plain()
     // MARK: - View
-    
+
     private let guidanceLabel: UILabel = {
         $0.text = """
                   문의할 사진을 추가해주세요.
@@ -25,10 +28,11 @@ class PostingPhotoViewController: BaseViewController {
         $0.numberOfLines = 2
         return $0
     }(UILabel())
-    
+
     private let photoCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.contentInset.bottom = 80
         return collectionView
     }()
 
@@ -80,6 +84,12 @@ class PostingPhotoViewController: BaseViewController {
             $0.height.equalTo(90)
         }
     }
+
+    func showPHPicker() {
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
 }
 
 extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -93,12 +103,11 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
         
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let width = UIScreen.main.bounds.width - 32
         let height = width / 4 * 3
-        
+
         return CGSize(width: width, height: height)
     }
     
