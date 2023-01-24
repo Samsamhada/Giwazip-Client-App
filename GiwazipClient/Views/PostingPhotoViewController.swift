@@ -43,13 +43,18 @@ class PostingPhotoViewController: BaseViewController {
     }(UIButton(configuration: uiButtonConfiguration))
 
     // MARK: - Method
-    
+
     override func attribute() {
         super.attribute()
-        
+
+        setupCollectionView()
+    }
+
+    func setupCollectionView() {
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
-        photoCollectionView.register(PostingPhotoCell.self, forCellWithReuseIdentifier: PostingPhotoCell.identifier)
+        photoCollectionView.register(PostingPhotoCell.self,
+                                     forCellWithReuseIdentifier: PostingPhotoCell.identifier)
     }
     
     override func layout() {
