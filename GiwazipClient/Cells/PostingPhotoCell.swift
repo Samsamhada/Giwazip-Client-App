@@ -5,6 +5,7 @@
 //  Created by 지준용 on 2023/01/21.
 //
 
+import PhotosUI
 import UIKit
 
 import SnapKit
@@ -19,8 +20,16 @@ class PostingPhotoCell: UICollectionViewCell {
     
     let postingImage: UIImageView = {
         $0.backgroundColor = .gray
-        $0.image = UIImage(systemName: "gearshape")
+        $0.contentMode = .scaleAspectFill
+        $0.tintColor = .white
+        $0.clipsToBounds = true
         $0.layer.cornerRadius = 16
+        return $0
+    }(UIImageView())
+    
+    let plusIcon: UIImageView = {
+        $0.image = UIImage(systemName: "plus")
+        $0.tintColor = .white
         return $0
     }(UIImageView())
     
@@ -41,6 +50,12 @@ class PostingPhotoCell: UICollectionViewCell {
         self.addSubview(postingImage)
         postingImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        postingImage.addSubview(plusIcon)
+        plusIcon.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(50)
         }
     }
 }
