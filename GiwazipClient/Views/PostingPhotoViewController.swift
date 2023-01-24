@@ -108,7 +108,7 @@ class PostingPhotoViewController: BaseViewController {
         picker.delegate = self
         present(picker, animated: true)
     }
-    
+
     private func didTapChangeAction() {
         pickerConfiguration.selectionLimit = 1
         pickerConfiguration.selection = .default
