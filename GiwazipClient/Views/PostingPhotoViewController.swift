@@ -147,10 +147,39 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
 
         return CGSize(width: width, height: height)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.item
         setupPHPickerConfigure()
+
+        // MARK: - ActionSheet
+
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let changePhoto = UIAlertAction(title: "사진 변경하기", style: .default) { _ in
+            self.isChangedConfigure = false
+            self.configuration.selectionLimit = 1
+            self.configuration.selection = .default
+
+            self.showPHPicker()
+            self.images.remove(at: self.selectedIndex)
+        }
+        let deletePhoto = UIAlertAction(title: "사진 삭제하기", style: .destructive) {
+            _ in
+            self.photoCollectionView.reloadData()
+            self.images.remove(at: self.selectedIndex)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+        if (selectedIndex == 0) && (images[0] == emptyImage) {
+            self.isChangedConfigure = true
+            showPHPicker()
+        } else {
+            actionSheet.addAction(changePhoto)
+            actionSheet.addAction(deletePhoto)
+        }
+        actionSheet.addAction(cancel)
+
+        present(actionSheet, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
