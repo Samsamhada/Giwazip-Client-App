@@ -5,6 +5,7 @@
 //  Created by 지준용 on 2023/01/21.
 //
 
+import PhotosUI
 import UIKit
 
 import SnapKit
