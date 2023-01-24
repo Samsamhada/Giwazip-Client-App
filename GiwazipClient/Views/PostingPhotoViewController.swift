@@ -103,6 +103,13 @@ class PostingPhotoViewController: BaseViewController {
         }
     }
 
+    @objc func showAlert() {
+        let alert = UIAlertController(title: nil, message: "사진을 한 장 이상 선택해야 합니다.", preferredStyle: .alert)
+        let check = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(check)
+        present(alert, animated: true)
+    }
+
     func setupPHPickerConfigure() {
         configuration.selection = .ordered
         configuration.selectionLimit = (6 - images.count)
