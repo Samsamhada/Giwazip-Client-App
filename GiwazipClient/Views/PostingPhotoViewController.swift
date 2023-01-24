@@ -72,7 +72,7 @@ class PostingPhotoViewController: BaseViewController {
         setupCollectionView()
     }
 
-    func setupCollectionView() {
+    private func setupCollectionView() {
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
         photoCollectionView.register(PostingPhotoCell.self,
@@ -110,13 +110,13 @@ class PostingPhotoViewController: BaseViewController {
         present(alert, animated: true)
     }
 
-    func setupPHPickerConfigure() {
+    private func setupPHPickerConfigure() {
         configuration.selection = .ordered
         configuration.selectionLimit = (6 - images.count)
         configuration.filter = .any(of: [.images, .not(.livePhotos)])
     }
 
-    func showPHPicker() {
+    private func showPHPicker() {
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         present(picker, animated: true)

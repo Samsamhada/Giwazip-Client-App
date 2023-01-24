@@ -35,7 +35,7 @@ class PostingPhotoCell: UICollectionViewCell {
     
     // MARK: - LifeCycle
 
-    override init(frame: CGRect) {
+    override private init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
     }
