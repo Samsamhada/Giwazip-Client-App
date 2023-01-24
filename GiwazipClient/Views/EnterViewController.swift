@@ -92,7 +92,7 @@ class EnterViewController: BaseViewController {
         
         view.addSubview(hStackView)
         hStackView.snp.makeConstraints {
-            $0.top.equalTo(phoneNumberLabel.snp.bottom).offset(5)
+            $0.top.equalTo(phoneNumberLabel.snp.bottom).offset(10)
             $0.left.right.equalToSuperview().inset(16)
         }
         
@@ -122,7 +122,7 @@ class EnterViewController: BaseViewController {
         
         view.addSubview(inviteCodeInput)
         inviteCodeInput.snp.makeConstraints {
-            $0.top.equalTo(inviteCodeLabel.snp.bottom).offset(5)
+            $0.top.equalTo(inviteCodeLabel.snp.bottom).offset(10)
             $0.left.right.equalToSuperview().inset(16)
         }
         
