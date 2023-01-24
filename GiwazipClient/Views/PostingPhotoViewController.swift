@@ -104,10 +104,7 @@ class PostingPhotoViewController: BaseViewController {
     }
 
     @objc func showAlert() {
-        let alert = UIAlertController(title: nil, message: "사진을 한 장 이상 선택해야 합니다.", preferredStyle: .alert)
-        let check = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(check)
-        present(alert, animated: true)
+        makeAlert(title: nil, message: "사진을 한 장 이상 선택해야 합니다.")
     }
 
     private func setupPHPickerConfigure() {
@@ -121,8 +118,20 @@ class PostingPhotoViewController: BaseViewController {
         picker.delegate = self
         present(picker, animated: true)
     }
+    
+    private func didTapChangeAction() {
+        isChangedConfigure = false
         pickerConfiguration.selectionLimit = 1
         pickerConfiguration.selection = .default
+        showPHPicker()
+        
+        images.remove(at: selectedIndex)
+    }
+    
+    private func didTapDeleteAction() {
+        photoCollectionView.reloadData()
+        images.remove(at: selectedIndex)
+    }
 }
 
 extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -159,36 +168,24 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.item
+
         setupPHPickerConfigure()
 
-        // MARK: - ActionSheet
-
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let changePhoto = UIAlertAction(title: "사진 변경하기", style: .default) { _ in
-            self.isChangedConfigure = false
-            self.configuration.selectionLimit = 1
-            self.configuration.selection = .default
-
-            self.showPHPicker()
-            self.images.remove(at: self.selectedIndex)
-        }
-        let deletePhoto = UIAlertAction(title: "사진 삭제하기", style: .destructive) {
-            _ in
-            self.photoCollectionView.reloadData()
-            self.images.remove(at: self.selectedIndex)
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-
         if (selectedIndex == 0) && (images[0] == emptyImage) {
-            self.isChangedConfigure = true
+            isChangedConfigure = true
             showPHPicker()
         } else {
-            actionSheet.addAction(changePhoto)
-            actionSheet.addAction(deletePhoto)
+            makeActionSheet(
+                firstContext: "사진 변경하기",
+                secondContext: "사진 삭제하기",
+                didTapFirst: { change in
+                    self.didTapChangeAction()
+                },
+                didTapSecond: { delete in
+                    self.didTapDeleteAction()
+                }
+            )
         }
-        actionSheet.addAction(cancel)
-
-        present(actionSheet, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
