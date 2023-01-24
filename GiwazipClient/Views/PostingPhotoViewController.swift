@@ -11,6 +11,7 @@ import SnapKit
 
 class PostingPhotoViewController: BaseViewController {
     
+    private var uiButtonConfiguration = UIButton.Configuration.plain()
     // MARK: - View
     
     private let guidanceLabel: UILabel = {
@@ -30,15 +31,17 @@ class PostingPhotoViewController: BaseViewController {
                                               collectionViewLayout: UICollectionViewFlowLayout())
         return collectionView
     }()
-    
-    private let nextButton: UIButton = {
-        $0.setTitle("다음", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .blue
-        $0.layer.cornerRadius = 16
+
+    private lazy var nextButton: UIButton = {
+        $0.configuration?.title = "다음"
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.contentInsets.bottom = 20
+        $0.backgroundColor = .gray
+        $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         return $0
-    }(UIButton())
-    
+    }(UIButton(configuration: uiButtonConfiguration))
+
     // MARK: - Method
     
     override func attribute() {
@@ -51,25 +54,25 @@ class PostingPhotoViewController: BaseViewController {
     
     override func layout() {
         super.layout()
-        
+
         view.addSubview(guidanceLabel)
         guidanceLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.centerX.equalToSuperview()
         }
-        
+
         view.addSubview(photoCollectionView)
         photoCollectionView.snp.makeConstraints {
             $0.top.equalTo(guidanceLabel.snp.bottom).offset(16)
             $0.bottom.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
-        
+
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            $0.height.equalTo(50)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(90)
         }
     }
 }
