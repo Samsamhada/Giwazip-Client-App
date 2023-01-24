@@ -15,6 +15,24 @@ class PostingPhotoViewController: BaseViewController {
     // MARK: - Property
 
     private var uiButtonConfiguration = UIButton.Configuration.plain()
+    private var configuration = PHPickerConfiguration()
+    private var isChangedConfigure = false
+    private var selectedIndex = 0
+    private let emptyImage = UIImage()
+
+    private lazy var images: [UIImage] = [emptyImage] {
+        didSet {
+            if images.count > 1 {
+                // TODO: - 네비게이션 기능 필요.
+                nextButton.backgroundColor = .blue
+                nextButton.removeTarget(self, action: #selector(showAlert), for: .touchUpInside)
+            } else {
+                nextButton.backgroundColor = .gray
+                nextButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+            }
+        }
+    }
+
     // MARK: - View
 
     private let guidanceLabel: UILabel = {
@@ -85,6 +103,12 @@ class PostingPhotoViewController: BaseViewController {
         }
     }
 
+    func setupPHPickerConfigure() {
+        configuration.selection = .ordered
+        configuration.selectionLimit = (6 - images.count)
+        configuration.filter = .any(of: [.images, .not(.livePhotos)])
+    }
+
     func showPHPicker() {
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
@@ -113,5 +137,27 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
+    }
+}
+
+extension PostingPhotoViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+
+        picker.dismiss(animated: true)
+
+        let itemProviders = results.map { $0.itemProvider }
+
+        for item in itemProviders {
+            if item.canLoadObject(ofClass: UIImage.self) {
+                item.loadObject(ofClass: UIImage.self) { (image, error) in
+                    DispatchQueue.main.async {
+                        guard let image = image as? UIImage else { return }
+                        self.images.insert(image,
+                                           at: self.isChangedConfigure ? self.selectedIndex + 1 : self.selectedIndex)
+                        self.photoCollectionView.reloadData()
+                    }
+                }
+            }
+        }
     }
 }
