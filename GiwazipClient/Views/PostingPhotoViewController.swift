@@ -15,7 +15,7 @@ class PostingPhotoViewController: BaseViewController {
     // MARK: - Property
 
     private var uiButtonConfiguration = UIButton.Configuration.plain()
-    private var configuration = PHPickerConfiguration()
+    private var pickerConfiguration = PHPickerConfiguration()
     private var isChangedConfigure = false
     private var selectedIndex = 0
     private let emptyImage = UIImage()
@@ -111,23 +111,25 @@ class PostingPhotoViewController: BaseViewController {
     }
 
     private func setupPHPickerConfigure() {
-        configuration.selection = .ordered
-        configuration.selectionLimit = (6 - images.count)
-        configuration.filter = .any(of: [.images, .not(.livePhotos)])
+        pickerConfiguration.selection = .ordered
+        pickerConfiguration.selectionLimit = (6 - images.count)
+        pickerConfiguration.filter = .any(of: [.images, .not(.livePhotos)])
     }
 
     private func showPHPicker() {
-        let picker = PHPickerViewController(configuration: configuration)
+        let picker = PHPickerViewController(configuration: pickerConfiguration)
         picker.delegate = self
         present(picker, animated: true)
     }
+        pickerConfiguration.selectionLimit = 1
+        pickerConfiguration.selection = .default
 }
 
 extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostingPhotoCell.identifier, for: indexPath) as! PostingPhotoCell
 
