@@ -119,8 +119,6 @@ class PostingPhotoViewController: BaseViewController {
         pickerConfiguration.selectionLimit = 1
         pickerConfiguration.selection = .default
         showPHPicker()
-        
-        images.remove(at: selectedIndex)
     }
     
     private func didTapDeleteAction() {
@@ -191,15 +189,19 @@ extension PostingPhotoViewController: PHPickerViewControllerDelegate {
 
         dismiss(animated: true)
 
-        let itemProviders = results.map { $0.itemProvider }
+        let itemProviders = results.map { $0.itemProvider }.reversed()
 
         for item in itemProviders {
             if item.canLoadObject(ofClass: UIImage.self) {
                 item.loadObject(ofClass: UIImage.self) { (image, _) in
                     DispatchQueue.main.async {
                         guard let image = image as? UIImage else { return }
-                        self.images.insert(image,
-                                           at: self.isChangedCondition ? self.selectedIndex + 1 : self.selectedIndex)
+                        
+                        if self.isChangedCondition {
+                            self.images.insert(image, at: self.selectedIndex + 1)
+                        } else {
+                            self.images[self.selectedIndex] = image
+                        }
                         self.photoCollectionView.reloadData()
                     }
                 }
