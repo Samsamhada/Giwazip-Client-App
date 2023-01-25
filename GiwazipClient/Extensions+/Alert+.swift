@@ -9,10 +9,10 @@ import UIKit
 
 extension UIViewController {
     
-    func makeAlert(title: String? = nil,
+    func makeAlert(title: String? = "",
                    message: String? = nil,
                    okAction: ((UIAlertAction) -> Void)? = nil,
-                   completion : (() -> Void)? = nil) {
+                   completion: (() -> Void)? = nil) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "확인", style: .default, handler: okAction)
@@ -21,13 +21,13 @@ extension UIViewController {
         self.present(alertViewController, animated: true, completion: completion)
     }
     
-    func makeAlert(title: String? = nil,
-                          message: String? = nil,
-                          okTitle: String = "확인",
-                          cancelTitle: String = "취소",
-                          okAction: ((UIAlertAction) -> Void)?,
-                          cancelAction: ((UIAlertAction) -> Void)? = nil,
-                          completion : (() -> Void)? = nil) {
+    func makeAlert(title: String? = "",
+                   message: String? = nil,
+                   okTitle: String = "확인",
+                   cancelTitle: String = "취소",
+                   okAction: ((UIAlertAction) -> Void)?,
+                   cancelAction: ((UIAlertAction) -> Void)? = nil,
+                   completion: (() -> Void)? = nil) {
         
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -40,7 +40,7 @@ extension UIViewController {
         self.present(alertViewController, animated: true, completion: completion)
     }
     
-    func makeActionSheet(title: String? = nil,
+    func makeActionSheet(title: String? = "",
                          message: String? = nil,
                          firstContext: String? = nil,
                          secondContext: String? = nil,
@@ -48,7 +48,7 @@ extension UIViewController {
                          didTapFirst: ((UIAlertAction) -> Void)? = nil,
                          didTapSecond: ((UIAlertAction) -> Void)? = nil,
                          didTapCancel: ((UIAlertAction) -> Void)? = nil,
-                         completion : (() -> Void)? = nil) {
+                         completion: (() -> Void)? = nil) {
         
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         let firstAction = UIAlertAction(title: firstContext, style: .default, handler: didTapFirst)
