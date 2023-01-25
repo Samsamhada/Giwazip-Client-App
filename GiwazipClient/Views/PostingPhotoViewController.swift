@@ -190,13 +190,13 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
 extension PostingPhotoViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
 
-        picker.dismiss(animated: true)
+        dismiss(animated: true)
 
         let itemProviders = results.map { $0.itemProvider }
 
         for item in itemProviders {
             if item.canLoadObject(ofClass: UIImage.self) {
-                item.loadObject(ofClass: UIImage.self) { (image, error) in
+                item.loadObject(ofClass: UIImage.self) { (image, _) in
                     DispatchQueue.main.async {
                         guard let image = image as? UIImage else { return }
                         self.images.insert(image,

@@ -18,7 +18,7 @@ class PostingPhotoCell: UICollectionViewCell {
     // MARK: - View
     
     let postingImage: UIImageView = {
-        $0.backgroundColor = .gray
+        $0.backgroundColor = .systemGray4
         $0.contentMode = .scaleAspectFill
         $0.tintColor = .white
         $0.clipsToBounds = true
