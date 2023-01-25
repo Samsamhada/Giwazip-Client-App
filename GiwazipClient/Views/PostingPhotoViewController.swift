@@ -138,16 +138,14 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
 
         cell.plusIcon.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
 
-        if (images.count == 6) && (images[0] == emptyImage) {
+        if images.count == 6 {
             images.remove(at: 0)
+            photoCollectionView.reloadData()
+        } else if images.count < 5 && !images.contains(emptyImage) {
+            images.insert(emptyImage, at: 0)
             photoCollectionView.reloadData()
         } else {
             cell.postingImage.image = self.images[indexPath.item]
-
-            if images.count < 5 && !images.contains(emptyImage) {
-                images.insert(emptyImage, at: 0)
-                photoCollectionView.reloadData()
-            }
         }
         return cell
     }
