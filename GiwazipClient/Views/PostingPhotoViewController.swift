@@ -16,7 +16,7 @@ class PostingPhotoViewController: BaseViewController {
 
     private var uiButtonConfiguration = UIButton.Configuration.plain()
     private var pickerConfiguration = PHPickerConfiguration()
-    private var isChangedCondition = false
+    private var isChangedPHPickerRole = false
     private var selectedIndex = 0
     private let emptyImage = UIImage()
 
@@ -162,14 +162,14 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
         setupPHPickerConfigure()
 
         if (selectedIndex == 0) && (images[0] == emptyImage) {
-            isChangedCondition = true
+            isChangedPHPickerRole = true
             showPHPicker()
         } else {
             makeActionSheet(
                 firstContext: "사진 변경하기",
                 secondContext: "사진 삭제하기",
                 didTapFirst: { change in
-                    self.isChangedCondition = false
+                    self.isChangedPHPickerRole = false
                     self.didTapChangeAction()
                 },
                 didTapSecond: { delete in
@@ -197,7 +197,7 @@ extension PostingPhotoViewController: PHPickerViewControllerDelegate {
                     DispatchQueue.main.async {
                         guard let image = image as? UIImage else { return }
                         
-                        if self.isChangedCondition {
+                        if self.isChangedPHPickerRole {
                             self.images.insert(image, at: self.selectedIndex + 1)
                         } else {
                             self.images[self.selectedIndex] = image
