@@ -190,7 +190,7 @@ extension PostingPhotoViewController: PHPickerViewControllerDelegate {
                 item.loadObject(ofClass: UIImage.self) { (image, _) in
                     DispatchQueue.main.async {
                         guard let image = image as? UIImage else { return }
-                        
+
                         if self.isChangedPHPickerRole {
                             self.images.insert(image, at: self.selectedIndex + 1)
                         } else {
