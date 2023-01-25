@@ -40,7 +40,7 @@ extension UIViewController {
         self.present(alertViewController, animated: true, completion: completion)
     }
     
-    func makeActionSheet(title: String? = nil,
+    func makeActionSheet(title: String? = "",
                          message: String? = nil,
                          firstContext: String? = "",
                          secondContext: String? = "",
