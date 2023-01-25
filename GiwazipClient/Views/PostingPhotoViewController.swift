@@ -123,8 +123,8 @@ class PostingPhotoViewController: BaseViewController {
     }
     
     private func didTapDeleteAction() {
-        photoCollectionView.reloadData()
         images.remove(at: selectedIndex)
+        photoCollectionView.reloadData()
     }
 }
 
