@@ -84,7 +84,7 @@ class PostingPhotoViewController: BaseViewController {
 
         view.addSubview(guidanceLabel)
         guidanceLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(12)
             $0.centerX.equalToSuperview()
         }
 
