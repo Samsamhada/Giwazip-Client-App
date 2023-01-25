@@ -25,10 +25,11 @@ class PostingPhotoViewController: BaseViewController {
             if images.count > 1 {
                 // TODO: - 네비게이션 기능 필요.
                 nextButton.backgroundColor = .blue
+                nextButton.isEnabled = true
             } else {
                 nextButton.backgroundColor = .systemGray4
+                nextButton.isEnabled = false
             }
-            nextButton.isEnabled.toggle()
         }
     }
 
