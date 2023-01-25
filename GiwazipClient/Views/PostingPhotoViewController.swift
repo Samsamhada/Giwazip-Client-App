@@ -25,11 +25,10 @@ class PostingPhotoViewController: BaseViewController {
             if images.count > 1 {
                 // TODO: - 네비게이션 기능 필요.
                 nextButton.backgroundColor = .blue
-                nextButton.removeTarget(self, action: #selector(showAlert), for: .touchUpInside)
             } else {
-                nextButton.backgroundColor = .gray
-                nextButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+                nextButton.backgroundColor = .systemGray4
             }
+            nextButton.isEnabled.toggle()
         }
     }
 
@@ -59,8 +58,8 @@ class PostingPhotoViewController: BaseViewController {
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.contentInsets.bottom = 20
-        $0.backgroundColor = .gray
-        $0.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        $0.backgroundColor = .systemGray4
+        $0.isEnabled = false
         return $0
     }(UIButton(configuration: uiButtonConfiguration))
 
@@ -101,10 +100,6 @@ class PostingPhotoViewController: BaseViewController {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(90)
         }
-    }
-
-    @objc func showAlert() {
-        makeAlert(title: nil, message: "사진을 한 장 이상 선택해야 합니다.")
     }
 
     private func setupPHPickerConfigure() {
@@ -155,7 +150,6 @@ extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionView
                 photoCollectionView.reloadData()
             }
         }
-
         return cell
     }
 
