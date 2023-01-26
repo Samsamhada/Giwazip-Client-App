@@ -14,7 +14,7 @@ class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
 
-    private var uiButtonConfiguration = UIButton.Configuration.plain()
+    private var buttonConfiguration = UIButton.Configuration.filled()
     private var pickerConfiguration = PHPickerConfiguration()
     private var isChangedPHPickerRole = false
     private var selectedIndex = 0
@@ -62,7 +62,7 @@ class PostingPhotoViewController: BaseViewController {
         $0.backgroundColor = .systemGray4
         $0.isEnabled = false
         return $0
-    }(UIButton(configuration: uiButtonConfiguration))
+    }(UIButton(configuration: buttonConfiguration))
 
     // MARK: - Method
 
