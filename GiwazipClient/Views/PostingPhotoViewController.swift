@@ -22,14 +22,7 @@ class PostingPhotoViewController: BaseViewController {
 
     private lazy var images: [UIImage] = [emptyImage] {
         didSet {
-            if images.count > 1 {
-                // TODO: - 네비게이션 기능 필요.
-                nextButton.backgroundColor = .blue
-                nextButton.isEnabled = true
-            } else {
-                nextButton.backgroundColor = .systemGray4
-                nextButton.isEnabled = false
-            }
+            nextButton.isEnabled = (images.count) > 1 ? true : false
         }
     }
 
@@ -50,7 +43,7 @@ class PostingPhotoViewController: BaseViewController {
     private let photoCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.contentInset.bottom = 80
+        collectionView.contentInset.bottom = 20
         return collectionView
     }()
 
@@ -58,8 +51,9 @@ class PostingPhotoViewController: BaseViewController {
         $0.configuration?.title = "다음"
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.baseBackgroundColor = .blue
+        $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
-        $0.backgroundColor = .systemGray4
         $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
@@ -91,12 +85,12 @@ class PostingPhotoViewController: BaseViewController {
         view.addSubview(photoCollectionView)
         photoCollectionView.snp.makeConstraints {
             $0.top.equalTo(guidanceLabel.snp.bottom).offset(16)
-            $0.bottom.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
 
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
+            $0.top.equalTo(photoCollectionView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.height.equalTo(90)
