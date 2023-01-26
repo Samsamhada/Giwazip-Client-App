@@ -67,7 +67,6 @@ class PostingPhotoViewController: BaseViewController {
     }
 
     private func setupCollectionView() {
-        photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
         photoCollectionView.register(PostingPhotoCell.self,
                                      forCellWithReuseIdentifier: PostingPhotoCell.identifier)
