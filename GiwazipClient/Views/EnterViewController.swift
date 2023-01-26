@@ -13,7 +13,7 @@ class EnterViewController: BaseViewController {
     
     // MARK: - View
     
-    private let phoneNumberLabel: UILabel = {
+    private let phoneNumberGuideLabel: UILabel = {
         $0.text = "전화번호를 입력해주세요"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -43,7 +43,8 @@ class EnterViewController: BaseViewController {
         return $0
     }(UIView())
     
-    private let inviteCodeLabel: UILabel = {
+
+    private let inviteCodeGuideLabel: UILabel = {
         $0.text = "초대코드 6자리를 입력해주세요"
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -83,59 +84,57 @@ class EnterViewController: BaseViewController {
     }
     
     override func layout() {
-        view.addSubview(phoneNumberLabel)
-        view.addSubview(hStackView)
-        hStackView.addSubview(startPhoneNumber)
-        hStackView.addSubview(phoneNumberInput)
-        view.addSubview(phoneNumberUnderLine)
         
-        view.addSubview(inviteCodeLabel)
-        view.addSubview(inviteCodeInput)
-        view.addSubview(inviteCodeUnderLine)
-        
-        view.addSubview(enterButton)
-        
-        phoneNumberLabel.snp.makeConstraints {
+        view.addSubview(phoneNumberGuideLabel)
+        phoneNumberGuideLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.left.right.equalToSuperview().inset(16)
         }
         
+        view.addSubview(hStackView)
         hStackView.snp.makeConstraints {
-            $0.top.equalTo(phoneNumberLabel.snp.bottom).offset(5)
+            $0.top.equalTo(phoneNumberGuideLabel.snp.bottom).offset(10)
             $0.left.right.equalToSuperview().inset(16)
         }
         
+        hStackView.addSubview(startPhoneNumber)
         startPhoneNumber.snp.makeConstraints {
             $0.top.left.bottom.equalToSuperview()
         }
         
+        hStackView.addSubview(phoneNumberInput)
         phoneNumberInput.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.left.equalTo(startPhoneNumber.snp.right)
         }
         
+        view.addSubview(phoneNumberUnderLine)
         phoneNumberUnderLine.snp.makeConstraints {
             $0.top.equalTo(hStackView.snp.bottom).offset(3)
             $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(1)
         }
         
-        inviteCodeLabel.snp.makeConstraints {
+        view.addSubview(inviteCodeGuideLabel)
+        inviteCodeGuideLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(100)
             $0.left.right.equalToSuperview().inset(16)
         }
         
+        view.addSubview(inviteCodeInput)
         inviteCodeInput.snp.makeConstraints {
-            $0.top.equalTo(inviteCodeLabel.snp.bottom).offset(5)
+            $0.top.equalTo(inviteCodeGuideLabel.snp.bottom).offset(10)
             $0.left.right.equalToSuperview().inset(16)
         }
         
+        view.addSubview(inviteCodeUnderLine)
         inviteCodeUnderLine.snp.makeConstraints {
             $0.top.equalTo(inviteCodeInput.snp.bottom).offset(3)
             $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(1)
         }
         
+        view.addSubview(enterButton)
         enterButton.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
