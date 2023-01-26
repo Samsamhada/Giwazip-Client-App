@@ -67,7 +67,6 @@ class PostingPhotoViewController: BaseViewController {
     }
 
     private func setupCollectionView() {
-        photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
         photoCollectionView.register(PostingPhotoCell.self,
                                      forCellWithReuseIdentifier: PostingPhotoCell.identifier)
@@ -121,7 +120,7 @@ class PostingPhotoViewController: BaseViewController {
     }
 }
 
-extension PostingPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
