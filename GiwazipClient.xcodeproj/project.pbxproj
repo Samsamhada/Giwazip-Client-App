@@ -36,6 +36,8 @@
 		98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B732941DD4B00386AA4 /* SceneDelegate.swift */; };
 		98D44B7B2941DD4D00386AA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D44B7A2941DD4D00386AA4 /* Assets.xcassets */; };
 		98D44B7E2941DD4D00386AA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D44B7C2941DD4D00386AA4 /* LaunchScreen.storyboard */; };
+		98F52B822982B476002C1303 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F52B812982B476002C1303 /* PostingViewController.swift */; };
+		98F52B842982BA28002C1303 /* DetailPostingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F52B832982BA28002C1303 /* DetailPostingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		98D44B7A2941DD4D00386AA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98D44B7D2941DD4D00386AA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98D44B7F2941DD4D00386AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98F52B812982B476002C1303 /* PostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
+		98F52B832982BA28002C1303 /* DetailPostingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostingCell.swift; sourceTree = "<group>"; };
 		BA55A12FB784D2A6D8435CDD /* Pods-GiwazipClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.debug.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiwazipClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +141,7 @@
 				988C56D929779D2A00018F07 /* PostDateCell.swift */,
 				988C56D32976D3BA00018F07 /* HistoryCell.swift */,
 				98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */,
+				98F52B832982BA28002C1303 /* DetailPostingCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				260A63F22975E01F004034AD /* SplashViewController.swift in Sources */,
 				438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */,
 				260A63EA29711307004034AD /* BaseCoordinator.swift in Sources */,
+				98F52B842982BA28002C1303 /* DetailPostingCell.swift in Sources */,
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */,
 				43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */,
@@ -370,6 +376,7 @@
 				260A63CA29710725004034AD /* Model.swift in Sources */,
 				988C56DA29779D2A00018F07 /* PostDateCell.swift in Sources */,
 				260A63DC297107C3004034AD /* BaseViewController.swift in Sources */,
+				98F52B822982B476002C1303 /* PostingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
