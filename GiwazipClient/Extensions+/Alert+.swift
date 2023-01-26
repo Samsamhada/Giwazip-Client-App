@@ -40,15 +40,14 @@ extension UIViewController {
         self.present(alertViewController, animated: true, completion: completion)
     }
     
-    func makeActionSheet(title: String? = "",
+    func makeActionSheet(title: String? = nil,
                          message: String? = nil,
-                         firstContext: String? = nil,
-                         secondContext: String? = nil,
+                         firstContext: String? = "",
+                         secondContext: String? = "",
                          cancelContext: String? = "취소",
                          didTapFirst: ((UIAlertAction) -> Void)? = nil,
                          didTapSecond: ((UIAlertAction) -> Void)? = nil,
-                         didTapCancel: ((UIAlertAction) -> Void)? = nil,
-                         completion: (() -> Void)? = nil) {
+                         didTapCancel: ((UIAlertAction) -> Void)? = nil) {
         
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         let firstAction = UIAlertAction(title: firstContext, style: .default, handler: didTapFirst)
