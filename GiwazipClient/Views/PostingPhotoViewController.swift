@@ -22,7 +22,7 @@ class PostingPhotoViewController: BaseViewController {
 
     private lazy var images: [UIImage] = [emptyImage] {
         didSet {
-            nextButton.isEnabled = (images.count) > 1 ? true : false
+            nextButton.isEnabled = (images.count > 1) ? true : false
         }
     }
 
