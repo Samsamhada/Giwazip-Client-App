@@ -18,15 +18,23 @@ class PostingPhotoCell: UICollectionViewCell {
     // MARK: - View
     
     let postingImage: UIImageView = {
-        $0.backgroundColor = .gray
-        $0.image = UIImage(systemName: "gearshape")
+        $0.backgroundColor = .systemGray4
+        $0.contentMode = .scaleAspectFill
+        $0.tintColor = .white
+        $0.clipsToBounds = true
         $0.layer.cornerRadius = 16
+        return $0
+    }(UIImageView())
+    
+    let plusIcon: UIImageView = {
+        $0.image = UIImage(systemName: "plus")
+        $0.tintColor = .white
         return $0
     }(UIImageView())
     
     // MARK: - LifeCycle
 
-    override init(frame: CGRect) {
+    override private init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
     }
@@ -41,6 +49,12 @@ class PostingPhotoCell: UICollectionViewCell {
         self.addSubview(postingImage)
         postingImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        postingImage.addSubview(plusIcon)
+        plusIcon.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(50)
         }
     }
 }
