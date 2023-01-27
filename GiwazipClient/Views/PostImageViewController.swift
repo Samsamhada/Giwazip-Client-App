@@ -17,7 +17,17 @@ class PostImageViewController: BaseViewController {
     
     // MARK: - View
     
-    private let scrollView = UIScrollView()
+    private lazy var scrollView: UIScrollView = {
+        $0.frame = self.view.bounds
+        $0.zoomScale = 1.0
+        $0.minimumZoomScale = 1.0
+        $0.maximumZoomScale = 3.0
+        $0.contentInsetAdjustmentBehavior = .never
+        $0.showsVerticalScrollIndicator = false
+        $0.showsHorizontalScrollIndicator = false
+        $0.delegate = self
+        return $0
+    }(UIScrollView())
     
     private lazy var postImage: UIImageView = {
         $0.image = UIImage(named: "cat")
@@ -31,24 +41,12 @@ class PostImageViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
-        setupScrollView()
         view.addGestureRecognizer(pinch)
     }
     
     override func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(postImage)
-    }
-    
-    private func setupScrollView() {
-        scrollView.frame = view.bounds
-        scrollView.delegate = self
-        scrollView.zoomScale = 1.0
-        scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 3.0
-        scrollView.contentInsetAdjustmentBehavior = .never
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
     }
     
     @objc func controlPinch() {
