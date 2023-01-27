@@ -11,10 +11,6 @@ import SnapKit
 
 class PostImageViewController: BaseViewController {
     
-    // MARK: - Property
-    
-    private let pinch = UIPinchGestureRecognizer(target: self, action: #selector(controlPinch))
-    
     // MARK: - View
     
     private lazy var scrollView: UIScrollView = {
@@ -41,17 +37,11 @@ class PostImageViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
-        view.addGestureRecognizer(pinch)
     }
     
     override func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(postImage)
-    }
-    
-    @objc func controlPinch() {
-        postImage.transform = postImage.transform.scaledBy(x: pinch.scale, y: pinch.scale)
-        pinch.scale = 1
     }
 }
 
