@@ -35,10 +35,6 @@ class PostImageViewController: BaseViewController {
     
     // MARK: - Method
     
-    override func attribute() {
-        super.attribute()
-    }
-    
     override func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(postImage)
