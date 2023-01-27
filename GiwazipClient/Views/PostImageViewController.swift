@@ -51,24 +51,10 @@ extension PostImageViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        if scrollView.zoomScale > 1 {
-            guard let image = postImage.image else { return }
-            guard let zoomView = viewForZooming(in: scrollView) else { return }
-            
-            let widthRatio = zoomView.frame.width / image.size.width
-            let heightRatio = zoomView.frame.height / image.size.height
-            let ratio = widthRatio < heightRatio ? widthRatio : heightRatio
-            
-            let newWidth = image.size.width * ratio
-            let newHeight = image.size.height * ratio
-            
-            let left = 0.5 * ((newWidth * scrollView.zoomScale > zoomView.frame.width) ?
-                              (newWidth - zoomView.frame.width) : (scrollView.frame.width - scrollView.contentSize.width))
-            let top = 0.5 * ((newHeight * scrollView.zoomScale > zoomView.frame.height) ? (newHeight - zoomView.frame.height) : (scrollView.frame.height - scrollView.contentSize.height))
-            
-            scrollView.contentInset = UIEdgeInsets(top: top.rounded(), left: left.rounded(), bottom: top.rounded(), right: left.rounded())
-        } else {
+        if scrollView.zoomScale < 1 {
             scrollView.contentInset = .zero
+        } else if scrollView.zoomScale >= 3.0 {
+            scrollView.zoomScale = 3.0
         }
     }
 }
