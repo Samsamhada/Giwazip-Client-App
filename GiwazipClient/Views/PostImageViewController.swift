@@ -13,7 +13,7 @@ class PostImageViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let pinch = UIPinchGestureRecognizer()
+    private let pinch = UIPinchGestureRecognizer(target: self, action: #selector(controlPinch))
     
     // MARK: - View
     
@@ -22,6 +22,8 @@ class PostImageViewController: BaseViewController {
     private lazy var postImage: UIImageView = {
         $0.image = UIImage(named: "cat")
         $0.isUserInteractionEnabled = true
+        $0.frame = scrollView.bounds
+        $0.contentMode = .scaleAspectFit
         return $0
     }(UIImageView())
     
@@ -30,8 +32,7 @@ class PostImageViewController: BaseViewController {
     override func attribute() {
         super.attribute()
         setupScrollView()
-        setupImageView()
-        setupPinch()
+        view.addGestureRecognizer(pinch)
     }
     
     override func layout() {
@@ -50,21 +51,10 @@ class PostImageViewController: BaseViewController {
         scrollView.showsHorizontalScrollIndicator = false
     }
     
-    private func setupImageView() {
-        postImage.frame = scrollView.bounds
-        postImage.contentMode = .scaleAspectFit
-    }
-    
-    private func setupPinch() {
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(controlPinch))
-        view.addGestureRecognizer(pinch)
-    }
-    
     @objc func controlPinch() {
         postImage.transform = postImage.transform.scaledBy(x: pinch.scale, y: pinch.scale)
         pinch.scale = 1
     }
-
 }
 
 extension PostImageViewController: UIScrollViewDelegate {
