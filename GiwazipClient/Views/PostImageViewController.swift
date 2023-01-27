@@ -9,15 +9,17 @@ import UIKit
 
 import SnapKit
 
-class PostImageView: BaseViewController, UIGestureRecognizerDelegate {
+class PostImageViewController: BaseViewController {
     
     // MARK: - Property
-    private let scrollView = UIScrollView()
+    
     private let pinch = UIPinchGestureRecognizer()
     
     // MARK: - View
     
-    var postImage: UIImageView = {
+    private let scrollView = UIScrollView()
+    
+    private lazy var postImage: UIImageView = {
         $0.image = UIImage(named: "cat")
         $0.isUserInteractionEnabled = true
         return $0
@@ -29,7 +31,7 @@ class PostImageView: BaseViewController, UIGestureRecognizerDelegate {
         super.attribute()
         setupScrollView()
         setupImageView()
-        setupPintch()
+        setupPinch()
     }
     
     override func layout() {
@@ -53,7 +55,7 @@ class PostImageView: BaseViewController, UIGestureRecognizerDelegate {
         postImage.contentMode = .scaleAspectFit
     }
     
-    private func setupPintch() {
+    private func setupPinch() {
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(controlPinch))
         view.addGestureRecognizer(pinch)
     }
@@ -65,7 +67,7 @@ class PostImageView: BaseViewController, UIGestureRecognizerDelegate {
 
 }
 
-extension PostImageView: UIScrollViewDelegate {
+extension PostImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
          return self.postImage
      }
