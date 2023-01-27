@@ -11,6 +11,8 @@ import SnapKit
 
 class PostingViewController: BaseViewController {
 
+    let screenWidth = UIScreen.main.bounds.width
+    
     // MARK: - View
 
     private lazy var imageCollectionView: UICollectionView = {
@@ -23,13 +25,22 @@ class PostingViewController: BaseViewController {
         collectionView.backgroundColor = .systemGray4
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.alwaysBounceHorizontal = true
+        collectionView.isPagingEnabled = true
         return collectionView
     }()
 
-    private let tempBlock: UIView = {
-        $0.backgroundColor = .systemGray4
+    private let pageControl: UIPageControl = {
+        // TODO: - 이미지 데이터 갯수 반영
+        $0.numberOfPages = 5
+        $0.currentPage = 0
+        $0.preferredCurrentPageIndicatorImage = UIImage(systemName: "plus")
+        $0.preferredIndicatorImage = UIImage(systemName: "minus")
+        $0.currentPageIndicatorTintColor = .red
+        $0.pageIndicatorTintColor = .green
+        $0.hidesForSinglePage = true
+        $0.addTarget(PostingViewController.self, action: #selector(didTapPageControl), for: .valueChanged)
         return $0
-    }(UIView())
+    }(UIPageControl())
 
     private let divider: UIView = {
         $0.backgroundColor = .systemGray2
@@ -54,9 +65,7 @@ class PostingViewController: BaseViewController {
     override func attribute() {
         super.attribute()
 
-        imageCollectionView.delegate = self
-        imageCollectionView.dataSource = self
-        imageCollectionView.register(DetailPostingCell.self, forCellWithReuseIdentifier: DetailPostingCell.identifier)
+        setupCollectionView()
     }
 
     override func layout() {
@@ -66,19 +75,19 @@ class PostingViewController: BaseViewController {
         imageCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(UIScreen.main.bounds.width / 4 * 3)
+            $0.height.equalTo(screenWidth / 4 * 3)
         }
 
-        view.addSubview(tempBlock)
-        tempBlock.snp.makeConstraints {
+        view.addSubview(pageControl)
+        pageControl.snp.makeConstraints {
             $0.top.equalTo(imageCollectionView.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(12)
-            $0.height.equalTo(UIScreen.main.bounds.width / 6)
+            $0.height.equalTo(screenWidth / 6)
         }
 
         view.addSubview(divider)
         divider.snp.makeConstraints {
-            $0.top.equalTo(tempBlock.snp.bottom).offset(12)
+            $0.top.equalTo(pageControl.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(12)
             $0.height.equalTo(0.5)
         }
@@ -88,6 +97,17 @@ class PostingViewController: BaseViewController {
             $0.top.equalTo(divider.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(22)
         }
+    }
+    
+    private func setupCollectionView() {
+        imageCollectionView.delegate = self
+        imageCollectionView.dataSource = self
+        imageCollectionView.register(DetailPostingCell.self, forCellWithReuseIdentifier: DetailPostingCell.identifier)
+    }
+    
+    @objc func didTapPageControl() {
+        let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
+        imageCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
@@ -99,17 +119,23 @@ extension PostingViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPostingCell.identifier, for: indexPath) as! DetailPostingCell
         cell.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
         cell.layer.borderWidth = 2
+
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.width / 4 * 3
+        let height = screenWidth / 4 * 3
 
-        return CGSize(width: width, height: height)
+        return CGSize(width: screenWidth, height: height)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let pageNumber = targetContentOffset.pointee.x / scrollView.frame.width
+        pageControl.currentPage = Int(ceil(pageNumber))
     }
 }
