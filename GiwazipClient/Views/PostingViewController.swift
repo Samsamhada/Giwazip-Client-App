@@ -33,7 +33,6 @@ class PostingViewController: BaseViewController {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.alwaysBounceHorizontal = true
         collectionView.isPagingEnabled = true
         return collectionView
     }()
