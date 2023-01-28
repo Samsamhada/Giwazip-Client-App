@@ -73,6 +73,7 @@ class PostingViewController: BaseViewController {
         super.attribute()
 
         setupCollectionView()
+        setupNavigation()
     }
 
     override func layout() {
@@ -115,6 +116,17 @@ class PostingViewController: BaseViewController {
         thumbnailCollectionView.dataSource = self
         thumbnailCollectionView.register(DetailPostingCell.self, forCellWithReuseIdentifier: DetailPostingCell.identifier)
     }
+
+    private func setupNavigation() {
+        let navigationRightItem = UIBarButtonItem(title: "수정",
+                                                  style: .plain,
+                                                  target: self,
+                                                  action: #selector(didTapEditButton))
+        self.navigationItem.rightBarButtonItem = navigationRightItem
+    }
+
+    @objc func didTapEditButton() {
+        print("didTapEditButton is no error")
     }
 }
 
