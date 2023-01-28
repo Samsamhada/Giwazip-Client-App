@@ -1,4 +1,4 @@
-//
+
 //  PostingViewController.swift
 //  GiwazipClient
 //
@@ -11,7 +11,15 @@ import SnapKit
 
 class PostingViewController: BaseViewController {
 
+    // MARK: - Property
+
     let screenWidth = UIScreen.main.bounds.width
+    var selectedIndex = 0 {
+        didSet {
+            imageCollectionView.reloadData()
+            thumbnailCollectionView.reloadData()
+        }
+    }
     
     // MARK: - View
 
@@ -19,28 +27,27 @@ class PostingViewController: BaseViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = .zero
+        flowLayout.itemSize = CGSize(width: screenWidth,
+                                     height: screenWidth / 4 * 3)
         
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: flowLayout)
-        collectionView.backgroundColor = .systemGray4
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.alwaysBounceHorizontal = true
         collectionView.isPagingEnabled = true
         return collectionView
     }()
 
-    private let pageControl: UIPageControl = {
-        // TODO: - 이미지 데이터 갯수 반영
-        $0.numberOfPages = 5
-        $0.currentPage = 0
-        $0.preferredCurrentPageIndicatorImage = UIImage(systemName: "plus")
-        $0.preferredIndicatorImage = UIImage(systemName: "minus")
-        $0.currentPageIndicatorTintColor = .red
-        $0.pageIndicatorTintColor = .green
-        $0.hidesForSinglePage = true
-        $0.addTarget(PostingViewController.self, action: #selector(didTapPageControl), for: .valueChanged)
-        return $0
-    }(UIPageControl())
+    private lazy var thumbnailCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 12
+        flowLayout.itemSize = CGSize(width: screenWidth / 6,
+                                     height: screenWidth / 6)
+
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: flowLayout)
+        return collectionView
+    }()
 
     private let divider: UIView = {
         $0.backgroundColor = .systemGray2
@@ -78,8 +85,8 @@ class PostingViewController: BaseViewController {
             $0.height.equalTo(screenWidth / 4 * 3)
         }
 
-        view.addSubview(pageControl)
-        pageControl.snp.makeConstraints {
+        view.addSubview(thumbnailCollectionView)
+        thumbnailCollectionView.snp.makeConstraints {
             $0.top.equalTo(imageCollectionView.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(12)
             $0.height.equalTo(screenWidth / 6)
@@ -87,7 +94,7 @@ class PostingViewController: BaseViewController {
 
         view.addSubview(divider)
         divider.snp.makeConstraints {
-            $0.top.equalTo(pageControl.snp.bottom).offset(12)
+            $0.top.equalTo(thumbnailCollectionView.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(12)
             $0.height.equalTo(0.5)
         }
@@ -98,16 +105,16 @@ class PostingViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(22)
         }
     }
-    
+
     private func setupCollectionView() {
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.register(DetailPostingCell.self, forCellWithReuseIdentifier: DetailPostingCell.identifier)
+        
+        thumbnailCollectionView.delegate = self
+        thumbnailCollectionView.dataSource = self
+        thumbnailCollectionView.register(DetailPostingCell.self, forCellWithReuseIdentifier: DetailPostingCell.identifier)
     }
-    
-    @objc func didTapPageControl() {
-        let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
-        imageCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
