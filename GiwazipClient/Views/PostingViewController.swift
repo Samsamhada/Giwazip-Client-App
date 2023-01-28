@@ -40,7 +40,7 @@ class PostingViewController: BaseViewController {
 
     private lazy var thumbnailCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 12
+        flowLayout.minimumInteritemSpacing = 0
         flowLayout.itemSize = CGSize(width: screenWidth / 6,
                                      height: screenWidth / 6)
 
