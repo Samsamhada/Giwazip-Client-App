@@ -128,21 +128,25 @@ extension PostingViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPostingCell.identifier, for: indexPath) as! DetailPostingCell
-        cell.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
-        cell.layer.borderWidth = 2
+
+        if (collectionView == thumbnailCollectionView) && (selectedIndex == indexPath.item) {
+            cell.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.layer.borderWidth = 3
+            imageCollectionView.scrollToItem(at: indexPath,
+                                             at: .centeredHorizontally,
+                                             animated: true)
+        }
+        if selectedIndex != indexPath.item { cell.layer.borderWidth = 0 }
 
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let height = screenWidth / 4 * 3
-
-        return CGSize(width: screenWidth, height: height)
-    }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex = indexPath.item
+    }
+
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let pageNumber = targetContentOffset.pointee.x / scrollView.frame.width
-        pageControl.currentPage = Int(ceil(pageNumber))
+        selectedIndex = Int(ceil(pageNumber))
     }
 }

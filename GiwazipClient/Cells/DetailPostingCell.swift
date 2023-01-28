@@ -17,9 +17,9 @@ class DetailPostingCell: UICollectionViewCell {
     
     // MARK: - View
     
-    private let postingImage: UIImageView = {
-        $0.image = UIImage(systemName: "plus")
-        $0.contentMode = .scaleAspectFill
+    let postingImage: UIImageView = {
+        $0.image = UIImage(named: "Test01")
+        $0.contentMode = .scaleToFill
         return $0
     }(UIImageView())
 
