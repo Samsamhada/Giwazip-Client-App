@@ -108,15 +108,14 @@ class PostingViewController: BaseViewController {
 
         view.addSubview(descriptionScroll)
         descriptionScroll.snp.makeConstraints {
-            $0.top.equalTo(divider.snp.bottom).offset(12)
-            $0.horizontalEdges.equalToSuperview().inset(22)
-            $0.bottom.equalToSuperview()
+            $0.top.equalTo(divider.snp.bottom)
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
         
         descriptionScroll.addSubview(postingDescription)
         postingDescription.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            $0.edges.equalToSuperview()
+            $0.top.horizontalEdges.width.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview()
         }
     }
 
