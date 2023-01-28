@@ -155,13 +155,12 @@ extension PostingViewController: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPostingCell.identifier, for: indexPath) as! DetailPostingCell
 
         if (collectionView == thumbnailCollectionView) && (selectedIndex == indexPath.item) {
-            cell.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.borderWidth = 3
             imageCollectionView.scrollToItem(at: indexPath,
                                              at: .centeredHorizontally,
                                              animated: true)
-        }
-        if selectedIndex != indexPath.item { cell.layer.borderWidth = 0 }
+        } else { cell.layer.borderWidth = 0 }
 
         return cell
     }
