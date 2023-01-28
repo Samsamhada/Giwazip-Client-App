@@ -13,8 +13,8 @@ class PostingViewController: BaseViewController {
 
     // MARK: - Property
 
-    let screenWidth = UIScreen.main.bounds.width
-    var selectedIndex = 0 {
+    private let screenWidth = UIScreen.main.bounds.width
+    private var selectedIndex = 0 {
         didSet {
             imageCollectionView.reloadData()
             thumbnailCollectionView.reloadData()
