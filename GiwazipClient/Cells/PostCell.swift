@@ -1,5 +1,5 @@
 //
-//  DetailPostingCell.swift
+//  PostCell.swift
 //  GiwazipClient
 //
 //  Created by 지준용 on 2023/01/26.
@@ -9,11 +9,11 @@ import UIKit
 
 import SnapKit
 
-class DetailPostingCell: UICollectionViewCell {
+class PostCell: UICollectionViewCell {
 
     // MARK: - Property
     
-    static let identifier = "detailPostingCell"
+    static let identifier = "PostCell"
     
     // MARK: - View
     

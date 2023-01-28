@@ -1,5 +1,5 @@
 
-//  PostingViewController.swift
+//  PostViewController.swift
 //  GiwazipClient
 //
 //  Created by 지준용 on 2023/01/26.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class PostingViewController: BaseViewController {
+class PostViewController: BaseViewController {
 
     // MARK: - Property
 
@@ -121,11 +121,11 @@ class PostingViewController: BaseViewController {
     private func setupCollectionView() {
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
-        imageCollectionView.register(DetailPostingCell.self, forCellWithReuseIdentifier: DetailPostingCell.identifier)
+        imageCollectionView.register(PostCell.self, forCellWithReuseIdentifier: PostCell.identifier)
         
         thumbnailCollectionView.delegate = self
         thumbnailCollectionView.dataSource = self
-        thumbnailCollectionView.register(DetailPostingCell.self, forCellWithReuseIdentifier: DetailPostingCell.identifier)
+        thumbnailCollectionView.register(PostCell.self, forCellWithReuseIdentifier: PostCell.identifier)
     }
 
     private func setupNavigation() {
@@ -141,7 +141,7 @@ class PostingViewController: BaseViewController {
     }
 }
 
-extension PostingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PostViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: - 이미지 데이터 갯수
@@ -150,7 +150,7 @@ extension PostingViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailPostingCell.identifier, for: indexPath) as! DetailPostingCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.identifier, for: indexPath) as! PostCell
 
         if (collectionView == thumbnailCollectionView) && (selectedIndex == indexPath.item) {
             cell.layer.borderColor = UIColor.black.cgColor
