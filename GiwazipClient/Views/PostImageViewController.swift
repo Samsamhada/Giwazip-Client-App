@@ -14,7 +14,7 @@ class PostImageViewController: BaseViewController {
     // MARK: - View
     
     private lazy var scrollView: UIScrollView = {
-        $0.frame = self.view.bounds
+        $0.frame = self.view.frame
         $0.zoomScale = 1.0
         $0.minimumZoomScale = 1.0
         $0.maximumZoomScale = 3.0
@@ -26,7 +26,7 @@ class PostImageViewController: BaseViewController {
     }(UIScrollView())
     
     private lazy var postImage: UIImageView = {
-        $0.image = UIImage(named: "cat")
+        $0.image = UIImage(named: "cat2")
         $0.isUserInteractionEnabled = true
         $0.frame = scrollView.bounds
         $0.contentMode = .scaleAspectFit
@@ -47,10 +47,19 @@ extension PostImageViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        if scrollView.zoomScale < 1 {
+        if scrollView.zoomScale > 1 {
+            guard let image = postImage.image else { return }
+            guard let zoomView = viewForZooming(in: scrollView) else { return }
+          
+            let ratio = zoomView.frame.width / image.size.width
+
+            let newHeight = image.size.height * ratio
+
+            let top = 0.5 * ((newHeight * scrollView.zoomScale > zoomView.frame.height) ? (newHeight - zoomView.frame.height) : (scrollView.frame.height - scrollView.contentSize.height))
+
+            scrollView.contentInset = UIEdgeInsets(top: top.rounded(), left: 0, bottom: top.rounded(), right: 0)
+        } else {
             scrollView.contentInset = .zero
-        } else if scrollView.zoomScale >= 3.0 {
-            scrollView.zoomScale = 3.0
         }
     }
 }
