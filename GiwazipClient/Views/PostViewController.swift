@@ -28,7 +28,7 @@ class PostViewController: BaseViewController {
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = .zero
         flowLayout.itemSize = CGSize(width: screenWidth,
-                                     height: screenWidth / 4 * 3)
+                                     height: round(screenWidth / 4 * 3))
         
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: flowLayout)
@@ -40,8 +40,8 @@ class PostViewController: BaseViewController {
     private lazy var thumbnailCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.itemSize = CGSize(width: screenWidth / 6,
-                                     height: screenWidth / 6)
+        flowLayout.itemSize = CGSize(width: round(screenWidth / 6),
+                                     height: round(screenWidth / 6))
 
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: flowLayout)
@@ -88,14 +88,14 @@ class PostViewController: BaseViewController {
         imageCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(screenWidth / 4 * 3)
+            $0.height.equalTo(round(screenWidth / 4 * 3))
         }
 
         view.addSubview(thumbnailCollectionView)
         thumbnailCollectionView.snp.makeConstraints {
             $0.top.equalTo(imageCollectionView.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview().inset(12)
-            $0.height.equalTo(screenWidth / 6)
+            $0.height.equalTo(round(screenWidth / 6))
         }
 
         view.addSubview(divider)
@@ -122,7 +122,7 @@ class PostViewController: BaseViewController {
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.register(PostCell.self, forCellWithReuseIdentifier: PostCell.identifier)
-        
+
         thumbnailCollectionView.delegate = self
         thumbnailCollectionView.dataSource = self
         thumbnailCollectionView.register(PostCell.self, forCellWithReuseIdentifier: PostCell.identifier)
@@ -162,7 +162,7 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         return cell
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
     }
