@@ -39,7 +39,7 @@ class PostViewController: BaseViewController {
 
     private lazy var thumbnailCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumInteritemSpacing = .zero
         flowLayout.itemSize = CGSize(width: round(screenWidth / 6),
                                      height: round(screenWidth / 6))
 
@@ -67,7 +67,7 @@ class PostViewController: BaseViewController {
   """
         $0.textColor = .black
         $0.textAlignment = .left
-        $0.numberOfLines = 0
+        $0.numberOfLines = .zero
         $0.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         return $0
     }(UILabel())
@@ -77,7 +77,8 @@ class PostViewController: BaseViewController {
     override func attribute() {
         super.attribute()
 
-        setupCollectionView()
+        setupCollectionView(at: imageCollectionView, cell: PostCell.self, identifier: PostCell.identifier)
+        setupCollectionView(at: thumbnailCollectionView, cell: PostCell.self, identifier: PostCell.identifier)
         setupNavigation()
     }
 
@@ -118,14 +119,10 @@ class PostViewController: BaseViewController {
         }
     }
 
-    private func setupCollectionView() {
-        imageCollectionView.delegate = self
-        imageCollectionView.dataSource = self
-        imageCollectionView.register(PostCell.self, forCellWithReuseIdentifier: PostCell.identifier)
-
-        thumbnailCollectionView.delegate = self
-        thumbnailCollectionView.dataSource = self
-        thumbnailCollectionView.register(PostCell.self, forCellWithReuseIdentifier: PostCell.identifier)
+    private func setupCollectionView(at collectionView: UICollectionView, cell: AnyClass, identifier: String) {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(cell, forCellWithReuseIdentifier: identifier)
     }
 
     private func setupNavigation() {
@@ -133,7 +130,7 @@ class PostViewController: BaseViewController {
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(didTapEditButton))
-        self.navigationItem.rightBarButtonItem = navigationRightItem
+        navigationItem.rightBarButtonItem = navigationRightItem
     }
 
     @objc func didTapEditButton() {
@@ -155,16 +152,16 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
         if (collectionView == thumbnailCollectionView) && (selectedIndex == indexPath.item) {
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.borderWidth = 3
-            imageCollectionView.scrollToItem(at: indexPath,
-                                             at: .centeredHorizontally,
-                                             animated: true)
         } else { cell.layer.borderWidth = 0 }
 
         return cell
     }
-        
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
+        imageCollectionView.scrollToItem(at: indexPath,
+                                         at: .centeredHorizontally,
+                                         animated: true)
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
