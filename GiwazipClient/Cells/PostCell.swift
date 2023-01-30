@@ -22,6 +22,11 @@ class PostCell: UICollectionViewCell {
         $0.contentMode = .scaleToFill
         return $0
     }(UIImageView())
+    
+    let whiteBlock: UIView = {
+        $0.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        return $0
+    }(UIView())
 
     // MARK: - LifeCycle
     
@@ -38,8 +43,13 @@ class PostCell: UICollectionViewCell {
     // MARK: - Method
     
     private func setupCell() {
-        self.addSubview(postingImage)
+        addSubview(postingImage)
         postingImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        addSubview(whiteBlock)
+        whiteBlock.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
     }

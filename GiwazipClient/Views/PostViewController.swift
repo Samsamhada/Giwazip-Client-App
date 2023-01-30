@@ -149,11 +149,17 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.identifier, for: indexPath) as! PostCell
 
-        if (collectionView == thumbnailCollectionView) && (selectedIndex == indexPath.item) {
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 3
-        } else { cell.layer.borderWidth = 0 }
+        cell.whiteBlock.isHidden = true
 
+        if collectionView == thumbnailCollectionView {
+            if selectedIndex == indexPath.item {
+                cell.layer.borderColor = UIColor.black.cgColor
+                cell.layer.borderWidth = 3
+            } else {
+                cell.layer.borderWidth = 0
+                cell.whiteBlock.isHidden = false
+            }
+        }
         return cell
     }
 
