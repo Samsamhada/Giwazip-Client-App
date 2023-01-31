@@ -13,14 +13,13 @@ class PostViewController: BaseViewController {
 
     // MARK: - Property
 
-    private let screenWidth = UIScreen.main.bounds.width
     private var selectedIndex = 0 {
         didSet {
             imageCollectionView.reloadData()
             thumbnailCollectionView.reloadData()
         }
     }
-    
+
     // MARK: - View
 
     private lazy var imageCollectionView: UICollectionView = {
@@ -150,13 +149,12 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.identifier, for: indexPath) as! PostCell
 
         cell.whiteBlock.isHidden = true
+        cell.strokeBlock.isHidden = true
 
         if collectionView == thumbnailCollectionView {
             if selectedIndex == indexPath.item {
-                cell.layer.borderColor = UIColor.black.cgColor
-                cell.layer.borderWidth = 3
+                cell.strokeBlock.isHidden = false
             } else {
-                cell.layer.borderWidth = 0
                 cell.whiteBlock.isHidden = false
             }
         }

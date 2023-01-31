@@ -27,6 +27,12 @@ class PostCell: UICollectionViewCell {
         $0.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         return $0
     }(UIView())
+    
+    let strokeBlock: UIView = {
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor.black.cgColor
+        return $0
+    }(UIView())
 
     // MARK: - LifeCycle
     
@@ -48,8 +54,13 @@ class PostCell: UICollectionViewCell {
             $0.edges.equalToSuperview()
         }
         
-        addSubview(whiteBlock)
+        postingImage.addSubview(whiteBlock)
         whiteBlock.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        
+        addSubview(strokeBlock)
+        strokeBlock.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
