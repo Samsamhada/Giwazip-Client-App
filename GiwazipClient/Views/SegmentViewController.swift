@@ -12,13 +12,24 @@ import SnapKit
 class SegmentViewController: BaseViewController {
     
     // MARK: - Property
-    
+
+    private var buttonConfiguration = UIButton.Configuration.filled()
     private lazy var segmentedViewControllers: [UIViewController] = [workingView, inquiryView]
     
     private var currentViewNum: Int = 0 {
         didSet {
             let direction: UIPageViewController.NavigationDirection = (oldValue <= currentViewNum ? .forward : .reverse)
             pageViewController.setViewControllers([segmentedViewControllers[currentViewNum]], direction: direction, animated: true)
+            
+            UIView.animate(withDuration: 0.8) {
+                if self.currentViewNum == 1 {
+                    self.inquiryButton.isHidden = false
+
+                    self.inquiryButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)
+                } else {
+                    self.inquiryButton.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 90)
+                }
+            }
         }
     }
     
@@ -64,6 +75,18 @@ class SegmentViewController: BaseViewController {
     }(UIPageViewController(transitionStyle: .scroll,
                            navigationOrientation: .horizontal))
     
+    private lazy var inquiryButton: UIButton = {
+        $0.configuration?.title = "문의하기"
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.baseBackgroundColor = .blue
+        $0.configuration?.background.cornerRadius = 0
+        $0.configuration?.contentInsets.bottom = 20
+//        $0.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 90)
+        $0.isHidden = true
+        return $0
+    }(UIButton(configuration: buttonConfiguration))
+    
     // MARK: - Method
     
     override func attribute() {
@@ -106,26 +129,32 @@ class SegmentViewController: BaseViewController {
     
     override func layout() {
         navigationLayout()
-        
-        view.addSubview(segmentedControl)
-        view.addSubview(pageContentView)
-        pageContentView.addSubview(pageViewController.view)
 
+        view.addSubview(segmentedControl)
         segmentedControl.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
-            $0.bottom.equalTo(pageContentView.snp.top).offset(-12)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(12)
             $0.left.equalToSuperview().offset(16)
             $0.width.equalTo(180)
             $0.height.equalTo(20)
         }
-        
+
+        view.addSubview(pageContentView)
         pageContentView.snp.makeConstraints {
+            $0.top.equalTo(segmentedControl.snp.bottom).offset(12)
             $0.bottom.width.equalToSuperview()
         }
-        
+
+        pageContentView.addSubview(pageViewController.view)
         pageViewController.view.snp.makeConstraints {
             $0.size.equalToSuperview()
         }
+
+        pageContentView.addSubview(inquiryButton)
+        inquiryButton.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.height.equalTo(90)
+        }
+        
     }
     
     private func setupSegmentedControl() {
