@@ -68,7 +68,7 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     // MARK: - Header
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 180)
+        return CGSize(width: screenWidth, height: 180)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -94,9 +94,9 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row == 0 {
-            return CGSize(width: UIScreen.main.bounds.width, height: 20)
+            return CGSize(width: screenWidth, height: 20)
         }
-        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 4 * 3)
+        return CGSize(width: screenWidth, height: screenWidth / 4 * 3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
