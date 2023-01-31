@@ -11,6 +11,12 @@ import SnapKit
 
 class HistoryViewController: BaseViewController {
     
+    // MARK: - Property
+    
+    private var buttonConfiguration = UIButton.Configuration.filled()
+    
+    // MARK: - View
+    
     private let historyCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: UICollectionViewFlowLayout())
@@ -25,6 +31,18 @@ class HistoryViewController: BaseViewController {
         $0.isHidden = true
         return $0
     }(UILabel())
+    
+    private lazy var inquiryButton: UIButton = {
+        $0.configuration?.title = "문의하기"
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.baseBackgroundColor = .blue
+        $0.configuration?.background.cornerRadius = 0
+        $0.configuration?.contentInsets.bottom = 20
+        return $0
+    }(UIButton(configuration: buttonConfiguration))
+    
+    // MARK: - Method
     
     override func attribute() {
         super.attribute()
@@ -48,6 +66,12 @@ class HistoryViewController: BaseViewController {
         view.addSubview(microCopy)
         microCopy.snp.makeConstraints {
             $0.center.equalToSuperview()
+        }
+        
+        view.addSubview(inquiryButton)
+        inquiryButton.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.height.equalTo(90)
         }
     }
 }
