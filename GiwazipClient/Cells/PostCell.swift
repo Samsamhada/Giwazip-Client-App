@@ -33,6 +33,12 @@ class PostCell: UICollectionViewCell {
         $0.layer.borderColor = UIColor.black.cgColor
         return $0
     }(UIView())
+    
+    let strokeBlock: UIView = {
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor.black.cgColor
+        return $0
+    }(UIView())
 
     // MARK: - LifeCycle
 
