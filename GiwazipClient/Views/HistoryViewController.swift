@@ -32,8 +32,6 @@ class HistoryViewController: BaseViewController {
         return $0
     }(UILabel())
 
-    // MARK: - Method
-    
     private lazy var inquiryButton: UIButton = {
         $0.configuration?.title = "문의하기"
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
@@ -45,7 +43,7 @@ class HistoryViewController: BaseViewController {
     }(UIButton(configuration: buttonConfiguration))
 
     // MARK: - Method
-    
+
     override func attribute() {
         super.attribute()
         
@@ -68,12 +66,6 @@ class HistoryViewController: BaseViewController {
         view.addSubview(microCopy)
         microCopy.snp.makeConstraints {
             $0.center.equalToSuperview()
-        }
-        
-        view.addSubview(inquiryButton)
-        inquiryButton.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
-            $0.height.equalTo(90)
         }
     }
 }
