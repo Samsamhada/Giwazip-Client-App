@@ -25,7 +25,7 @@ class SegmentViewController: BaseViewController {
         didSet {
             let direction: UIPageViewController.NavigationDirection = (oldValue <= currentViewNum ? .forward : .reverse)
             pageViewController.setViewControllers([segmentedViewControllers[currentViewNum]], direction: direction, animated: true)
-            
+
             UIView.animate(withDuration: 0.5) {
                 if self.currentViewNum == 1 {
                     self.inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 90)
@@ -166,6 +166,13 @@ class SegmentViewController: BaseViewController {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.height.equalTo(90)
         }
+
+        pageContentView.addSubview(inquiryButton)
+        inquiryButton.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.height.equalTo(90)
+        }
+        
     }
 
     private func setupSegmentedControl() {

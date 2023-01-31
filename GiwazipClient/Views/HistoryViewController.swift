@@ -43,7 +43,7 @@ class HistoryViewController: BaseViewController {
         $0.configuration?.contentInsets.bottom = 20
         return $0
     }(UIButton(configuration: buttonConfiguration))
-    
+
     // MARK: - Method
     
     override func attribute() {
@@ -68,12 +68,6 @@ class HistoryViewController: BaseViewController {
         view.addSubview(microCopy)
         microCopy.snp.makeConstraints {
             $0.center.equalToSuperview()
-        }
-        
-        view.addSubview(inquiryButton)
-        inquiryButton.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
-            $0.height.equalTo(90)
         }
     }
 }
