@@ -32,7 +32,7 @@ class HistoryViewController: BaseViewController {
         historyCollectionView.delegate = self
         historyCollectionView.dataSource = self
         
-        historyCollectionView.register(ProgressHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProgressHeader.identifier)
+        historyCollectionView.register(ASCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ASCell.identifier)
         historyCollectionView.register(PostDateCell.self, forCellWithReuseIdentifier: PostDateCell.identifier)
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
         
@@ -72,7 +72,7 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProgressHeader.identifier, for: indexPath) as! ProgressHeader
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ASCell.identifier, for: indexPath) as! ASCell
         // TODO: - 진행률 반영
         return header
     }
