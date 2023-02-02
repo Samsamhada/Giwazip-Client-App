@@ -60,10 +60,6 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     // MARK: - Section
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: - 게시물 데이터 반영
         return 5
