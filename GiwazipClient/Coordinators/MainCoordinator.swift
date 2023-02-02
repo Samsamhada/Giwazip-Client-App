@@ -43,6 +43,7 @@ protocol MainCoordinatorDelegate {
 class MainCoordinator: BaseCoordinator, MainViewControllerDelegate {
 
     // MARK: - Property
+
     var delegate: MainCoordinatorDelegate?
 
     // MARK: - Method

@@ -9,10 +9,15 @@ import UIKit
 
 import SnapKit
 
+protocol SegmentViewControllerDelegate {
+    func presentPostingPhotoView()
+}
+
 class SegmentViewController: BaseViewController {
     
     // MARK: - Property
 
+    var delegate: SegmentViewControllerDelegate?
     private var buttonConfiguration = UIButton.Configuration.filled()
     private lazy var segmentedViewControllers: [UIViewController] = [workingView, inquiryView]
     
@@ -80,6 +85,7 @@ class SegmentViewController: BaseViewController {
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
+        $0.addTarget(self, action: #selector(moveViewController), for: .touchUpInside)
         return $0
     }(UIButton(configuration: buttonConfiguration))
     
@@ -144,7 +150,6 @@ class SegmentViewController: BaseViewController {
 
         pageContentView.addSubview(pageViewController.view)
         pageViewController.view.snp.makeConstraints {
-//            $0.size.equalToSuperview()
             $0.edges.equalToSuperview()
         }
 
@@ -189,6 +194,10 @@ class SegmentViewController: BaseViewController {
     
     @objc func selectedSegmentControl(control: UISegmentedControl) {
         currentViewNum = control.selectedSegmentIndex
+    }
+    
+    @objc func moveViewController() {
+        delegate?.presentPostingPhotoView()
     }
 }
 

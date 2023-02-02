@@ -10,10 +10,15 @@ import UIKit
 
 import SnapKit
 
+protocol PostingPhotoViewControllerDelegate {
+    
+}
+
 class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
 
+    var delegate: PostingPhotoViewControllerDelegate?
     private var buttonConfiguration = UIButton.Configuration.filled()
     private var pickerConfiguration = PHPickerConfiguration()
     private var isChangedPHPickerRole = false
