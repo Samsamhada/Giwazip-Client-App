@@ -18,7 +18,7 @@ class SegmentViewController: BaseViewController {
     // MARK: - Property
 
     var delegate: SegmentViewControllerDelegate?
-    private var buttonConfiguration = UIButton.Configuration.filled()
+    private var buttonConfiguration = UIButton.Configuration.plain()
     private lazy var segmentedViewControllers: [UIViewController] = [workingView, inquiryView]
     
     private var currentViewNum: Int = 0 {
@@ -30,7 +30,7 @@ class SegmentViewController: BaseViewController {
                 if self.currentViewNum == 1 {
                     self.inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 90)
                 } else {
-                    self.inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: -90)
+                    self.inquiryButton.bounds = CGRect(x: 0, y: -90, width: UIScreen.main.bounds.width, height: 90)
                 }
                 self.inquiryButton.isEnabled.toggle()
             }
@@ -96,7 +96,7 @@ class SegmentViewController: BaseViewController {
     override func attribute() {
         super.attribute()
         
-        inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: -90)
+        inquiryButton.bounds = CGRect(x: 0, y: -90, width: UIScreen.main.bounds.width, height: 90)
         
         setupNavigationTitle()
         setupSegmentedControl()
@@ -160,7 +160,6 @@ class SegmentViewController: BaseViewController {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.height.equalTo(90)
         }
-        
     }
     
     private func setupSegmentedControl() {
