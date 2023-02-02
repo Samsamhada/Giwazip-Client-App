@@ -36,11 +36,11 @@ class SegmentViewController: BaseViewController {
             }
         }
     }
-    
+
     // MARK: - View
-    
+
     private let titleView = UIView()
-    
+
     private let titleName: UILabel = {
         $0.text = "디너집"
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
@@ -48,7 +48,7 @@ class SegmentViewController: BaseViewController {
         $0.textColor = .black
         return $0
     }(UILabel())
-    
+
     private let titleDate: UILabel = {
         $0.text = "22.11.11~23.01.13"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -56,21 +56,21 @@ class SegmentViewController: BaseViewController {
         $0.textColor = .gray
         return $0
     }(UILabel())
-    
+
     private let segmentedControl = UISegmentedControl(items: ["시공내역", "문의내역"])
-    
+
     private let workingView: HistoryViewController = {
         // TODO: - 추후 데이터 추가
         return $0
     }(HistoryViewController())
-    
+
     private let inquiryView: HistoryViewController = {
         // TODO: - 추후 데이터 추가
         return $0
     }(HistoryViewController())
-    
+
     private let pageContentView = UIView()
-    
+
     private lazy var pageViewController: UIPageViewController = {
         $0.setViewControllers([segmentedViewControllers[0]],
                               direction: .forward,
@@ -78,7 +78,7 @@ class SegmentViewController: BaseViewController {
         return $0
     }(UIPageViewController(transitionStyle: .scroll,
                            navigationOrientation: .horizontal))
-    
+
     private lazy var inquiryButton: UIButton = {
         $0.configuration?.title = "문의하기"
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
@@ -90,14 +90,14 @@ class SegmentViewController: BaseViewController {
         $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
-    
+
     // MARK: - Method
-    
+
     override func attribute() {
         super.attribute()
-        
+
         inquiryButton.bounds = CGRect(x: 0, y: -90, width: UIScreen.main.bounds.width, height: 90)
-        
+
         setupNavigationTitle()
         setupSegmentedControl()
         
@@ -114,25 +114,25 @@ class SegmentViewController: BaseViewController {
         )
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
-    
+
     private func navigationLayout() {
         self.navigationItem.titleView = titleView
         titleView.snp.makeConstraints {
             $0.height.equalTo(navigationItem.titleView!.snp.height)
         }
-        
+
         titleView.addSubview(titleName)
         titleName.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
         }
-        
+
         titleView.addSubview(titleDate)
         titleDate.snp.makeConstraints {
             $0.top.equalTo(titleName.snp.bottom)
             $0.bottom.horizontalEdges.equalToSuperview()
         }
     }
-    
+
     override func layout() {
         navigationLayout()
 
@@ -168,7 +168,7 @@ class SegmentViewController: BaseViewController {
         }
         
     }
-    
+
     private func setupSegmentedControl() {
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key
@@ -178,10 +178,10 @@ class SegmentViewController: BaseViewController {
             [NSAttributedString.Key
                 .foregroundColor: UIColor.black,
                 .font: UIFont.systemFont(ofSize: 20, weight: .bold)], for: .selected)
-        
+
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(selectedSegmentControl), for: .valueChanged)
-        
+
         removeSegmentDefaultConfigure()
     }
     
@@ -199,11 +199,11 @@ class SegmentViewController: BaseViewController {
                                          rightSegmentState: .normal,
                                          barMetrics: .default)
     }
-    
+
     @objc func selectedSegmentControl(control: UISegmentedControl) {
         currentViewNum = control.selectedSegmentIndex
     }
-    
+
     @objc func moveViewController() {
         delegate?.presentPostingPhotoView()
     }
