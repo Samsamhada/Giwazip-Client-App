@@ -21,13 +21,11 @@ class SegmentViewController: BaseViewController {
             let direction: UIPageViewController.NavigationDirection = (oldValue <= currentViewNum ? .forward : .reverse)
             pageViewController.setViewControllers([segmentedViewControllers[currentViewNum]], direction: direction, animated: true)
             
-            UIView.animate(withDuration: 0.8) {
+            UIView.animate(withDuration: 0.5) {
                 if self.currentViewNum == 1 {
-                    self.inquiryButton.isHidden = false
-
-                    self.inquiryButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)
+                    self.inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 90)
                 } else {
-                    self.inquiryButton.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 90)
+                    self.inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: -90)
                 }
             }
         }
@@ -82,8 +80,6 @@ class SegmentViewController: BaseViewController {
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
-//        $0.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 90)
-        $0.isHidden = true
         return $0
     }(UIButton(configuration: buttonConfiguration))
     
@@ -91,6 +87,8 @@ class SegmentViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
+        
+        inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: -90)
         
         setupNavigationTitle()
         setupSegmentedControl()
@@ -141,12 +139,13 @@ class SegmentViewController: BaseViewController {
         view.addSubview(pageContentView)
         pageContentView.snp.makeConstraints {
             $0.top.equalTo(segmentedControl.snp.bottom).offset(12)
-            $0.bottom.width.equalToSuperview()
+            $0.bottom.horizontalEdges.equalToSuperview()
         }
 
         pageContentView.addSubview(pageViewController.view)
         pageViewController.view.snp.makeConstraints {
-            $0.size.equalToSuperview()
+//            $0.size.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
 
         pageContentView.addSubview(inquiryButton)
