@@ -144,7 +144,7 @@ extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width - 32
+        let width = screenWidth - 32
         let height = width / 4 * 3
 
         return CGSize(width: width, height: height)
