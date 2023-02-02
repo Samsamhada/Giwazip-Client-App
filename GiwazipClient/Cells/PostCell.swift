@@ -24,7 +24,7 @@ class PostCell: UICollectionViewCell {
     }(UIImageView())
     
     let whiteBlock: UIView = {
-        $0.layer.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        $0.backgroundColor = UIColor(white: 1, alpha: 0.5)
         return $0
     }(UIView())
     
