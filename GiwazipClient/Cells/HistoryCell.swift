@@ -89,7 +89,7 @@ class HistoryCell: UICollectionViewCell {
         
         postImage.addSubview(descriptionBackground)
         descriptionBackground.snp.makeConstraints {
-            $0.bottom.width.equalToSuperview()
+            $0.bottom.horizontalEdges.equalToSuperview()
         }
         
         descriptionBackground.addSubview(postDescription)
