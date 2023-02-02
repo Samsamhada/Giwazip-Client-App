@@ -166,7 +166,6 @@ class SegmentViewController: BaseViewController {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.height.equalTo(90)
         }
-        
     }
 
     private func setupSegmentedControl() {
