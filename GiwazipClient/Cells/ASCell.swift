@@ -43,7 +43,7 @@ class ASCell: UICollectionReusableView {
     
     // MARK: - LifeCycle
     
-    override private init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .lightGray
         setupCell()
