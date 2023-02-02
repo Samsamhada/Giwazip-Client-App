@@ -11,10 +11,6 @@ import SnapKit
 
 class HistoryViewController: BaseViewController {
 
-    // MARK: - Property
-
-    private var buttonConfiguration = UIButton.Configuration.filled()
-
     // MARK: - View
 
     private let historyCollectionView: UICollectionView = {
