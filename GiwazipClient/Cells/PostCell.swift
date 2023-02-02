@@ -27,12 +27,6 @@ class PostCell: UICollectionViewCell {
         $0.backgroundColor = UIColor(white: 1, alpha: 0.5)
         return $0
     }(UIView())
-
-    let strokeBlock: UIView = {
-        $0.layer.borderWidth = 3
-        $0.layer.borderColor = UIColor.black.cgColor
-        return $0
-    }(UIView())
     
     let strokeBlock: UIView = {
         $0.layer.borderWidth = 3
