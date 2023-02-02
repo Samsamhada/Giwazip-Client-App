@@ -32,6 +32,7 @@ class SegmentViewController: BaseViewController {
                 } else {
                     self.inquiryButton.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: -90)
                 }
+                self.inquiryButton.isEnabled.toggle()
             }
         }
     }
@@ -81,11 +82,12 @@ class SegmentViewController: BaseViewController {
     private lazy var inquiryButton: UIButton = {
         $0.configuration?.title = "문의하기"
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        $0.configuration?.baseForegroundColor = .white
-        $0.configuration?.baseBackgroundColor = .blue
+        $0.configuration?.attributedTitle?.foregroundColor = .white
+        $0.configuration?.background.backgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
         $0.addTarget(self, action: #selector(moveViewController), for: .touchUpInside)
+        $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
     
