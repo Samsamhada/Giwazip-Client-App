@@ -53,13 +53,13 @@ class PostDateCell: UICollectionViewCell {
     private func setupCell() {
         self.addSubview(dateStack)
         dateStack.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.verticalEdges.equalToSuperview().offset(8)
             $0.horizontalEdges.equalToSuperview()
         }
         
         dateStack.addSubview(leftDashLine)
         leftDashLine.snp.makeConstraints {
-            $0.verticalEdges.left.centerY.equalToSuperview()
+            $0.left.centerY.equalToSuperview()
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
         }
@@ -68,12 +68,12 @@ class PostDateCell: UICollectionViewCell {
         postingDate.snp.makeConstraints {
             $0.left.equalTo(leftDashLine.snp.right)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
-            $0.centerY.equalToSuperview()
+            $0.verticalEdges.equalToSuperview()
         }
         
         dateStack.addSubview(rightDashLine)
         rightDashLine.snp.makeConstraints {
-            $0.verticalEdges.right.centerY.equalToSuperview()
+            $0.right.centerY.equalToSuperview()
             $0.left.equalTo(postingDate.snp.right)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
