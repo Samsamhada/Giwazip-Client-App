@@ -13,8 +13,12 @@ protocol SegmentCoordinatorDelegate {
 
 class SegmentCoordinator: BaseCoordinator, SegmentViewControllerDelegate {
 
+    // MARK: - Property
+    
     var delegate: SegmentCoordinatorDelegate?
 
+    // MARK: - Method
+    
     override func start() {
         let segmentViewController = SegmentViewController()
         segmentViewController.delegate = self
