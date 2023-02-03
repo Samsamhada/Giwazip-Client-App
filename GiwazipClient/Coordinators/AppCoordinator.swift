@@ -21,7 +21,7 @@ class AppCoordinator: BaseCoordinator, MainCoordinatorDelegate, SubCoordinatorDe
         }
     }
 
-    // MARK: - ViewController
+    // MARK: - ShowVC Method
 
     private func showSubViewController() {
         let coordinator = SubCoordinator(navigationController: navigationController)
