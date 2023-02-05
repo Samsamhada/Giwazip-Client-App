@@ -42,23 +42,23 @@ class HistoryViewController: BaseViewController {
 
     override func attribute() {
         super.attribute()
-        
+
         historyCollectionView.delegate = self
         historyCollectionView.dataSource = self
-        
-        historyCollectionView.register(ASCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ASCell.identifier)
-        historyCollectionView.register(PostDateCell.self, forCellWithReuseIdentifier: PostDateCell.identifier)
+
+        historyCollectionView.register(PostDateHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PostDateHeader.identifier)
+        historyCollectionView.register(ASCell.self, forCellWithReuseIdentifier: ASCell.identifier)
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
-        
+
         historyCollectionView.showsVerticalScrollIndicator = false
     }
-    
+
     override func layout() {
         view.addSubview(historyCollectionView)
         historyCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
+
         view.addSubview(microCopy)
         microCopy.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -67,48 +67,62 @@ class HistoryViewController: BaseViewController {
 }
 
 extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+
     // MARK: - Section
-    
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: - 게시물 데이터 반영
-        return 5
+        // TODO: - 5에 게시물 데이터 갯수 반영
+        return section == 0 ? 1 : 2
     }
-    
+
     // MARK: - Header
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: screenWidth, height: 180)
+        if section == 0 {
+            return CGSize.zero
+        }
+        return CGSize(width: screenWidth, height: 40)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ASCell.identifier, for: indexPath) as! ASCell
-        // TODO: - 진행률 반영
+        var header = UICollectionReusableView()
+
+        if indexPath.section > 0 {
+            header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PostDateHeader.identifier, for: indexPath) as! PostDateHeader
+            // TODO: - 날짜 데이터 반영
+        }
+
         return header
     }
-    
+
     // MARK: - Cell
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
-        
-        if indexPath.row == 0 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostDateCell.identifier, for: indexPath) as! PostDateCell
-            // TODO: - 날짜 데이터 반영
+
+        if indexPath.section == 0 {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ASCell.identifier, for: indexPath) as! ASCell
+            // TODO: - 진행률 반영
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
             // TODO: - 게시물 데이터 반영
         }
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.row == 0 {
-            return CGSize(width: screenWidth, height: 20)
+        if indexPath.section == 0 {
+            return CGSize(width: screenWidth, height: 180)
         }
-        return CGSize(width: screenWidth, height: screenWidth / 4 * 3)
+
+        return CGSize(width: screenWidth - 32, height: screenWidth / 4 * 3)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }

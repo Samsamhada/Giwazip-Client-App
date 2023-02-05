@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class ASCell: UICollectionReusableView {
+class ASCell: UICollectionViewCell {
     
     // MARK: - Property
     
