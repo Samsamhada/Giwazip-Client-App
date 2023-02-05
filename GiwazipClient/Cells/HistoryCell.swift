@@ -71,9 +71,7 @@ class HistoryCell: UICollectionViewCell {
     private func setupCell() {
         self.addSubview(postImage)
         postImage.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.height.equalTo(UIScreen.main.bounds.width / 4 * 3)
+            $0.edges.equalToSuperview()
         }
         
         postImage.addSubview(chipFrame)
@@ -89,7 +87,7 @@ class HistoryCell: UICollectionViewCell {
         
         postImage.addSubview(descriptionBackground)
         descriptionBackground.snp.makeConstraints {
-            $0.bottom.width.equalToSuperview()
+            $0.bottom.horizontalEdges.equalToSuperview()
         }
         
         descriptionBackground.addSubview(postDescription)

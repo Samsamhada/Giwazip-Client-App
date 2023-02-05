@@ -1,5 +1,5 @@
 //
-//  PostDateCell.swift
+//  PostDateHeader.swift
 //  GiwazipClient
 //
 //  Created by 지준용 on 2023/01/18.
@@ -9,11 +9,11 @@ import UIKit
 
 import SnapKit
 
-class PostDateCell: UICollectionViewCell {
+class PostDateHeader: UICollectionReusableView {
     
     // MARK: - Property
     
-    static let identifier = "postDateCell"
+    static let identifier = "postDateHeader"
     
     // MARK: - View
     
@@ -53,7 +53,7 @@ class PostDateCell: UICollectionViewCell {
     private func setupCell() {
         self.addSubview(dateStack)
         dateStack.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.edges.equalToSuperview()
         }
         
         dateStack.addSubview(leftDashLine)
@@ -67,13 +67,13 @@ class PostDateCell: UICollectionViewCell {
         postingDate.snp.makeConstraints {
             $0.left.equalTo(leftDashLine.snp.right)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
-            $0.centerY.equalToSuperview()
+            $0.verticalEdges.equalToSuperview()
         }
         
         dateStack.addSubview(rightDashLine)
         rightDashLine.snp.makeConstraints {
-            $0.left.equalTo(postingDate.snp.right)
             $0.right.centerY.equalToSuperview()
+            $0.left.equalTo(postingDate.snp.right)
             $0.width.equalTo(UIScreen.main.bounds.width / 3)
             $0.height.equalTo(1)
         }

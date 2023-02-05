@@ -7,19 +7,21 @@
 
 import UIKit
 
-class AppCoordinator: BaseCoordinator, MainCoordinatorDelegate, SubCoordinatorDelegate {
+class AppCoordinator: BaseCoordinator, MainCoordinatorDelegate, SubCoordinatorDelegate, SegmentCoordinatorDelegate {
 
-    var isLoggedIn = false
+    var isLoggedIn = true
 
     // MARK: - Method
 
     override func start() {
         if isLoggedIn {
-            showSubViewController()
+            showSegmentViewController()
         } else {
             showMainViewController()
         }
     }
+
+    // MARK: - ShowVC Method
 
     private func showSubViewController() {
         let coordinator = SubCoordinator(navigationController: navigationController)
@@ -34,6 +36,21 @@ class AppCoordinator: BaseCoordinator, MainCoordinatorDelegate, SubCoordinatorDe
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
+    
+    private func showSegmentViewController() {
+        let coordinator = SegmentCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    private func showPostingPhotoViewController() {
+        let coordinator = PostingPhotoCoordinator(navigationController: navigationController)
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    // MARK: - Click Event
 
     func didLoggedIn(_ coordinator: MainCoordinator) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
@@ -43,6 +60,11 @@ class AppCoordinator: BaseCoordinator, MainCoordinatorDelegate, SubCoordinatorDe
     func didLoggedOut(_ coordinator: SubCoordinator) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
         self.showMainViewController()
+    }
+    
+    func presentPostingPhotoView(_ coordinator: SegmentCoordinator) {
+        self.childCoordinators = self.childCoordinators.filter{ $0 !== coordinator }
+        showPostingPhotoViewController()
     }
 }
 
