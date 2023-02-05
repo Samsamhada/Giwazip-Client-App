@@ -14,7 +14,7 @@ protocol SegmentViewControllerDelegate {
 }
 
 class SegmentViewController: BaseViewController {
-    
+
     // MARK: - Property
 
     var delegate: SegmentViewControllerDelegate?

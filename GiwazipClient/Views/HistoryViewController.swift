@@ -28,16 +28,6 @@ class HistoryViewController: BaseViewController {
         return $0
     }(UILabel())
 
-    private lazy var inquiryButton: UIButton = {
-        $0.configuration?.title = "문의하기"
-        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        $0.configuration?.baseForegroundColor = .white
-        $0.configuration?.baseBackgroundColor = .blue
-        $0.configuration?.background.cornerRadius = 0
-        $0.configuration?.contentInsets.bottom = 20
-        return $0
-    }(UIButton(configuration: buttonConfiguration))
-
     // MARK: - Method
 
     override func attribute() {
