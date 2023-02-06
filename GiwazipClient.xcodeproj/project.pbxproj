@@ -26,7 +26,6 @@
 		438BF0432977CA28005E4CF3 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438BF0422977CA28005E4CF3 /* EnterViewController.swift */; };
 		438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E5B29297982E300FD947E /* HideKeyboard+.swift */; };
 		43997B052981367200C5A163 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997B042981367200C5A163 /* PostImageViewController.swift */; };
-		43C8EA3B299096B1002DBCFC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C8EA3A299096B1002DBCFC /* MainButton.swift */; };
 		43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E1F564297A16CD000A13D4 /* Alert+.swift */; };
 		9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F36E298B55350058639F /* SegmentCoordinator.swift */; };
 		9839F371298B5BD00058639F /* PostingPhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */; };
@@ -65,7 +64,6 @@
 		438BF0422977CA28005E4CF3 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		438E5B29297982E300FD947E /* HideKeyboard+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HideKeyboard+.swift"; sourceTree = "<group>"; };
 		43997B042981367200C5A163 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
-		43C8EA3A299096B1002DBCFC /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		43E1F564297A16CD000A13D4 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
 		9839F36E298B55350058639F /* SegmentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCoordinator.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 			children = (
 				260A63DB297107C3004034AD /* BaseViewController.swift */,
 				260A63E929711307004034AD /* BaseCoordinator.swift */,
-				43C8EA3A299096B1002DBCFC /* MainButton.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -380,7 +377,6 @@
 				260A63D8297107AA004034AD /* Cell.swift in Sources */,
 				260A63E629710A5C004034AD /* SubViewController.swift in Sources */,
 				43997B052981367200C5A163 /* PostImageViewController.swift in Sources */,
-				43C8EA3B299096B1002DBCFC /* MainButton.swift in Sources */,
 				260A63E229710846004034AD /* MainCoordinator.swift in Sources */,
 				98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */,
 				260A63E829710A7F004034AD /* SubCoordinator.swift in Sources */,
