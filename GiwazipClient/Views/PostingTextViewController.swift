@@ -46,8 +46,8 @@ class PostingTextViewController: BaseViewController {
         $0.configuration = buttonConfiguration
         $0.configuration?.title = "문의하기"
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        $0.configuration?.attributedTitle?.foregroundColor = .white
-        $0.configuration?.background.backgroundColor = .gray
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
         $0.isEnabled = false
@@ -90,10 +90,8 @@ extension PostingTextViewController: UITextViewDelegate {
         if (textView.text == textViewPlaceHolder) ||
             (textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
             finishButton.isEnabled = false
-            finishButton.configuration?.background.backgroundColor = .gray
         } else {
             finishButton.isEnabled = true
-            finishButton.configuration?.background.backgroundColor = .blue
         }
     }
 
