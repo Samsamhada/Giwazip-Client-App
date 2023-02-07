@@ -65,7 +65,7 @@ class PostingTextViewController: BaseViewController {
         
         view.addSubview(textView)
         textView.snp.makeConstraints {
-            $0.top.equalTo(textGuideLabel).offset(30)
+            $0.top.equalTo(textGuideLabel.snp.bottom).offset(16)
             $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(240)
         }
