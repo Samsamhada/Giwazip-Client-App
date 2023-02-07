@@ -33,10 +33,10 @@ class PostingTextViewController: BaseViewController {
         $0.text = textViewPlaceHolder
         $0.textColor = .white
         $0.backgroundColor = .lightGray
-        $0.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         $0.textContainerInset = UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14)
         $0.textAlignment = .natural
-        $0.layer.cornerRadius = 10
+        $0.layer.cornerRadius = 8
         $0.delegate = self
         return $0
     }(UITextView())
@@ -45,7 +45,7 @@ class PostingTextViewController: BaseViewController {
         let buttonConfiguration = UIButton.Configuration.filled()
         $0.configuration = buttonConfiguration
         $0.configuration?.title = "문의하기"
-        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         $0.configuration?.attributedTitle?.foregroundColor = .white
         $0.configuration?.background.backgroundColor = .gray
         $0.configuration?.background.cornerRadius = 0
