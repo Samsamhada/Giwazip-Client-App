@@ -54,7 +54,7 @@ class PostingTextViewController: BaseViewController {
     }(UIButton())
     
     // MARK: - Method
-
+    
     override func layout() {
         view.addSubview(textGuideLabel)
         textGuideLabel.snp.makeConstraints {
@@ -74,6 +74,32 @@ class PostingTextViewController: BaseViewController {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.height.equalTo(90)
         }
+    }
+    
+    override func attribute() {
+        super.attribute()
+        setupNotificationCenter()
+    }
+    
+    private func setupNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.finishButton.configuration?.contentInsets.bottom = 0
+                self.finishButton.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.finishButton.configuration?.contentInsets.bottom = 20
+            self.finishButton.transform = .identity
+        })
     }
 }
 
