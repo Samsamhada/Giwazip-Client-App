@@ -42,8 +42,7 @@ class PostingTextViewController: BaseViewController {
     }(UITextView())
     
     private lazy var finishButton: UIButton = {
-        let buttonConfiguration = UIButton.Configuration.filled()
-        $0.configuration = buttonConfiguration
+        $0.configuration = UIButton.Configuration.filled()
         $0.configuration?.title = "문의하기"
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         $0.configuration?.baseForegroundColor = .white
