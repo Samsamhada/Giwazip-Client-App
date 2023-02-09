@@ -89,7 +89,7 @@ class PostingTextViewController: BaseViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
-                self.finishButton.configuration?.contentInsets.bottom = 0
+                self.finishButton.snp.updateConstraints { $0.height.equalTo(70) }
                 self.finishButton.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
             })
         }
@@ -97,7 +97,7 @@ class PostingTextViewController: BaseViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
-            self.finishButton.configuration?.contentInsets.bottom = 20
+            self.finishButton.snp.updateConstraints { $0.height.equalTo(90) }
             self.finishButton.transform = .identity
         })
     }
