@@ -22,6 +22,7 @@
 		260A63EA29711307004034AD /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E929711307004034AD /* BaseCoordinator.swift */; };
 		260A63F22975E01F004034AD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63F12975E01F004034AD /* SplashViewController.swift */; };
 		432511542988140700F08BD2 /* ASCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432511532988140700F08BD2 /* ASCell.swift */; };
+		437102302989312400EF992D /* PostingTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371022F2989312400EF992D /* PostingTextViewController.swift */; };
 		438BF0432977CA28005E4CF3 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438BF0422977CA28005E4CF3 /* EnterViewController.swift */; };
 		438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E5B29297982E300FD947E /* HideKeyboard+.swift */; };
 		43997B052981367200C5A163 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997B042981367200C5A163 /* PostImageViewController.swift */; };
@@ -59,6 +60,7 @@
 		260A63EB297118A8004034AD /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		260A63F12975E01F004034AD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		432511532988140700F08BD2 /* ASCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCell.swift; sourceTree = "<group>"; };
+		4371022F2989312400EF992D /* PostingTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingTextViewController.swift; sourceTree = "<group>"; };
 		438BF0422977CA28005E4CF3 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		438E5B29297982E300FD947E /* HideKeyboard+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HideKeyboard+.swift"; sourceTree = "<group>"; };
 		43997B042981367200C5A163 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				988C56CF29768F2D00018F07 /* SegmentViewController.swift */,
 				988C56DB2978349D00018F07 /* HistoryViewController.swift */,
 				98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */,
+				4371022F2989312400EF992D /* PostingTextViewController.swift */,
 				43997B042981367200C5A163 /* PostImageViewController.swift */,
 				98F52B812982B476002C1303 /* PostViewController.swift */,
 			);
@@ -365,6 +368,7 @@
 				260A63DE297107E4004034AD /* Extension+.swift in Sources */,
 				988C56DC2978349D00018F07 /* HistoryViewController.swift in Sources */,
 				988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */,
+				437102302989312400EF992D /* PostingTextViewController.swift in Sources */,
 				260A63E429710A45004034AD /* MainViewController.swift in Sources */,
 				260A63DA297107B8004034AD /* Service.swift in Sources */,
 				9839F371298B5BD00058639F /* PostingPhotoCoordinator.swift in Sources */,
