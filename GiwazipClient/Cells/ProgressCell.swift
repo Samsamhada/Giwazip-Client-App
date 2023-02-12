@@ -19,6 +19,7 @@ class ProgressCell: UICollectionViewCell {
             silhouette.isHidden = isSelected
             view.layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.black.cgColor
             view.layer.borderWidth = isSelected ? 3 : 0.5
+            categoryName.textColor = isSelected ? .black : .gray
         }
     }
     var progress: Double = 0 {
@@ -45,6 +46,8 @@ class ProgressCell: UICollectionViewCell {
     let categoryName: UILabel = {
         $0.text = "카테고리"
         $0.textAlignment = .center
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        $0.textColor = .gray
         return $0
     }(UILabel())
 
