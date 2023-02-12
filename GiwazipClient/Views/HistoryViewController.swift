@@ -140,9 +140,6 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if isWorkingView && section == 0 {
-            return 0
-        }
-        return 20
+        return 0
     }
 }
