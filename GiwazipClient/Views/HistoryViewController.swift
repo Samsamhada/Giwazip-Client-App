@@ -41,6 +41,7 @@ class HistoryViewController: BaseViewController {
         historyCollectionView.dataSource = self
 
         historyCollectionView.register(PostDateHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PostDateHeader.identifier)
+        historyCollectionView.register(ProgressCell.self, forCellWithReuseIdentifier: ProgressCell.identifier)
         historyCollectionView.register(ASCell.self, forCellWithReuseIdentifier: ASCell.identifier)
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
 
@@ -70,7 +71,12 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: - 5에 게시물 데이터 갯수 반영
-        return section == 0 ? 1 : 2
+
+        if section == 0 {
+            return isWorkingView ? 12 : 1
+        }
+
+        return 2
     }
 
     // MARK: - Header
@@ -96,28 +102,47 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     // MARK: - Cell
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
-
-        if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ASCell.identifier, for: indexPath) as! ASCell
-            // TODO: - 진행률 반영
-        } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
+        if indexPath.section != 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
             // TODO: - 게시물 데이터 반영
-        }
+            return cell
+        } else if isWorkingView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCell.identifier, for: indexPath) as! ProgressCell
+            // TODO: - 서버에서 가져온 값으로 카테고리 이름 및 진행률 변경
+            cell.progress = Double((indexPath.item % 10 + 1) * 10)
+            cell.categoryName.text = "안방"
 
-        return cell
+            if indexPath.item == 0 {
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+            }
+
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ASCell.identifier, for: indexPath) as! ASCell
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: screenWidth, height: 180)
+            return isWorkingView ? CGSize(width: screenWidth/6, height: screenWidth/6) : CGSize(width: screenWidth, height: 180)
         }
 
         return CGSize(width: screenWidth - 32, height: screenWidth / 4 * 3)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if isWorkingView && section == 0 {
+            return 0
+        }
+        return 20
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if isWorkingView && section == 0 {
+            return 0
+        }
         return 20
     }
 }
