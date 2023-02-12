@@ -11,6 +11,10 @@ import SnapKit
 
 class HistoryViewController: BaseViewController {
 
+    // MARK: - Property
+
+    var isWorkingView = true
+
     // MARK: - View
 
     private let historyCollectionView: UICollectionView = {

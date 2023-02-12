@@ -66,6 +66,7 @@ class SegmentViewController: BaseViewController {
 
     private let inquiryView: HistoryViewController = {
         // TODO: - 추후 데이터 추가
+        $0.isWorkingView = false
         return $0
     }(HistoryViewController())
 
