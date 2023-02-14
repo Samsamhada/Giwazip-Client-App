@@ -22,7 +22,7 @@ class ProgressCell: UICollectionViewCell {
             categoryName.textColor = isSelected ? .black : .gray
         }
     }
-    var progress: Double = 0 {
+    var progress: CGFloat = 0 {
         didSet {
             progressChart.progress = progress
         }

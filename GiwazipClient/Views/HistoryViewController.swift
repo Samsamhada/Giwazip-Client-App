@@ -109,7 +109,7 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else if isWorkView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCell.identifier, for: indexPath) as! ProgressCell
             // TODO: - 서버에서 가져온 값으로 카테고리 이름 및 진행률 변경
-            cell.progress = Double((indexPath.item % 10 + 1) * 10)
+            cell.progress = CGFloat((indexPath.item % 11) * 10)
             cell.categoryName.text = "안방"
 
             if indexPath.item == 0 {
