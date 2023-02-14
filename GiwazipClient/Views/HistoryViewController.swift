@@ -113,7 +113,6 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.categoryName.text = "안방"
 
             if indexPath.item == 0 {
-                cell.isSelected = true
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
             }
 
