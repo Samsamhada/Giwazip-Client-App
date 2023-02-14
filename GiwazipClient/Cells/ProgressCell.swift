@@ -24,9 +24,7 @@ class ProgressCell: UICollectionViewCell {
     }
     var progress: Double = 0 {
         didSet {
-            progressChart.snp.makeConstraints {
-                $0.height.equalTo(Double(frame.height) / 100 * progress)
-            }
+            progressChart.progress = progress
         }
     }
 
@@ -38,10 +36,10 @@ class ProgressCell: UICollectionViewCell {
         return $0
     }(UIView())
 
-    private let progressChart: UIView = {
-        $0.backgroundColor = .cyan
+    private let progressChart: WaveView = {
+        $0.backgroundColor = .clear
         return $0
-    }(UIView())
+    }(WaveView())
 
     let categoryName: UILabel = {
         $0.text = "카테고리"
@@ -77,7 +75,7 @@ class ProgressCell: UICollectionViewCell {
 
         view.addSubview(progressChart)
         progressChart.snp.makeConstraints {
-            $0.left.bottom.right.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
 
         view.addSubview(categoryName)
