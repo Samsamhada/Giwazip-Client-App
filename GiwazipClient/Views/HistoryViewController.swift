@@ -13,7 +13,7 @@ class HistoryViewController: BaseViewController {
 
     // MARK: - Property
 
-    var isWorkingView = true
+    var isWorkView = true
 
     // MARK: - View
 

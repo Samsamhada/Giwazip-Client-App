@@ -59,14 +59,14 @@ class SegmentViewController: BaseViewController {
 
     private let segmentedControl = UISegmentedControl(items: ["시공내역", "문의내역"])
 
-    private let workingView: HistoryViewController = {
+    private let workView: HistoryViewController = {
         // TODO: - 추후 데이터 추가
         return $0
     }(HistoryViewController())
 
     private let inquiryView: HistoryViewController = {
         // TODO: - 추후 데이터 추가
-        $0.isWorkingView = false
+        $0.isWorkView = false
         return $0
     }(HistoryViewController())
 
