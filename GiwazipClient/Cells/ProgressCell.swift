@@ -16,9 +16,9 @@ class ProgressCell: UICollectionViewCell {
     static let identifier = "progressCell"
     override var isSelected: Bool {
         didSet {
-            silhouette.isHidden = isSelected
-            view.layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.black.cgColor
-            view.layer.borderWidth = isSelected ? 3 : 0.5
+            unselectOpacity.isHidden = isSelected
+            categoryFrame.layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.black.cgColor
+            categoryFrame.layer.borderWidth = isSelected ? 3 : 0.5
             categoryName.textColor = isSelected ? .black : .gray
         }
     }
@@ -30,7 +30,7 @@ class ProgressCell: UICollectionViewCell {
 
     // MARK: - View
 
-    private let view: UIView = {
+    private let categoryFrame: UIView = {
         $0.layer.borderWidth = 0.5
         return $0
     }(UIView())
@@ -48,7 +48,7 @@ class ProgressCell: UICollectionViewCell {
         return $0
     }(UILabel())
 
-    private let silhouette: UIView = {
+    private let unselectOpacity: UIView = {
         $0.backgroundColor = UIColor(white: 0, alpha: 0.05)
         return $0
     }(UIView())
@@ -67,23 +67,23 @@ class ProgressCell: UICollectionViewCell {
     // MARK: - Method
 
     private func setupCell() {
-        addSubview(view)
-        view.snp.makeConstraints {
+        addSubview(categoryFrame)
+        categoryFrame.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
-        view.addSubview(progressChart)
+        categoryFrame.addSubview(progressChart)
         progressChart.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
-        view.addSubview(categoryName)
+        categoryFrame.addSubview(categoryName)
         categoryName.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
-        view.addSubview(silhouette)
-        silhouette.snp.makeConstraints {
+        categoryFrame.addSubview(unselectOpacity)
+        unselectOpacity.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
