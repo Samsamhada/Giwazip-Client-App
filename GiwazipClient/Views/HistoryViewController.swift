@@ -73,7 +73,7 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
         // TODO: - 5에 게시물 데이터 갯수 반영
 
         if section == 0 {
-            return isWorkingView ? 12 : 1
+            return isWorkView ? 12 : 1
         }
 
         return 2
@@ -106,7 +106,7 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
             // TODO: - 게시물 데이터 반영
             return cell
-        } else if isWorkingView {
+        } else if isWorkView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCell.identifier, for: indexPath) as! ProgressCell
             // TODO: - 서버에서 가져온 값으로 카테고리 이름 및 진행률 변경
             cell.progress = Double((indexPath.item % 10 + 1) * 10)
@@ -125,14 +125,14 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return isWorkingView ? CGSize(width: screenWidth/6, height: screenWidth/6) : CGSize(width: screenWidth, height: 180)
+            return isWorkView ? CGSize(width: screenWidth/6, height: screenWidth/6) : CGSize(width: screenWidth, height: 180)
         }
 
         return CGSize(width: screenWidth - 32, height: screenWidth / 4 * 3)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if isWorkingView && section == 0 {
+        if isWorkView && section == 0 {
             return 0
         }
         return 20

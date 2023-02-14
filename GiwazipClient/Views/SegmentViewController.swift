@@ -19,7 +19,7 @@ class SegmentViewController: BaseViewController {
 
     var delegate: SegmentViewControllerDelegate?
     private var buttonConfiguration = UIButton.Configuration.plain()
-    private lazy var segmentedViewControllers: [UIViewController] = [workingView, inquiryView]
+    private lazy var segmentedViewControllers: [UIViewController] = [workView, inquiryView]
     
     private var currentViewNum: Int = 0 {
         didSet {
