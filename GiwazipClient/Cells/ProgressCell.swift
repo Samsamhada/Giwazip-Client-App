@@ -31,7 +31,6 @@ class ProgressCell: UICollectionViewCell {
     // MARK: - View
 
     private let view: UIView = {
-        $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.borderWidth = 0.5
         return $0
     }(UIView())
