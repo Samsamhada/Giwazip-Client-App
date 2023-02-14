@@ -55,7 +55,7 @@ class ProgressCell: UICollectionViewCell {
 
     // MARK: - Life Cycle
 
-    override private init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
     }
