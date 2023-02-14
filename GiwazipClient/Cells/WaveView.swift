@@ -15,8 +15,9 @@ class WaveView: UIView {
         let shape = UIBezierPath()
 
         shape.move(to: CGPoint(x: 0, y: bounds.maxY / 100 * (100 - progress)))
-        if 5..<100 ~= progress {
-            shape.addCurve(to: CGPoint(x: bounds.maxX, y: bounds.maxY / 100 * (100 - progress)), controlPoint1: CGPoint(x: bounds.midX - bounds.midX / 2, y: bounds.maxY / 100 * (100 - progress) - 5), controlPoint2: CGPoint(x: bounds.midX + bounds.midX / 2, y: bounds.maxY / 100 * (100 - progress) + 5))
+        if 1..<100 ~= progress {
+            shape.addQuadCurve(to: CGPoint(x: bounds.maxX / 2, y: bounds.maxY / 100 * (100 - progress)), controlPoint: CGPoint(x: bounds.midX - bounds.midX / 2, y: bounds.maxY / 100 * (100 - progress) - 3))
+            shape.addQuadCurve(to: CGPoint(x: bounds.maxX, y: bounds.maxY / 100 * (100 - progress)), controlPoint: CGPoint(x: bounds.midX + bounds.midX / 2, y: bounds.maxY / 100 * (100 - progress) + 3))
         } else {
             shape.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY / 100 * (100 - progress)))
         }
