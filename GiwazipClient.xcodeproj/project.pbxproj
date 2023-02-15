@@ -31,6 +31,7 @@
 		9839F371298B5BD00058639F /* PostingPhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */; };
 		98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */; };
 		98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */; };
+		9876E99529912767003C4B8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9876E99429912767003C4B8B /* User.swift */; };
 		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
 		988C56D42976D3BA00018F07 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D32976D3BA00018F07 /* HistoryCell.swift */; };
 		988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D7297777E500018F07 /* ProgressHeader.swift */; };
@@ -70,6 +71,7 @@
 		9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCoordinator.swift; sourceTree = "<group>"; };
 		98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoViewController.swift; sourceTree = "<group>"; };
 		98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCell.swift; sourceTree = "<group>"; };
+		9876E99429912767003C4B8B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		988C56D32976D3BA00018F07 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		988C56D7297777E500018F07 /* ProgressHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHeader.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			children = (
 				260A63C929710725004034AD /* Model.swift */,
 				98075174299D257D0066FB29 /* APIEnvironment.swift */,
+				9876E99429912767003C4B8B /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				260A63E029710834004034AD /* AppCoordinator.swift in Sources */,
 				260A63D429710784004034AD /* ViewModel.swift in Sources */,
 				260A63DE297107E4004034AD /* Extension+.swift in Sources */,
+				9876E99529912767003C4B8B /* User.swift in Sources */,
 				988C56DC2978349D00018F07 /* HistoryViewController.swift in Sources */,
 				988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */,
 				260A63E429710A45004034AD /* MainViewController.swift in Sources */,
