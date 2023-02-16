@@ -38,7 +38,7 @@ class SettingViewController: UICollectionViewController {
         }
 
         return UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView)
-        { (collectionView, indexPath, setting) -> UICollectionViewCell? in
+        { (collectionView, indexPath, setting) in
             collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
                                                          for: indexPath,
                                                          item: setting)
