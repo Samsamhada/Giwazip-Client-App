@@ -7,8 +7,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class SettingViewController: UICollectionViewController {
 
     // MARK: - Property
