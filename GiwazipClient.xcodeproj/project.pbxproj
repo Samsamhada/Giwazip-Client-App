@@ -117,17 +117,17 @@
 			isa = PBXGroup;
 			children = (
 				98D44B7C2941DD4D00386AA4 /* LaunchScreen.storyboard */,
-				260A63E329710A45004034AD /* MainViewController.swift */,
-				260A63E529710A5C004034AD /* SubViewController.swift */,
-				260A63F12975E01F004034AD /* SplashViewController.swift */,
 				438BF0422977CA28005E4CF3 /* EnterViewController.swift */,
-				988C56CF29768F2D00018F07 /* SegmentViewController.swift */,
 				988C56DB2978349D00018F07 /* HistoryViewController.swift */,
+				260A63E329710A45004034AD /* MainViewController.swift */,
 				98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */,
 				4371022F2989312400EF992D /* PostingTextViewController.swift */,
 				43997B042981367200C5A163 /* PostImageViewController.swift */,
 				98F52B812982B476002C1303 /* PostViewController.swift */,
+				988C56CF29768F2D00018F07 /* SegmentViewController.swift */,
 				26B85B40299C61850039C14A /* SettingViewController.swift */,
+				260A63F12975E01F004034AD /* SplashViewController.swift */,
+				260A63E529710A5C004034AD /* SubViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,9 +145,9 @@
 			children = (
 				260A63DF29710834004034AD /* AppCoordinator.swift */,
 				260A63E129710846004034AD /* MainCoordinator.swift */,
+				9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */,
 				260A63E729710A7F004034AD /* SubCoordinator.swift */,
 				9839F36E298B55350058639F /* SegmentCoordinator.swift */,
-				9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -179,8 +179,8 @@
 		260A63D029710760004034AD /* Supports */ = {
 			isa = PBXGroup;
 			children = (
-				260A63DB297107C3004034AD /* BaseViewController.swift */,
 				260A63E929711307004034AD /* BaseCoordinator.swift */,
+				260A63DB297107C3004034AD /* BaseViewController.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -197,9 +197,9 @@
 		260A63D229710767004034AD /* Extensions+ */ = {
 			isa = PBXGroup;
 			children = (
+				43E1F564297A16CD000A13D4 /* Alert+.swift */,
 				260A63DD297107E4004034AD /* Extension+.swift */,
 				438E5B29297982E300FD947E /* HideKeyboard+.swift */,
-				43E1F564297A16CD000A13D4 /* Alert+.swift */,
 			);
 			path = "Extensions+";
 			sourceTree = "<group>";
