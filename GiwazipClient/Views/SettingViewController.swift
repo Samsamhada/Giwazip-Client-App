@@ -29,7 +29,8 @@ class SettingViewController: UICollectionViewController {
             content.text = item
 
             if indexPath.section == 1, indexPath.item == 5 {
-                content.secondaryText = "1.0.0"
+                let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+                content.secondaryText = version
                 content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16)
                 content.secondaryTextProperties.color = .gray
             }
