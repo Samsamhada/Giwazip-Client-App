@@ -11,9 +11,9 @@ class SettingViewController: UICollectionViewController {
 
     // MARK: - Property
 
-    private let settingList = [["📝 고객 정보 수정"],
-                               ["📢 공지사항", "📄 이용약관", "🧑🏼‍💻 개발자 정보", "☕️ 오픈소스 라이브러리", "📬 고객센터", "📱 버전 정보"],
-                               ["🔚 시공 마감하기"]]
+    private let settingItems = [["고객 정보 수정"],
+                                ["공지사항", "이용약관", "개발자 정보", "오픈소스 라이브러리", "고객센터", "버전 정보"],
+                                ["시공 마감하기"]]
 
     private enum Section: CaseIterable {
         case userSetting
@@ -23,23 +23,31 @@ class SettingViewController: UICollectionViewController {
 
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, String> = {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, String>
-        { cell, indexPath, setting in
+        { cell, indexPath, item in
             var content = cell.defaultContentConfiguration()
-            content.text = setting
+            
+            content.text = item
+
+            if indexPath.section == 1, indexPath.item == 5 {
+                content.secondaryText = "1.0.0"
+                content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16)
+                content.secondaryTextProperties.color = .gray
+            }
+
+            content.prefersSideBySideTextAndSecondaryText = true
 
             if indexPath.section == 2 {
                 content.textProperties.color = .red
             }
 
             cell.contentConfiguration = content
-            cell.accessories = [.disclosureIndicator()]
         }
 
         return UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView)
-        { (collectionView, indexPath, setting) in
+        { (collectionView, indexPath, item) in
             collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
                                                          for: indexPath,
-                                                         item: setting)
+                                                         item: item)
         }
     }()
 
@@ -53,17 +61,17 @@ class SettingViewController: UICollectionViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
 
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(settingList[0], toSection: .userSetting)
-        snapshot.appendItems(settingList[1], toSection: .appSetting)
-        snapshot.appendItems(settingList[2], toSection: .roomSetting)
+        snapshot.appendItems(settingItems[0], toSection: .userSetting)
+        snapshot.appendItems(settingItems[1], toSection: .appSetting)
+        snapshot.appendItems(settingItems[2], toSection: .roomSetting)
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let setting = dataSource.itemIdentifier(for: indexPath) {
+        if let item = dataSource.itemIdentifier(for: indexPath) {
             // TODO: - 각 항목 선택별 이벤트
-            print("\(setting) 항목 선택")
+            print("\(item) 항목 선택")
             collectionView.deselectItem(at: indexPath, animated: true)
         }
     }
