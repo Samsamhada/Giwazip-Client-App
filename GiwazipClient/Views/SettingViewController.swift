@@ -52,11 +52,23 @@ class SettingViewController: UICollectionViewController {
         }
     }()
 
+    // MARK: - Life Cycle
+
+    init() {
+        super.init(collectionViewLayout: UICollectionViewCompositionalLayout.list(using: UICollectionLayoutListConfiguration(appearance: .insetGrouped)))
+    }
+
+    required init(coder: NSCoder) {
+        fatalError("init(coder:)가 실행되지 않았습니다.")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.isScrollEnabled = false
-        applySnapshot(animatingDifferences: false)
+        applySnapshot()
     }
+
+    // MARK: - Method
 
     private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
@@ -68,6 +80,8 @@ class SettingViewController: UICollectionViewController {
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
+
+    // MARK: - UICollectionView Method
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let item = dataSource.itemIdentifier(for: indexPath) {
