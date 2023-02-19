@@ -78,10 +78,10 @@ class NetworkManager {
                 case .success(let userData):
                     guard let userData = userData as? User else { return }
                     self.userData = userData
-                case .reqError(let msg):
-                    print("This is requestError:", msg)
-                case .pathError:
-                    print("This is pathError")
+                case .connectionFail:
+                    print("This is connectionFail")
+                case .reqError:
+                    print("This is requestError")
                 case .serverError:
                     print("This is serverError")
                 case .networkFail:
@@ -97,10 +97,10 @@ class NetworkManager {
                 case .success(let roomData):
                     guard let roomData = roomData as? Room else { return }
                     self.roomData = roomData
-                case .reqError(let msg):
-                    print("This is requestError:", msg)
-                case .pathError:
-                    print("This is pathError")
+                case .connectionFail:
+                    print("This is connectionFail")
+                case .reqError:
+                    print("This is requestError")
                 case .serverError:
                     print("This is serverError")
                 case .networkFail:
@@ -112,7 +112,8 @@ class NetworkManager {
     func judgeStatus(by statusCode: Int, _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
         switch statusCode {
         case 200: return networkResult
-        case 404: return .pathError
+        case 403: return .connectionFail
+        case 404: return .reqError
         case 500: return .serverError
         default: return .networkFail
         }
@@ -121,13 +122,14 @@ class NetworkManager {
     func isValidUserData(data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let userData = try? decoder.decode(User.self, from: data)
-        else { return .pathError }
+        else { return .reqError }
         return .success(userData)
     }
     
     func isValidRoomData(data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let roomData = try? decoder.decode(Room.self, from: data) else { return .pathError }
+        guard let roomData = try? decoder.decode(Room.self, from: data)
+        else { return .reqError }
         return .success(roomData)
     }
 }
