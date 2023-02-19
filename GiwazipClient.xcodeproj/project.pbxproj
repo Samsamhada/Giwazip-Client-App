@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1188A3CAA0A6EB2492825704 /* Pods_GiwazipClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */; };
-		260A63CA29710725004034AD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63C929710725004034AD /* Model.swift */; };
+		260A63CA29710725004034AD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63C929710725004034AD /* Models.swift */; };
 		260A63D429710784004034AD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D329710784004034AD /* ViewModel.swift */; };
 		260A63D8297107AA004034AD /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D7297107AA004034AD /* Cell.swift */; };
 		260A63DA297107B8004034AD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D9297107B8004034AD /* Service.swift */; };
@@ -49,7 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		260A63C929710725004034AD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		260A63C929710725004034AD /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		260A63D329710784004034AD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		260A63D7297107AA004034AD /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		260A63D9297107B8004034AD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		260A63C829710707004034AD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				260A63C929710725004034AD /* Model.swift */,
+				260A63C929710725004034AD /* Models.swift */,
 				98197C0D29A264CA008C4C55 /* NetworkResult.swift */,
 			);
 			path = Models;
@@ -405,7 +405,7 @@
 				26B85B41299C61850039C14A /* SettingViewController.swift in Sources */,
 				43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */,
 				98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */,
-				260A63CA29710725004034AD /* Model.swift in Sources */,
+				260A63CA29710725004034AD /* Models.swift in Sources */,
 				988C56DA29779D2A00018F07 /* PostDateHeader.swift in Sources */,
 				432511542988140700F08BD2 /* ASCell.swift in Sources */,
 				260A63DC297107C3004034AD /* BaseViewController.swift in Sources */,
