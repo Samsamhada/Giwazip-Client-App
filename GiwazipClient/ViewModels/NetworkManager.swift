@@ -11,7 +11,7 @@ import Alamofire
 import RxCocoa
 import RxSwift
 
-class NetworkManager {
+final class NetworkManager {
     static let shared = NetworkManager()
     let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
     var userData: User?
@@ -29,55 +29,10 @@ class NetworkManager {
 //        loadRoomData(url: APIEnvironment.roomsURL + "/user/1")
     }
 
-    func requestUserData(url: String) -> Observable<NetworkResult<Any>> {
-        return Observable.create() { observer in
-            AF.request(url,
-                       method: .get,
-                       encoding: JSONEncoding.default,
-                       headers: self.header).responseData { (response) in
-                switch response.result {
-                case .success:
-                    guard let data = response.data,
-                          let statusCode = response.response?.statusCode
-                    else { return }
-                    let networkResult = self.judgeStatus(by: statusCode,
-                                                         self.isValidUserData(data: data))
-                    observer.onNext(networkResult)
-                    observer.onCompleted()
-                case .failure:
-                    break
-                }
-            }
-            return Disposables.create()
-        }
-    }
-
-    func requestRoomData(url: String) -> Observable<NetworkResult<Any>> {
-        return Observable.create() { observer in
-            AF.request(url,
-                       method: .get,
-                       encoding: JSONEncoding.default,
-                       headers: self.header).responseData { (response) in
-                switch response.result {
-                case .success:
-                    guard let data = response.data,
-                          let statusCode = response.response?.statusCode
-                    else { return }
-                    
-                    let networkResult = self.judgeStatus(by: statusCode,
-                                                         self.isValidRoomData(data: data))
-                    observer.onNext(networkResult)
-                    observer.onCompleted()
-                case .failure:
-                    break
-                }
-            }
-            return Disposables.create()
-        }
-    }
-
+    // MARK: - Load Data
+    
     func loadUserData(url: String) {
-        _ = requestUserData(url: url)
+        _ = requestData(url: url, type: User.self)
             .subscribe { status in
                 switch status {
                 case .success(let userData):
@@ -96,7 +51,7 @@ class NetworkManager {
     }
 
     func loadRoomData(url: String) {
-        _ = requestRoomData(url: url)
+        _ = requestData(url: url, type: Room.self)
             .subscribe { status in
                 switch status {
                 case .success(let roomData):
@@ -114,6 +69,32 @@ class NetworkManager {
             }
     }
 
+    // MARK: - Network Request
+
+    func requestData<T: Decodable>(url: String, type: T.Type) -> Observable<NetworkResult<Any>> {
+        return Observable.create() { observer in
+            AF.request(url,
+                       method: .get,
+                       encoding: JSONEncoding.default,
+                       headers: self.header).responseData { (response) in
+                switch response.result {
+                case .success:
+                    guard let data = response.data,
+                          let statusCode = response.response?.statusCode
+                    else { return }
+
+                    let networkResult = self.judgeStatus(by: statusCode,
+                                                         self.isValidData(data: data, type: T.self))
+                    observer.onNext(networkResult)
+                    observer.onCompleted()
+                case .failure:
+                    break
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
     func judgeStatus(by statusCode: Int, _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
         switch statusCode {
         case 200: return networkResult
@@ -124,17 +105,10 @@ class NetworkManager {
         }
     }
 
-    func isValidUserData(data: Data) -> NetworkResult<Any> {
+    func isValidData<T: Decodable>(data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
-        guard let userData = try? decoder.decode(User.self, from: data)
+        guard let data = try? decoder.decode(type, from: data)
         else { return .reqError }
-        return .success(userData)
-    }
-
-    func isValidRoomData(data: Data) -> NetworkResult<Any> {
-        let decoder = JSONDecoder()
-        guard let roomData = try? decoder.decode(Room.self, from: data)
-        else { return .reqError }
-        return .success(roomData)
+        return .success(data)
     }
 }
