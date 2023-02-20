@@ -24,7 +24,7 @@ class HistoryViewController: BaseViewController {
     }()
 
     private let microCopy: UILabel = {
-        $0.text = "아직 진행 중인 시공이 없습니다."
+        $0.text = TextLiteral.emptyWorkHistoryText
         $0.textColor = .gray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)

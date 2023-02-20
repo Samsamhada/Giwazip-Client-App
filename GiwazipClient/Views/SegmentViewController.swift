@@ -57,7 +57,7 @@ class SegmentViewController: BaseViewController {
         return $0
     }(UILabel())
 
-    private let segmentedControl = UISegmentedControl(items: ["시공내역", "문의내역"])
+    private let segmentedControl = UISegmentedControl(items: [TextLiteral.workHistoryTap, TextLiteral.inquiryHistoryTap])
 
     private let workView: HistoryViewController = {
         // TODO: - 추후 데이터 추가
@@ -81,7 +81,7 @@ class SegmentViewController: BaseViewController {
                            navigationOrientation: .horizontal))
 
     private lazy var inquiryButton: UIButton = {
-        $0.configuration?.title = "문의하기"
+        $0.configuration?.title = TextLiteral.inquiryButtonText
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.attributedTitle?.foregroundColor = .white
         $0.configuration?.background.backgroundColor = .blue

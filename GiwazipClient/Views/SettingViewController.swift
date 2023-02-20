@@ -11,9 +11,7 @@ class SettingViewController: UICollectionViewController {
 
     // MARK: - Property
 
-    private let settingItems = [["고객 정보 수정"],
-                                ["공지사항", "이용약관", "개발자 정보", "오픈소스 라이브러리", "고객센터", "버전 정보"],
-                                ["시공 마감하기"]]
+    private let settingItems = TextLiteral.settingItems
 
     private enum Section: CaseIterable {
         case userSetting

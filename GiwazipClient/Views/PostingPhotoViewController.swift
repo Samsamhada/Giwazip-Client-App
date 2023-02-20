@@ -165,8 +165,8 @@ extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionVi
             showPHPicker()
         } else {
             makeActionSheet(
-                firstContext: "사진 변경하기",
-                secondContext: "사진 삭제하기",
+                firstContext: TextLiteral.photoChangeText,
+                secondContext: TextLiteral.photoDeleteText,
                 didTapFirst: { change in
                     self.isChangedPHPickerRole = false
                     self.didTapChangeAction()

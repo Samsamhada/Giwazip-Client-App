@@ -15,7 +15,7 @@ extension UIViewController {
                    completion: (() -> Void)? = nil) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: okAction)
+        let okAction = UIAlertAction(title: TextLiteral.submitButtonText, style: .default, handler: okAction)
         alertViewController.addAction(okAction)
         
         self.present(alertViewController, animated: true, completion: completion)
@@ -23,8 +23,8 @@ extension UIViewController {
     
     func makeAlert(title: String? = "",
                    message: String? = nil,
-                   okTitle: String = "확인",
-                   cancelTitle: String = "취소",
+                   okTitle: String = TextLiteral.submitButtonText,
+                   cancelTitle: String = TextLiteral.cancelButtonText,
                    okAction: ((UIAlertAction) -> Void)?,
                    cancelAction: ((UIAlertAction) -> Void)? = nil,
                    completion: (() -> Void)? = nil) {
@@ -44,7 +44,7 @@ extension UIViewController {
                          message: String? = nil,
                          firstContext: String? = "",
                          secondContext: String? = "",
-                         cancelContext: String? = "취소",
+                         cancelContext: String? = TextLiteral.cancelButtonText,
                          didTapFirst: ((UIAlertAction) -> Void)? = nil,
                          didTapSecond: ((UIAlertAction) -> Void)? = nil,
                          didTapCancel: ((UIAlertAction) -> Void)? = nil) {

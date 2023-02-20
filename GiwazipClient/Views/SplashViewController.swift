@@ -14,7 +14,7 @@ class SplashViewController: BaseViewController {
     // MARK: - Property
 
     private let enterButton: UIButton = {
-        $0.setTitle("입장하기", for: .normal)
+        $0.setTitle(TextLiteral.enterButtonText, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.backgroundColor = .gray
