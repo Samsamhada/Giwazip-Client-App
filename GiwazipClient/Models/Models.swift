@@ -12,7 +12,7 @@ import Foundation
 struct User: Codable {
     let userID: Int?
     let number: String
-    let worker: Worker
+    let worker: Worker?
     let userrooms: [UserRoom]?
 }
 
