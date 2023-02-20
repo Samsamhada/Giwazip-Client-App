@@ -23,6 +23,7 @@
 		260A63F22975E01F004034AD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63F12975E01F004034AD /* SplashViewController.swift */; };
 		2614F24F2997DA1C0051EE51 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2614F24E2997DA1C0051EE51 /* ProgressCell.swift */; };
 		2614F251299802BE0051EE51 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2614F250299802BE0051EE51 /* WaveView.swift */; };
+		26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11B29A3A2C200D3C3F7 /* TextLiteral.swift */; };
 		26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */; };
 		26B85B41299C61850039C14A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B40299C61850039C14A /* SettingViewController.swift */; };
 		432511542988140700F08BD2 /* ASCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432511532988140700F08BD2 /* ASCell.swift */; };
@@ -65,6 +66,7 @@
 		260A63F12975E01F004034AD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2614F24E2997DA1C0051EE51 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		2614F250299802BE0051EE51 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
+		26B7B11B29A3A2C200D3C3F7 /* TextLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLiteral.swift; sourceTree = "<group>"; };
 		26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiteral.swift; sourceTree = "<group>"; };
 		26B85B40299C61850039C14A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		432511532988140700F08BD2 /* ASCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCell.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */,
+				26B7B11B29A3A2C200D3C3F7 /* TextLiteral.swift */,
 			);
 			path = Literals;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				98F52B842982BA28002C1303 /* PostCell.swift in Sources */,
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */,
+				26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */,
 				9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */,
 				26B85B41299C61850039C14A /* SettingViewController.swift in Sources */,
 				43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */,
