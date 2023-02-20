@@ -23,6 +23,7 @@
 		260A63F22975E01F004034AD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63F12975E01F004034AD /* SplashViewController.swift */; };
 		2614F24F2997DA1C0051EE51 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2614F24E2997DA1C0051EE51 /* ProgressCell.swift */; };
 		2614F251299802BE0051EE51 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2614F250299802BE0051EE51 /* WaveView.swift */; };
+		26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */; };
 		26B85B41299C61850039C14A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B40299C61850039C14A /* SettingViewController.swift */; };
 		432511542988140700F08BD2 /* ASCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432511532988140700F08BD2 /* ASCell.swift */; };
 		437102302989312400EF992D /* PostingTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371022F2989312400EF992D /* PostingTextViewController.swift */; };
@@ -64,6 +65,7 @@
 		260A63F12975E01F004034AD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2614F24E2997DA1C0051EE51 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		2614F250299802BE0051EE51 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
+		26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiteral.swift; sourceTree = "<group>"; };
 		26B85B40299C61850039C14A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		432511532988140700F08BD2 /* ASCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCell.swift; sourceTree = "<group>"; };
 		4371022F2989312400EF992D /* PostingTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingTextViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,14 @@
 			path = "Extensions+";
 			sourceTree = "<group>";
 		};
+		26B7B11A29A3A29C00D3C3F7 /* Literals */ = {
+			isa = PBXGroup;
+			children = (
+				26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */,
+			);
+			path = Literals;
+			sourceTree = "<group>";
+		};
 		4289EDBCD104F8B3B3E61B14 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +252,7 @@
 				260A63CE29710756004034AD /* Cells */,
 				260A63CF2971075B004034AD /* Services */,
 				260A63D029710760004034AD /* Supports */,
+				26B7B11A29A3A29C00D3C3F7 /* Literals */,
 				260A63D129710764004034AD /* Resources */,
 				260A63D229710767004034AD /* Extensions+ */,
 			);
@@ -391,6 +402,7 @@
 				260A63E229710846004034AD /* MainCoordinator.swift in Sources */,
 				98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */,
 				260A63E829710A7F004034AD /* SubCoordinator.swift in Sources */,
+				26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */,
 				260A63F22975E01F004034AD /* SplashViewController.swift in Sources */,
 				438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */,
 				260A63EA29711307004034AD /* BaseCoordinator.swift in Sources */,
