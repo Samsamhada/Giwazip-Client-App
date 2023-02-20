@@ -76,21 +76,22 @@ final class NetworkManager {
             AF.request(url,
                        method: .get,
                        encoding: JSONEncoding.default,
-                       headers: self.header).responseData { (response) in
-                switch response.result {
-                case .success:
-                    guard let data = response.data,
-                          let statusCode = response.response?.statusCode
-                    else { return }
-
-                    let networkResult = self.judgeStatus(by: statusCode,
-                                                         self.isValidData(data: data, type: T.self))
-                    observer.onNext(networkResult)
-                    observer.onCompleted()
-                case .failure:
-                    break
-                }
-            }
+                       headers: self.header)
+              .responseData { (response) in
+                  switch response.result {
+                  case .success:
+                      guard let data = response.data,
+                            let statusCode = response.response?.statusCode
+                      else { return }
+                      
+                      let networkResult = self.judgeStatus(by: statusCode,
+                                                           self.isValidData(data: data, type: T.self))
+                      observer.onNext(networkResult)
+                      observer.onCompleted()
+                  case .failure:
+                      break
+                  }
+              }
             return Disposables.create()
         }
     }
