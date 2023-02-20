@@ -8,25 +8,25 @@
 import Foundation
 
 import Alamofire
-import RxSwift
 import RxCocoa
+import RxSwift
 
 class NetworkManager {
     static let shared = NetworkManager()
     let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
     var userData: User?
     var roomData: Room?
-    
-    init() {
+
+    private init() {
         // TODO: 그때그때 방 번호가 달라져야 함!
-        loadUserData(url: APIEnvironment.usersURL + "/1")
+//        loadUserData(url: APIEnvironment.usersURL + "/1")
         loadUserData(url: APIEnvironment.usersURL + "/room/1")
         
         loadRoomData(url: APIEnvironment.roomsURL + "/1")
-        loadRoomData(url: APIEnvironment.roomsURL + "/category/1")
-        loadRoomData(url: APIEnvironment.roomsURL + "/post/1")
-        loadRoomData(url: APIEnvironment.roomsURL + "/post-category/1")
-        loadRoomData(url: APIEnvironment.roomsURL + "/user/1")
+//        loadRoomData(url: APIEnvironment.roomsURL + "/category/1")
+//        loadRoomData(url: APIEnvironment.roomsURL + "/post/1")
+//        loadRoomData(url: APIEnvironment.roomsURL + "/post-category/1")
+//        loadRoomData(url: APIEnvironment.roomsURL + "/user/1")
     }
 
     func requestUserData(url: String) -> Observable<NetworkResult<Any>> {
@@ -44,12 +44,14 @@ class NetworkManager {
                                                          self.isValidUserData(data: data))
                     observer.onNext(networkResult)
                     observer.onCompleted()
-                case .failure: break }
+                case .failure:
+                    break
+                }
             }
             return Disposables.create()
         }
     }
-    
+
     func requestRoomData(url: String) -> Observable<NetworkResult<Any>> {
         return Observable.create() { observer in
             AF.request(url,
@@ -61,16 +63,19 @@ class NetworkManager {
                     guard let data = response.data,
                           let statusCode = response.response?.statusCode
                     else { return }
+                    
                     let networkResult = self.judgeStatus(by: statusCode,
                                                          self.isValidRoomData(data: data))
                     observer.onNext(networkResult)
                     observer.onCompleted()
-                case .failure: break }
+                case .failure:
+                    break
+                }
             }
             return Disposables.create()
         }
     }
-    
+
     func loadUserData(url: String) {
         _ = requestUserData(url: url)
             .subscribe { status in
@@ -89,7 +94,7 @@ class NetworkManager {
                 }
             }
     }
-    
+
     func loadRoomData(url: String) {
         _ = requestRoomData(url: url)
             .subscribe { status in
@@ -125,7 +130,7 @@ class NetworkManager {
         else { return .reqError }
         return .success(userData)
     }
-    
+
     func isValidRoomData(data: Data) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let roomData = try? decoder.decode(Room.self, from: data)
