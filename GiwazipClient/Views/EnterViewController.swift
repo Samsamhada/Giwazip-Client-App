@@ -14,7 +14,7 @@ class EnterViewController: BaseViewController {
     // MARK: - View
     
     private let phoneNumberGuideLabel: UILabel = {
-        $0.text = "전화번호를 입력해주세요"
+        $0.text = TextLiteral.phoneNumberGuideText
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return $0
@@ -23,14 +23,14 @@ class EnterViewController: BaseViewController {
     private let hStackView = UIView()
     
     private let startPhoneNumber: UILabel = {
-        $0.text = "010 - "
+        $0.text = TextLiteral.phoneNumberPrefix
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return $0
     }(UILabel())
     
     private let phoneNumberInput: CustomUITextField = {
-        $0.placeholder = "1234 - 5678"
+        $0.placeholder = TextLiteral.phoneNumberPlaceHolder
         $0.font = UIFont.systemFont(ofSize: 16)
         $0.keyboardType = .numberPad
         $0.addTarget(self, action: #selector(checkPhoneNumberLength), for: .editingChanged)
@@ -45,14 +45,14 @@ class EnterViewController: BaseViewController {
     
 
     private let inviteCodeGuideLabel: UILabel = {
-        $0.text = "초대코드 6자리를 입력해주세요"
+        $0.text = TextLiteral.inviteCodeGuideText
         $0.textColor = .black
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return $0
     }(UILabel())
     
     private let inviteCodeInput: UITextField = {
-        $0.placeholder = "AB12D9"
+        $0.placeholder = TextLiteral.inviteCodePlaceHolder
         $0.font = UIFont.systemFont(ofSize: 16)
         $0.keyboardType = .asciiCapable
         $0.addTarget(self, action: #selector(checkInviteCodeLength), for: .editingChanged)
@@ -66,7 +66,7 @@ class EnterViewController: BaseViewController {
     }(UIView())
     
     private let enterButton: UIButton = {
-        $0.setTitle("입장하기", for: .normal)
+        $0.setTitle(TextLiteral.enterButtonText, for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.backgroundColor = .gray
@@ -204,7 +204,7 @@ class EnterViewController: BaseViewController {
         if inviteCode == "aaabbb" {
             print("다음 뷰로 이동")
         } else {
-            makeAlert(title: "오류", message: "초대코드가 일치하지 않습니다")
+            makeAlert(title: TextLiteral.errorAlertTitle, message: TextLiteral.inviteCodeErrorAlertMessage)
         }
     }
 }

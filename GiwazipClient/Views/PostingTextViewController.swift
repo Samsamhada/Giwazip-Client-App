@@ -13,11 +13,7 @@ class PostingTextViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let textViewPlaceHolder: String = """
-                                            예시)
-                                            - 화장실이 빨강색이면 좋겠어요~!
-                                            - 집이 커졌으면 좋겠어요~!
-                                            """
+    private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
     
     // MARK: - View
     
@@ -41,9 +37,9 @@ class PostingTextViewController: BaseViewController {
         return $0
     }(UITextView())
     
-    private let finishButton: UIButton = {
+    private let inquiryButton: UIButton = {
         $0.configuration = UIButton.Configuration.filled()
-        $0.configuration?.title = "문의하기"
+        $0.configuration?.title = TextLiteral.inquiryButtonText
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.baseBackgroundColor = .blue
@@ -69,8 +65,8 @@ class PostingTextViewController: BaseViewController {
             $0.height.equalTo(240)
         }
         
-        view.addSubview(finishButton)
-        finishButton.snp.makeConstraints {
+        view.addSubview(inquiryButton)
+        inquiryButton.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.height.equalTo(90)
         }
@@ -89,16 +85,16 @@ class PostingTextViewController: BaseViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.2, animations: {
-                self.finishButton.snp.updateConstraints { $0.height.equalTo(70) }
-                self.finishButton.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+                self.inquiryButton.snp.updateConstraints { $0.height.equalTo(70) }
+                self.inquiryButton.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
             })
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.2, animations: {
-            self.finishButton.snp.updateConstraints { $0.height.equalTo(90) }
-            self.finishButton.transform = .identity
+            self.inquiryButton.snp.updateConstraints { $0.height.equalTo(90) }
+            self.inquiryButton.transform = .identity
         })
     }
 }
@@ -114,9 +110,9 @@ extension PostingTextViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if (textView.text == textViewPlaceHolder) ||
             (textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)  {
-            finishButton.isEnabled = false
+            inquiryButton.isEnabled = false
         } else {
-            finishButton.isEnabled = true
+            inquiryButton.isEnabled = true
         }
     }
 

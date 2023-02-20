@@ -125,7 +125,7 @@ class PostViewController: BaseViewController {
     }
 
     private func setupNavigation() {
-        let navigationRightItem = UIBarButtonItem(title: "수정",
+        let navigationRightItem = UIBarButtonItem(title: TextLiteral.editButtonText,
                                                   style: .plain,
                                                   target: self,
                                                   action: #selector(didTapEditButton))
