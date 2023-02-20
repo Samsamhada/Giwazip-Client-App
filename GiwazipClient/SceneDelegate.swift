@@ -10,15 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
-        window?.makeKeyAndVisible()
-        
-        NetworkManager.shared
-        
+        _ = NetworkManager.shared
+
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+
             guard let scene = (scene as? UIWindowScene) else { return }
             self.window = UIWindow(windowScene: scene)
 
@@ -30,7 +28,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             self.window?.makeKeyAndVisible()
         }
-
-        guard let _ = (scene as? UIWindowScene) else { return }
     }
 }
