@@ -65,7 +65,7 @@ class SettingViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.isScrollEnabled = false
-        applySnapshot()
+        applySnapshot(animatingDifferences: false)
     }
 
     // MARK: - Method
