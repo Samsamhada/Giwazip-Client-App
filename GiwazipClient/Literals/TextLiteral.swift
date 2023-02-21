@@ -67,6 +67,8 @@ enum TextLiteral {
                                ["시공 마감하기"]]
 
     static let termsConditionURL = "https://jitda.notion.site/56f7a03bacc145bc8249b1cb22bed2a9"
+    static let privacyPolicyURL = "https://jitda.notion.site/1627d263673e499490ae116cc049f9d3"
+
     // MARK: - ASCell
 
     static let remainText = "남았어요"

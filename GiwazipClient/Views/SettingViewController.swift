@@ -5,6 +5,7 @@
 //  Created by 김민택 on 2023/02/15.
 //
 
+import SafariServices
 import UIKit
 
 class SettingViewController: UICollectionViewController {
@@ -89,6 +90,11 @@ class SettingViewController: UICollectionViewController {
                 if let url = URL(string: TextLiteral.termsConditionURL) {
                     let termsCondition = SFSafariViewController(url: url)
                     present(termsCondition, animated: true)
+                }
+            case settingItems[1][2]:
+                if let url = URL(string: TextLiteral.privacyPolicyURL) {
+                    let privacyPolicy = SFSafariViewController(url: url)
+                    present(privacyPolicy, animated: true)
                 }
             default:
                 print("\(item) 항목 선택")
