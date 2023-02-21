@@ -46,6 +46,7 @@ class HistoryViewController: BaseViewController {
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
 
         historyCollectionView.showsVerticalScrollIndicator = false
+        historyCollectionView.allowsMultipleSelection = true
     }
 
     override func layout() {
@@ -140,5 +141,11 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        (historyCollectionView.indexPathsForSelectedItems ?? [])
+            .filter { $0.section == indexPath.section && $0.item != indexPath.item }
+            .forEach { self.historyCollectionView.deselectItem(at: $0, animated: false) }
     }
 }
