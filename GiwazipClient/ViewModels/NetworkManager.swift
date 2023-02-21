@@ -13,7 +13,7 @@ import RxSwift
 
 final class NetworkManager {
     static let shared = NetworkManager()
-    let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
+    private let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
     var userData: User?
     var roomData: Room?
 
@@ -31,7 +31,7 @@ final class NetworkManager {
 
     // MARK: - Load Data
     
-    func loadUserData(url: String) {
+    private func loadUserData(url: String) {
         _ = requestData(url: url, type: User.self)
             .subscribe { status in
                 switch status {
@@ -50,7 +50,7 @@ final class NetworkManager {
             }
     }
 
-    func loadRoomData(url: String) {
+    private func loadRoomData(url: String) {
         _ = requestData(url: url, type: Room.self)
             .subscribe { status in
                 switch status {
@@ -71,7 +71,7 @@ final class NetworkManager {
 
     // MARK: - Network Request
 
-    func requestData<T: Decodable>(url: String, type: T.Type) -> Observable<NetworkResult<Any>> {
+    private func requestData<T: Decodable>(url: String, type: T.Type) -> Observable<NetworkResult<Any>> {
         return Observable.create() { observer in
             AF.request(url,
                        method: .get,
@@ -96,7 +96,7 @@ final class NetworkManager {
         }
     }
 
-    func judgeStatus(by statusCode: Int, _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
+    private func judgeStatus(by statusCode: Int, _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
         switch statusCode {
         case 200: return networkResult
         case 403: return .connectionFail
@@ -106,7 +106,7 @@ final class NetworkManager {
         }
     }
 
-    func isValidData<T: Decodable>(data: Data, type: T.Type) -> NetworkResult<Any> {
+    private func isValidData<T: Decodable>(data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let data = try? decoder.decode(type, from: data)
         else { return .reqError }
