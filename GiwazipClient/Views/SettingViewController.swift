@@ -5,6 +5,7 @@
 //  Created by 김민택 on 2023/02/15.
 //
 
+import MessageUI
 import SafariServices
 import UIKit
 
@@ -80,6 +81,22 @@ class SettingViewController: UICollectionViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
+    func openCustomerServiceCenter() {
+        if !MFMailComposeViewController.canSendMail() {
+            makeAlert(title: TextLiteral.customerServiceErrorTitle, message: TextLiteral.customerServiceErrorMessage)
+            return
+        }
+
+        let customerServiceMail = MFMailComposeViewController()
+        customerServiceMail.mailComposeDelegate = self
+
+        customerServiceMail.setToRecipients(TextLiteral.customerServiceEmail)
+        customerServiceMail.setSubject(TextLiteral.customerServiceMailSubject)
+        customerServiceMail.setMessageBody(TextLiteral.customerServiceMailBody, isHTML: false)
+
+        self.present(customerServiceMail, animated: true)
+    }
+
     // MARK: - UICollectionView Method
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -96,10 +113,18 @@ class SettingViewController: UICollectionViewController {
                     let privacyPolicy = SFSafariViewController(url: url)
                     present(privacyPolicy, animated: true)
                 }
+            case settingItems[1][5]:
+                openCustomerServiceCenter()
             default:
                 print("\(item) 항목 선택")
             }
             collectionView.deselectItem(at: indexPath, animated: true)
         }
+    }
+}
+
+extension SettingViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
