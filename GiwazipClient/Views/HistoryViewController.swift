@@ -14,6 +14,7 @@ class HistoryViewController: BaseViewController {
     // MARK: - Property
 
     var isWorkView = true
+    private var isFirstVisit = true
 
     // MARK: - View
 
@@ -113,8 +114,9 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.progress = CGFloat((indexPath.item % 11) * 10)
             cell.categoryName.text = "안방"
 
-            if indexPath.item == 0 {
+            if indexPath.item == 0 && isFirstVisit {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+                isFirstVisit.toggle()
             }
 
             return cell
