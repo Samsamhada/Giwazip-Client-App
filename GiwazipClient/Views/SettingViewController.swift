@@ -27,7 +27,7 @@ class SettingViewController: UICollectionViewController {
             
             content.text = item
 
-            if indexPath.section == 1, indexPath.item == 5 {
+            if item == "버전 정보" {
                 let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
                 content.secondaryText = version
                 content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16)
