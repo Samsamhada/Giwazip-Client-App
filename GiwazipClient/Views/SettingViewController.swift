@@ -84,7 +84,15 @@ class SettingViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let item = dataSource.itemIdentifier(for: indexPath) {
             // TODO: - 각 항목 선택별 이벤트
-            print("\(item) 항목 선택")
+            switch item {
+            case settingItems[1][1]:
+                if let url = URL(string: TextLiteral.termsConditionURL) {
+                    let termsCondition = SFSafariViewController(url: url)
+                    present(termsCondition, animated: true)
+                }
+            default:
+                print("\(item) 항목 선택")
+            }
             collectionView.deselectItem(at: indexPath, animated: true)
         }
     }
