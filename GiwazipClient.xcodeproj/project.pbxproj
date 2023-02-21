@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1188A3CAA0A6EB2492825704 /* Pods_GiwazipClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */; };
-		260A63CA29710725004034AD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63C929710725004034AD /* Model.swift */; };
+		260A63CA29710725004034AD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63C929710725004034AD /* Models.swift */; };
 		260A63D429710784004034AD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D329710784004034AD /* ViewModel.swift */; };
 		260A63D8297107AA004034AD /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D7297107AA004034AD /* Cell.swift */; };
 		260A63DA297107B8004034AD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D9297107B8004034AD /* Service.swift */; };
@@ -32,6 +32,9 @@
 		438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E5B29297982E300FD947E /* HideKeyboard+.swift */; };
 		43997B052981367200C5A163 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997B042981367200C5A163 /* PostImageViewController.swift */; };
 		43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E1F564297A16CD000A13D4 /* Alert+.swift */; };
+		98197C0C29A264AC008C4C55 /* APIEnvironmnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0B29A264AC008C4C55 /* APIEnvironmnet.swift */; };
+		98197C0E29A264CA008C4C55 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0D29A264CA008C4C55 /* NetworkResult.swift */; };
+		98197C1029A26562008C4C55 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0F29A26562008C4C55 /* NetworkManager.swift */; };
 		9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F36E298B55350058639F /* SegmentCoordinator.swift */; };
 		9839F371298B5BD00058639F /* PostingPhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */; };
 		98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */; };
@@ -50,7 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		260A63C929710725004034AD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		260A63C929710725004034AD /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		260A63D329710784004034AD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		260A63D7297107AA004034AD /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		260A63D9297107B8004034AD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -76,6 +79,9 @@
 		43997B042981367200C5A163 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		43E1F564297A16CD000A13D4 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
+		98197C0B29A264AC008C4C55 /* APIEnvironmnet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironmnet.swift; sourceTree = "<group>"; };
+		98197C0D29A264CA008C4C55 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		98197C0F29A26562008C4C55 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9839F36E298B55350058639F /* SegmentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCoordinator.swift; sourceTree = "<group>"; };
 		9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCoordinator.swift; sourceTree = "<group>"; };
 		98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +118,9 @@
 		260A63C829710707004034AD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				260A63C929710725004034AD /* Model.swift */,
+				260A63C929710725004034AD /* Models.swift */,
+				98197C0B29A264AC008C4C55 /* APIEnvironmnet.swift */,
+				98197C0D29A264CA008C4C55 /* NetworkResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				260A63D329710784004034AD /* ViewModel.swift */,
+				98197C0F29A26562008C4C55 /* NetworkManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -388,6 +397,7 @@
 				98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */,
 				260A63E029710834004034AD /* AppCoordinator.swift in Sources */,
 				260A63D429710784004034AD /* ViewModel.swift in Sources */,
+				98197C0E29A264CA008C4C55 /* NetworkResult.swift in Sources */,
 				260A63DE297107E4004034AD /* Extension+.swift in Sources */,
 				988C56DC2978349D00018F07 /* HistoryViewController.swift in Sources */,
 				988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */,
@@ -403,6 +413,8 @@
 				260A63E629710A5C004034AD /* SubViewController.swift in Sources */,
 				43997B052981367200C5A163 /* PostImageViewController.swift in Sources */,
 				260A63E229710846004034AD /* MainCoordinator.swift in Sources */,
+				98197C1029A26562008C4C55 /* NetworkManager.swift in Sources */,
+				98197C0C29A264AC008C4C55 /* APIEnvironmnet.swift in Sources */,
 				98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */,
 				260A63E829710A7F004034AD /* SubCoordinator.swift in Sources */,
 				26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */,
@@ -417,7 +429,7 @@
 				26B85B41299C61850039C14A /* SettingViewController.swift in Sources */,
 				43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */,
 				98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */,
-				260A63CA29710725004034AD /* Model.swift in Sources */,
+				260A63CA29710725004034AD /* Models.swift in Sources */,
 				988C56DA29779D2A00018F07 /* PostDateHeader.swift in Sources */,
 				432511542988140700F08BD2 /* ASCell.swift in Sources */,
 				260A63DC297107C3004034AD /* BaseViewController.swift in Sources */,
