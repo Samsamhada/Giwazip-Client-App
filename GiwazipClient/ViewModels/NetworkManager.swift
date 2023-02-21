@@ -92,9 +92,9 @@ final class NetworkManager {
                 }
             }
     }
-    
+
     // MARK: - Put
-    
+
     func updateUserData(number: String) {
         _ = requestData(url: APIEnvironment.usersURL + "/2",
                         httpMethod: .put,
@@ -116,9 +116,9 @@ final class NetworkManager {
                 }
             }
     }
-    
+
     // MARK: - Network Request
-    
+
     private func makeParameter(number: String) -> Parameters {
         return ["number": number]
     }
