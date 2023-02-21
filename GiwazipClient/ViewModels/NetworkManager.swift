@@ -69,6 +69,57 @@ final class NetworkManager {
                         type: User.self)
         checkUserStatus(requestData: requestedData)
     }
+    
+    // MARK: - Post
+    
+    func uploadUserData(number: String) {
+        _ = uploadData(url: APIEnvironment.usersURL, number: number, type: User.self)
+            .bind { status in
+                switch status {
+                case .success(let number):
+                    guard let number = number as? User else { return }
+                    self.userData = number
+                case .connectionFail:
+                    print("This is connectionFail")
+                case .reqError:
+                    print("This is requestError")
+                case .serverError:
+                    print("This is serverError")
+                case .networkFail:
+                    print("This is networkFail")
+                }
+            }
+    }
+    
+    func makeParameter(number: String) -> Parameters {
+        return ["number": number]
+    }
+    
+    func uploadData<T: Decodable>(url: String, number: String, type: T.Type) -> Observable<NetworkResult<Any>> {
+        return Observable.create() { observer in
+            AF.request(url,
+                       method: .post,
+                       parameters: self.makeParameter(number: number),
+                       encoding: JSONEncoding.default,
+                       headers: self.header)
+              .responseData { (response) in
+                  switch response.result {
+                  case .success:
+                      guard let data = response.data,
+                            let statusCode = response.response?.statusCode
+                      else { return }
+
+                      let networkResult = self.judgeStatus(by: statusCode,
+                                                           self.isValidData(data: data, type: T.self))
+                      observer.onNext(networkResult)
+                      observer.onCompleted()
+                  case .failure:
+                      break
+                  }
+              }
+            return Disposables.create()
+        }
+    }
 
     // MARK: - Network Request
 
