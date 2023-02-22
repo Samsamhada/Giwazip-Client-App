@@ -40,8 +40,8 @@ final class NetworkManager {
                     self.userData = userData
                 case .connectionFail:
                     print("This is connectionFail")
-                case .reqError:
-                    print("This is requestError")
+                case .notFound:
+                    print("This is notFound")
                 case .serverError:
                     print("This is serverError")
                 case .networkFail:
@@ -59,8 +59,8 @@ final class NetworkManager {
                     self.roomData = roomData
                 case .connectionFail:
                     print("This is connectionFail")
-                case .reqError:
-                    print("This is requestError")
+                case .notFound:
+                    print("This is notFound")
                 case .serverError:
                     print("This is serverError")
                 case .networkFail:
@@ -80,8 +80,8 @@ final class NetworkManager {
                     self.userData = number
                 case .connectionFail:
                     print("This is connectionFail")
-                case .reqError:
-                    print("This is requestError")
+                case .notFound:
+                    print("This is notFound")
                 case .serverError:
                     print("This is serverError")
                 case .networkFail:
@@ -151,7 +151,7 @@ final class NetworkManager {
         switch statusCode {
         case 200: return networkResult
         case 403: return .connectionFail
-        case 404: return .reqError
+        case 404: return .notFound
         case 500: return .serverError
         default: return .networkFail
         }
@@ -160,7 +160,7 @@ final class NetworkManager {
     private func isValidData<T: Decodable>(data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let data = try? decoder.decode(type, from: data)
-        else { return .reqError }
+        else { return .notFound }
         return .success(data)
     }
 }
