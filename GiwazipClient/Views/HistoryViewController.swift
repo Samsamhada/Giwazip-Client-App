@@ -150,4 +150,10 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
             .filter { $0.section == indexPath.section && $0.item != indexPath.item }
             .forEach { self.historyCollectionView.deselectItem(at: $0, animated: false) }
     }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if (historyCollectionView.indexPathsForSelectedItems ?? []).filter({ $0.section == 0 }).isEmpty {
+            historyCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        }
+    }
 }
