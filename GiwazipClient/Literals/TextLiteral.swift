@@ -63,8 +63,31 @@ enum TextLiteral {
     // MARK: - SettingView
 
     static let settingItems = [["고객 정보 수정"],
-                               ["공지사항", "이용약관", "개발자 정보", "오픈소스 라이브러리", "고객센터", "버전 정보"],
+                               ["공지사항", "이용약관", "개인정보 처리방침", "개발자 정보", "오픈소스 라이센스", "개발자에게 문의하기", "버전 정보"],
                                ["시공 마감하기"]]
+
+    static let termsConditionURL = "https://jitda.notion.site/56f7a03bacc145bc8249b1cb22bed2a9"
+    static let privacyPolicyURL = "https://jitda.notion.site/1627d263673e499490ae116cc049f9d3"
+
+    static let customerServiceErrorTitle = "해당 기능을 이용할 수 없습니다"
+    static let customerServiceErrorMessage = "'개발자에게 문의하기'는 메일 앱이\n사용 가능한 상태에만 이용할 수 있습니다.\n아이폰 기본 메일 앱이\n사용 가능한 상태인지 확인해주세요."
+
+    static let customerServiceEmail = ["samsamhada0915@gmail.com"]
+    static let customerServiceMailSubject = "[문의 사항]"
+    static let customerServiceMailBody = """
+                                         
+                                         ---------------------------------------
+                                         
+                                         - 성함:
+                                         - 전화번호:
+                                         - 문의 메시지 제목 한줄 요약:
+                                         - 문의 날짜: \(Date())
+                                         
+                                         ---------------------------------------
+                                         
+                                         문의 내용을 작성해주세요.
+                                         
+                                         """
 
     // MARK: - ASCell
 
