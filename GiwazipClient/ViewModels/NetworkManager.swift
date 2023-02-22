@@ -31,9 +31,9 @@ final class NetworkManager {
 
     // MARK: - Get
     
-    private func loadUserData(url: String) {
+    func loadUserData(url: String) {
         _ = requestData(url: url, type: User.self)
-            .subscribe { status in
+            .bind { status in
                 switch status {
                 case .success(let userData):
                     guard let userData = userData as? User else { return }
@@ -50,9 +50,9 @@ final class NetworkManager {
             }
     }
 
-    private func loadRoomData(url: String) {
+    func loadRoomData(url: String) {
         _ = requestData(url: url, type: Room.self)
-            .subscribe { status in
+            .bind { status in
                 switch status {
                 case .success(let roomData):
                     guard let roomData = roomData as? Room else { return }
@@ -72,12 +72,15 @@ final class NetworkManager {
     // MARK: - Post
     
     func uploadUserData(number: String) {
-        _ = uploadData(url: APIEnvironment.usersURL, number: number, type: User.self)
+        _ = requestData(url: APIEnvironment.usersURL,
+                        httpMethod: .post,
+                        parameters: makeParameter(number: number),
+                        type: User.self)
             .bind { status in
                 switch status {
-                case .success(let number):
-                    guard let number = number as? User else { return }
-                    self.userData = number
+                case .success(let userData):
+                    guard let userData = userData as? User else { return }
+                    self.userData = userData
                 case .connectionFail:
                     print("This is connectionFail")
                 case .notFound:
@@ -90,59 +93,62 @@ final class NetworkManager {
             }
     }
     
-    func makeParameter(number: String) -> Parameters {
+    // MARK: - Put
+    
+    func updateUserData(number: String) {
+        _ = requestData(url: APIEnvironment.usersURL + "/2",
+                        httpMethod: .put,
+                        parameters: makeParameter(number: number),
+                        type: User.self)
+            .bind { status in
+                switch status {
+                case .success(let userData):
+                    guard let userData = userData as? User else { return }
+                    self.userData = userData
+                case .connectionFail:
+                    print("This is connectionFail")
+                case .notFound:
+                    print("This is notFound")
+                case .serverError:
+                    print("This is serverError")
+                case .networkFail:
+                    print("This is networkFail")
+                }
+            }
+    }
+    
+    // MARK: - Network Request
+    
+    private func makeParameter(number: String) -> Parameters {
         return ["number": number]
     }
     
-    func uploadData<T: Decodable>(url: String, number: String, type: T.Type) -> Observable<NetworkResult<Any>> {
+    private func requestData<T: Decodable>(url: String,
+                                           httpMethod: HTTPMethod = .get,
+                                           parameters: Parameters? = nil,
+                                           type: T.Type) -> Observable<NetworkResult<Any>> {
         return Observable.create() { observer in
-            AF.request(url,
-                       method: .post,
-                       parameters: self.makeParameter(number: number),
-                       encoding: JSONEncoding.default,
-                       headers: self.header)
-              .responseData { (response) in
-                  switch response.result {
-                  case .success:
-                      guard let data = response.data,
-                            let statusCode = response.response?.statusCode
-                      else { return }
-
-                      let networkResult = self.judgeStatus(by: statusCode,
-                                                           self.isValidData(data: data, type: T.self))
-                      observer.onNext(networkResult)
-                      observer.onCompleted()
-                  case .failure:
-                      break
-                  }
-              }
-            return Disposables.create()
-        }
-    }
-
-    // MARK: - Network Request
-
-    private func requestData<T: Decodable>(url: String, type: T.Type) -> Observable<NetworkResult<Any>> {
-        return Observable.create() { observer in
-            AF.request(url,
-                       method: .get,
-                       encoding: JSONEncoding.default,
-                       headers: self.header)
-              .responseData { (response) in
-                  switch response.result {
-                  case .success:
-                      guard let data = response.data,
-                            let statusCode = response.response?.statusCode
-                      else { return }
-                      
-                      let networkResult = self.judgeStatus(by: statusCode,
-                                                           self.isValidData(data: data, type: T.self))
-                      observer.onNext(networkResult)
-                      observer.onCompleted()
-                  case .failure:
-                      break
-                  }
-              }
+            let dataRequest = AF.request(url,
+                                         method: httpMethod,
+                                         parameters: parameters,
+                                         encoding: JSONEncoding.default,
+                                         headers: self.header)
+            
+            dataRequest.responseData { (response) in
+                switch response.result {
+                case .success:
+                    guard let data = response.data,
+                          let statusCode = response.response?.statusCode
+                    else { return }
+                    
+                    let networkResult = self.judgeStatus(by: statusCode,
+                                                         self.isValidData(data: data, type: T.self))
+                    observer.onNext(networkResult)
+                    observer.onCompleted()
+                case .failure:
+                    break
+                }
+            }
             return Disposables.create()
         }
     }
