@@ -14,6 +14,7 @@ class HistoryViewController: BaseViewController {
     // MARK: - Property
 
     var isWorkView = true
+    private var isFirstVisit = true
 
     // MARK: - View
 
@@ -46,6 +47,7 @@ class HistoryViewController: BaseViewController {
         historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
 
         historyCollectionView.showsVerticalScrollIndicator = false
+        historyCollectionView.allowsMultipleSelection = true
     }
 
     override func layout() {
@@ -112,8 +114,9 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.progress = CGFloat((indexPath.item % 11) * 10)
             cell.categoryName.text = "안방"
 
-            if indexPath.item == 0 {
+            if indexPath.item == 0 && isFirstVisit {
                 collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+                isFirstVisit.toggle()
             }
 
             return cell
@@ -140,5 +143,17 @@ extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        (historyCollectionView.indexPathsForSelectedItems ?? [])
+            .filter { $0.section == indexPath.section && $0.item != indexPath.item }
+            .forEach { self.historyCollectionView.deselectItem(at: $0, animated: false) }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if (historyCollectionView.indexPathsForSelectedItems ?? []).filter({ $0.section == 0 }).isEmpty {
+            historyCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        }
     }
 }
