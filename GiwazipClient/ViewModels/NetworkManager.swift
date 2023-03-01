@@ -53,7 +53,7 @@ final class NetworkManager {
     }
     
     func uploadPostData(description: String, files: [Data]) {
-        let requestedUploadPost = requestUploadPost(userID: 3, roomID: 1,
+        let requestedUploadPost = requestUploadData(userID: 3, roomID: 1,
                               categoryID: 1, description: description,
                               files: files, url: APIEnvironment.postsURL + "/photo",
                               type: Post.self)
@@ -72,9 +72,7 @@ final class NetworkManager {
 
     // MARK: - Network Request
 
-    private func makeParameter(number: String) -> Parameters {
-        return ["number": number]
-    }
+    private func makeParameter(number: String) -> Parameters { return ["number": number] }
     
     private func requestData<T: Decodable>(url: String,
                                            httpMethod: HTTPMethod = .get,
@@ -87,22 +85,61 @@ final class NetworkManager {
                                          encoding: JSONEncoding.default,
                                          headers: self.header)
             
-            dataRequest.responseData { (response) in
-                switch response.result {
-                case .success:
-                    guard let data = response.data,
-                          let statusCode = response.response?.statusCode
-                    else { return }
-                    
-                    let networkResult = self.judgeStatus(by: statusCode,
-                                                         self.isValidData(data: data, type: T.self))
-                    observer.onNext(networkResult)
-                    observer.onCompleted()
-                case .failure:
-                    break
-                }
-            }
+            self.checkResponseData(request: dataRequest, type: type, observer: observer)
             return Disposables.create()
+        }
+    }
+    
+    func requestUploadData<T: Decodable> (userID: Int, roomID: Int,
+                                          categoryID: Int, description: String,
+                                          files: [Data], url: String,
+                                          httpMethod: HTTPMethod = .post, type: T.Type) -> Observable<NetworkResult<Any>> {
+        return Observable.create() { observer in
+            let header: HTTPHeaders = ["Content-Type": "multipart/form-data",
+                                       APIEnvironment.apiField: APIEnvironment.apiKey]
+            let parameters: [String: Any] = ["userID": userID,
+                                             "roomID": roomID,
+                                             "categoryID": categoryID,
+                                             "description": description,
+                                             "files": files]
+            
+            let dataUpload = AF.upload(multipartFormData: { multipartFormData in
+                for (key, value) in parameters {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+                
+                for i in 0..<files.count {
+                    let photo = files[i]
+                    multipartFormData.append(photo,
+                                             withName: "files",
+                                             fileName: "\(userID)0\(i + 1).png")
+                }
+            },to: url, usingThreshold: UInt64.init(), method: httpMethod, headers: header)
+            
+            self.checkResponseData(request: dataUpload, type: type, observer: observer)
+            return Disposables.create()
+        }
+    }
+    
+    // MARK: - Network Response
+    
+    func checkResponseData<T: Decodable>(request: DataRequest,
+                                         type: T.Type,
+                                         observer: AnyObserver<NetworkResult<Any>>) {
+        request.responseData { response in
+            switch response.result {
+            case .success:
+                guard let data = response.data,
+                      let statusCode = response.response?.statusCode
+                else { return }
+                
+                let networkResult = self.judgeStatus(by: statusCode,
+                                                     self.isValidData(data: data, type: T.self))
+                observer.onNext(networkResult)
+                observer.onCompleted()
+            case .failure:
+                break
+            }
         }
     }
     
@@ -167,6 +204,8 @@ final class NetworkManager {
         }
     }
 
+    // MARK: - Check Server Data
+    
     private func judgeStatus(by statusCode: Int, _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
         switch statusCode {
         case 200: return networkResult
