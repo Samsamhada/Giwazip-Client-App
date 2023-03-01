@@ -92,4 +92,12 @@ enum TextLiteral {
     // MARK: - ASCell
 
     static let remainText = "남았어요"
+    
+    // MARK: - NetworkManager
+    
+    static let badRequest = "This is badRequest"
+    static let connectionFail = "This is connectionFail"
+    static let notFound = "This is notFound"
+    static let serverError = "This is serverError"
+    static let networkFail = "This is networkFail"
 }
