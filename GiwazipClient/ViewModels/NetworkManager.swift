@@ -16,6 +16,7 @@ final class NetworkManager {
     private let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
     var userData: User?
     var roomData: Room?
+    var postData: Post?
 
     private init() {
         // TODO: 그때그때 방 번호가 달라져야 함!
@@ -32,41 +33,13 @@ final class NetworkManager {
     // MARK: - Get
     
     func loadUserData(url: String) {
-        _ = requestData(url: url, type: User.self)
-            .bind { status in
-                switch status {
-                case .success(let userData):
-                    guard let userData = userData as? User else { return }
-                    self.userData = userData
-                case .connectionFail:
-                    print("This is connectionFail")
-                case .notFound:
-                    print("This is notFound")
-                case .serverError:
-                    print("This is serverError")
-                case .networkFail:
-                    print("This is networkFail")
-                }
-            }
+        let requestedData = requestData(url: url, type: User.self)
+        checkUserStatus(requestData: requestedData)
     }
 
     func loadRoomData(url: String) {
-        _ = requestData(url: url, type: Room.self)
-            .bind { status in
-                switch status {
-                case .success(let roomData):
-                    guard let roomData = roomData as? Room else { return }
-                    self.roomData = roomData
-                case .connectionFail:
-                    print("This is connectionFail")
-                case .notFound:
-                    print("This is notFound")
-                case .serverError:
-                    print("This is serverError")
-                case .networkFail:
-                    print("This is networkFail")
-                }
-            }
+        let requestedData = requestData(url: url, type: Room.self)
+        checkRoomStatus(requestData: requestedData)
     }
     
     // MARK: - Post
@@ -76,45 +49,25 @@ final class NetworkManager {
                         httpMethod: .post,
                         parameters: makeParameter(number: number),
                         type: User.self)
-            .bind { status in
-                switch status {
-                case .success(let userData):
-                    guard let userData = userData as? User else { return }
-                    self.userData = userData
-                case .connectionFail:
-                    print("This is connectionFail")
-                case .notFound:
-                    print("This is notFound")
-                case .serverError:
-                    print("This is serverError")
-                case .networkFail:
-                    print("This is networkFail")
-                }
-            }
+        checkUserStatus(requestData: requestedData)
+    }
+    
+    func uploadPostData(description: String, files: [Data]) {
+        let requestedUploadPost = requestUploadPost(userID: 3, roomID: 1,
+                              categoryID: 1, description: description,
+                              files: files, url: APIEnvironment.postsURL + "/photo",
+                              type: Post.self)
+        checkPostStatus(requestData: requestedUploadPost)
     }
 
     // MARK: - Put
 
     func updateUserData(number: String) {
-        _ = requestData(url: APIEnvironment.usersURL + "/2",
+        let requestedData = requestData(url: APIEnvironment.usersURL + "/2",
                         httpMethod: .put,
                         parameters: makeParameter(number: number),
                         type: User.self)
-            .bind { status in
-                switch status {
-                case .success(let userData):
-                    guard let userData = userData as? User else { return }
-                    self.userData = userData
-                case .connectionFail:
-                    print("This is connectionFail")
-                case .notFound:
-                    print("This is notFound")
-                case .serverError:
-                    print("This is serverError")
-                case .networkFail:
-                    print("This is networkFail")
-                }
-            }
+        checkUserStatus(requestData: requestedData)
     }
 
     // MARK: - Network Request
@@ -150,6 +103,67 @@ final class NetworkManager {
                 }
             }
             return Disposables.create()
+        }
+    }
+    
+    // TODO: - bind closure 안에서 inout 등 사용법 찾으면 한 함수로 수정(checkStatus)
+    func checkUserStatus(requestData: Observable<NetworkResult<Any>>){
+        requestData.bind { status in
+            switch status {
+            case .success(let data):
+                guard let data = data as? User else { return }
+                self.userData = data
+            case .badRequest:
+                print(TextLiteral.badRequest)
+            case .connectionFail:
+                print(TextLiteral.connectionFail)
+            case .notFound:
+                print(TextLiteral.notFound)
+            case .serverError:
+                print(TextLiteral.serverError)
+            case .networkFail:
+                print(TextLiteral.networkFail)
+            }
+        }
+    }
+    
+    func checkRoomStatus(requestData: Observable<NetworkResult<Any>>) {
+        requestData.bind { status in
+            switch status {
+            case .success(let data):
+                guard let data = data as? Room else { return }
+                self.roomData = data
+            case .badRequest:
+                print(TextLiteral.badRequest)
+            case .connectionFail:
+                print(TextLiteral.connectionFail)
+            case .notFound:
+                print(TextLiteral.notFound)
+            case .serverError:
+                print(TextLiteral.serverError)
+            case .networkFail:
+                print(TextLiteral.networkFail)
+            }
+        }
+    }
+    
+    func checkPostStatus(requestData: Observable<NetworkResult<Any>>) {
+        requestData.bind { status in
+            switch status {
+            case .success(let data):
+                guard let data = data as? Post else { return }
+                self.postData = data
+            case .badRequest:
+                print(TextLiteral.badRequest)
+            case .connectionFail:
+                print(TextLiteral.connectionFail)
+            case .notFound:
+                print(TextLiteral.notFound)
+            case .serverError:
+                print(TextLiteral.serverError)
+            case .networkFail:
+                print(TextLiteral.networkFail)
+            }
         }
     }
 
