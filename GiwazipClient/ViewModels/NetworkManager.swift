@@ -71,8 +71,8 @@ final class NetworkManager {
     
     // MARK: - Post
     
-    func uploadUserData(number: String) {
-        _ = requestData(url: APIEnvironment.usersURL,
+    func createUserData(number: String) {
+        let requestedData = requestData(url: APIEnvironment.usersURL,
                         httpMethod: .post,
                         parameters: makeParameter(number: number),
                         type: User.self)
