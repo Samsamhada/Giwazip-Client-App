@@ -29,19 +29,19 @@ final class NetworkManager {
 //        loadRoomData(url: APIEnvironment.roomsURL + "/user/1")
     }
 
-    // MARK: - Load Data
+    // MARK: - Get
     
-    private func loadUserData(url: String) {
+    func loadUserData(url: String) {
         _ = requestData(url: url, type: User.self)
-            .subscribe { status in
+            .bind { status in
                 switch status {
                 case .success(let userData):
                     guard let userData = userData as? User else { return }
                     self.userData = userData
                 case .connectionFail:
                     print("This is connectionFail")
-                case .reqError:
-                    print("This is requestError")
+                case .notFound:
+                    print("This is notFound")
                 case .serverError:
                     print("This is serverError")
                 case .networkFail:
@@ -50,17 +50,65 @@ final class NetworkManager {
             }
     }
 
-    private func loadRoomData(url: String) {
+    func loadRoomData(url: String) {
         _ = requestData(url: url, type: Room.self)
-            .subscribe { status in
+            .bind { status in
                 switch status {
                 case .success(let roomData):
                     guard let roomData = roomData as? Room else { return }
                     self.roomData = roomData
                 case .connectionFail:
                     print("This is connectionFail")
-                case .reqError:
-                    print("This is requestError")
+                case .notFound:
+                    print("This is notFound")
+                case .serverError:
+                    print("This is serverError")
+                case .networkFail:
+                    print("This is networkFail")
+                }
+            }
+    }
+    
+    // MARK: - Post
+    
+    func uploadUserData(number: String) {
+        _ = requestData(url: APIEnvironment.usersURL,
+                        httpMethod: .post,
+                        parameters: makeParameter(number: number),
+                        type: User.self)
+            .bind { status in
+                switch status {
+                case .success(let userData):
+                    guard let userData = userData as? User else { return }
+                    self.userData = userData
+                case .connectionFail:
+                    print("This is connectionFail")
+                case .notFound:
+                    print("This is notFound")
+                case .serverError:
+                    print("This is serverError")
+                case .networkFail:
+                    print("This is networkFail")
+                }
+            }
+    }
+
+    // MARK: - Put
+
+    func updateUserData(number: String) {
+        _ = requestData(url: APIEnvironment.usersURL + "/2",
+                        httpMethod: .put,
+                        parameters: makeParameter(number: number),
+                        type: User.self)
+            .bind { status in
+                switch status {
+                case .success(let userData):
+                    guard let userData = userData as? User else { return }
+                    self.userData = userData
+                case .connectionFail:
+                    print("This is connectionFail")
+                case .notFound:
+                    print("This is notFound")
                 case .serverError:
                     print("This is serverError")
                 case .networkFail:
@@ -71,27 +119,36 @@ final class NetworkManager {
 
     // MARK: - Network Request
 
-    private func requestData<T: Decodable>(url: String, type: T.Type) -> Observable<NetworkResult<Any>> {
+    private func makeParameter(number: String) -> Parameters {
+        return ["number": number]
+    }
+    
+    private func requestData<T: Decodable>(url: String,
+                                           httpMethod: HTTPMethod = .get,
+                                           parameters: Parameters? = nil,
+                                           type: T.Type) -> Observable<NetworkResult<Any>> {
         return Observable.create() { observer in
-            AF.request(url,
-                       method: .get,
-                       encoding: JSONEncoding.default,
-                       headers: self.header)
-              .responseData { (response) in
-                  switch response.result {
-                  case .success:
-                      guard let data = response.data,
-                            let statusCode = response.response?.statusCode
-                      else { return }
-                      
-                      let networkResult = self.judgeStatus(by: statusCode,
-                                                           self.isValidData(data: data, type: T.self))
-                      observer.onNext(networkResult)
-                      observer.onCompleted()
-                  case .failure:
-                      break
-                  }
-              }
+            let dataRequest = AF.request(url,
+                                         method: httpMethod,
+                                         parameters: parameters,
+                                         encoding: JSONEncoding.default,
+                                         headers: self.header)
+            
+            dataRequest.responseData { (response) in
+                switch response.result {
+                case .success:
+                    guard let data = response.data,
+                          let statusCode = response.response?.statusCode
+                    else { return }
+                    
+                    let networkResult = self.judgeStatus(by: statusCode,
+                                                         self.isValidData(data: data, type: T.self))
+                    observer.onNext(networkResult)
+                    observer.onCompleted()
+                case .failure:
+                    break
+                }
+            }
             return Disposables.create()
         }
     }
@@ -100,7 +157,7 @@ final class NetworkManager {
         switch statusCode {
         case 200: return networkResult
         case 403: return .connectionFail
-        case 404: return .reqError
+        case 404: return .notFound
         case 500: return .serverError
         default: return .networkFail
         }
@@ -109,7 +166,7 @@ final class NetworkManager {
     private func isValidData<T: Decodable>(data: Data, type: T.Type) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let data = try? decoder.decode(type, from: data)
-        else { return .reqError }
+        else { return .notFound }
         return .success(data)
     }
 }
