@@ -28,10 +28,10 @@ final class NetworkManager {
     }
 
     func loadOrCreateData<T: Decodable>(url: String,
-                                httpMethod: HTTPMethod = .get,
-                                parameters: Parameters? = nil,
-                                type: T.Type,
-                                completion: @escaping(T) -> Void) {
+                                        httpMethod: HTTPMethod = .get,
+                                        parameters: Parameters? = nil,
+                                        type: T.Type,
+                                        completion: @escaping(T) -> Void) {
         let requestedData = requestData(url: url,
                                         httpMethod: httpMethod,
                                         parameters: parameters,
@@ -55,7 +55,7 @@ final class NetworkManager {
     }
     
     private func checkStatus<T>(requestData: Observable<NetworkResult<Any>>,
-                        completion: @escaping (T) -> Void) {
+                                completion: @escaping (T) -> Void) {
         requestData.bind { status in
             switch status {
             case .success(let data):
@@ -94,13 +94,13 @@ final class NetworkManager {
     }
     
     private func requestUploadData<T: Decodable> (userID: Int,
-                                          roomID: Int,
-                                          categoryID: Int,
-                                          description: String,
-                                          files: [Data],
-                                          url: String,
-                                          httpMethod: HTTPMethod = .post,
-                                          type: T.Type) -> Observable<NetworkResult<Any>> {
+                                                  roomID: Int,
+                                                  categoryID: Int,
+                                                  description: String,
+                                                  files: [Data],
+                                                  url: String,
+                                                  httpMethod: HTTPMethod = .post,
+                                                  type: T.Type) -> Observable<NetworkResult<Any>> {
         return Observable.create() { observer in
             let header: HTTPHeaders = ["Content-Type": "multipart/form-data",
                                        APIEnvironment.apiField: APIEnvironment.apiKey]
