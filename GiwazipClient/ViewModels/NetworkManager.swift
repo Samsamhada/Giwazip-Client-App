@@ -131,8 +131,8 @@ final class NetworkManager {
     // MARK: - Network Response
 
     private func checkResponseData<T: Decodable>(request: DataRequest,
-                                         type: T.Type,
-                                         observer: AnyObserver<NetworkResult<Any>>) {
+                                                 type: T.Type,
+                                                 observer: AnyObserver<NetworkResult<Any>>) {
         request.responseData { response in
             switch response.result {
             case .success:
