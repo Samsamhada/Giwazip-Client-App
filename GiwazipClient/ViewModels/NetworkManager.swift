@@ -31,7 +31,7 @@ final class NetworkManager {
                                         httpMethod: HTTPMethod = .get,
                                         parameters: Parameters? = nil,
                                         type: T.Type,
-                                        completion: @escaping(T) -> Void) {
+                                        completion: @escaping (T) -> Void) {
         let requestedData = requestData(url: url,
                                         httpMethod: httpMethod,
                                         parameters: parameters,
@@ -61,16 +61,16 @@ final class NetworkManager {
             case .success(let data):
                 guard let data = data as? T else { return }
                 completion(data)
-            case .badRequest:
-                print(TextLiteral.badRequest)
-            case .connectionFail:
-                print(TextLiteral.connectionFail)
-            case .notFound:
-                print(TextLiteral.notFound)
-            case .serverError:
-                print(TextLiteral.serverError)
-            case .networkFail:
-                print(TextLiteral.networkFail)
+            case .badRequest(let badRequest):
+                print("This is: \(badRequest)")
+            case .connectionFail(let connectionFail):
+                print("This is: \(connectionFail)")
+            case .notFound(let notFound):
+                print("This is: \(notFound)")
+            case .serverError(let serverError):
+                print("This is: \(serverError)")
+            default:
+                print("This is NetworkError, so Check your Cellular data Or Wifi")
             }
         }
     }
@@ -121,7 +121,7 @@ final class NetworkManager {
                                              withName: "files",
                                              fileName: "\(userID)0\(i + 1).png")
                 }
-            },to: url, usingThreshold: UInt64.init(), method: httpMethod, headers: header)
+            }, to: url, usingThreshold: UInt64.init(), method: httpMethod, headers: header)
 
             self.checkResponseData(request: dataUpload, type: type, observer: observer)
             return Disposables.create()
@@ -140,8 +140,7 @@ final class NetworkManager {
                       let statusCode = response.response?.statusCode
                 else { return }
 
-                let networkResult = self.judgeStatus(by: statusCode,
-                                                     self.isValidData(data: data, type: T.self))
+                let networkResult = self.isValidData(data: data, type: T.self, by: statusCode)
                 observer.onNext(networkResult)
                 observer.onCompleted()
             case .failure:
@@ -152,23 +151,32 @@ final class NetworkManager {
 
     // MARK: - Check Server Data
     
-    private func judgeStatus(by statusCode: Int,
-                             _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
-        switch statusCode {
-        case 200: return networkResult
-        case 400: return .badRequest
-        case 403: return .connectionFail
-        case 404: return .notFound
-        case 500: return .serverError
-        default: return .networkFail
-        }
-    }
+//    private func judgeStatus(by statusCode: Int,
+//                             _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
+//        switch statusCode {
+//        case 200: return networkResult
+//        case 400: return .badRequest
+//        case 403: return .connectionFail
+//        case 404: return .notFound
+//        case 500: return .serverError
+//        default: return .networkFail
+//        }
+//    }
 
     private func isValidData<T: Decodable>(data: Data,
-                                           type: T.Type) -> NetworkResult<Any> {
+                                           type: T.Type,
+                                           by statusCode: Int) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         guard let data = try? decoder.decode(type, from: data)
-        else { return .notFound }
-        return .success(data)
+        else { return .decodingError }
+        
+        switch statusCode {
+        case 200: return .success(data)
+        case 400: return .badRequest(data)
+        case 403: return .connectionFail(data)
+        case 404: return .notFound(data)
+        case 500: return .serverError(data)
+        default: return .networkFail
+        }
     }
 }
