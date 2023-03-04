@@ -89,6 +89,17 @@ enum TextLiteral {
                                          
                                          """
 
+    // MARK: - DeveloperView
+
+    static let meenuName = "미뉴 (김민택)"
+    static let meenuGithub = "https://github.com/taek0622"
+
+    static let eddyName = "에디 (지준용)"
+    static let eddyGithub = "https://github.com/JUNY0110"
+
+    static let dinnerName = "디너 (이정환)"
+    static let dinnerGithub = "https://github.com/creohwan"
+
     // MARK: - ASCell
 
     static let remainText = "남았어요"
