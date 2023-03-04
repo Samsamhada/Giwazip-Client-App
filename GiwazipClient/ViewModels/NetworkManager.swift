@@ -19,11 +19,11 @@ final class NetworkManager {
 
     private init() {
         // TODO: 그때그때 방 번호가 달라져야 함!
-        loadOrCreateData(url: APIEnvironment.usersURL + "/room/1", type: User.self) { data in
-            self.userData = data
+        loadOrCreateData(url: APIEnvironment.usersURL + "/room/1", type: User.self) { [weak self] data in
+            self?.userData = data
         }
-        loadOrCreateData(url: APIEnvironment.roomsURL + "/1", type: Room.self) { data in
-            self.roomData = data
+        loadOrCreateData(url: APIEnvironment.roomsURL + "/1", type: Room.self) { [weak self] data in
+            self?.roomData = data
         }
     }
 
@@ -49,8 +49,8 @@ final class NetworkManager {
                                                     files: files,
                                                     url: APIEnvironment.postsURL + "/photo",
                                                     type: Post.self)
-        checkStatus(requestData: requestedUploadPost) { data in
-            self.roomData = data
+        checkStatus(requestData: requestedUploadPost) { [weak self] data in
+            self?.roomData = data
         }
     }
     
