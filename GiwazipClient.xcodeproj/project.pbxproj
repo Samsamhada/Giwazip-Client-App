@@ -26,6 +26,7 @@
 		26AC1B3529B3D57F00BFF78A /* SettingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */; };
 		26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11B29A3A2C200D3C3F7 /* TextLiteral.swift */; };
 		26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */; };
+		26B7B13A29A68FD600D3C3F7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B13929A68FD600D3C3F7 /* DeveloperViewController.swift */; };
 		26B85B41299C61850039C14A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B40299C61850039C14A /* SettingViewController.swift */; };
 		432511542988140700F08BD2 /* ASCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432511532988140700F08BD2 /* ASCell.swift */; };
 		437102302989312400EF992D /* PostingTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371022F2989312400EF992D /* PostingTextViewController.swift */; };
@@ -73,6 +74,7 @@
 		26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooter.swift; sourceTree = "<group>"; };
 		26B7B11B29A3A2C200D3C3F7 /* TextLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLiteral.swift; sourceTree = "<group>"; };
 		26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiteral.swift; sourceTree = "<group>"; };
+		26B7B13929A68FD600D3C3F7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
 		26B85B40299C61850039C14A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		432511532988140700F08BD2 /* ASCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCell.swift; sourceTree = "<group>"; };
 		4371022F2989312400EF992D /* PostingTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingTextViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				98D44B7C2941DD4D00386AA4 /* LaunchScreen.storyboard */,
+				26B7B13929A68FD600D3C3F7 /* DeveloperViewController.swift */,
 				438BF0422977CA28005E4CF3 /* EnterViewController.swift */,
 				988C56DB2978349D00018F07 /* HistoryViewController.swift */,
 				260A63E329710A45004034AD /* MainViewController.swift */,
@@ -416,6 +419,7 @@
 				260A63D8297107AA004034AD /* Cell.swift in Sources */,
 				260A63E629710A5C004034AD /* SubViewController.swift in Sources */,
 				43997B052981367200C5A163 /* PostImageViewController.swift in Sources */,
+				26B7B13A29A68FD600D3C3F7 /* DeveloperViewController.swift in Sources */,
 				260A63E229710846004034AD /* MainCoordinator.swift in Sources */,
 				98197C1029A26562008C4C55 /* NetworkManager.swift in Sources */,
 				98197C0C29A264AC008C4C55 /* APIEnvironment.swift in Sources */,
