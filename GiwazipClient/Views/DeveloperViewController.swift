@@ -93,8 +93,8 @@ class DeveloperViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let item = dataSource.itemIdentifier(for: indexPath) {
             if let url = URL(string: item.github) {
-                let privacyPolicy = SFSafariViewController(url: url)
-                present(privacyPolicy, animated: true)
+                let githubProfile = SFSafariViewController(url: url)
+                present(githubProfile, animated: true)
             }
             collectionView.deselectItem(at: indexPath, animated: true)
         }
