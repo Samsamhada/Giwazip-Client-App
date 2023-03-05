@@ -19,11 +19,11 @@ final class NetworkManager {
 
     private init() {
         // TODO: 그때그때 방 번호가 달라져야 함!
-        loadOrCreateData(url: APIEnvironment.usersURL + "/room/1", type: User.self) { [weak self] data in
-            self?.userData = data
+        loadOrCreateData(url: APIEnvironment.usersURL + "/room/1", type: User.self) { data in
+            self.userData = data
         }
-        loadOrCreateData(url: APIEnvironment.roomsURL + "/1", type: Room.self) { [weak self] data in
-            self?.roomData = data
+        loadOrCreateData(url: APIEnvironment.roomsURL + "/1", type: Room.self) { data in
+            self.roomData = data
         }
     }
 
@@ -32,31 +32,31 @@ final class NetworkManager {
                                         parameters: Parameters? = nil,
                                         type: T.Type,
                                         completion: @escaping (T) -> Void) {
-        let requestedData = requestData(url: url,
+        let responseData = requestData(url: url,
                                         httpMethod: httpMethod,
                                         parameters: parameters,
                                         type: type)
-        checkStatus(requestData: requestedData) { data in
+        checkStatus(responseData) { data in
             completion(data)
         }
     }
 
     func uploadPostData(description: String, files: [Data]) {
-        let requestedUploadPost = requestUploadData(userID: 3,
+        let responseData = requestUploadData(userID: 3,
                                                     roomID: 1,
                                                     categoryID: 1,
                                                     description: description,
                                                     files: files,
                                                     url: APIEnvironment.postsURL + "/photo",
                                                     type: Post.self)
-        checkStatus(requestData: requestedUploadPost) { [weak self] data in
-            self?.roomData = data
+        checkStatus(responseData) { data in
+            self.roomData = data
         }
     }
     
-    private func checkStatus<T>(requestData: Observable<NetworkResult<Any>>,
+    private func checkStatus<T>(_ responseData: Observable<NetworkResult<Any>>,
                                 completion: @escaping (T) -> Void) {
-        requestData.bind { status in
+        responseData.bind { status in
             switch status {
             case .success(let data):
                 guard let data = data as? T else { return }
@@ -150,18 +150,6 @@ final class NetworkManager {
     }
 
     // MARK: - Check Server Data
-    
-//    private func judgeStatus(by statusCode: Int,
-//                             _ networkResult: NetworkResult<Any>) -> NetworkResult<Any> {
-//        switch statusCode {
-//        case 200: return networkResult
-//        case 400: return .badRequest
-//        case 403: return .connectionFail
-//        case 404: return .notFound
-//        case 500: return .serverError
-//        default: return .networkFail
-//        }
-//    }
 
     private func isValidData<T: Decodable>(data: Data,
                                            type: T.Type,
