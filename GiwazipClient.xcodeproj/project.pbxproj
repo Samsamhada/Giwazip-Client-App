@@ -42,6 +42,7 @@
 		9839F371298B5BD00058639F /* PostingPhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */; };
 		98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */; };
 		98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */; };
+		9878A31F29B4E1EF0041664E /* LineDashPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern.swift */; };
 		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
 		988C56D42976D3BA00018F07 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D32976D3BA00018F07 /* HistoryCell.swift */; };
 		988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D7297777E500018F07 /* ProgressHeader.swift */; };
@@ -92,6 +93,7 @@
 		9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCoordinator.swift; sourceTree = "<group>"; };
 		98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoViewController.swift; sourceTree = "<group>"; };
 		98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCell.swift; sourceTree = "<group>"; };
+		9878A31E29B4E1EF0041664E /* LineDashPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineDashPattern.swift; sourceTree = "<group>"; };
 		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		988C56D32976D3BA00018F07 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		988C56D7297777E500018F07 /* ProgressHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHeader.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				43E1F564297A16CD000A13D4 /* Alert+.swift */,
+				9878A31E29B4E1EF0041664E /* LineDashPattern.swift */,
 				260A63DD297107E4004034AD /* Extension+.swift */,
 				438E5B29297982E300FD947E /* HideKeyboard+.swift */,
 			);
@@ -437,6 +440,7 @@
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */,
 				26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */,
+				9878A31F29B4E1EF0041664E /* LineDashPattern.swift in Sources */,
 				9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */,
 				26B85B41299C61850039C14A /* SettingViewController.swift in Sources */,
 				43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */,

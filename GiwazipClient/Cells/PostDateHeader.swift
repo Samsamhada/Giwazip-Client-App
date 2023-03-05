@@ -19,8 +19,8 @@ class PostDateHeader: UICollectionReusableView {
     
     private let dateStack = UIView()
     
-    private let leftDashLine: UIView = {
-        $0.backgroundColor = .gray
+    private lazy var leftDashLine: UIView = {
+        $0.layer.addSublayer(lineDashPattern(start: UIScreen.main.bounds.width / 3, end: 0))
         return $0
     }(UIView())
     
@@ -32,8 +32,8 @@ class PostDateHeader: UICollectionReusableView {
         return $0
     }(UILabel())
      
-    private let rightDashLine: UIView = {
-        $0.backgroundColor = .gray
+    private lazy var rightDashLine: UIView = {
+        $0.layer.addSublayer(lineDashPattern(start: 0, end: UIScreen.main.bounds.width / 3))
         return $0
     }(UIView())
     
