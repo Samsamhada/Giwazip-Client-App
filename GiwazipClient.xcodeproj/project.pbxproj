@@ -32,7 +32,7 @@
 		438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E5B29297982E300FD947E /* HideKeyboard+.swift */; };
 		43997B052981367200C5A163 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997B042981367200C5A163 /* PostImageViewController.swift */; };
 		43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E1F564297A16CD000A13D4 /* Alert+.swift */; };
-		98197C0C29A264AC008C4C55 /* APIEnvironmnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0B29A264AC008C4C55 /* APIEnvironmnet.swift */; };
+		98197C0C29A264AC008C4C55 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0B29A264AC008C4C55 /* APIEnvironment.swift */; };
 		98197C0E29A264CA008C4C55 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0D29A264CA008C4C55 /* NetworkResult.swift */; };
 		98197C1029A26562008C4C55 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0F29A26562008C4C55 /* NetworkManager.swift */; };
 		9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F36E298B55350058639F /* SegmentCoordinator.swift */; };
@@ -79,7 +79,7 @@
 		43997B042981367200C5A163 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		43E1F564297A16CD000A13D4 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
-		98197C0B29A264AC008C4C55 /* APIEnvironmnet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironmnet.swift; sourceTree = "<group>"; };
+		98197C0B29A264AC008C4C55 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
 		98197C0D29A264CA008C4C55 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		98197C0F29A26562008C4C55 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9839F36E298B55350058639F /* SegmentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCoordinator.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				260A63C929710725004034AD /* Models.swift */,
-				98197C0B29A264AC008C4C55 /* APIEnvironmnet.swift */,
+				98197C0B29A264AC008C4C55 /* APIEnvironment.swift */,
 				98197C0D29A264CA008C4C55 /* NetworkResult.swift */,
 			);
 			path = Models;
@@ -414,7 +414,7 @@
 				43997B052981367200C5A163 /* PostImageViewController.swift in Sources */,
 				260A63E229710846004034AD /* MainCoordinator.swift in Sources */,
 				98197C1029A26562008C4C55 /* NetworkManager.swift in Sources */,
-				98197C0C29A264AC008C4C55 /* APIEnvironmnet.swift in Sources */,
+				98197C0C29A264AC008C4C55 /* APIEnvironment.swift in Sources */,
 				98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */,
 				260A63E829710A7F004034AD /* SubCoordinator.swift in Sources */,
 				26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */,
