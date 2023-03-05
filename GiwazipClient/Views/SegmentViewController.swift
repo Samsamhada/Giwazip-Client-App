@@ -58,6 +58,11 @@ class SegmentViewController: BaseViewController {
     }(UILabel())
 
     private let segmentedControl = UISegmentedControl(items: [TextLiteral.workHistoryTap, TextLiteral.inquiryHistoryTap])
+    
+    private let divider: UIView  = {
+        $0.backgroundColor = .systemGray4
+        return $0
+    }(UIView())
 
     private let workView: HistoryViewController = {
         // TODO: - 추후 데이터 추가
@@ -144,10 +149,17 @@ class SegmentViewController: BaseViewController {
             $0.width.equalTo(180)
             $0.height.equalTo(20)
         }
+        
+        view.addSubview(divider)
+        divider.snp.makeConstraints {
+            $0.top.equalTo(segmentedControl.snp.bottom).offset(12)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+        }
 
         view.addSubview(pageContentView)
         pageContentView.snp.makeConstraints {
-            $0.top.equalTo(segmentedControl.snp.bottom).offset(12)
+            $0.top.equalTo(divider.snp.bottom)
             $0.bottom.horizontalEdges.equalToSuperview()
         }
 
