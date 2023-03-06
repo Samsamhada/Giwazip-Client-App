@@ -19,7 +19,6 @@ extension UIView {
         shapeLayer.strokeColor = UIColor.black.cgColor
         shapeLayer.lineWidth = 1
         shapeLayer.lineDashPattern = lineDashPattern
-        shapeLayer.fillColor = UIColor.red.cgColor
         shapeLayer.path = path
         
         return shapeLayer
