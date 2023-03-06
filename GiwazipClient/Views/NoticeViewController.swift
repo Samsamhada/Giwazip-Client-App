@@ -114,8 +114,6 @@ class NoticeViewController: UICollectionViewController {
 
         snapshot.appendSections(Section.allCases)
 
-        dataSource.apply(snapshot)
-
         var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<NoticeItem>()
 
         for item in noticeItems.reversed() where !item.isHidden {
@@ -126,6 +124,7 @@ class NoticeViewController: UICollectionViewController {
             sectionSnapshot.append([noticeContent], to: noticeTitle)
         }
 
+        dataSource.apply(snapshot)
         dataSource.apply(sectionSnapshot, to: .noticeList, animatingDifferences: true)
     }
 
