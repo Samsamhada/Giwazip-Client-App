@@ -85,7 +85,7 @@ struct Notice: Codable, Hashable {
     var adminID: Int?
     let title: String
     let content: String
-    let createDate: Date
+    let createDate: String
     let isHidden: Bool
     var admin: Admin?
 }
