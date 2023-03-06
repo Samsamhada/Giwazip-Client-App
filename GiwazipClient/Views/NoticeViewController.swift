@@ -110,17 +110,17 @@ class NoticeViewController: UICollectionViewController {
 
         dataSource.apply(snapshot)
 
-        var sectionSnapShot = NSDiffableDataSourceSectionSnapshot<NoticeItem>()
+        var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<NoticeItem>()
 
         for item in noticeItems.reversed() {
             let noticeTitle = NoticeItem.title(item)
-            sectionSnapShot.append([noticeTitle])
+            sectionSnapshot.append([noticeTitle])
 
             let noticeContent = NoticeItem.content(item.content)
-            sectionSnapShot.append([noticeContent], to: noticeTitle)
+            sectionSnapshot.append([noticeContent], to: noticeTitle)
         }
 
-        dataSource.apply(sectionSnapShot, to: .noticeList, animatingDifferences: true)
+        dataSource.apply(sectionSnapshot, to: .noticeList, animatingDifferences: true)
     }
 
     // MARK: - CollectionView Method
