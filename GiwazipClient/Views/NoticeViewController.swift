@@ -7,28 +7,29 @@
 
 import UIKit
 
-struct NoticeTitle: Hashable {
-    let title: String
-    let createDate: String
-    let content: NoticeContent
-}
-
-struct NoticeContent: Hashable {
-    let description: String
-    let author: String
-}
-
 class NoticeViewController: UICollectionViewController {
 
     // MARK: - Property
 
     lazy var noticeItems = [
-        NoticeTitle(title: "테스트1",
-                    createDate: "2023-02-23",
-                    content: NoticeContent(description: "테스트1입니다\n테스트1입니다\n테스트1입니다\n테스트1입니다\n테스트1입니다", author: "관리자 1")),
-        NoticeTitle(title: "테스트2",
-                    createDate: "2023-02-24",
-                    content: NoticeContent(description: "테스트2입니다", author: "관리자 2"))
+        Notice(noticeID: 1,
+               title: "짓다 오픈",
+               content: "짓다가 오픈되었습니다~ 와~~~~",
+               createDate: Date(),
+               isHidden: false,
+               admin: Admin(adminID: 1, name: "미뉴")),
+        Notice(noticeID: 2,
+               title: "테스트 1번",
+               content: "테스트1공지사항입니다.이렇게 엔터도 하구~\n이렇게 띄어쓰기도 해보고~~~\n이렇게 여러 줄로도 한번 써보고 이것 저것 다 해보고 하면서 테스트하는거죠 후후",
+               createDate: Date(),
+               isHidden: false,
+               admin: Admin(adminID: 2, name: "에디")),
+        Notice(noticeID: 3,
+               title: "숨김 공지 테스트",
+               content: "숨김 공지 테스트 입니다~ 우와~~~~~~ 이게 안보여야 하는데 말이죠~",
+               createDate: Date(),
+               isHidden: true,
+               admin: Admin(adminID: 1, name: "미뉴"))
     ]
 
     private enum Section: CaseIterable {
@@ -36,15 +37,15 @@ class NoticeViewController: UICollectionViewController {
     }
 
     private enum NoticeItem: Hashable {
-        case title(NoticeTitle)
-        case content(NoticeContent)
+        case title(Notice)
+        case content(Notice)
     }
 
-    private let titleCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NoticeTitle>
+    private let titleCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Notice>
     { cell, indexPath, item in
         var content = cell.defaultContentConfiguration()
 
-        content.text = item.createDate
+        content.text = "\(item.createDate)"
         content.textProperties.font = UIFont.systemFont(ofSize: 14)
         content.textProperties.color = .gray
 
@@ -59,15 +60,16 @@ class NoticeViewController: UICollectionViewController {
         cell.accessories = [.outlineDisclosure(options: headerDisclosureOption)]
     }
 
-    private let contentCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, NoticeContent>
+    private let contentCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Notice>
     { cell, indexPath, item in
         var content = cell.defaultContentConfiguration()
         
-        content.text = item.author
+        content.text = item.admin?.name
         content.textProperties.font = UIFont.systemFont(ofSize: 14)
         content.textProperties.color = .gray
 
-        content.secondaryText = item.description
+
+        content.secondaryText = item.content
         content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16)
 
         cell.contentConfiguration = content
@@ -116,11 +118,11 @@ class NoticeViewController: UICollectionViewController {
 
         var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<NoticeItem>()
 
-        for item in noticeItems.reversed() {
+        for item in noticeItems.reversed() where !item.isHidden {
             let noticeTitle = NoticeItem.title(item)
             sectionSnapshot.append([noticeTitle])
 
-            let noticeContent = NoticeItem.content(item.content)
+            let noticeContent = NoticeItem.content(item)
             sectionSnapshot.append([noticeContent], to: noticeTitle)
         }
 
