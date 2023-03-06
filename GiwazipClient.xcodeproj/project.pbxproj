@@ -26,7 +26,6 @@
 		26AC1B3529B3D57F00BFF78A /* SettingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */; };
 		26AC1B3729B3DF4800BFF78A /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC1B3629B3DF4800BFF78A /* ImageLiteral.swift */; };
 		26AC1B3D29B4A91800BFF78A /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC1B3C29B4A91800BFF78A /* NoticeViewController.swift */; };
-		26B73F6329B6185200EE28C2 /* NoticeContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B73F6229B6185200EE28C2 /* NoticeContentCell.swift */; };
 		26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11B29A3A2C200D3C3F7 /* TextLiteral.swift */; };
 		26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */; };
 		26B7B13A29A68FD600D3C3F7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B13929A68FD600D3C3F7 /* DeveloperViewController.swift */; };
@@ -78,7 +77,6 @@
 		26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooter.swift; sourceTree = "<group>"; };
 		26AC1B3629B3DF4800BFF78A /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		26AC1B3C29B4A91800BFF78A /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
-		26B73F6229B6185200EE28C2 /* NoticeContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeContentCell.swift; sourceTree = "<group>"; };
 		26B7B11B29A3A2C200D3C3F7 /* TextLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLiteral.swift; sourceTree = "<group>"; };
 		26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiteral.swift; sourceTree = "<group>"; };
 		26B7B13929A68FD600D3C3F7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				260A63D7297107AA004034AD /* Cell.swift */,
 				432511532988140700F08BD2 /* ASCell.swift */,
 				988C56D32976D3BA00018F07 /* HistoryCell.swift */,
-				26B73F6229B6185200EE28C2 /* NoticeContentCell.swift */,
 				98F52B832982BA28002C1303 /* PostCell.swift */,
 				988C56D929779D2A00018F07 /* PostDateHeader.swift */,
 				98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */,
@@ -444,7 +441,6 @@
 				438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */,
 				260A63EA29711307004034AD /* BaseCoordinator.swift in Sources */,
 				98F52B842982BA28002C1303 /* PostCell.swift in Sources */,
-				26B73F6329B6185200EE28C2 /* NoticeContentCell.swift in Sources */,
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */,
 				26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */,
