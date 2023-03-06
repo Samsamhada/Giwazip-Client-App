@@ -74,3 +74,18 @@ struct Photo: Codable {
     let photoID: Int
     let url: String
 }
+
+struct Admin: Codable, Hashable {
+    var adminID: Int?
+    let name: String
+}
+
+struct Notice: Codable, Hashable {
+    let noticeID: Int
+    var adminID: Int?
+    let title: String
+    let content: String
+    let createDate: Date
+    let isHidden: Bool
+    var admin: Admin?
+}
