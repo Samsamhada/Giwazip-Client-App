@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 
 struct Developer: Hashable {
+    let nickname: String
     let name: String
     let github: String
 }
@@ -27,11 +28,11 @@ class DeveloperViewController: UICollectionViewController {
         func loadDeveloperInfo() -> [Developer] {
             switch self {
             case .meenu:
-                return [.init(name: TextLiteral.meenuName, github: TextLiteral.meenuGithub)]
+                return [.init(nickname: TextLiteral.meenuNickname, name: TextLiteral.meenuName, github: TextLiteral.meenuGithub)]
             case .eddy:
-                return [.init(name: TextLiteral.eddyName, github: TextLiteral.eddyGithub)]
+                return [.init(nickname: TextLiteral.eddyNickname, name: TextLiteral.eddyName, github: TextLiteral.eddyGithub)]
             case .dinner:
-                return [.init(name: TextLiteral.dinnerName, github: TextLiteral.dinnerGithub)]
+                return [.init(nickname: TextLiteral.dinnerNickname, name: TextLiteral.dinnerName, github: TextLiteral.dinnerGithub)]
             }
         }
     }
@@ -41,7 +42,11 @@ class DeveloperViewController: UICollectionViewController {
         { cell, indexPath, item in
             var content = cell.defaultContentConfiguration()
             
-            content.text = item.name
+            content.text = item.nickname
+
+            content.secondaryText = item.name
+            content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 14)
+            content.secondaryTextProperties.color = .gray
 
             cell.contentConfiguration = content
 
