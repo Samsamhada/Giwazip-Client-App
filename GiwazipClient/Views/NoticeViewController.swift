@@ -20,7 +20,7 @@ class NoticeViewController: UICollectionViewController {
                admin: Admin(adminID: 1, name: "미뉴")),
         Notice(noticeID: 2,
                title: "테스트 1번",
-               content: "테스트1공지사항입니다.이렇게 엔터도 하구~\n이렇게 띄어쓰기도 해보고~~~\n이렇게 여러 줄로도 한번 써보고 이것 저것 다 해보고 하면서 테스트하는거죠 후후",
+               content: "테스트1공지사항입니다.이렇게 줄 넘어가게 이것저것 다 써보고\n이렇게 엔터도 하구~\n이렇게 띄어쓰기도 해보고~~~\n이렇게 여러 줄로도 한번 써보고 이것 저것 다 해보고 하면서 테스트하는거죠 후후",
                createDate: "2023-03-07",
                isHidden: false,
                admin: Admin(adminID: 2, name: "에디")),
@@ -60,19 +60,10 @@ class NoticeViewController: UICollectionViewController {
         cell.accessories = [.outlineDisclosure(options: headerDisclosureOption)]
     }
 
-    private let contentCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Notice>
+    private let contentCellRegistration = UICollectionView.CellRegistration<NoticeContentCell, Notice>
     { cell, indexPath, item in
-        var content = cell.defaultContentConfiguration()
-        
-        content.text = item.admin?.name
-        content.textProperties.font = UIFont.systemFont(ofSize: 14)
-        content.textProperties.color = .gray
-
-
-        content.secondaryText = item.content
-        content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16)
-
-        cell.contentConfiguration = content
+        cell.writer.text = item.admin?.name
+        cell.content.text = item.content
     }
 
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, NoticeItem> = {
