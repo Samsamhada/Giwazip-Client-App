@@ -24,11 +24,11 @@ class NoticeViewController: UICollectionViewController {
 
     lazy var noticeItems = [
         NoticeTitle(title: "테스트1",
-              createDate: "2023-02-23",
-              content: NoticeContent(description: "테스트1입니다\n테스트1입니다\n테스트1입니다\n테스트1입니다\n테스트1입니다", author: "관리자 1")),
+                    createDate: "2023-02-23",
+                    content: NoticeContent(description: "테스트1입니다\n테스트1입니다\n테스트1입니다\n테스트1입니다\n테스트1입니다", author: "관리자 1")),
         NoticeTitle(title: "테스트2",
-              createDate: "2023-02-24",
-              content: NoticeContent(description: "테스트2입니다", author: "관리자 2"))
+                    createDate: "2023-02-24",
+                    content: NoticeContent(description: "테스트2입니다", author: "관리자 2"))
     ]
 
     private enum Section: CaseIterable {
