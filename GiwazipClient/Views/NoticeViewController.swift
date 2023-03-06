@@ -53,7 +53,9 @@ class NoticeViewController: UICollectionViewController {
 
         cell.contentConfiguration = content
 
-        let headerDisclosureOption = UICellAccessory.OutlineDisclosureOptions(style: .header)
+        var headerDisclosureOption = UICellAccessory.OutlineDisclosureOptions(style: .header)
+        headerDisclosureOption.tintColor = .black
+
         cell.accessories = [.outlineDisclosure(options: headerDisclosureOption)]
     }
 
