@@ -42,7 +42,7 @@ class NoticeViewController: UICollectionViewController {
     { cell, indexPath, item in
         var content = cell.defaultContentConfiguration()
 
-        content.text = "\(item.createDate)"
+        content.text = item.createDate
         content.textProperties.font = UIFont.systemFont(ofSize: 14)
         content.textProperties.color = .gray
 
