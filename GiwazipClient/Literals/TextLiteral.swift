@@ -42,6 +42,15 @@ enum TextLiteral {
 
     static let photoChangeText = "사진 변경하기"
     static let photoDeleteText = "사진 삭제하기"
+    
+    static let minimumSizeAlertMessage = """
+                                         이미지의 최소 가로 x 세로 크기는
+                                         400 x 400 이상이어야 합니다.
+                                         """
+    static let unnormalSizeAlertMessage = """
+                                          정상비율의 이미지가 아닙니다.
+                                          다시 확인해주시기 바랍니다.
+                                          """
 
     // MARK: - PostingTextView
 

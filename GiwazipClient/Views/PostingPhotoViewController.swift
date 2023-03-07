@@ -142,6 +142,20 @@ class PostingPhotoViewController: BaseViewController {
         }
         return image
     }
+    
+    func CancelOrAddImage(image: UIImage) {
+        switch image != UIImage() {
+        case (image.size.width, image.size.height) < (400, 400):
+            self.makeAlert(message: TextLiteral.minimumSizeAlertMessage)
+        case (self.resizeImage(image: image).size.width,
+              self.resizeImage(image: image).size.height) < (400, 400):
+            self.makeAlert(message: TextLiteral.unnormalSizeAlertMessage)
+        case self.isChangedPHPickerRole:
+            self.images.insert(self.resizeImage(image: image), at: self.selectedIndex + 1)
+        default:
+            self.images[self.selectedIndex] = self.resizeImage(image: image)
+        }
+    }
 }
 
 extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -213,13 +227,7 @@ extension PostingPhotoViewController: PHPickerViewControllerDelegate {
                 item.loadObject(ofClass: UIImage.self) { (image, _) in
                     DispatchQueue.main.async {
                         guard let image = image as? UIImage else { return }
-
-                        if self.isChangedPHPickerRole {
-                            self.images.insert(self.resizeImage(image: image),
-                                               at: self.selectedIndex + 1)
-                        } else {
-                            self.images[self.selectedIndex] = self.resizeImage(image: image)
-                        }
+                        self.CancelOrAddImage(image: image)
                         self.photoCollectionView.reloadData()
                     }
                 }
