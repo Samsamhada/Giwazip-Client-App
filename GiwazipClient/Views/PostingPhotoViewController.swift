@@ -125,10 +125,12 @@ class PostingPhotoViewController: BaseViewController {
         photoCollectionView.reloadData()
     }
     
-    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
-        // TODO: 세로길이가 길었을 때에 대해서도 고려를 해야할까? 가로 비율에 맞게 세로도 줄어들긴 하는데...
-        if image.size.width > 800 {
-            let scale = newWidth / image.size.width
+    func resizeImage(image: UIImage, newSize: CGFloat = 880) -> UIImage {
+        let maxSize = max(image.size.width, image.size.height)
+
+        if maxSize > newSize {
+            let scale = newSize / maxSize
+            let newWidth = image.size.width * scale
             let newHeight = image.size.height * scale
             
             let size = CGSize(width: newWidth, height: newHeight)
@@ -210,12 +212,13 @@ extension PostingPhotoViewController: PHPickerViewControllerDelegate {
             if item.canLoadObject(ofClass: UIImage.self) {
                 item.loadObject(ofClass: UIImage.self) { (image, _) in
                     DispatchQueue.main.async {
-                        guard var image = image as? UIImage else { return }
-                        image = self.resizeImage(image: image, newWidth: 800)
+                        guard let image = image as? UIImage else { return }
+
                         if self.isChangedPHPickerRole {
-                            self.images.insert(image, at: self.selectedIndex + 1)
+                            self.images.insert(self.resizeImage(image: image),
+                                               at: self.selectedIndex + 1)
                         } else {
-                            self.images[self.selectedIndex] = image
+                            self.images[self.selectedIndex] = self.resizeImage(image: image)
                         }
                         self.photoCollectionView.reloadData()
                     }
