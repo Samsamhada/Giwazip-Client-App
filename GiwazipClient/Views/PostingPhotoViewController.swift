@@ -18,12 +18,14 @@ class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
 
+    var viewModel = NetworkManager.shared
     var delegate: PostingPhotoViewControllerDelegate?
     private var buttonConfiguration = UIButton.Configuration.filled()
     private var pickerConfiguration = PHPickerConfiguration()
     private var isChangedPHPickerRole = false
     private var selectedIndex = 0
     private let emptyImage = UIImage()
+    private var imageDatas: [Data] = []
 
     private lazy var images: [UIImage] = [emptyImage] {
         didSet {
@@ -59,6 +61,7 @@ class PostingPhotoViewController: BaseViewController {
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
+        $0.addTarget(self, action: #selector(uploadPostData), for: .touchUpInside)
         $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
@@ -125,6 +128,15 @@ class PostingPhotoViewController: BaseViewController {
         photoCollectionView.reloadData()
     }
     
+    @objc func uploadPostData() {
+        images.forEach {
+            if $0 != UIImage() {
+                imageDatas.append($0.jpegData(compressionQuality: 1/3)!)
+            }
+        }
+        viewModel.uploadPostData(description: "10차 테스트입니다.", files: imageDatas)
+    }
+
     func resizeImage(image: UIImage, newSize: CGFloat = 880) -> UIImage {
         let maxSize = max(image.size.width, image.size.height)
 
