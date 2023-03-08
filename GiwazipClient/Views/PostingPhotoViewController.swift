@@ -52,13 +52,13 @@ class PostingPhotoViewController: BaseViewController {
     }()
 
     private lazy var nextButton: UIButton = {
-        $0.configuration?.title = "다음"
+        $0.configuration?.title = TextLiteral.nextButtonText
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
-        $0.addTarget(self, action: #selector(uploadPostData), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
@@ -123,6 +123,13 @@ class PostingPhotoViewController: BaseViewController {
     private func didTapDeleteAction() {
         images.remove(at: selectedIndex)
         photoCollectionView.reloadData()
+    }
+
+    @objc func didTapNextButton() {
+        convertImageToData()
+        
+        let postingTextViewController = PostingTextViewController()
+        navigationController?.pushViewController(postingTextViewController, animated: true)
     }
     
     @objc func uploadPostData() {
