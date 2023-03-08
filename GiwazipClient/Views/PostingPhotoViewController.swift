@@ -36,10 +36,7 @@ class PostingPhotoViewController: BaseViewController {
     // MARK: - View
 
     private let guidanceLabel: UILabel = {
-        $0.text = """
-                  문의할 사진을 추가해주세요.
-                  (최대 5장까지 선택 가능합니다.)
-                  """
+        $0.text = TextLiteral.guidanceText
         $0.textColor = .gray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -179,6 +176,7 @@ extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostingPhotoCell.identifier, for: indexPath) as! PostingPhotoCell
 
         cell.plusIcon.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
+        cell.resolutionLabel.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
 
         if images.count == 6 {
             images.remove(at: 0)

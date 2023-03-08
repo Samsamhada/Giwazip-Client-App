@@ -16,7 +16,7 @@ class PostingPhotoCell: UICollectionViewCell {
     static let identifier = "postingPhotoCell"
 
     // MARK: - View
-    
+
     let postingImage: UIImageView = {
         $0.backgroundColor = .systemGray4
         $0.contentMode = .scaleAspectFill
@@ -31,6 +31,14 @@ class PostingPhotoCell: UICollectionViewCell {
         $0.tintColor = .white
         return $0
     }(UIImageView())
+    
+    let resolutionLabel: UILabel = {
+        $0.text = TextLiteral.resolutionText
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        return $0
+    }(UILabel())
     
     // MARK: - LifeCycle
 
@@ -55,6 +63,12 @@ class PostingPhotoCell: UICollectionViewCell {
         plusIcon.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.size.equalTo(50)
+        }
+        
+        postingImage.addSubview(resolutionLabel)
+        resolutionLabel.snp.makeConstraints {
+            $0.top.equalTo(plusIcon.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview()
         }
     }
 }

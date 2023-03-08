@@ -38,6 +38,11 @@ enum TextLiteral {
 
     // MARK: - PostingPhotoView
 
+    static let guidanceText = """
+                              문의할 사진을 추가해주세요.
+                              (최대 5장까지 선택 가능합니다.)
+                              """
+    static let navigationTitle = "시공사진 추가"
     static let nextButtonText = "다음"
 
     static let photoChangeText = "사진 변경하기"
@@ -115,4 +120,8 @@ enum TextLiteral {
     // MARK: - ASCell
 
     static let remainText = "남았어요"
+    
+    // MARK: - PostingPhotoCell
+    
+    static let resolutionText =  "최소 이미지 가로(400픽셀), 세로(400픽셀) 이상"
 }
