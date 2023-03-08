@@ -18,7 +18,6 @@ class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
 
-    var viewModel = NetworkManager.shared
     var delegate: PostingPhotoViewControllerDelegate?
     private var buttonConfiguration = UIButton.Configuration.filled()
     private var pickerConfiguration = PHPickerConfiguration()
@@ -132,16 +131,15 @@ class PostingPhotoViewController: BaseViewController {
         navigationController?.pushViewController(postingTextViewController, animated: true)
     }
     
-    @objc func uploadPostData() {
+    @objc func convertImageToData() {
         images.forEach {
             if $0 != UIImage() {
                 imageDatas.append($0.jpegData(compressionQuality: 1/3)!)
             }
         }
-        viewModel.uploadPostData(description: "10차 테스트입니다.", files: imageDatas)
     }
 
-    func resizeImage(image: UIImage, newSize: CGFloat = 880) -> UIImage {
+    private func resizeImage(image: UIImage, newSize: CGFloat = 880) -> UIImage {
         let maxSize = max(image.size.width, image.size.height)
 
         if maxSize > newSize {
@@ -159,7 +157,7 @@ class PostingPhotoViewController: BaseViewController {
         return image
     }
     
-    func CancelOrAddImage(image: UIImage) {
+    private func CancelOrAddImage(image: UIImage) {
         switch image != UIImage() {
         case (image.size.width, image.size.height) < (400, 400):
             self.makeAlert(message: TextLiteral.minimumSizeAlertMessage)
