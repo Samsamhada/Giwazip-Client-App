@@ -16,7 +16,7 @@ final class NetworkManager {
     private let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
     var userData: User?
     var roomData: Room?
-    var noticeData: [Notice]?
+    var noticeDatas: [Notice]?
 
     private init() {
         // TODO: 그때그때 방 번호가 달라져야 함!
@@ -26,8 +26,8 @@ final class NetworkManager {
         loadOrCreateData(url: APIEnvironment.roomsURL + "/1", type: Room.self) { data in
             self.roomData = data
         }
-        loadOrCreateData(url: APIEnvironment.noticesURL, type: [Notice].self) { noticeItem in
-            self.noticeData = noticeItem
+        loadOrCreateData(url: APIEnvironment.noticesURL, type: [Notice].self) { noticeDatas in
+            self.noticeDatas = noticeDatas
         }
     }
 
