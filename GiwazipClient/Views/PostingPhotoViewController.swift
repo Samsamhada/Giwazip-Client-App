@@ -67,7 +67,16 @@ class PostingPhotoViewController: BaseViewController {
     override func attribute() {
         super.attribute()
 
+        setupNavigationBar()
         setupCollectionView()
+    }
+    
+    private func setupNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText, style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .blue
+        navigationItem.leftBarButtonItem = backBarButtonItem
+        navigationItem.title = TextLiteral.navigationTitle
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     private func setupCollectionView() {
@@ -126,8 +135,8 @@ class PostingPhotoViewController: BaseViewController {
 
     @objc func didTapNextButton() {
         convertImageToData()
-        
         let postingTextViewController = PostingTextViewController()
+        postingTextViewController.imageDatas = imageDatas
         navigationController?.pushViewController(postingTextViewController, animated: true)
     }
     
