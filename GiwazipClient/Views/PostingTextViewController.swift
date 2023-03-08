@@ -77,12 +77,9 @@ class PostingTextViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
-        setupNotificationCenter()
-        setupNavigationBar()
-    }
-    
-    private func setupNavigationBar() {
         navigationItem.title = "시공내용 작성"
+        
+        setupNotificationCenter()
     }
     
     @objc func tapInquiryButton() {
