@@ -25,7 +25,6 @@ class PostingPhotoViewController: BaseViewController {
     private var selectedIndex = 0
     private let emptyImage = UIImage()
     private var imageDatas: [Data] = []
-
     private lazy var images: [UIImage] = [emptyImage] {
         didSet {
             nextButton.isEnabled = (images.count > 1) ? true : false
@@ -141,6 +140,8 @@ class PostingPhotoViewController: BaseViewController {
     }
     
     @objc func convertImageToData() {
+        imageDatas = []
+        
         images.forEach {
             if $0 != UIImage() {
                 imageDatas.append($0.jpegData(compressionQuality: 1/3)!)
