@@ -11,8 +11,6 @@ class NoticeViewController: UICollectionViewController {
 
     // MARK: - Property
 
-    private let noticeDatas = NetworkManager.shared.noticeDatas ?? []
-
     private enum Section: CaseIterable {
         case noticeList
     }
@@ -92,7 +90,7 @@ class NoticeViewController: UICollectionViewController {
 
         var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<NoticeItem>()
 
-        for item in noticeDatas.reversed() where !item.isHidden {
+        for item in NetworkManager.shared.noticeDatas.reversed() where !item.isHidden {
             let noticeTitle = NoticeItem.title(item)
             sectionSnapshot.append([noticeTitle])
 

@@ -16,7 +16,7 @@ final class NetworkManager {
     private let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
     var userData: User?
     var roomData: Room?
-    var noticeDatas: [Notice]?
+    var noticeDatas: [Notice] = []
 
     private init() {
         // TODO: 그때그때 방 번호가 달라져야 함!
