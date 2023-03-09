@@ -61,7 +61,7 @@ class PostingPhotoViewController: BaseViewController {
         return $0
     }(UIButton(configuration: buttonConfiguration))
 
-    // MARK: - Method
+    // MARK: - Attribute
 
     override func attribute() {
         super.attribute()
@@ -84,6 +84,8 @@ class PostingPhotoViewController: BaseViewController {
         photoCollectionView.register(PostingPhotoCell.self,
                                      forCellWithReuseIdentifier: PostingPhotoCell.identifier)
     }
+    
+    // MARK: - Layout
     
     override func layout() {
         super.layout()
@@ -109,6 +111,8 @@ class PostingPhotoViewController: BaseViewController {
         }
     }
 
+    // MARK: - PHPicker
+    
     private func setupPHPickerConfigure() {
         pickerConfiguration.selection = .ordered
         pickerConfiguration.selectionLimit = (6 - images.count)
@@ -132,6 +136,8 @@ class PostingPhotoViewController: BaseViewController {
         photoCollectionView.reloadData()
     }
 
+    // MARK: - NextButton Action
+
     @objc func didTapNextButton() {
         convertImageToData()
         let postingTextViewController = PostingTextViewController()
@@ -150,6 +156,8 @@ class PostingPhotoViewController: BaseViewController {
     }
 
     private func resizeImage(image: UIImage, newSize: CGFloat = 880) -> UIImage {
+    // MARK: - Image
+    
         let maxSize = max(image.size.width, image.size.height)
 
         if maxSize > newSize {
@@ -181,6 +189,8 @@ class PostingPhotoViewController: BaseViewController {
         }
     }
 }
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 
 extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -238,6 +248,8 @@ extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionVi
         return 20
     }
 }
+
+// MARK: - PHPickerViewControllerDelegate
 
 extension PostingPhotoViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
