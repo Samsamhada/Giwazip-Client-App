@@ -10,19 +10,18 @@ import UIKit
 
 import SnapKit
 
-protocol PostingPhotoViewControllerDelegate {
-    
-}
-
 class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
 
     var delegate: PostingPhotoViewControllerDelegate?
+    
     private var buttonConfiguration = UIButton.Configuration.filled()
     private var pickerConfiguration = PHPickerConfiguration()
+    
     private var isChangedPHPickerRole = false
     private var selectedIndex = 0
+    
     private let emptyImage = UIImage()
     private var imageDatas: [Data] = []
     private lazy var images: [UIImage] = [emptyImage] {
