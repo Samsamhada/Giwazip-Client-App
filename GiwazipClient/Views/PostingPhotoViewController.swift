@@ -175,10 +175,10 @@ class PostingPhotoViewController: BaseViewController {
     }
 
     private func checkAndUploadImage(image: UIImage) {
-        if let resizeImage = UIImage(data: resizeImage(image: image)) {
-            if (image.size.width < 400) || (image.size.height < 400) {
-                makeAlert(message: TextLiteral.minimumSizeAlertMessage)
-            } else if (resizeImage.size.width < 400) || (resizeImage.size.height < 400) {
+        if (image.size.width < 400) || (image.size.height < 400) {
+            makeAlert(message: TextLiteral.minimumSizeAlertMessage)
+        } else if let resizeImage = UIImage(data: resizeImage(image: image)) {
+            if (resizeImage.size.width < 400) || (resizeImage.size.height < 400) {
                 makeAlert(message: TextLiteral.unnormalSizeAlertMessage)
             } else if isChangedPHPickerRole {
                 images.insert(resizeImage, at: selectedIndex + 1)
