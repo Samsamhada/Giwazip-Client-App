@@ -38,11 +38,11 @@ enum TextLiteral {
 
     // MARK: - PostingPhotoView
 
-    static let guidanceText = """
-                              문의할 사진을 추가해주세요.
-                              (최대 5장까지 선택 가능합니다.)
-                              """
-    static let navigationTitle = "시공사진 추가"
+    static let photoUploadGuidanceText = """
+                                         문의할 사진을 추가해주세요.
+                                         (최대 5장까지 선택 가능합니다.)
+                                         """
+    static let postingPhotoViewNavigationTitle = "시공사진 추가"
     static let nextButtonText = "다음"
 
     static let photoChangeText = "사진 변경하기"
@@ -59,6 +59,8 @@ enum TextLiteral {
 
     // MARK: - PostingTextView
 
+    static let postingTextViewNavigationTitle = "시공내용 작성"
+    
     static let textViewPlaceHolder = """
                                      예시)
                                      - 화장실이 빨강색이면 좋겠어요~!
@@ -123,5 +125,5 @@ enum TextLiteral {
     
     // MARK: - PostingPhotoCell
     
-    static let resolutionText =  "최소 이미지 가로(400픽셀), 세로(400픽셀) 이상"
+    static let minimumResolutionText =  "최소 이미지 가로(400픽셀), 세로(400픽셀) 이상"
 }

@@ -33,8 +33,8 @@ class PostingPhotoViewController: BaseViewController {
 
     // MARK: - View
 
-    private let guidanceLabel: UILabel = {
-        $0.text = TextLiteral.guidanceText
+    private let photoUploadGuidanceText: UILabel = {
+        $0.text = TextLiteral.photoUploadGuidanceText
         $0.textColor = .gray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -74,7 +74,7 @@ class PostingPhotoViewController: BaseViewController {
         let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText, style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .blue
         navigationItem.leftBarButtonItem = backBarButtonItem
-        navigationItem.title = TextLiteral.navigationTitle
+        navigationItem.title = TextLiteral.postingPhotoViewNavigationTitle
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
@@ -90,15 +90,15 @@ class PostingPhotoViewController: BaseViewController {
     override func layout() {
         super.layout()
 
-        view.addSubview(guidanceLabel)
-        guidanceLabel.snp.makeConstraints {
+        view.addSubview(photoUploadGuidanceText)
+        photoUploadGuidanceText.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(12)
             $0.centerX.equalToSuperview()
         }
 
         view.addSubview(photoCollectionView)
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalTo(guidanceLabel.snp.bottom).offset(16)
+            $0.top.equalTo(photoUploadGuidanceText.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview()
         }
 

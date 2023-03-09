@@ -77,7 +77,7 @@ class PostingTextViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
-        navigationItem.title = "시공내용 작성"
+        navigationItem.title = TextLiteral.postingTextViewNavigationTitle
         
         setupNotificationCenter()
     }

@@ -34,8 +34,8 @@ class PostingPhotoCell: UICollectionViewCell {
         return $0
     }(UIImageView())
     
-    private let resolutionLabel: UILabel = {
-        $0.text = TextLiteral.resolutionText
+    private let minimumResolutionText: UILabel = {
+        $0.text = TextLiteral.minimumResolutionText
         $0.textColor = .white
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -72,8 +72,8 @@ class PostingPhotoCell: UICollectionViewCell {
             $0.size.equalTo(super.frame.height/3)
         }
         
-        contents.addSubview(resolutionLabel)
-        resolutionLabel.snp.makeConstraints {
+        contents.addSubview(minimumResolutionText)
+        minimumResolutionText.snp.makeConstraints {
             $0.top.equalTo(plusIcon.snp.bottom).offset(10)
             $0.bottom.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
