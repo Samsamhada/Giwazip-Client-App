@@ -190,8 +190,7 @@ extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostingPhotoCell.identifier, for: indexPath) as! PostingPhotoCell
 
-        cell.plusIcon.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
-        cell.resolutionLabel.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
+        cell.contents.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
 
         if images.count == 6 {
             images.remove(at: 0)
