@@ -140,24 +140,23 @@ class PostingPhotoViewController: BaseViewController {
 
     @objc func didTapNextButton() {
         convertImageToData()
+
         let postingTextViewController = PostingTextViewController()
         postingTextViewController.imageDatas = imageDatas
         navigationController?.pushViewController(postingTextViewController, animated: true)
     }
-    
-    @objc func convertImageToData() {
+
+    private func convertImageToData() {
         imageDatas = []
-        
-        images.forEach {
-            if $0 != UIImage() {
-                imageDatas.append($0.jpegData(compressionQuality: 1/3)!)
-            }
+
+        for image in images where image != emptyImage {
+            imageDatas.append(resizeImage(image: image))
         }
     }
 
-    private func resizeImage(image: UIImage, newSize: CGFloat = 880) -> UIImage {
     // MARK: - Image
     
+    private func resizeImage(image: UIImage, newSize: CGFloat = 880) -> Data {
         let maxSize = max(image.size.width, image.size.height)
 
         if maxSize > newSize {
@@ -167,25 +166,25 @@ class PostingPhotoViewController: BaseViewController {
             
             let size = CGSize(width: newWidth, height: newHeight)
             let render = UIGraphicsImageRenderer(size: size)
-            let renderImage = render.image { context in
+            let renderImage = render.jpegData(withCompressionQuality: 1/3, actions: { _ in
                 image.draw(in: CGRect(origin: .zero, size: size))
-            }
+            })
             return renderImage
         }
-        return image
+        return image.jpegData(compressionQuality: 1/3)!
     }
-    
-    private func CancelOrAddImage(image: UIImage) {
-        switch image != UIImage() {
-        case (image.size.width, image.size.height) < (400, 400):
-            self.makeAlert(message: TextLiteral.minimumSizeAlertMessage)
-        case (self.resizeImage(image: image).size.width,
-              self.resizeImage(image: image).size.height) < (400, 400):
-            self.makeAlert(message: TextLiteral.unnormalSizeAlertMessage)
-        case self.isChangedPHPickerRole:
-            self.images.insert(self.resizeImage(image: image), at: self.selectedIndex + 1)
-        default:
-            self.images[self.selectedIndex] = self.resizeImage(image: image)
+
+    private func checkAndUploadImage(image: UIImage) {
+        if let resizeImage = UIImage(data: resizeImage(image: image)) {
+            if (image.size.width < 400) || (image.size.height < 400) {
+                makeAlert(message: TextLiteral.minimumSizeAlertMessage)
+            } else if (resizeImage.size.width < 400) || (resizeImage.size.height < 400) {
+                makeAlert(message: TextLiteral.unnormalSizeAlertMessage)
+            } else if isChangedPHPickerRole {
+                images.insert(resizeImage, at: selectedIndex + 1)
+            } else {
+                images[selectedIndex] = resizeImage
+            }
         }
     }
 }
@@ -263,7 +262,7 @@ extension PostingPhotoViewController: PHPickerViewControllerDelegate {
                 item.loadObject(ofClass: UIImage.self) { (image, _) in
                     DispatchQueue.main.async {
                         guard let image = image as? UIImage else { return }
-                        self.CancelOrAddImage(image: image)
+                        self.checkAndUploadImage(image: image)
                         self.photoCollectionView.reloadData()
                     }
                 }
