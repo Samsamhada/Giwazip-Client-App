@@ -74,7 +74,7 @@ class PostingPhotoViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText, style: .plain, target: self, action: nil)
+        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText, style: .plain, target: self, action: #selector(didTapCancelButton))
         backBarButtonItem.tintColor = .blue
         navigationItem.leftBarButtonItem = backBarButtonItem
         navigationItem.title = TextLiteral.postingPhotoViewNavigationTitle
@@ -87,9 +87,9 @@ class PostingPhotoViewController: BaseViewController {
         photoCollectionView.register(PostingPhotoCell.self,
                                      forCellWithReuseIdentifier: PostingPhotoCell.identifier)
     }
-    
+
     // MARK: - Layout
-    
+
     override func layout() {
         super.layout()
 
@@ -139,8 +139,12 @@ class PostingPhotoViewController: BaseViewController {
         photoCollectionView.reloadData()
     }
 
-    // MARK: - NextButton Action
+    // MARK: - Button Action
 
+    @objc func didTapCancelButton() {
+        dismiss(animated: true)
+    }
+    
     @objc func didTapNextButton() {
         convertImageToData()
 
