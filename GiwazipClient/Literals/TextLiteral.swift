@@ -38,13 +38,29 @@ enum TextLiteral {
 
     // MARK: - PostingPhotoView
 
+    static let photoUploadGuidanceText = """
+                                         문의할 사진을 추가해주세요.
+                                         (최대 5장까지 선택 가능합니다.)
+                                         """
+    static let postingPhotoViewNavigationTitle = "시공사진 추가"
     static let nextButtonText = "다음"
 
     static let photoChangeText = "사진 변경하기"
     static let photoDeleteText = "사진 삭제하기"
+    
+    static let minimumSizeAlertMessage = """
+                                         이미지의 최소 가로 x 세로 크기는
+                                         400 x 400 이상이어야 합니다.
+                                         """
+    static let unnormalSizeAlertMessage = """
+                                          정상비율의 이미지가 아닙니다.
+                                          다시 확인해주시기 바랍니다.
+                                          """
 
     // MARK: - PostingTextView
 
+    static let postingTextViewNavigationTitle = "시공내용 작성"
+    
     static let textViewPlaceHolder = """
                                      예시)
                                      - 화장실이 빨강색이면 좋겠어요~!
@@ -106,4 +122,8 @@ enum TextLiteral {
     // MARK: - ASCell
 
     static let remainText = "남았어요"
+    
+    // MARK: - PostingPhotoCell
+    
+    static let minimumResolutionText =  "최소 이미지 가로(400픽셀), 세로(400픽셀) 이상"
 }

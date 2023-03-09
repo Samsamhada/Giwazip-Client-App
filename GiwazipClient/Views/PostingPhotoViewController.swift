@@ -10,21 +10,20 @@ import UIKit
 
 import SnapKit
 
-protocol PostingPhotoViewControllerDelegate {
-    
-}
-
 class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
 
     var delegate: PostingPhotoViewControllerDelegate?
+    
     private var buttonConfiguration = UIButton.Configuration.filled()
     private var pickerConfiguration = PHPickerConfiguration()
+    
     private var isChangedPHPickerRole = false
     private var selectedIndex = 0
+    
     private let emptyImage = UIImage()
-
+    private var imageDatas: [Data] = []
     private lazy var images: [UIImage] = [emptyImage] {
         didSet {
             nextButton.isEnabled = (images.count > 1) ? true : false
@@ -33,11 +32,8 @@ class PostingPhotoViewController: BaseViewController {
 
     // MARK: - View
 
-    private let guidanceLabel: UILabel = {
-        $0.text = """
-                  문의할 사진을 추가해주세요.
-                  (최대 5장까지 선택 가능합니다.)
-                  """
+    private let photoUploadGuidanceText: UILabel = {
+        $0.text = TextLiteral.photoUploadGuidanceText
         $0.textColor = .gray
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -53,22 +49,32 @@ class PostingPhotoViewController: BaseViewController {
     }()
 
     private lazy var nextButton: UIButton = {
-        $0.configuration?.title = "다음"
+        $0.configuration?.title = TextLiteral.nextButtonText
         $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
+        $0.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
 
-    // MARK: - Method
+    // MARK: - Attribute
 
     override func attribute() {
         super.attribute()
 
+        setupNavigationBar()
         setupCollectionView()
+    }
+    
+    private func setupNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText, style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .blue
+        navigationItem.leftBarButtonItem = backBarButtonItem
+        navigationItem.title = TextLiteral.postingPhotoViewNavigationTitle
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     private func setupCollectionView() {
@@ -78,18 +84,20 @@ class PostingPhotoViewController: BaseViewController {
                                      forCellWithReuseIdentifier: PostingPhotoCell.identifier)
     }
     
+    // MARK: - Layout
+    
     override func layout() {
         super.layout()
 
-        view.addSubview(guidanceLabel)
-        guidanceLabel.snp.makeConstraints {
+        view.addSubview(photoUploadGuidanceText)
+        photoUploadGuidanceText.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(12)
             $0.centerX.equalToSuperview()
         }
 
         view.addSubview(photoCollectionView)
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalTo(guidanceLabel.snp.bottom).offset(16)
+            $0.top.equalTo(photoUploadGuidanceText.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview()
         }
 
@@ -102,6 +110,8 @@ class PostingPhotoViewController: BaseViewController {
         }
     }
 
+    // MARK: - PHPicker
+    
     private func setupPHPickerConfigure() {
         pickerConfiguration.selection = .ordered
         pickerConfiguration.selectionLimit = (6 - images.count)
@@ -124,7 +134,61 @@ class PostingPhotoViewController: BaseViewController {
         images.remove(at: selectedIndex)
         photoCollectionView.reloadData()
     }
+
+    // MARK: - NextButton Action
+
+    @objc func didTapNextButton() {
+        convertImageToData()
+
+        let postingTextViewController = PostingTextViewController()
+        postingTextViewController.imageDatas = imageDatas
+        navigationController?.pushViewController(postingTextViewController, animated: true)
+    }
+
+    private func convertImageToData() {
+        imageDatas = []
+
+        for image in images where image != emptyImage {
+            imageDatas.append(resizeImage(image: image))
+        }
+    }
+
+    // MARK: - Image
+    
+    private func resizeImage(image: UIImage, newSize: CGFloat = 880) -> Data {
+        let maxSize = max(image.size.width, image.size.height)
+
+        if maxSize > newSize {
+            let scale = newSize / maxSize
+            let newWidth = image.size.width * scale
+            let newHeight = image.size.height * scale
+            
+            let size = CGSize(width: newWidth, height: newHeight)
+            let render = UIGraphicsImageRenderer(size: size)
+            let renderImage = render.jpegData(withCompressionQuality: 1/3, actions: { _ in
+                image.draw(in: CGRect(origin: .zero, size: size))
+            })
+            return renderImage
+        }
+        return image.jpegData(compressionQuality: 1/3)!
+    }
+
+    private func checkAndUploadImage(image: UIImage) {
+        if (image.size.width < 400) || (image.size.height < 400) {
+            makeAlert(message: TextLiteral.minimumSizeAlertMessage)
+        } else if let resizeImage = UIImage(data: resizeImage(image: image)) {
+            if (resizeImage.size.width < 400) || (resizeImage.size.height < 400) {
+                makeAlert(message: TextLiteral.unnormalSizeAlertMessage)
+            } else if isChangedPHPickerRole {
+                images.insert(resizeImage, at: selectedIndex + 1)
+            } else {
+                images[selectedIndex] = resizeImage
+            }
+        }
+    }
 }
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 
 extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -134,7 +198,7 @@ extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostingPhotoCell.identifier, for: indexPath) as! PostingPhotoCell
 
-        cell.plusIcon.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
+        cell.contents.isHidden = (indexPath.item == 0 && images[0] == emptyImage) ? false : true
 
         if images.count == 6 {
             images.remove(at: 0)
@@ -183,6 +247,8 @@ extension PostingPhotoViewController: UICollectionViewDataSource, UICollectionVi
     }
 }
 
+// MARK: - PHPickerViewControllerDelegate
+
 extension PostingPhotoViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
 
@@ -195,12 +261,7 @@ extension PostingPhotoViewController: PHPickerViewControllerDelegate {
                 item.loadObject(ofClass: UIImage.self) { (image, _) in
                     DispatchQueue.main.async {
                         guard let image = image as? UIImage else { return }
-
-                        if self.isChangedPHPickerRole {
-                            self.images.insert(image, at: self.selectedIndex + 1)
-                        } else {
-                            self.images[self.selectedIndex] = image
-                        }
+                        self.checkAndUploadImage(image: image)
                         self.photoCollectionView.reloadData()
                     }
                 }

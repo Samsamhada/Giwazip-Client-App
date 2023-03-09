@@ -14,6 +14,8 @@ class PostingTextViewController: BaseViewController {
     // MARK: - Property
     
     private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
+    private let viewModel = NetworkManager.shared
+    var imageDatas: [Data] = []
     
     // MARK: - View
     
@@ -46,6 +48,7 @@ class PostingTextViewController: BaseViewController {
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
         $0.isEnabled = false
+        $0.addTarget(self, action: #selector(tapInquiryButton), for: .touchUpInside)
         return $0
     }(UIButton())
     
@@ -74,7 +77,13 @@ class PostingTextViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
+        navigationItem.title = TextLiteral.postingTextViewNavigationTitle
+        
         setupNotificationCenter()
+    }
+    
+    @objc func tapInquiryButton() {
+        viewModel.uploadPostData(description: textView.text, files: imageDatas)
     }
     
     private func setupNotificationCenter() {

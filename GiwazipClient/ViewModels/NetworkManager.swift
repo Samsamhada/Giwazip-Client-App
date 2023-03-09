@@ -119,7 +119,7 @@ final class NetworkManager {
                     let photo = files[i]
                     multipartFormData.append(photo,
                                              withName: "files",
-                                             fileName: "\(userID)0\(i + 1).png")
+                                             fileName: "\(userID)0\(i + 1).jpeg")
                 }
             }, to: url, usingThreshold: UInt64.init(), method: httpMethod, headers: header)
 
