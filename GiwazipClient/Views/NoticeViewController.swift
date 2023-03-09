@@ -11,24 +11,6 @@ class NoticeViewController: UICollectionViewController {
 
     // MARK: - Property
 
-    lazy var noticeItems = [
-        Notice(noticeID: 1,
-               title: "짓다 오픈",
-               content: "짓다가 오픈되었습니다~ 와~~~~",
-               createDate: "2023-03-06",
-               isHidden: false),
-        Notice(noticeID: 2,
-               title: "테스트 1번",
-               content: "테스트1공지사항입니다.이렇게 줄 넘어가게 이것저것 다 써보고\n이렇게 엔터도 하구~\n이렇게 띄어쓰기도 해보고~~~\n이렇게 여러 줄로도 한번 써보고 이것 저것 다 해보고 하면서 테스트하는거죠 후후",
-               createDate: "2023-03-07",
-               isHidden: false),
-        Notice(noticeID: 3,
-               title: "숨김 공지 테스트",
-               content: "숨김 공지 테스트 입니다~ 우와~~~~~~ 이게 안보여야 하는데 말이죠~",
-               createDate: "2023-03-08",
-               isHidden: true)
-    ]
-
     private enum Section: CaseIterable {
         case noticeList
     }
@@ -108,7 +90,7 @@ class NoticeViewController: UICollectionViewController {
 
         var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<NoticeItem>()
 
-        for item in noticeItems.reversed() where !item.isHidden {
+        for item in NetworkManager.shared.noticeDatas.reversed() where !item.isHidden {
             let noticeTitle = NoticeItem.title(item)
             sectionSnapshot.append([noticeTitle])
 

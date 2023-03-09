@@ -16,6 +16,7 @@ final class NetworkManager {
     private let header: HTTPHeaders = [APIEnvironment.apiField: APIEnvironment.apiKey]
     var userData: User?
     var roomData: Room?
+    var noticeDatas: [Notice] = []
 
     private init() {
         // TODO: 그때그때 방 번호가 달라져야 함!
@@ -25,6 +26,9 @@ final class NetworkManager {
         loadOrCreateData(url: APIEnvironment.roomsURL + "/1", type: Room.self) { data in
             self.roomData = data
         }
+        loadOrCreateData(url: APIEnvironment.noticesURL, type: [Notice].self) { noticeDatas in
+            self.noticeDatas = noticeDatas
+        }
     }
 
     func loadOrCreateData<T: Decodable>(url: String,
@@ -33,9 +37,9 @@ final class NetworkManager {
                                         type: T.Type,
                                         completion: @escaping (T) -> Void) {
         let responseData = requestData(url: url,
-                                        httpMethod: httpMethod,
-                                        parameters: parameters,
-                                        type: type)
+                                       httpMethod: httpMethod,
+                                       parameters: parameters,
+                                       type: type)
         checkStatus(responseData) { data in
             completion(data)
         }
@@ -43,12 +47,12 @@ final class NetworkManager {
 
     func uploadPostData(description: String, files: [Data]) {
         let responseData = requestUploadData(userID: 3,
-                                                    roomID: 1,
-                                                    categoryID: 1,
-                                                    description: description,
-                                                    files: files,
-                                                    url: APIEnvironment.postsURL + "/photo",
-                                                    type: Post.self)
+                                             roomID: 1,
+                                             categoryID: 1,
+                                             description: description,
+                                             files: files,
+                                             url: APIEnvironment.postsURL + "/photo",
+                                             type: Post.self)
         checkStatus(responseData) { data in
             self.roomData = data
         }
@@ -87,7 +91,6 @@ final class NetworkManager {
                                          parameters: parameters,
                                          encoding: JSONEncoding.default,
                                          headers: self.header)
-            
             self.checkResponseData(request: dataRequest, type: type, observer: observer)
             return Disposables.create()
         }
@@ -157,7 +160,7 @@ final class NetworkManager {
         let decoder = JSONDecoder()
         guard let data = try? decoder.decode(type, from: data)
         else { return .decodingError }
-        
+
         switch statusCode {
         case 200: return .success(data)
         case 400: return .badRequest(data)
