@@ -10,6 +10,10 @@ import UIKit
 
 import SnapKit
 
+protocol PostingPhotoViewControllerDelegate {
+    
+}
+
 class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
