@@ -13,6 +13,8 @@ final class ASView: UIView {
 
     // MARK: - View
 
+    private let asDateContainer = UIView()
+
     private let asTitleLabel: UILabel = {
         $0.text = "AS 기간 (~"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -26,6 +28,8 @@ final class ASView: UIView {
         $0.textColor = .gray
         return $0
     }(UILabel())
+
+    private let remainDateContainer = UIView()
 
     let remainDateLabel: UILabel = {
         $0.text = "152일"
@@ -55,28 +59,36 @@ final class ASView: UIView {
     private func setupView() {
         backgroundColor = UIColor(white: 0, alpha: 0.05)
 
-        addSubview(asTitleLabel)
-        asTitleLabel.snp.makeConstraints {
+        addSubview(asDateContainer)
+        asDateContainer.snp.makeConstraints {
             $0.top.left.equalToSuperview().inset(16)
         }
 
-        addSubview(asDateLabel)
+        asDateContainer.addSubview(asTitleLabel)
+        asTitleLabel.snp.makeConstraints {
+            $0.top.left.equalToSuperview()
+        }
+
+        asDateContainer.addSubview(asDateLabel)
         asDateLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
+            $0.top.equalToSuperview()
             $0.left.equalTo(asTitleLabel.snp.right)
         }
 
-        addSubview(remainDateLabel)
-        remainDateLabel.snp.makeConstraints {
-            $0.left.equalToSuperview()
-            $0.centerY.equalToSuperview()
+        addSubview(remainDateContainer)
+        remainDateContainer.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
 
-        addSubview(remainedTextLabel)
+        remainDateContainer.addSubview(remainDateLabel)
+        remainDateLabel.snp.makeConstraints {
+            $0.left.verticalEdges.equalToSuperview()
+        }
+
+        remainDateContainer.addSubview(remainedTextLabel)
         remainedTextLabel.snp.makeConstraints {
-            $0.left.equalTo(remainDateLabel).inset(10)
-            $0.right.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.left.equalTo(remainDateLabel.snp.right).offset(10)
+            $0.right.verticalEdges.equalToSuperview()
         }
     }
 }
