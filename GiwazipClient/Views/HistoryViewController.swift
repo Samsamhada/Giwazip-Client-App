@@ -62,7 +62,9 @@ class HistoryViewController: BaseViewController {
         if isWorkView {
             applyCategorySnapshot()
         } else {
-            asView.asDateLabel.text = extractDate(networkManager.roomData!.endDate, networkManager.roomData!.warrantyTime) + ")"
+            let asDate = extractDate(networkManager.roomData!.endDate, networkManager.roomData!.warrantyTime)
+            asView.asDateLabel.text = asDate + ")"
+            asView.remainDateLabel.text = extractRemainDate(asDate) + "일"
         }
         applyPostSnapshot()
 
@@ -110,6 +112,19 @@ class HistoryViewController: BaseViewController {
 
         categoryCollectionView.selectItem(at: [0, 0], animated: true, scrollPosition: .init())
         categoryCollectionView.backgroundColor = UIColor(white: 0, alpha: 0.05)
+    }
+
+    private func extractRemainDate(_ asDateText: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        dateFormatter.timeZone = TimeZone(identifier: "KST")
+
+        guard let asDate = dateFormatter.date(from: "20" + asDateText) else { return "N/A" }
+
+        let interval = asDate.timeIntervalSince(Date())
+        let days = String(Int(interval / 86400))
+
+        return days
     }
 }
 
