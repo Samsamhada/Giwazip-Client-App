@@ -18,6 +18,7 @@ class SegmentViewController: BaseViewController {
     // MARK: - Property
 
     var delegate: SegmentViewControllerDelegate?
+    private let networkManager = NetworkManager.shared
     private var buttonConfiguration = UIButton.Configuration.plain()
     private lazy var segmentedViewControllers: [UIViewController] = [workView, inquiryView]
     
@@ -42,7 +43,7 @@ class SegmentViewController: BaseViewController {
     private let titleView = UIView()
 
     private let titleName: UILabel = {
-        $0.text = "디너집"
+        $0.text = "방 이름"
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.textAlignment = .center
         $0.textColor = .black
@@ -50,7 +51,7 @@ class SegmentViewController: BaseViewController {
     }(UILabel())
 
     private let titleDate: UILabel = {
-        $0.text = "22.11.11~23.01.13"
+        $0.text = "23.01.10~23.03.15"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textAlignment = .center
         $0.textColor = .gray
@@ -64,13 +65,9 @@ class SegmentViewController: BaseViewController {
         return $0
     }(UIView())
 
-    private let workView: HistoryViewController = {
-        // TODO: - 추후 데이터 추가
-        return $0
-    }(HistoryViewController())
+    private let workView = HistoryViewController()
 
     private let inquiryView: HistoryViewController = {
-        // TODO: - 추후 데이터 추가
         $0.isWorkView = false
         return $0
     }(HistoryViewController())
@@ -101,6 +98,8 @@ class SegmentViewController: BaseViewController {
 
     override func attribute() {
         super.attribute()
+        titleName.text = networkManager.roomData?.name
+        titleDate.text = extractDate(networkManager.roomData!.startDate) + "~" + extractDate(networkManager.roomData!.endDate)
 
         inquiryButton.bounds = CGRect(x: 0, y: -90, width: UIScreen.main.bounds.width, height: 90)
 
