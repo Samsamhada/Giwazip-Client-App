@@ -23,7 +23,7 @@ final class NetworkManager {
         loadOrCreateData(url: APIEnvironment.usersURL + "/room/1", type: User.self) { data in
             self.userData = data
         }
-        loadOrCreateData(url: APIEnvironment.roomsURL + "/1", type: Room.self) { data in
+        loadOrCreateData(url: APIEnvironment.roomsURL + "/category-post/1", type: Room.self) { data in
             self.roomData = data
         }
         loadOrCreateData(url: APIEnvironment.noticesURL, type: [Notice].self) { noticeDatas in
@@ -57,7 +57,7 @@ final class NetworkManager {
             self.roomData = data
         }
     }
-    
+
     private func checkStatus<T>(_ responseData: Observable<NetworkResult<Any>>,
                                 completion: @escaping (T) -> Void) {
         responseData.bind { status in
@@ -73,6 +73,8 @@ final class NetworkManager {
                 print("This is: \(notFound)")
             case .serverError(let serverError):
                 print("This is: \(serverError)")
+            case .decodingError:
+                print("디코딩 에러가 발생했습니다. 디코딩 하려는 모델과, API 명세를 다시 확인해주세요.")
             default:
                 print("This is NetworkError, so Check your Cellular data Or Wifi")
             }
@@ -80,7 +82,7 @@ final class NetworkManager {
     }
 
     // MARK: - Network Request
-    
+
     private func requestData<T: Decodable>(url: String,
                                            httpMethod: HTTPMethod,
                                            parameters: Parameters? = nil,
@@ -95,7 +97,7 @@ final class NetworkManager {
             return Disposables.create()
         }
     }
-    
+
     private func requestUploadData<T: Decodable> (userID: Int,
                                                   roomID: Int,
                                                   categoryID: Int,
