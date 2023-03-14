@@ -24,7 +24,7 @@ class PostDateHeader: UICollectionReusableView {
         return $0
     }(UIView())
     
-    private let postingDate: UILabel = {
+    let postingDate: UILabel = {
         $0.text = "22.11.22"
         $0.textColor = .black
         $0.textAlignment = .center
