@@ -19,7 +19,14 @@ class HistoryViewController: BaseViewController {
 
     var isWorkView = true
     private var selectedCategoryID = 1
-    private var postSections = Set<String>()
+
+    private var postSections = Set<String>() {
+        didSet {
+            microCopy.isHidden = !postSections.isEmpty
+            postCollectionView.isScrollEnabled = !postSections.isEmpty
+        }
+    }
+
     private lazy var categorySectionHeight = isWorkView ? screenWidth / 6 * Double((networkManager.roomData!.categories!.filter({ $0.name != "문의" }).count - 1) / 6 + 1) : screenWidth/3
 
     private enum CollectionViewType {
@@ -71,9 +78,6 @@ class HistoryViewController: BaseViewController {
         categoryCollectionView.isScrollEnabled = false
         categoryCollectionView.delegate = self
         postCollectionView.delegate = self
-
-        microCopy.isHidden = !postSections.isEmpty
-        postCollectionView.isScrollEnabled = !postSections.isEmpty
     }
 
     override func layout() {
@@ -287,9 +291,6 @@ extension HistoryViewController: UICollectionViewDelegate {
             selectedCategoryID = networkManager.roomData!.categories![indexPath.item].categoryID
 
             applyPostSnapshot()
-
-            microCopy.isHidden = !postSections.isEmpty
-            postCollectionView.isScrollEnabled = !postSections.isEmpty
         } else {
             print("현재 클릭된 부분은 게시물의 \(indexPath)입니다.")
         }
