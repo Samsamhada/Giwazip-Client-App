@@ -268,9 +268,15 @@ extension HistoryViewController: UICollectionViewDelegate {
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if (historyCollectionView.indexPathsForSelectedItems ?? []).filter({ $0.section == 0 }).isEmpty {
-            historyCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+
+        UIView.animate(withDuration: 0.5) {
+            if currentOffset > -self.categorySectionHeight {
+                self.topContainerView.alpha = 0
+            } else {
+                self.topContainerView.alpha = 1
+            }
         }
     }
 }
