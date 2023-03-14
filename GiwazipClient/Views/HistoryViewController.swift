@@ -71,6 +71,9 @@ class HistoryViewController: BaseViewController {
         categoryCollectionView.isScrollEnabled = false
         categoryCollectionView.delegate = self
         postCollectionView.delegate = self
+
+        microCopy.isHidden = !postSections.isEmpty
+        postCollectionView.isScrollEnabled = !postSections.isEmpty
     }
 
     override func layout() {
