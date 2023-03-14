@@ -286,6 +286,7 @@ extension HistoryViewController: UICollectionViewDelegate {
             applyPostSnapshot()
 
             microCopy.isHidden = !postSections.isEmpty
+            postCollectionView.isScrollEnabled = !postSections.isEmpty
         } else {
             print("현재 클릭된 부분은 게시물의 \(indexPath)입니다.")
         }
