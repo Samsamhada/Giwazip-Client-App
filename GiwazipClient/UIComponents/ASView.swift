@@ -39,7 +39,7 @@ final class ASView: UIView {
     }(UILabel())
 
     private let remainedTextLabel: UILabel = {
-        $0.text = "남았어요"
+        $0.text = TextLiteral.remainText
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         $0.textColor = .gray
         return $0
