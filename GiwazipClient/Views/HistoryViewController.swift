@@ -156,16 +156,16 @@ extension HistoryViewController {
         case true:
             if selectedCategoryID == 1 {
                 for section in networkManager.roomData!.posts!.filter({ $0.category?.name != "문의" }) {
-                    postSections.insert(extractSectionDate(section))
+                    postSections.insert(extractDate(section.createDate))
                 }
             } else {
                 for section in networkManager.roomData!.posts!.filter({ $0.category?.categoryID == selectedCategoryID }) {
-                    postSections.insert(extractSectionDate(section))
+                    postSections.insert(extractDate(section.createDate))
                 }
             }
         case false:
             for section in networkManager.roomData!.posts!.filter({ $0.category?.name == "문의" }) {
-                postSections.insert(extractSectionDate(section))
+                postSections.insert(extractDate(section.createDate))
             }
         }
     }
@@ -242,29 +242,21 @@ extension HistoryViewController {
         case true:
             if selectedCategoryID == 1 {
                 for item in networkManager.roomData!.posts!.filter({ $0.category!.name != "문의" }).reversed() {
-                    snapshot.appendItems([item], toSection: extractSectionDate(item))
+                    snapshot.appendItems([item], toSection: extractDate(item.createDate))
                 }
             } else {
                 for item in networkManager.roomData!.posts!.filter({ $0.category!.categoryID == selectedCategoryID }).reversed() {
-                    snapshot.appendItems([item], toSection: extractSectionDate(item))
+                    snapshot.appendItems([item], toSection: extractDate(item.createDate))
                 }
             }
         case false:
             for item in networkManager.roomData!.posts!.filter({ $0.category?.name == "문의" }).reversed() {
-                snapshot.appendItems([item], toSection: extractSectionDate(item))
+                snapshot.appendItems([item], toSection: extractDate(item.createDate))
             }
         }
 
         snapshot.reloadSections(postSections.sorted().reversed())
         postDataSource.applySnapshotUsingReloadData(snapshot)
-    }
-
-    private func extractSectionDate(_ item: Post) -> String {
-        let startIndex = item.createDate.index(item.createDate.startIndex, offsetBy: 2)
-        let endIndex = item.createDate.index(item.createDate.startIndex, offsetBy: 10)
-        let date = String(item.createDate[startIndex..<endIndex])
-        let section = date.replacingOccurrences(of: "-", with: ".")
-        return section
     }
 }
 

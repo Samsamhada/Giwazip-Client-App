@@ -36,4 +36,12 @@ class BaseViewController: UIViewController {
     }
 
     func layout() {}
+
+    func extractDate(_ item: String) -> String {
+        let startIndex = item.index(item.startIndex, offsetBy: 2)
+        let endIndex = item.index(item.startIndex, offsetBy: 10)
+        let date = String(item[startIndex..<endIndex])
+        let newFormatDate = date.replacingOccurrences(of: "-", with: ".")
+        return newFormatDate
+    }
 }
