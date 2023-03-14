@@ -99,7 +99,7 @@ class HistoryViewController: BaseViewController {
             }
         }
 
-        postCollectionView.addSubview(microCopy)
+        view.addSubview(microCopy)
         microCopy.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
@@ -282,7 +282,12 @@ extension HistoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView, selectedCategoryID != networkManager.roomData!.categories![indexPath.item].categoryID {
             selectedCategoryID = networkManager.roomData!.categories![indexPath.item].categoryID
+
             applyPostSnapshot()
+
+            microCopy.isHidden = !postSections.isEmpty
+        } else {
+            print("현재 클릭된 부분은 게시물의 \(indexPath)입니다.")
         }
     }
 
