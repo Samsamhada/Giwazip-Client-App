@@ -180,7 +180,6 @@
 				98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */,
 				2614F24E2997DA1C0051EE51 /* ProgressCell.swift */,
 				26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */,
-				2614F250299802BE0051EE51 /* WaveView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -225,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				2677F63329BFB57D0081FC90 /* ASView.swift */,
+				2614F250299802BE0051EE51 /* WaveView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
