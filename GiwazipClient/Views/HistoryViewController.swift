@@ -61,6 +61,8 @@ class HistoryViewController: BaseViewController {
         configureDataSource()
         if isWorkView {
             applyCategorySnapshot()
+        } else {
+            asView.asDateLabel.text = extractDate(networkManager.roomData!.endDate, networkManager.roomData!.warrantyTime) + ")"
         }
         applyPostSnapshot()
 
