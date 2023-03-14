@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - User
 
-struct User: Codable {
+struct User: Codable, Hashable {
     let userID: Int?
     let number: String
     let worker: Worker?
@@ -18,7 +18,7 @@ struct User: Codable {
 
 // MARK: - Worker
 
-struct Worker: Codable {
+struct Worker: Codable, Hashable {
     let userIdentifier: String
     let name: String
     let email: String
@@ -26,7 +26,7 @@ struct Worker: Codable {
 
 // MARK: - UserRoom
 
-struct UserRoom: Codable {
+struct UserRoom: Codable, Hashable {
     let userID: Int?
     let roomID: Int?
     let user: User?
@@ -35,7 +35,7 @@ struct UserRoom: Codable {
 
 // MARK: - Room
 
-struct Room: Codable {
+struct Room: Codable, Hashable {
     let roomID: Int?
     let name: String
     let startDate: String
@@ -49,7 +49,7 @@ struct Room: Codable {
 
 // MARK: - Post
 
-struct Post: Codable {
+struct Post: Codable, Hashable {
     let postID: Int
     let userID: Int
     let categoryID: Int?
@@ -62,15 +62,15 @@ struct Post: Codable {
 
 // MARK: - Category
 
-struct Category: Codable {
+struct Category: Codable, Hashable {
     let categoryID: Int
     let name: String
-    let progress: Int?
+    let progress: String?
 }
 
 // MARK: - Photo
 
-struct Photo: Codable {
+struct Photo: Codable, Hashable {
     let photoID: Int
     let url: String
 }
