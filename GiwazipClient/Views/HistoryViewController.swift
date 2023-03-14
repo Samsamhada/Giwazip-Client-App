@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Alamofire
 import SnapKit
 
 class HistoryViewController: BaseViewController {
@@ -190,6 +191,14 @@ extension HistoryViewController {
             }
             cell.postDescription.text = item.description
 
+            AF.request(item.photos[0].url, method: .get).response{ response in
+                switch response.result {
+                case .success(let responseData):
+                    cell.postImage.image = UIImage(data: responseData!)
+                case .failure(let error):
+                    print("에러 발생: \(error)")
+                }
+            }
         }
 
         let postDateHeaderRegistration = UICollectionView.SupplementaryRegistration<PostDateHeader>(elementKind: HistoryViewController.sectionHeaderElementKind) {
