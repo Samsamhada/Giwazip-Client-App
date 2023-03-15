@@ -21,7 +21,7 @@ class SegmentViewController: BaseViewController {
     private let networkManager = NetworkManager.shared
     private var buttonConfiguration = UIButton.Configuration.plain()
     private lazy var segmentedViewControllers: [UIViewController] = [workView, inquiryView]
-    
+
     private var currentViewNum: Int = 0 {
         didSet {
             let direction: UIPageViewController.NavigationDirection = (oldValue <= currentViewNum ? .forward : .reverse)
@@ -59,7 +59,7 @@ class SegmentViewController: BaseViewController {
     }(UILabel())
 
     private let segmentedControl = UISegmentedControl(items: [TextLiteral.workHistoryTap, TextLiteral.inquiryHistoryTap])
-    
+
     private let divider: UIView  = {
         $0.backgroundColor = .systemGray4
         return $0
@@ -109,7 +109,7 @@ class SegmentViewController: BaseViewController {
         pageViewController.delegate = self
         pageViewController.dataSource = self
     }
-    
+
     private func setupNavigationTitle() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
