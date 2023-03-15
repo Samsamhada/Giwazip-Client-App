@@ -9,10 +9,16 @@ import UIKit
 
 import SnapKit
 
+protocol PostViewControllerDelegate {
+    func presentPostImageView()
+}
+
 class PostViewController: BaseViewController {
 
     // MARK: - Property
 
+    var delegate: PostViewControllerDelegate?
+    
     private var selectedIndex = 0 {
         didSet {
             imageCollectionView.reloadData()
@@ -118,7 +124,9 @@ class PostViewController: BaseViewController {
         }
     }
 
-    private func setupCollectionView(at collectionView: UICollectionView, cell: AnyClass, identifier: String) {
+    private func setupCollectionView(at collectionView: UICollectionView,
+                                     cell: AnyClass,
+                                     identifier: String) {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cell, forCellWithReuseIdentifier: identifier)
@@ -133,7 +141,6 @@ class PostViewController: BaseViewController {
     }
 
     @objc func didTapEditButton() {
-        print("didTapEditButton is no error")
     }
 }
 
@@ -162,10 +169,18 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.identifier, for: indexPath) as! PostCell
+
         selectedIndex = indexPath.item
         imageCollectionView.scrollToItem(at: indexPath,
                                          at: .centeredHorizontally,
                                          animated: true)
+
+        if collectionView == imageCollectionView {
+            let postImageViewController = PostImageViewController()
+            postImageViewController.postImage.image! = cell.postImage.image!
+            delegate?.presentPostImageView()
+        }
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
