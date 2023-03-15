@@ -11,7 +11,8 @@ import UIKit
 import SnapKit
 
 protocol PostingPhotoViewControllerDelegate {
-    
+    func presentPostingTextView()
+    func dismissPostingView()
 }
 
 class PostingPhotoViewController: BaseViewController {
@@ -74,7 +75,10 @@ class PostingPhotoViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText, style: .plain, target: self, action: #selector(didTapCancelButton))
+        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText,
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(didTapCancelButton))
         backBarButtonItem.tintColor = .blue
         navigationItem.leftBarButtonItem = backBarButtonItem
         navigationItem.title = TextLiteral.postingPhotoViewNavigationTitle
@@ -142,7 +146,7 @@ class PostingPhotoViewController: BaseViewController {
     // MARK: - Button Action
 
     @objc func didTapCancelButton() {
-        dismiss(animated: true)
+        delegate?.dismissPostingView()
     }
     
     @objc func didTapNextButton() {
@@ -150,9 +154,11 @@ class PostingPhotoViewController: BaseViewController {
 
         let postingTextViewController = PostingTextViewController()
         postingTextViewController.imageDatas = imageDatas
-        navigationController?.pushViewController(postingTextViewController, animated: true)
+        delegate?.presentPostingTextView()
     }
-
+    
+    // MARK: - Image
+    
     private func convertImageToData() {
         imageDatas = []
 
@@ -160,8 +166,6 @@ class PostingPhotoViewController: BaseViewController {
             imageDatas.append(resizeImage(image: image))
         }
     }
-
-    // MARK: - Image
     
     private func resizeImage(image: UIImage, newSize: CGFloat = 880) -> Data {
         let maxSize = max(image.size.width, image.size.height)
