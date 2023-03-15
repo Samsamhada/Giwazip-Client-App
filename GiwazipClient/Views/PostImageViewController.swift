@@ -9,9 +9,15 @@ import UIKit
 
 import SnapKit
 
+protocol PostImageViewControllerDelegate {
+    func popToPostView()
+}
+
 class PostImageViewController: BaseViewController {
     
     // MARK: - View
+    
+    var delegate: PostImageViewControllerDelegate?
     
     private lazy var scrollView: UIScrollView = {
         $0.frame = self.view.frame
@@ -21,23 +27,33 @@ class PostImageViewController: BaseViewController {
         $0.contentInsetAdjustmentBehavior = .never
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
+        $0.backgroundColor = .black
         $0.delegate = self
         return $0
     }(UIScrollView())
     
-    private lazy var postImage: UIImageView = {
-        $0.image = UIImage(named: "cat2")
+    var postImage: UIImageView = {
+        $0.image = UIImage(named: "cat")
         $0.isUserInteractionEnabled = true
-        $0.frame = scrollView.bounds
         $0.contentMode = .scaleAspectFit
         return $0
     }(UIImageView())
     
     // MARK: - Method
     
+    override func attribute() {
+        postImage.frame = scrollView.bounds
+        
+        navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+    }
+    
     override func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(postImage)
+    }
+    
+    @objc func didTapBackButton() {
+        delegate?.popToPostView()
     }
 }
 
