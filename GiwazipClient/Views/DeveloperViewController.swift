@@ -20,6 +20,8 @@ class DeveloperViewController: UICollectionViewController {
 
     // MARK: - Property
 
+    var delegate: SettingContentDelegate?
+    
     private enum Section: CaseIterable {
         case meenu
         case eddy
@@ -78,6 +80,12 @@ class DeveloperViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         applySnapshot(animatingDifferences: false)
+        
+        navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+    }
+    
+    @objc func didTapBackButton() {
+        delegate?.popToSettingView()
     }
 
     // MARK: - Method
