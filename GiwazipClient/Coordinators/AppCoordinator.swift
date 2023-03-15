@@ -5,66 +5,139 @@
 //  Created by 김민택 on 2023/01/13.
 //
 
-import UIKit
-
-class AppCoordinator: BaseCoordinator, MainCoordinatorDelegate, SubCoordinatorDelegate, SegmentCoordinatorDelegate {
+class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinatorDelegate,
+                      SegmentCoordinatorDelegate, PostCoordinatorDelegate,
+                      PostImageCoordinatorDelegate,SettingCoordinatorDelegate,
+                      SettingContentCoordinatorDelegate, PostingPhotoCoordinatorDelegate {
 
     var isLoggedIn = true
 
     // MARK: - Method
 
     override func start() {
-        if isLoggedIn {
-            showSegmentViewController()
-        } else {
-            showMainViewController()
-        }
+//        if isLoggedIn {
+        showSegmentViewController()
+//            showPostViewController()
+//        } else {
+//            showMainViewController()
+//        }
     }
 
     // MARK: - ShowVC Method
 
-    private func showSubViewController() {
-        let coordinator = SubCoordinator(navigationController: navigationController)
+    private func showSplashViewController() {
+        let coordinator = SplashCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
 
-    private func showMainViewController() {
-        let coordinator = MainCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-    
     private func showSegmentViewController() {
         let coordinator = SegmentCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
+
+    // MARK: - Present
     
-    private func showPostingPhotoViewController() {
-        let coordinator = PostingPhotoCoordinator(navigationController: navigationController)
+    func presentEnterView() {
+        let coordinator = EnterCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
 
-    // MARK: - Click Event
-
-    func didLoggedIn(_ coordinator: MainCoordinator) {
-        self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
-        self.showSubViewController()
-    }
-
-    func didLoggedOut(_ coordinator: SubCoordinator) {
-        self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
-        self.showMainViewController()
+    func presentSegmentView() {
+        let coordinator = SegmentCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
     }
     
-    func presentPostingPhotoView(_ coordinator: SegmentCoordinator) {
-        self.childCoordinators = self.childCoordinators.filter{ $0 !== coordinator }
-        showPostingPhotoViewController()
+    func presentPostingView() {
+        let coordinator = PostingCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func presentPostImageView() {
+        let coordinator = PostImageCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func presentPostView() {
+        let coordinator = PostCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func presentSettingView() {
+        let coordinator = SettingCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func presentClientInfoView() {
+        let coordinator = EnterCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func presentNoticeView() {
+        let coordinator = NoticeCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func presentDeveloperView() {
+        let coordinator = DeveloperCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func presentLicenseView() {
+        let coordinator = LicenseCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    // MARK: - Pop
+    
+    func popToSegmentView() {
+        self.childCoordinators.removeLast()
+        navigationController.popViewController(animated: true)
+    }
+    
+    func popToSettingView() {
+        self.childCoordinators.removeLast()
+        navigationController.popViewController(animated: true)
+    }
+    
+    func popToPostView() {
+        self.childCoordinators.removeLast()
+        navigationController.popViewController(animated: true)
+    }
+
+    func popToPostingPhotoView() {
+        self.childCoordinators.removeLast()
+        navigationController.popViewController(animated: true)
+    }
+    
+    // MARK: - Dismiss
+    
+    func dismissPostingView() {
+        self.childCoordinators.removeLast()
+        navigationController.dismiss(animated: true)
     }
 }
 
