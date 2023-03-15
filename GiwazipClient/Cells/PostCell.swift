@@ -17,7 +17,7 @@ class PostCell: UICollectionViewCell {
 
     // MARK: - View
 
-    let postingImage: UIImageView = {
+    let postImage: UIImageView = {
         $0.image = UIImage(named: "Test01")
         $0.contentMode = .scaleToFill
         return $0
@@ -49,12 +49,12 @@ class PostCell: UICollectionViewCell {
     // MARK: - Method
 
     private func setupCell() {
-        addSubview(postingImage)
-        postingImage.snp.makeConstraints {
+        addSubview(postImage)
+        postImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
-        postingImage.addSubview(whiteBlock)
+        postImage.addSubview(whiteBlock)
         whiteBlock.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
