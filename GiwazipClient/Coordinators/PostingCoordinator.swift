@@ -11,7 +11,6 @@ import UIKit
 
 protocol PostingPhotoCoordinatorDelegate {
     func dismissPostingView()
-    func popToPostingPhotoView()
 }
 
 class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate, PostingTextViewControllerDelegate {
@@ -36,7 +35,6 @@ class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate, P
     }
     
     func popToPostingPhotoView() {
-        childCoordinators.removeLast()
         rootViewController.popViewController(animated: true)
     }
     

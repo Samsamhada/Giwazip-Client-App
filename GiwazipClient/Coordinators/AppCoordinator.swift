@@ -128,13 +128,8 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
         navigationController.popViewController(animated: true)
     }
 
-    func popToPostingPhotoView() {
-        self.childCoordinators.removeLast()
-        navigationController.popViewController(animated: true)
-    }
-    
     // MARK: - Dismiss
-    
+
     func dismissPostingView() {
         self.childCoordinators.removeLast()
         navigationController.dismiss(animated: true)
