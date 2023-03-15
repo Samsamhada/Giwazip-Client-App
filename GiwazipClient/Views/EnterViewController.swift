@@ -9,7 +9,15 @@ import UIKit
 
 import SnapKit
 
+protocol EnterViewControllerDelegate {
+    func presentSegmentView()
+}
+
 class EnterViewController: BaseViewController {
+    
+    // MARK: - Property
+    
+    var delegate: EnterViewControllerDelegate?
     
     // MARK: - View
     
@@ -42,7 +50,6 @@ class EnterViewController: BaseViewController {
         $0.backgroundColor = .gray
         return $0
     }(UIView())
-    
 
     private let inviteCodeGuideLabel: UILabel = {
         $0.text = TextLiteral.inviteCodeGuideText
@@ -81,6 +88,8 @@ class EnterViewController: BaseViewController {
     override func attribute() {
         super.attribute()
         setupNotificationCenter()
+        
+        navigationItem.hidesBackButton = true
     }
     
     override func layout() {
@@ -202,7 +211,7 @@ class EnterViewController: BaseViewController {
         guard let inviteCode = inviteCodeInput.text else { return }
         // TODO: - 추후 API 통신이 되면 if문 로직 고칠 예정
         if inviteCode == "aaabbb" {
-            print("다음 뷰로 이동")
+            delegate?.presentSegmentView()
         } else {
             makeAlert(title: TextLiteral.errorAlertTitle, message: TextLiteral.inviteCodeErrorAlertMessage)
         }
