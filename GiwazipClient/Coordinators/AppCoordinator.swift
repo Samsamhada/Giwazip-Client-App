@@ -16,6 +16,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
 
     override func start() {
 //        if isLoggedIn {
+//        showPostViewController()
         showSegmentViewController()
 //            showPostViewController()
 //        } else {
@@ -34,6 +35,14 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
 
     private func showSegmentViewController() {
         let coordinator = SegmentCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    // TODO: 뷰 연결 후 삭제
+    private func showPostViewController() {
+        let coordinator = PostCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
@@ -72,6 +81,12 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
     func presentPostView() {
         let coordinator = PostCoordinator(navigationController: navigationController)
         coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func presentEditingView() {
+        let coordinator = PostingTextCoordinator(navigationController: navigationController)
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }

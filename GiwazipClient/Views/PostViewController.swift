@@ -11,6 +11,7 @@ import SnapKit
 
 protocol PostViewControllerDelegate {
     func presentPostImageView()
+    func presentEditingView()
 }
 
 class PostViewController: BaseViewController {
@@ -141,6 +142,7 @@ class PostViewController: BaseViewController {
     }
 
     @objc func didTapEditButton() {
+        delegate?.presentEditingView()
     }
 }
 

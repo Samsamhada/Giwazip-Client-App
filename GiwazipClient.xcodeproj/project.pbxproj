@@ -37,7 +37,7 @@
 		9839F371298B5BD00058639F /* PostingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingCoordinator.swift */; };
 		98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */; };
 		98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */; };
-		9878A31F29B4E1EF0041664E /* LineDashPattern+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */; };
+		9878A31E29B4E1EF0041664E /* LineDashPattern+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */; };
 		9859984E29C0536300B21BD7 /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859984D29C0536300B21BD7 /* SettingCoordinator.swift */; };
 		9859985029C05B1C00B21BD7 /* NoticeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859984F29C05B1C00B21BD7 /* NoticeCoordinator.swift */; };
 		9859985229C0AC4C00B21BD7 /* UIBackBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985129C0AC4C00B21BD7 /* UIBackBarButton.swift */; };
@@ -46,6 +46,7 @@
 		9859985829C0BBD700B21BD7 /* LicenseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985729C0BBD700B21BD7 /* LicenseCoordinator.swift */; };
 		9859985A29C0BFA000B21BD7 /* EnterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */; };
 		9859985C29C0C29F00B21BD7 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985B29C0C29F00B21BD7 /* SplashCoordinator.swift */; };
+		9859986229C22A0800B21BD7 /* PostingTextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859986129C22A0800B21BD7 /* PostingTextCoordinator.swift */; };
 		9881559D29BC7CEB0049949A /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881559C29BC7CEB0049949A /* PostCoordinator.swift */; };
 		9881559F29BC845A0049949A /* PostImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881559E29BC845A0049949A /* PostImageCoordinator.swift */; };
 		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
@@ -101,6 +102,7 @@
 		9859985729C0BBD700B21BD7 /* LicenseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseCoordinator.swift; sourceTree = "<group>"; };
 		9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinator.swift; sourceTree = "<group>"; };
 		9859985B29C0C29F00B21BD7 /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		9859986129C22A0800B21BD7 /* PostingTextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingTextCoordinator.swift; sourceTree = "<group>"; };
 		9881559C29BC7CEB0049949A /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
 		9881559E29BC845A0049949A /* PostImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageCoordinator.swift; sourceTree = "<group>"; };
 		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */,
 				9859985729C0BBD700B21BD7 /* LicenseCoordinator.swift */,
 				9881559C29BC7CEB0049949A /* PostCoordinator.swift */,
+				9859986129C22A0800B21BD7 /* PostingTextCoordinator.swift */,
 				9881559E29BC845A0049949A /* PostImageCoordinator.swift */,
 				9839F370298B5BD00058639F /* PostingCoordinator.swift */,
 				9839F36E298B55350058639F /* SegmentCoordinator.swift */,
@@ -441,6 +444,7 @@
 				9839F371298B5BD00058639F /* PostingCoordinator.swift in Sources */,
 				2614F24F2997DA1C0051EE51 /* ProgressCell.swift in Sources */,
 				9859985C29C0C29F00B21BD7 /* SplashCoordinator.swift in Sources */,
+				9859986229C22A0800B21BD7 /* PostingTextCoordinator.swift in Sources */,
 				438BF0432977CA28005E4CF3 /* EnterViewController.swift in Sources */,
 				9859985429C0B50D00B21BD7 /* DeveloperCoordinator.swift in Sources */,
 				988C56D42976D3BA00018F07 /* HistoryCell.swift in Sources */,
