@@ -9,9 +9,23 @@ import MessageUI
 import SafariServices
 import UIKit
 
+protocol SettingContentDelegate {
+    func popToSettingView()
+}
+
+protocol SettingViewControllerDelegate {
+    func presentClientInfoView()
+    func presentNoticeView()
+    func presentDeveloperView()
+    func presentLicenseView()
+    func popToSegmentView()
+}
+
 class SettingViewController: BaseViewController {
 
+    var delegate: SettingViewControllerDelegate?
     static let sectionFooterElementKind = "section-footer-element-kind"
+    private let backButton = UIButton()
 
     private enum Section: CaseIterable {
         case userSetting
@@ -34,15 +48,23 @@ class SettingViewController: BaseViewController {
     private lazy var collectionView: UICollectionView! = nil
 
     override func layout() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView = UICollectionView(frame: view.bounds,
+                                          collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        
         view.addSubview(collectionView)
         collectionView.delegate = self
-
         collectionView.isScrollEnabled = false
-
+        
         configureDataSource()
+    }
+    
+    override func attribute() {
+        navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+    }
+    
+    @objc func didTapBackButton() {
+        delegate?.popToSegmentView()
     }
 }
 
@@ -126,11 +148,9 @@ extension SettingViewController: UICollectionViewDelegate {
 
         switch (indexPath.section, indexPath.item) {
         case (0, 0):
-            // TODO: - 고객 정보 수정
-            break
+            delegate?.presentClientInfoView()
         case (1, 0):
-            // TODO: - 공지사항
-            break
+            delegate?.presentNoticeView()
         case (1, 1):
             if let url = URL(string: TextLiteral.termsConditionURL) {
                 let termsCondition = SFSafariViewController(url: url)
@@ -142,11 +162,9 @@ extension SettingViewController: UICollectionViewDelegate {
                 present(privacyPolicy, animated: true)
             }
         case (1, 3):
-            // TODO: - 개발자 정보
-            break
+            delegate?.presentDeveloperView()
         case (1, 4):
-            // TODO: - 오픈소스 라이센스
-            break
+            delegate?.presentLicenseView()
         case (1, 5):
             openCustomerServiceCenter()
         case (1, 6):
