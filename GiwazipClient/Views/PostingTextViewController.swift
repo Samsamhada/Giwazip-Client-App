@@ -9,9 +9,16 @@ import UIKit
 
 import SnapKit
 
+protocol PostingTextViewControllerDelegate {
+    func popToPostingPhotoView()
+    func dismissPostingView()
+}
+
 class PostingTextViewController: BaseViewController {
     
     // MARK: - Property
+    
+    var delegate: PostingTextViewControllerDelegate?
     
     private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
     private let viewModel = NetworkManager.shared
@@ -77,14 +84,25 @@ class PostingTextViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
+        
         navigationItem.title = TextLiteral.postingTextViewNavigationTitle
+        navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
         
         setupNotificationCenter()
     }
     
+    // MARK: - Button
+
+    @objc func didTapBackButton() {
+        delegate?.popToPostingPhotoView()
+    }
+    
     @objc func tapInquiryButton() {
         viewModel.uploadPostData(description: textView.text, files: imageDatas)
+        delegate?.dismissPostingView()
     }
+    
+    // MARK: - Keyboard Setting
     
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
