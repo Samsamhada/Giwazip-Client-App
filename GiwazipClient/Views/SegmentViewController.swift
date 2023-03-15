@@ -11,6 +11,7 @@ import SnapKit
 
 protocol SegmentViewControllerDelegate {
     func presentPostingPhotoView()
+    func presentSettingView()
 }
 
 class SegmentViewController: BaseViewController {
@@ -88,7 +89,7 @@ class SegmentViewController: BaseViewController {
         $0.configuration?.background.backgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
-        $0.addTarget(self, action: #selector(moveViewController), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(showPostingPhotoViewController), for: .touchUpInside)
         $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
@@ -110,13 +111,15 @@ class SegmentViewController: BaseViewController {
     }
 
     private func setupNavigationTitle() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+        let rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
             style: .plain,
             target: self,
-            action: nil
+            action: #selector(showSettingViewController)
         )
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        rightBarButtonItem.tintColor = .black
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationItem.hidesBackButton = true
     }
 
     private func navigationLayout() {
@@ -173,6 +176,8 @@ class SegmentViewController: BaseViewController {
         }
     }
 
+    // MARK: - SegmentControl
+    
     private func setupSegmentedControl() {
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key
@@ -207,11 +212,19 @@ class SegmentViewController: BaseViewController {
     @objc func selectedSegmentControl(control: UISegmentedControl) {
         currentViewNum = control.selectedSegmentIndex
     }
+    
+    // MARK: - ShowViewController
 
-    @objc func moveViewController() {
+    @objc func showPostingPhotoViewController() {
         delegate?.presentPostingPhotoView()
     }
+    
+    @objc func showSettingViewController() {
+        delegate?.presentSettingView()
+    }
 }
+
+// MARK: - UIPageViewControllerDelegate, UIPageViewControllerDataSource
 
 extension SegmentViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
