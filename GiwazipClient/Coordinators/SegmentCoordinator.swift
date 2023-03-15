@@ -5,10 +5,9 @@
 //  Created by 지준용 on 2023/02/02.
 //
 
-import Foundation
-
 protocol SegmentCoordinatorDelegate {
-    func presentPostingPhotoView(_ coordinator: SegmentCoordinator)
+    func presentPostingView()
+    func presentSettingView()
 }
 
 class SegmentCoordinator: BaseCoordinator, SegmentViewControllerDelegate {
@@ -23,10 +22,14 @@ class SegmentCoordinator: BaseCoordinator, SegmentViewControllerDelegate {
         let segmentViewController = SegmentViewController()
         segmentViewController.delegate = self
 
-        navigationController.viewControllers = [segmentViewController]
+        navigationController.pushViewController(segmentViewController, animated: true)
     }
 
     func presentPostingPhotoView() {
-        self.delegate?.presentPostingPhotoView(self)
+        self.delegate?.presentPostingView()
+    }
+    
+    func presentSettingView() {
+        self.delegate?.presentSettingView()
     }
 }
