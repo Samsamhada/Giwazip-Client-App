@@ -17,6 +17,7 @@ class BaseCoordinator: Coordinator {
     // MARK: - Property
 
     var childCoordinators: [Coordinator] = []
+    var rootViewController = UINavigationController()
 
     var navigationController: UINavigationController!
 
