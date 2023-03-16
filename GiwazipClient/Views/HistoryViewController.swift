@@ -99,17 +99,15 @@ class HistoryViewController: BaseViewController {
             asView.snp.makeConstraints {
                 $0.edges.equalToSuperview()
             }
-        }
 
-        view.addSubview(microCopy)
-        microCopy.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            postCollectionView.contentInset.bottom = 90
         }
 
         postCollectionView.contentInset.top = categorySectionHeight + 16
 
-        if !isWorkView {
-            postCollectionView.contentInset.bottom = 90
+        view.addSubview(microCopy)
+        microCopy.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
 
         categoryCollectionView.selectItem(at: [0, 0], animated: true, scrollPosition: .init())
