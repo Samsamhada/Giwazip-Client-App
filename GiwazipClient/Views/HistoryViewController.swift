@@ -220,6 +220,7 @@ extension HistoryViewController {
             (cell, indexPath, item) in
             if self.isWorkView && self.selectedCategoryID == 1 {
                 cell.chipLabel.text = item.category?.name
+                cell.chipFrame.isHidden = false
             } else {
                 cell.chipFrame.isHidden = true
             }
