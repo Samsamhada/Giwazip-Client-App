@@ -189,17 +189,17 @@ extension HistoryViewController {
         switch isWorkView {
         case true:
             if selectedCategoryID == 1 {
-                for section in networkManager.roomData!.posts!.filter({ $0.category?.name != "문의" }) {
-                    postSections.insert(extractDate(section.createDate))
+                for post in networkManager.roomData!.posts!.filter({ $0.category?.name != "문의" }) {
+                    postSections.insert(extractDate(post.createDate))
                 }
             } else {
-                for section in networkManager.roomData!.posts!.filter({ $0.category?.categoryID == selectedCategoryID }) {
-                    postSections.insert(extractDate(section.createDate))
+                for post in networkManager.roomData!.posts!.filter({ $0.category?.categoryID == selectedCategoryID }) {
+                    postSections.insert(extractDate(post.createDate))
                 }
             }
         case false:
-            for section in networkManager.roomData!.posts!.filter({ $0.category?.name == "문의" }) {
-                postSections.insert(extractDate(section.createDate))
+            for post in networkManager.roomData!.posts!.filter({ $0.category?.name == "문의" }) {
+                postSections.insert(extractDate(post.createDate))
             }
         }
     }
