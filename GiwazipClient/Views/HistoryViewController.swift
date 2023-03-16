@@ -218,7 +218,7 @@ extension HistoryViewController {
 
         let postCellRegistration = UICollectionView.CellRegistration<HistoryCell, Post> {
             (cell, indexPath, item) in
-            if self.isWorkView, self.selectedCategoryID == 1 {
+            if self.isWorkView && self.selectedCategoryID == 1 {
                 cell.chipLabel.text = item.category?.name
             } else {
                 cell.chipFrame.isHidden = true
