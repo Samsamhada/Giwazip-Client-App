@@ -23,16 +23,16 @@ final class ASView: UIView {
     }(UILabel())
 
     let asDateLabel: UILabel = {
-        $0.text = "23.01.10)"
+        $0.text = "00.00.00)"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         $0.textColor = .gray
         return $0
     }(UILabel())
 
-    private let remainDateContainer = UIView()
+    let remainDateContainer = UIView()
 
     let remainedDateLabel: UILabel = {
-        $0.text = "152일"
+        $0.text = "000일"
         $0.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         $0.textColor = .blue
         return $0

@@ -119,7 +119,7 @@ enum TextLiteral {
     static let dinnerName = "이정환"
     static let dinnerGithub = "https://github.com/creohwan"
 
-    // MARK: - ASCell
+    // MARK: - ASView
 
     static let remainText = "남았어요"
     

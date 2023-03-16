@@ -50,7 +50,7 @@ class SegmentViewController: BaseViewController {
     }(UILabel())
 
     private let titleDate: UILabel = {
-        $0.text = "23.01.10~23.03.15"
+        $0.text = "00.00.00~00.00.00"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textAlignment = .center
         $0.textColor = .gray
