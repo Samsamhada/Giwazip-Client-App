@@ -31,7 +31,7 @@ final class ASView: UIView {
 
     private let remainDateContainer = UIView()
 
-    let remainDateLabel: UILabel = {
+    let remainedDateLabel: UILabel = {
         $0.text = "152일"
         $0.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         $0.textColor = .blue
@@ -80,14 +80,14 @@ final class ASView: UIView {
             $0.center.equalToSuperview()
         }
 
-        remainDateContainer.addSubview(remainDateLabel)
-        remainDateLabel.snp.makeConstraints {
+        remainDateContainer.addSubview(remainedDateLabel)
+        remainedDateLabel.snp.makeConstraints {
             $0.left.verticalEdges.equalToSuperview()
         }
 
         remainDateContainer.addSubview(remainedTextLabel)
         remainedTextLabel.snp.makeConstraints {
-            $0.left.equalTo(remainDateLabel.snp.right).offset(10)
+            $0.left.equalTo(remainedDateLabel.snp.right).offset(10)
             $0.right.verticalEdges.equalToSuperview()
         }
     }
