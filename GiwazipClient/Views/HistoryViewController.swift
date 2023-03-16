@@ -15,7 +15,6 @@ class HistoryViewController: BaseViewController {
     // MARK: - Property
 
     static let sectionHeaderElementKind = "section-header-element-kind"
-    private let networkManager = NetworkManager.shared
 
     var isWorkView = true
     private var selectedCategoryID = 1

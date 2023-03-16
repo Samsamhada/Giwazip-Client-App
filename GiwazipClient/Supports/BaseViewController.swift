@@ -12,7 +12,8 @@ class BaseViewController: UIViewController {
     // MARK: - Life Cycle
 
     let screenWidth = UIScreen.main.bounds.width
-    
+    let networkManager = NetworkManager.shared
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }

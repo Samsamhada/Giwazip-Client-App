@@ -18,7 +18,6 @@ class SegmentViewController: BaseViewController {
     // MARK: - Property
 
     var delegate: SegmentViewControllerDelegate?
-    private let networkManager = NetworkManager.shared
     private var buttonConfiguration = UIButton.Configuration.plain()
     private lazy var segmentedViewControllers: [UIViewController] = [workView, inquiryView]
 
