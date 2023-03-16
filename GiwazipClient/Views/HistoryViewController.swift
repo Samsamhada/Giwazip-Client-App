@@ -143,28 +143,36 @@ extension HistoryViewController {
             let section: NSCollectionLayoutSection
 
             if collectionViewType == .category {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth/6), heightDimension: .absolute(self.screenWidth/6))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth / 6),
+                                                      heightDimension: .absolute(self.screenWidth / 6))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(self.screenWidth/6))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 6)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .estimated(self.screenWidth/6))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               repeatingSubitem: item, count: 6)
 
                 section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
             } else {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth), heightDimension: .absolute(self.screenWidth/4*3))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth),
+                                                      heightDimension: .absolute(self.screenWidth/4*3))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(self.screenWidth/4*3))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .estimated(self.screenWidth/4*3))
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
                 section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HistoryViewController.sectionHeaderElementKind, alignment: .top)
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                        heightDimension: .estimated(1))
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                                elementKind: HistoryViewController.sectionHeaderElementKind,
+                                                                                alignment: .top)
                 section.boundarySupplementaryItems = [sectionHeader]
             }
 
