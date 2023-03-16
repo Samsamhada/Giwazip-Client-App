@@ -226,7 +226,7 @@ extension HistoryViewController {
             }
             cell.postDescription.text = item.description
 
-            AF.request(item.photos[0].url, method: .get).response{ response in
+            AF.request(item.photos[0].url).response{ response in
                 switch response.result {
                 case .success(let responseData):
                     cell.postImage.image = UIImage(data: responseData!)
