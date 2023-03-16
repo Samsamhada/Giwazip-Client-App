@@ -61,22 +61,19 @@ class HistoryViewController: BaseViewController {
 
     override func attribute() {
         super.attribute()
-        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: categorySectionHeight), collectionViewLayout: createCollectionViewLayout(.category))
-        postCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCollectionViewLayout(.post))
 
+        initializeCollectionView()
         configureDataSource()
+
         if isWorkView {
             applyCategorySnapshot()
         } else {
             let asDate = extractDate(networkManager.roomData!.endDate, networkManager.roomData!.warrantyTime)
             asView.asDateLabel.text = asDate + ")"
-            asView.remainDateLabel.text = extractRemainDate(asDate) + "일"
+            asView.remainedDateLabel.text = extractRemainDate(asDate) + "일"
         }
-        applyPostSnapshot()
 
-        categoryCollectionView.isScrollEnabled = false
-        categoryCollectionView.delegate = self
-        postCollectionView.delegate = self
+        applyPostSnapshot()
     }
 
     override func layout() {
@@ -118,6 +115,15 @@ class HistoryViewController: BaseViewController {
 
         categoryCollectionView.selectItem(at: [0, 0], animated: true, scrollPosition: .init())
         categoryCollectionView.backgroundColor = UIColor(white: 0, alpha: 0.05)
+    }
+
+    private func initializeCollectionView() {
+        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: categorySectionHeight), collectionViewLayout: createCollectionViewLayout(.category))
+        postCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCollectionViewLayout(.post))
+
+        categoryCollectionView.isScrollEnabled = false
+        categoryCollectionView.delegate = self
+        postCollectionView.delegate = self
     }
 
     private func extractRemainDate(_ asDateText: String) -> String {
