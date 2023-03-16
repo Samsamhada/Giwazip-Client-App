@@ -86,14 +86,13 @@ class HistoryViewController: BaseViewController {
         topContainerView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(categorySectionHeight + 3)
+            $0.height.equalTo(categorySectionHeight)
         }
 
         if isWorkView {
             topContainerView.addSubview(categoryCollectionView)
             categoryCollectionView.snp.makeConstraints {
-                $0.top.equalToSuperview().inset(2)
-                $0.horizontalEdges.bottom.equalToSuperview()
+                $0.edges.equalToSuperview()
             }
         } else {
             topContainerView.addSubview(asView)
