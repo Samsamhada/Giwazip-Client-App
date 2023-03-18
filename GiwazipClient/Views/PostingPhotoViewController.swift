@@ -83,6 +83,8 @@ class PostingPhotoViewController: BaseViewController {
         navigationItem.leftBarButtonItem = backBarButtonItem
         navigationItem.title = TextLiteral.postingPhotoViewNavigationTitle
         navigationController?.setNavigationBarHidden(false, animated: true)
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
 
     private func setupCollectionView() {
@@ -154,6 +156,7 @@ class PostingPhotoViewController: BaseViewController {
 
         let postingTextViewController = PostingTextViewController()
         postingTextViewController.imageDatas = imageDatas
+
         delegate?.presentPostingTextView()
     }
     
