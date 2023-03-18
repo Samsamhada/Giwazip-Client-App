@@ -10,15 +10,15 @@ import SafariServices
 import UIKit
 
 protocol SettingContentDelegate {
-    func popToSettingView()
+    func popToSettingViewController()
 }
 
 protocol SettingViewControllerDelegate {
-    func presentClientInfoView()
-    func presentNoticeView()
-    func presentDeveloperView()
-    func presentLicenseView()
-    func popToSegmentView()
+    func pushToClientInfoViewController()
+    func pushToNoticeViewController()
+    func pushToDeveloperViewController()
+    func pushToLicenseViewController()
+    func popToSegmentViewController()
 }
 
 class SettingViewController: BaseViewController {
@@ -64,7 +64,7 @@ class SettingViewController: BaseViewController {
     }
     
     @objc func didTapBackButton() {
-        delegate?.popToSegmentView()
+        delegate?.popToSegmentViewController()
     }
 }
 
@@ -148,9 +148,9 @@ extension SettingViewController: UICollectionViewDelegate {
 
         switch (indexPath.section, indexPath.item) {
         case (0, 0):
-            delegate?.presentClientInfoView()
+            delegate?.pushToClientInfoViewController()
         case (1, 0):
-            delegate?.presentNoticeView()
+            delegate?.pushToNoticeViewController()
         case (1, 1):
             if let url = URL(string: TextLiteral.termsConditionURL) {
                 let termsCondition = SFSafariViewController(url: url)
@@ -162,9 +162,9 @@ extension SettingViewController: UICollectionViewDelegate {
                 present(privacyPolicy, animated: true)
             }
         case (1, 3):
-            delegate?.presentDeveloperView()
+            delegate?.pushToDeveloperViewController()
         case (1, 4):
-            delegate?.presentLicenseView()
+            delegate?.pushToLicenseViewController()
         case (1, 5):
             openCustomerServiceCenter()
         case (1, 6):

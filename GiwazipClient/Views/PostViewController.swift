@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 protocol PostViewControllerDelegate {
-    func presentPostImageView()
-    func presentEditingView()
+    func pushToPostImageViewController()
+    func presentEditingTextViewController()
 }
 
 class PostViewController: BaseViewController {
@@ -142,7 +142,7 @@ class PostViewController: BaseViewController {
     }
 
     @objc func didTapEditButton() {
-        delegate?.presentEditingView()
+        delegate?.presentEditingTextViewController()
     }
 }
 
@@ -181,7 +181,7 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
         if collectionView == imageCollectionView {
             let postImageViewController = PostImageViewController()
             postImageViewController.postImage.image! = cell.postImage.image!
-            delegate?.presentPostImageView()
+            delegate?.pushToPostImageViewController()
         }
     }
 

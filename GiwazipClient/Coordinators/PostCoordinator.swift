@@ -6,8 +6,8 @@
 //
 
 protocol PostCoordinatorDelegate {
-    func presentPostImageView()
-    func presentEditingView()
+    func pushToPostImageViewController()
+    func presentEditingTextView()
 }
 
 class PostCoordinator: BaseCoordinator, PostViewControllerDelegate {
@@ -21,11 +21,11 @@ class PostCoordinator: BaseCoordinator, PostViewControllerDelegate {
         navigationController.pushViewController(postViewController, animated: true)
     }
 
-    func presentPostImageView() {
-        delegate?.presentPostImageView()
+    func pushToPostImageViewController() {
+        delegate?.pushToPostImageViewController()
     }
     
-    func presentEditingView() {
-        delegate?.presentEditingView()
+    func presentEditingTextViewController() {
+        delegate?.presentEditingTextView()
     }
 }

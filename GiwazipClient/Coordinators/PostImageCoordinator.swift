@@ -6,7 +6,7 @@
 //
 
 protocol PostImageCoordinatorDelegate {
-    func popToPostView()
+    func popToViewController()
 }
 
 class PostImageCoordinator: BaseCoordinator, PostImageViewControllerDelegate {
@@ -20,7 +20,7 @@ class PostImageCoordinator: BaseCoordinator, PostImageViewControllerDelegate {
         navigationController.pushViewController(postImageViewController, animated: true)
     }
     
-    func popToPostView() {
-        delegate?.popToPostView()
+    func popToPostViewController() {
+        delegate?.popToViewController()
     }
 }

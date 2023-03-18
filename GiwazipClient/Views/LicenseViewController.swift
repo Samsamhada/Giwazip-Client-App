@@ -20,6 +20,6 @@ class LicenseViewController: BaseViewController {
     }
     
     @objc func didTapBackButton() {
-        delegate?.popToSettingView()
+        delegate?.popToSettingViewController()
     }
 }

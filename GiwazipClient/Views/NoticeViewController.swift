@@ -86,7 +86,7 @@ class NoticeViewController: UICollectionViewController {
     }
     
     @objc func didTapBackButton() {
-        delegate?.popToSettingView()
+        delegate?.popToSettingViewController()
     }
 
     // MARK: - Method

@@ -6,11 +6,11 @@
 //
 
 protocol SettingCoordinatorDelegate {
-    func presentClientInfoView()
-    func presentNoticeView()
-    func presentDeveloperView()
-    func presentLicenseView()
-    func popToSegmentView()
+    func pushToClientInfoViewController()
+    func pushToNoticeViewController()
+    func pushToDeveloperViewController()
+    func pushToLicenseViewController()
+    func popToViewController()
 }
 
 class SettingCoordinator: BaseCoordinator, SettingViewControllerDelegate {
@@ -28,23 +28,23 @@ class SettingCoordinator: BaseCoordinator, SettingViewControllerDelegate {
         navigationController.pushViewController(settingViewController, animated: true)
     }
     
-    func presentClientInfoView() {
-        delegate?.presentClientInfoView()
+    func pushToClientInfoViewController() {
+        delegate?.pushToClientInfoViewController()
     }
     
-    func presentNoticeView() {
-        delegate?.presentNoticeView()
+    func pushToNoticeViewController() {
+        delegate?.pushToNoticeViewController()
     }
     
-    func presentDeveloperView() {
-        delegate?.presentDeveloperView()
+    func pushToDeveloperViewController() {
+        delegate?.pushToDeveloperViewController()
     }
 
-    func popToSegmentView() {
-        delegate?.popToSegmentView()
+    func popToSegmentViewController() {
+        delegate?.popToViewController()
     }
     
-    func presentLicenseView() {
-        delegate?.presentLicenseView()
+    func pushToLicenseViewController() {
+        delegate?.pushToLicenseViewController()
     }
 }

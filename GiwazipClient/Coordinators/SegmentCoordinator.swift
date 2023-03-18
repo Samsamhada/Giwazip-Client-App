@@ -7,7 +7,7 @@
 
 protocol SegmentCoordinatorDelegate {
     func presentPostingView()
-    func presentSettingView()
+    func pushToSettingViewController()
 }
 
 class SegmentCoordinator: BaseCoordinator, SegmentViewControllerDelegate {
@@ -25,11 +25,11 @@ class SegmentCoordinator: BaseCoordinator, SegmentViewControllerDelegate {
         navigationController.pushViewController(segmentViewController, animated: true)
     }
 
-    func presentPostingPhotoView() {
+    func presentPostingPhotoViewController() {
         self.delegate?.presentPostingView()
     }
     
-    func presentSettingView() {
-        self.delegate?.presentSettingView()
+    func pushToSettingViewController() {
+        self.delegate?.pushToSettingViewController()
     }
 }

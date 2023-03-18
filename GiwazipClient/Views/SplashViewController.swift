@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 protocol SplashViewControllerDelegate {
-    func presentEnterView()
+    func pushToEnterViewController()
 }
 
 class SplashViewController: BaseViewController {
@@ -42,6 +42,6 @@ class SplashViewController: BaseViewController {
     }
     
     @objc func didTapEnterButton() {
-        delegate?.presentEnterView()
+        delegate?.pushToEnterViewController()
     }
 }

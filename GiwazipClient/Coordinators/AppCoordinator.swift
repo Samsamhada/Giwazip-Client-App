@@ -40,7 +40,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
-    
+
     // TODO: 뷰 연결 후 삭제
     private func showPostViewController() {
         let coordinator = PostCoordinator(navigationController: navigationController)
@@ -49,9 +49,9 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
         self.childCoordinators.append(coordinator)
     }
 
-    // MARK: - Present
-    
-    func presentEnterView() {
+    // MARK: - Push
+
+    func pushToEnterViewController() {
         let coordinator = EnterCoordinator(navigationController: navigationController)
         coordinator.enterViewController.isEnterView = true
         coordinator.delegate = self
@@ -59,49 +59,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
         self.childCoordinators.append(coordinator)
     }
 
-    func presentSegmentView() {
-        let coordinator = SegmentCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-    
-    func presentPostingView() {
-        let coordinator = PostingCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-    
-    func presentPostImageView() {
-        let coordinator = PostImageCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-
-    func presentPostView() {
-        let coordinator = PostCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-    
-    func presentEditingView() {
-        let coordinator = EditingTextCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-
-    func presentSettingView() {
-        let coordinator = SettingCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-    
-    func presentClientInfoView() {
+    func pushToClientInfoViewController() {
         let coordinator = EnterCoordinator(navigationController: navigationController)
         coordinator.enterViewController.isEnterView = false
         coordinator.delegate = self
@@ -109,22 +67,66 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
         self.childCoordinators.append(coordinator)
     }
     
-    func presentNoticeView() {
-        let coordinator = NoticeCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-    
-    func presentDeveloperView() {
+    func pushToDeveloperViewController() {
         let coordinator = DeveloperCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
-    
-    func presentLicenseView() {
+
+    func pushToLicenseViewController() {
         let coordinator = LicenseCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToNoticeViewController() {
+        let coordinator = NoticeCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToPostViewController() {
+        let coordinator = PostCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func pushToPostImageViewController() {
+        let coordinator = PostImageCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToSegmentViewController() {
+        let coordinator = SegmentCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToSettingViewController() {
+        let coordinator = SettingCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    // MARK: - Present
+
+    func presentEditingTextView() {
+        let coordinator = EditingTextCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func presentPostingView() {
+        let coordinator = PostingCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
@@ -132,34 +134,14 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
     
     // MARK: - Pop
     
-    func popToSegmentView() {
-        self.childCoordinators.removeLast()
-        navigationController.popViewController(animated: true)
-    }
-    
-    func popToSettingView() {
-        self.childCoordinators.removeLast()
-        navigationController.popViewController(animated: true)
-    }
-    
-    func popToPostView() {
+    func popToViewController() {
         self.childCoordinators.removeLast()
         navigationController.popViewController(animated: true)
     }
 
     // MARK: - Dismiss
 
-    func dismissPostingView() {
-        self.childCoordinators.removeLast()
-        navigationController.dismiss(animated: true)
-    }
-    
-    func dismissPostingTextView() {
-        self.childCoordinators.removeLast()
-        navigationController.dismiss(animated: true)
-    }
-    
-    func dismissEditingTextView() {
+    func dismissViewController() {
         self.childCoordinators.removeLast()
         navigationController.dismiss(animated: true)
     }

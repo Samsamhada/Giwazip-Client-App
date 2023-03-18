@@ -11,8 +11,8 @@ import UIKit
 import SnapKit
 
 protocol PostingPhotoViewControllerDelegate {
-    func presentPostingTextView()
-    func dismissPostingView()
+    func pushToPostingTextViewController()
+    func dismissPostingPhotoViewController()
 }
 
 class PostingPhotoViewController: BaseViewController {
@@ -148,7 +148,7 @@ class PostingPhotoViewController: BaseViewController {
     // MARK: - Button Action
 
     @objc func didTapCancelButton() {
-        delegate?.dismissPostingView()
+        delegate?.dismissPostingPhotoViewController()
     }
     
     @objc func didTapNextButton() {
@@ -157,7 +157,7 @@ class PostingPhotoViewController: BaseViewController {
         let postingTextViewController = PostingTextViewController()
         postingTextViewController.imageDatas = imageDatas
 
-        delegate?.presentPostingTextView()
+        delegate?.pushToPostingTextViewController()
     }
     
     // MARK: - Image

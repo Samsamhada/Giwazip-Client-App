@@ -85,7 +85,7 @@ class DeveloperViewController: UICollectionViewController {
     }
     
     @objc func didTapBackButton() {
-        delegate?.popToSettingView()
+        delegate?.popToSettingViewController()
     }
 
     // MARK: - Method

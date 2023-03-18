@@ -6,7 +6,7 @@
 //
 
 protocol SplashCoordinatorDelegate {
-    func presentEnterView()
+    func pushToEnterViewController()
 }
 
 class SplashCoordinator: BaseCoordinator, SplashViewControllerDelegate {
@@ -20,7 +20,7 @@ class SplashCoordinator: BaseCoordinator, SplashViewControllerDelegate {
         navigationController.pushViewController(splashViewController, animated: true)
     }
     
-    func presentEnterView() {
-        delegate?.presentEnterView()
+    func pushToEnterViewController() {
+        delegate?.pushToEnterViewController()
     }
 }

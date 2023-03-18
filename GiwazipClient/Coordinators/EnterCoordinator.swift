@@ -6,8 +6,8 @@
 //
 
 protocol EnterCoordinatorDelegate {
-    func presentSegmentView()
-    func popToSettingView()
+    func pushToSegmentViewController()
+    func popToViewController()
 }
 
 class EnterCoordinator: BaseCoordinator, EnterViewControllerDelegate, SettingContentDelegate {
@@ -21,11 +21,11 @@ class EnterCoordinator: BaseCoordinator, EnterViewControllerDelegate, SettingCon
         navigationController.pushViewController(enterViewController, animated: true)
     }
     
-    func presentSegmentView() {
-        delegate?.presentSegmentView()
+    func pushToSegmentViewController() {
+        delegate?.pushToSegmentViewController()
     }
     
-    func popToSettingView() {
-        delegate?.popToSettingView()
+    func popToSettingViewController() {
+        delegate?.popToViewController()
     }
 }

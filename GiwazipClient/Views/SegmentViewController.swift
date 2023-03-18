@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 protocol SegmentViewControllerDelegate {
-    func presentPostingPhotoView()
-    func presentSettingView()
+    func presentPostingPhotoViewController()
+    func pushToSettingViewController()
 }
 
 class SegmentViewController: BaseViewController {
@@ -216,11 +216,11 @@ class SegmentViewController: BaseViewController {
     // MARK: - ShowViewController
 
     @objc func showPostingPhotoViewController() {
-        delegate?.presentPostingPhotoView()
+        delegate?.presentPostingPhotoViewController()
     }
     
     @objc func showSettingViewController() {
-        delegate?.presentSettingView()
+        delegate?.pushToSettingViewController()
     }
 }
 

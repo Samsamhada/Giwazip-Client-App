@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 protocol PostImageViewControllerDelegate {
-    func popToPostView()
+    func popToPostViewController()
 }
 
 class PostImageViewController: BaseViewController {
@@ -53,7 +53,7 @@ class PostImageViewController: BaseViewController {
     }
     
     @objc func didTapBackButton() {
-        delegate?.popToPostView()
+        delegate?.popToPostViewController()
     }
 }
 

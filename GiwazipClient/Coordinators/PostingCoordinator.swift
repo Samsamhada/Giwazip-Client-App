@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PostingPhotoCoordinatorDelegate {
-    func dismissPostingView()
+    func dismissViewController()
 }
 
 class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate {
@@ -26,14 +26,14 @@ class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate {
         navigationController.present(rootViewController, animated: true)
     }
 
-    func presentPostingTextView() {
+    func pushToPostingTextViewController() {
         postingTextViewController.isEditView = false
         postingTextViewController.imageDatas = postingPhotoViewController.imageDatas
         
         rootViewController.pushViewController(postingTextViewController, animated: true)
     }
 
-    func dismissPostingView() {
-        delegate?.dismissPostingView()
+    func dismissPostingPhotoViewController() {
+        delegate?.dismissViewController()
     }
 }

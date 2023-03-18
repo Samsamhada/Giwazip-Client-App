@@ -6,7 +6,7 @@
 //
 
 protocol SettingContentCoordinatorDelegate {
-    func popToSettingView()
+    func popToViewController()
 }
 
 class NoticeCoordinator: BaseCoordinator, SettingContentDelegate {
@@ -20,7 +20,7 @@ class NoticeCoordinator: BaseCoordinator, SettingContentDelegate {
         navigationController.pushViewController(noticeViewController, animated: true)
     }
     
-    func popToSettingView() {
-        delegate?.popToSettingView()
+    func popToSettingViewController() {
+        delegate?.popToViewController()
     }
 }

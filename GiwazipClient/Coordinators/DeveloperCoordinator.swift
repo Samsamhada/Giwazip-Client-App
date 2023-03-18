@@ -16,7 +16,7 @@ class DeveloperCoordinator: BaseCoordinator, SettingContentDelegate {
         navigationController.pushViewController(developerViewController, animated: true)
     }
     
-    func popToSettingView() {
-        delegate?.popToSettingView()
+    func popToSettingViewController() {
+        delegate?.popToViewController()
     }
 }

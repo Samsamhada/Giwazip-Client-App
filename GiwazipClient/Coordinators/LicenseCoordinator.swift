@@ -16,7 +16,7 @@ class LicenseCoordinator: BaseCoordinator, SettingContentDelegate {
         navigationController.pushViewController(licenseViewController, animated: true)
     }
     
-    func popToSettingView() {
-        delegate?.popToSettingView()
+    func popToSettingViewController() {
+        delegate?.popToViewController()
     }
 }

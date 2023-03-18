@@ -8,8 +8,7 @@
 import UIKit
 
 protocol EditingTextCoordinatorDelegate {
-    func dismissPostingTextView()
-    func dismissEditingTextView()
+    func dismissViewController()
 }
 
 class EditingTextCoordinator: BaseCoordinator, EditingTextViewControllerDelegate {
@@ -31,11 +30,11 @@ class EditingTextCoordinator: BaseCoordinator, EditingTextViewControllerDelegate
         navigationController.present(rootViewController, animated: true)
     }
     
-    func dismissPostingTextView() {
-        delegate?.dismissPostingTextView()
+    func dismissPostingTextViewController() {
+        delegate?.dismissViewController()
     }
     
-    func dismissEditingTextView() {
-        delegate?.dismissEditingTextView()
+    func dismissEditingTextViewController() {
+        delegate?.dismissViewController()
     }
 }

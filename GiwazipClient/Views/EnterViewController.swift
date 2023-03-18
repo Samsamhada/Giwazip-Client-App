@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 protocol EnterViewControllerDelegate {
-    func presentSegmentView()
-    func popToSettingView()
+    func pushToSegmentViewController()
+    func popToSettingViewController()
 }
 
 class EnterViewController: BaseViewController {
@@ -110,7 +110,7 @@ class EnterViewController: BaseViewController {
     }
     
     @objc func didTapBackButton() {
-        delegate?.popToSettingView()
+        delegate?.popToSettingViewController()
     }
     
     override func layout() {
@@ -230,13 +230,13 @@ class EnterViewController: BaseViewController {
         switch isEnterView {
         case true:
             if inviteCode == "aaabbb" {
-                delegate?.presentSegmentView()
+                delegate?.pushToSegmentViewController()
             } else {
                 makeAlert(title: TextLiteral.errorAlertTitle,
                           message: TextLiteral.inviteCodeErrorAlertMessage)
             }
         case false:
-            delegate?.popToSettingView()
+            delegate?.popToSettingViewController()
         }
     }
 }

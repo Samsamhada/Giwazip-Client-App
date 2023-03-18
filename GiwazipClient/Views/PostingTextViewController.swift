@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 protocol EditingTextViewControllerDelegate {
-    func dismissPostingTextView()
-    func dismissEditingTextView()
+    func dismissPostingTextViewController()
+    func dismissEditingTextViewController()
 }
 
 class PostingTextViewController: BaseViewController {
@@ -99,12 +99,12 @@ class PostingTextViewController: BaseViewController {
     // MARK: - Button
     
     @objc func didTapCancelButton() {
-        delegate?.dismissEditingTextView()
+        delegate?.dismissEditingTextViewController()
     }
     
     @objc func didTapInquiryButton() {
         viewModel.uploadPostData(description: textView.text, files: imageDatas)
-        delegate?.dismissPostingTextView()
+        delegate?.dismissPostingTextViewController()
     }
     
     // MARK: - Keyboard Setting
