@@ -11,6 +11,7 @@ import SnapKit
 
 protocol EnterViewControllerDelegate {
     func presentSegmentView()
+    func popToSettingView()
 }
 
 class EnterViewController: BaseViewController {
@@ -18,6 +19,7 @@ class EnterViewController: BaseViewController {
     // MARK: - Property
     
     var delegate: EnterViewControllerDelegate?
+    var isEnterView = true
     
     // MARK: - View
     
@@ -73,15 +75,16 @@ class EnterViewController: BaseViewController {
     }(UIView())
     
     private let enterButton: UIButton = {
-        $0.setTitle(TextLiteral.enterButtonText, for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        $0.backgroundColor = .gray
-        $0.layer.cornerRadius = 16
+        $0.configuration?.title = TextLiteral.enterButtonText
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.configuration?.baseForegroundColor = .white
+        $0.configuration?.baseBackgroundColor = .blue
+        $0.configuration?.background.cornerRadius = 0
+        $0.configuration?.contentInsets.bottom = 20
         $0.isEnabled = false
         $0.addTarget(self, action: #selector(tapEnterButton), for: .touchUpInside)
         return $0
-    }(UIButton())
+    }(UIButton(configuration: .filled()))
     
     // MARK: - Method
     
@@ -90,6 +93,24 @@ class EnterViewController: BaseViewController {
         setupNotificationCenter()
         
         navigationItem.hidesBackButton = true
+
+        if isEnterView {
+            enterButton.configuration?.title = TextLiteral.enterButtonText
+            inviteCodeInput.isHidden = false
+            inviteCodeUnderLine.isHidden = false
+            inviteCodeGuideLabel.isHidden = false
+        } else {
+            enterButton.configuration?.title = "수정 완료"
+            inviteCodeInput.isHidden = true
+            inviteCodeUnderLine.isHidden = true
+            inviteCodeGuideLabel.isHidden = true
+
+            navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+        }
+    }
+    
+    @objc func didTapBackButton() {
+        delegate?.popToSettingView()
     }
     
     override func layout() {
@@ -97,57 +118,56 @@ class EnterViewController: BaseViewController {
         view.addSubview(phoneNumberGuideLabel)
         phoneNumberGuideLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
         view.addSubview(hStackView)
         hStackView.snp.makeConstraints {
             $0.top.equalTo(phoneNumberGuideLabel.snp.bottom).offset(10)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
         hStackView.addSubview(startPhoneNumber)
         startPhoneNumber.snp.makeConstraints {
-            $0.top.left.bottom.equalToSuperview()
+            $0.verticalEdges.left.equalToSuperview()
         }
         
         hStackView.addSubview(phoneNumberInput)
         phoneNumberInput.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+            $0.verticalEdges.equalToSuperview()
             $0.left.equalTo(startPhoneNumber.snp.right)
         }
         
         view.addSubview(phoneNumberUnderLine)
         phoneNumberUnderLine.snp.makeConstraints {
             $0.top.equalTo(hStackView.snp.bottom).offset(3)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(1)
         }
-        
+
         view.addSubview(inviteCodeGuideLabel)
         inviteCodeGuideLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(100)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.top.equalTo(phoneNumberInput.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
         view.addSubview(inviteCodeInput)
         inviteCodeInput.snp.makeConstraints {
             $0.top.equalTo(inviteCodeGuideLabel.snp.bottom).offset(10)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
         view.addSubview(inviteCodeUnderLine)
         inviteCodeUnderLine.snp.makeConstraints {
             $0.top.equalTo(inviteCodeInput.snp.bottom).offset(3)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(1)
         }
         
         view.addSubview(enterButton)
         enterButton.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(16)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
-            $0.height.equalTo(50)
+            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.height.equalTo(90)
         }
     }
     
@@ -161,14 +181,14 @@ class EnterViewController: BaseViewController {
     }
     
     @objc func checkPhoneNumberLength() {
-        guard let phoneNumber = phoneNumberInput.text?.replacingOccurrences(of: " - ", with: "")
-        else { return }
+        guard let phoneNumber = phoneNumberInput.text?.replacingOccurrences(of: " - ", with: "") else { return }
+
         phoneNumberInput.text = checkStringLength(text: phoneNumber, count: 8).changePhoneNumberStyle()
     }
     
     @objc func checkInviteCodeLength() {
-        guard let inviteCode = inviteCodeInput.text
-        else { return }
+        guard let inviteCode = inviteCodeInput.text else { return }
+
         inviteCodeInput.text = checkStringLength(text: inviteCode, count: 6)
     }
     
@@ -177,14 +197,10 @@ class EnterViewController: BaseViewController {
               let inviteCode = inviteCodeInput.text
         else { return }
         
-        if (phoneNumber.count == 8) && (inviteCode.count == 6) {
-            enterButton.isEnabled = true
-            enterButton.backgroundColor = .blue
-            enterButton.setTitleColor(.white, for: .normal)
+        if isEnterView {
+            enterButton.isEnabled = (phoneNumber.count == 8) && (inviteCode.count == 6) ? true: false
         } else {
-            enterButton.isEnabled = false
-            enterButton.backgroundColor = .gray
-            enterButton.setTitleColor(.black, for: .normal)
+            enterButton.isEnabled = (phoneNumber.count == 8) ? true: false
         }
     }
     
@@ -210,10 +226,17 @@ class EnterViewController: BaseViewController {
     @objc func tapEnterButton() {
         guard let inviteCode = inviteCodeInput.text else { return }
         // TODO: - 추후 API 통신이 되면 if문 로직 고칠 예정
-        if inviteCode == "aaabbb" {
-            delegate?.presentSegmentView()
-        } else {
-            makeAlert(title: TextLiteral.errorAlertTitle, message: TextLiteral.inviteCodeErrorAlertMessage)
+        
+        switch isEnterView {
+        case true:
+            if inviteCode == "aaabbb" {
+                delegate?.presentSegmentView()
+            } else {
+                makeAlert(title: TextLiteral.errorAlertTitle,
+                          message: TextLiteral.inviteCodeErrorAlertMessage)
+            }
+        case false:
+            delegate?.popToSettingView()
         }
     }
 }
