@@ -9,7 +9,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
                       SegmentCoordinatorDelegate, PostCoordinatorDelegate,
                       PostImageCoordinatorDelegate,SettingCoordinatorDelegate,
                       SettingContentCoordinatorDelegate, PostingPhotoCoordinatorDelegate,
-                      EditingTextCoordinatorDelegate{
+                      EditingTextCoordinatorDelegate {
 
     var isLoggedIn = true
 
