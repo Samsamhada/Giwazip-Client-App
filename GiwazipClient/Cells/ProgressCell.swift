@@ -22,7 +22,7 @@ class ProgressCell: UICollectionViewCell {
             categoryName.textColor = isSelected ? .black : .gray
         }
     }
-    var progress: CGFloat = 0 {
+    var progress: Double = 0 {
         didSet {
             progressChart.progress = progress
         }
@@ -31,6 +31,7 @@ class ProgressCell: UICollectionViewCell {
     // MARK: - View
 
     private let categoryFrame: UIView = {
+        $0.backgroundColor = .white
         $0.layer.borderWidth = 0.5
         return $0
     }(UIView())

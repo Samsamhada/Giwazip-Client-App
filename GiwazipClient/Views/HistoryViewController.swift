@@ -7,22 +7,46 @@
 
 import UIKit
 
+import Alamofire
 import SnapKit
 
 class HistoryViewController: BaseViewController {
 
     // MARK: - Property
 
+    static let sectionHeaderElementKind = "section-header-element-kind"
+
     var isWorkView = true
-    private var isFirstVisit = true
+    private var selectedCategoryID = 1
+
+    private var postSections = Set<String>() {
+        didSet {
+            microCopy.isHidden = !postSections.isEmpty
+            postCollectionView.isScrollEnabled = !postSections.isEmpty
+        }
+    }
+
+    private lazy var categorySectionHeight = isWorkView ? screenWidth / 6 * Double((networkManager.roomData!.categories!.filter({ $0.name != "문의" }).count - 1) / 6 + 1) : screenWidth/3
+
+    private enum CollectionViewType {
+        case category
+        case post
+    }
+
+    private var categoryDataSource: UICollectionViewDiffableDataSource<String, Category>!
+    private var postDataSource: UICollectionViewDiffableDataSource<String, Post>!
 
     // MARK: - View
 
-    private let historyCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: UICollectionViewFlowLayout())
-        return collectionView
-    }()
+    private let topContainerView: UIView = {
+        $0.backgroundColor = .white
+        return $0
+    }(UIView())
+
+    private var categoryCollectionView: UICollectionView!
+    private var postCollectionView: UICollectionView!
+
+    private let asView = ASView()
 
     private let microCopy: UILabel = {
         $0.text = TextLiteral.emptyWorkHistoryText
@@ -38,122 +62,261 @@ class HistoryViewController: BaseViewController {
     override func attribute() {
         super.attribute()
 
-        historyCollectionView.delegate = self
-        historyCollectionView.dataSource = self
+        initializeCollectionView()
+        configureDataSource()
 
-        historyCollectionView.register(PostDateHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PostDateHeader.identifier)
-        historyCollectionView.register(ProgressCell.self, forCellWithReuseIdentifier: ProgressCell.identifier)
-        historyCollectionView.register(ASCell.self, forCellWithReuseIdentifier: ASCell.identifier)
-        historyCollectionView.register(HistoryCell.self, forCellWithReuseIdentifier: HistoryCell.identifier)
+        if isWorkView {
+            applyCategorySnapshot()
+        } else {
+            let asDate = extractDate(networkManager.roomData!.endDate, networkManager.roomData!.warrantyTime)
+            asView.asDateLabel.text = asDate + ")"
+            asView.remainedDateLabel.text = extractRemainDate(asDate) + "일"
+        }
 
-        historyCollectionView.showsVerticalScrollIndicator = false
-        historyCollectionView.allowsMultipleSelection = true
+        applyPostSnapshot()
     }
 
     override func layout() {
-        view.addSubview(historyCollectionView)
-        historyCollectionView.snp.makeConstraints {
+        view.addSubview(postCollectionView)
+        postCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+
+        view.addSubview(topContainerView)
+        topContainerView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(categorySectionHeight)
+        }
+
+        if isWorkView {
+            topContainerView.addSubview(categoryCollectionView)
+            categoryCollectionView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        } else {
+            topContainerView.addSubview(asView)
+            asView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+
+            postCollectionView.contentInset.bottom = 90
+        }
+
+        postCollectionView.contentInset.top = categorySectionHeight + 16
 
         view.addSubview(microCopy)
         microCopy.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+
+        categoryCollectionView.selectItem(at: [0, 0], animated: true, scrollPosition: .init())
+        categoryCollectionView.backgroundColor = UIColor(white: 0, alpha: 0.05)
+    }
+
+    private func initializeCollectionView() {
+        categoryCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: categorySectionHeight), collectionViewLayout: createCollectionViewLayout(.category))
+        postCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCollectionViewLayout(.post))
+
+        categoryCollectionView.isScrollEnabled = false
+        categoryCollectionView.delegate = self
+        postCollectionView.delegate = self
+    }
+
+    private func extractRemainDate(_ asDateText: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        dateFormatter.timeZone = TimeZone(identifier: "KST")
+
+        guard let asDate = dateFormatter.date(from: "20" + asDateText) else { return "N/A" }
+
+        let interval = asDate.timeIntervalSince(Date())
+        let days = String(Int(interval / 86400))
+
+        return days
     }
 }
 
-extension HistoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HistoryViewController {
 
-    // MARK: - Section
+    private func createCollectionViewLayout(_ collectionViewType: CollectionViewType) -> UICollectionViewLayout {
+        let sectionProvider = {
+            (sectionIndex: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }
+            let section: NSCollectionLayoutSection
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: - 5에 게시물 데이터 갯수 반영
+            if collectionViewType == .category {
+                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth/6 - 1),
+                                                      heightDimension: .absolute(self.screenWidth/6 - 1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: -0.5, trailing: -0.5)
 
-        if section == 0 {
-            return isWorkView ? 12 : 1
-        }
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .estimated(self.screenWidth/6))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               repeatingSubitem: item, count: 6)
 
-        return 2
-    }
+                section = NSCollectionLayoutSection(group: group)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 2.5, bottom: 0, trailing: 0)
+            } else {
+                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth),
+                                                      heightDimension: .absolute(self.screenWidth/4*3))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
 
-    // MARK: - Header
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .estimated(self.screenWidth/4*3))
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
-            return CGSize.zero
-        }
-        return CGSize(width: screenWidth, height: 40)
-    }
+                section = NSCollectionLayoutSection(group: group)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        var header = UICollectionReusableView()
-
-        if indexPath.section > 0 {
-            header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PostDateHeader.identifier, for: indexPath) as! PostDateHeader
-            // TODO: - 날짜 데이터 반영
-        }
-
-        return header
-    }
-
-    // MARK: - Cell
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section != 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCell.identifier, for: indexPath) as! HistoryCell
-            // TODO: - 게시물 데이터 반영
-            return cell
-        } else if isWorkView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCell.identifier, for: indexPath) as! ProgressCell
-            // TODO: - 서버에서 가져온 값으로 카테고리 이름 및 진행률 변경
-            cell.progress = CGFloat((indexPath.item % 11) * 10)
-            cell.categoryName.text = "안방"
-
-            if indexPath.item == 0 && isFirstVisit {
-                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
-                isFirstVisit.toggle()
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                        heightDimension: .estimated(1))
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                                elementKind: HistoryViewController.sectionHeaderElementKind,
+                                                                                alignment: .top)
+                section.boundarySupplementaryItems = [sectionHeader]
             }
 
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ASCell.identifier, for: indexPath) as! ASCell
-            return cell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return isWorkView ? CGSize(width: screenWidth/6, height: screenWidth/6) : CGSize(width: screenWidth, height: 180)
+            return section
         }
 
-        return CGSize(width: screenWidth - 32, height: screenWidth / 4 * 3)
+        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if isWorkView && section == 0 {
-            return 0
+    private func configurePostSection() {
+        switch isWorkView {
+        case true:
+            if selectedCategoryID == 1 {
+                for post in networkManager.roomData!.posts!.filter({ $0.category?.name != "문의" }) {
+                    postSections.insert(extractDate(post.createDate))
+                }
+            } else {
+                for post in networkManager.roomData!.posts!.filter({ $0.category?.categoryID == selectedCategoryID }) {
+                    postSections.insert(extractDate(post.createDate))
+                }
+            }
+        case false:
+            for post in networkManager.roomData!.posts!.filter({ $0.category?.name == "문의" }) {
+                postSections.insert(extractDate(post.createDate))
+            }
         }
-        return 20
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    private func configureDataSource() {
+        let categoryCellRegistration = UICollectionView.CellRegistration<ProgressCell, Category> {
+            (cell, indexPath, item) in
+            if indexPath.item == 0 {
+                cell.categoryName.text = "전체"
+                cell.progress = self.networkManager.roomData!.categories!.filter({ $0.name != "문의" }).map({ Double($0.progress!)! }).reduce(0, +) / Double(self.networkManager.roomData!.categories!.filter({ $0.name != "문의" }).count)
+            } else {
+                cell.categoryName.text = item.name
+                cell.progress = Double(item.progress!)!
+            }
+        }
+
+        let postCellRegistration = UICollectionView.CellRegistration<HistoryCell, Post> {
+            (cell, indexPath, item) in
+            if self.isWorkView && self.selectedCategoryID == 1 {
+                cell.chipLabel.text = item.category?.name
+                cell.chipFrame.isHidden = false
+            } else {
+                cell.chipFrame.isHidden = true
+            }
+            cell.postDescription.text = item.description
+
+            AF.request(item.photos[0].url).response{ response in
+                switch response.result {
+                case .success(let responseData):
+                    cell.postImage.image = UIImage(data: responseData!)
+                case .failure(let error):
+                    print("에러 발생: \(error)")
+                }
+            }
+        }
+
+        let postDateHeaderRegistration = UICollectionView.SupplementaryRegistration<PostDateHeader>(elementKind: HistoryViewController.sectionHeaderElementKind) {
+            (header, kind, indexPath) in
+            header.postingDate.text = self.postSections.sorted().reversed()[indexPath.section]
+        }
+
+        categoryDataSource = UICollectionViewDiffableDataSource<String, Category>(collectionView: categoryCollectionView) {
+            (collectionView, indexPath, item) in
+            return collectionView.dequeueConfiguredReusableCell(using: categoryCellRegistration, for: indexPath, item: item)
+        }
+
+        postDataSource = UICollectionViewDiffableDataSource<String, Post>(collectionView: postCollectionView) {
+            (collectionView, indexPath, item) in
+            return collectionView.dequeueConfiguredReusableCell(using: postCellRegistration, for: indexPath, item: item)
+        }
+
+        postDataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+            return collectionView.dequeueConfiguredReusableSupplementary(using: postDateHeaderRegistration, for: indexPath)
+        }
     }
+
+    private func applyCategorySnapshot() {
+        var snapshot = categoryDataSource.snapshot()
+        snapshot.appendSections(["categories"])
+        snapshot.appendItems(networkManager.roomData!.categories!)
+
+        categoryDataSource.apply(snapshot)
+    }
+
+    private func applyPostSnapshot() {
+        var snapshot = postDataSource.snapshot()
+        snapshot.deleteSections(Array(postSections))
+        postSections = []
+
+        configurePostSection()
+
+        snapshot.appendSections(postSections.sorted().reversed())
+
+        switch isWorkView {
+        case true:
+            if selectedCategoryID == 1 {
+                for item in networkManager.roomData!.posts!.filter({ $0.category!.name != "문의" }).reversed() {
+                    snapshot.appendItems([item], toSection: extractDate(item.createDate))
+                }
+            } else {
+                for item in networkManager.roomData!.posts!.filter({ $0.category!.categoryID == selectedCategoryID }).reversed() {
+                    snapshot.appendItems([item], toSection: extractDate(item.createDate))
+                }
+            }
+        case false:
+            for item in networkManager.roomData!.posts!.filter({ $0.category?.name == "문의" }).reversed() {
+                snapshot.appendItems([item], toSection: extractDate(item.createDate))
+            }
+        }
+
+        snapshot.reloadSections(postSections.sorted().reversed())
+        postDataSource.applySnapshotUsingReloadData(snapshot)
+    }
+}
+
+extension HistoryViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        (historyCollectionView.indexPathsForSelectedItems ?? [])
-            .filter { $0.section == indexPath.section && $0.item != indexPath.item }
-            .forEach { self.historyCollectionView.deselectItem(at: $0, animated: false) }
+        if collectionView == categoryCollectionView &&
+            selectedCategoryID != networkManager.roomData!.categories![indexPath.item].categoryID {
+            selectedCategoryID = networkManager.roomData!.categories![indexPath.item].categoryID
+
+            applyPostSnapshot()
+        } else {
+            print("현재 클릭된 부분은 게시물의 \(indexPath)입니다.")
+        }
     }
 
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if (historyCollectionView.indexPathsForSelectedItems ?? []).filter({ $0.section == 0 }).isEmpty {
-            historyCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+
+        UIView.animate(withDuration: 0.5) {
+            if currentOffset > -self.categorySectionHeight {
+                self.topContainerView.alpha = 0
+            } else {
+                self.topContainerView.alpha = 1
+            }
         }
     }
 }

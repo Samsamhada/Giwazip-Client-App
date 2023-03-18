@@ -12,7 +12,8 @@ class BaseViewController: UIViewController {
     // MARK: - Life Cycle
 
     let screenWidth = UIScreen.main.bounds.width
-    
+    let networkManager = NetworkManager.shared
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,4 +37,16 @@ class BaseViewController: UIViewController {
     }
 
     func layout() {}
+
+    func extractDate(_ originDate: String, _ asPeriod: Int = 0) -> String {
+        let startIndex = originDate.index(originDate.startIndex, offsetBy: 2)
+        let endIndex = originDate.index(originDate.startIndex, offsetBy: 10)
+
+        var date = originDate[startIndex..<endIndex].split(separator: "-").map { String($0) }
+        date[0] = String(format: "%02d", Int(date[0])! + asPeriod / 12 % 100)
+        date[1] = String(format: "%02d", (Int(date[1])! - 1 + asPeriod) % 12 + 1)
+
+        let newFormatDate = "\(date[0]).\(date[1]).\(date[2])"
+        return newFormatDate
+    }
 }

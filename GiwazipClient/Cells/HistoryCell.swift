@@ -17,15 +17,14 @@ class HistoryCell: UICollectionViewCell {
     
     // MARK: - View
     
-    private let chipFrame: UIView = {
+    let chipFrame: UIView = {
         $0.backgroundColor = UIColor(white: 1, alpha: 0.8)
         $0.layer.cornerRadius = 16
-        $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.borderWidth = 2
         return $0
     }(UIView())
     
-    private let chipLabel: UILabel = {
+    let chipLabel: UILabel = {
         $0.text = "카테고리"
         $0.textColor = .black
         $0.textAlignment = .center
@@ -33,9 +32,9 @@ class HistoryCell: UICollectionViewCell {
         return $0
     }(UILabel())
     
-    private let postImage: UIImageView = {
-        $0.image = UIImage(systemName: "gearshape")
-        $0.backgroundColor = .green
+    let postImage: UIImageView = {
+        $0.image = UIImage()
+        $0.backgroundColor = UIColor(white: 0, alpha: 0.05)
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 16
         return $0
@@ -46,7 +45,7 @@ class HistoryCell: UICollectionViewCell {
         return $0
     }(UIView())
     
-    private let postDescription: UILabel = {
+    let postDescription: UILabel = {
         $0.text = "TEST용TEXT TEST용TEXT TEST용TEXT TEST용TEXT TEST용TEXT TEST용TEXT TEST용TEXT TEST용TEXT"
         $0.textColor = .white
         $0.textAlignment = .left

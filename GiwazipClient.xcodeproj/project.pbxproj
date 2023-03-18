@@ -10,10 +10,8 @@
 		1188A3CAA0A6EB2492825704 /* Pods_GiwazipClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9E9D50A6FF93FD2448F82AE /* Pods_GiwazipClient.framework */; };
 		260A63CA29710725004034AD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63C929710725004034AD /* Models.swift */; };
 		260A63D429710784004034AD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D329710784004034AD /* ViewModel.swift */; };
-		260A63D8297107AA004034AD /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D7297107AA004034AD /* Cell.swift */; };
 		260A63DA297107B8004034AD /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63D9297107B8004034AD /* Service.swift */; };
 		260A63DC297107C3004034AD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63DB297107C3004034AD /* BaseViewController.swift */; };
-		260A63DE297107E4004034AD /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63DD297107E4004034AD /* Extension+.swift */; };
 		260A63E029710834004034AD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63DF29710834004034AD /* AppCoordinator.swift */; };
 		260A63E229710846004034AD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E129710846004034AD /* MainCoordinator.swift */; };
 		260A63E429710A45004034AD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63E329710A45004034AD /* MainViewController.swift */; };
@@ -23,6 +21,7 @@
 		260A63F22975E01F004034AD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A63F12975E01F004034AD /* SplashViewController.swift */; };
 		2614F24F2997DA1C0051EE51 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2614F24E2997DA1C0051EE51 /* ProgressCell.swift */; };
 		2614F251299802BE0051EE51 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2614F250299802BE0051EE51 /* WaveView.swift */; };
+		2677F63429BFB57D0081FC90 /* ASView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677F63329BFB57D0081FC90 /* ASView.swift */; };
 		26AC1B3529B3D57F00BFF78A /* SettingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */; };
 		26AC1B3729B3DF4800BFF78A /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC1B3629B3DF4800BFF78A /* ImageLiteral.swift */; };
 		26AC1B3D29B4A91800BFF78A /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC1B3C29B4A91800BFF78A /* NoticeViewController.swift */; };
@@ -30,7 +29,6 @@
 		26B7B11E29A3A2C900D3C3F7 /* ColorLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */; };
 		26B7B13A29A68FD600D3C3F7 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7B13929A68FD600D3C3F7 /* DeveloperViewController.swift */; };
 		26B85B41299C61850039C14A /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B40299C61850039C14A /* SettingViewController.swift */; };
-		432511542988140700F08BD2 /* ASCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432511532988140700F08BD2 /* ASCell.swift */; };
 		437102302989312400EF992D /* PostingTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371022F2989312400EF992D /* PostingTextViewController.swift */; };
 		438BF0432977CA28005E4CF3 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438BF0422977CA28005E4CF3 /* EnterViewController.swift */; };
 		438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E5B29297982E300FD947E /* HideKeyboard+.swift */; };
@@ -43,10 +41,9 @@
 		9839F371298B5BD00058639F /* PostingPhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */; };
 		98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */; };
 		98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */; };
-		9878A31F29B4E1EF0041664E /* LineDashPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern.swift */; };
+		9878A31F29B4E1EF0041664E /* LineDashPattern+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */; };
 		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
 		988C56D42976D3BA00018F07 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D32976D3BA00018F07 /* HistoryCell.swift */; };
-		988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D7297777E500018F07 /* ProgressHeader.swift */; };
 		988C56DA29779D2A00018F07 /* PostDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56D929779D2A00018F07 /* PostDateHeader.swift */; };
 		988C56DC2978349D00018F07 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56DB2978349D00018F07 /* HistoryViewController.swift */; };
 		98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D44B712941DD4B00386AA4 /* AppDelegate.swift */; };
@@ -60,10 +57,8 @@
 /* Begin PBXFileReference section */
 		260A63C929710725004034AD /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		260A63D329710784004034AD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		260A63D7297107AA004034AD /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		260A63D9297107B8004034AD /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		260A63DB297107C3004034AD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		260A63DD297107E4004034AD /* Extension+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+.swift"; sourceTree = "<group>"; };
 		260A63DF29710834004034AD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		260A63E129710846004034AD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		260A63E329710A45004034AD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +69,7 @@
 		260A63F12975E01F004034AD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2614F24E2997DA1C0051EE51 /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		2614F250299802BE0051EE51 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
+		2677F63329BFB57D0081FC90 /* ASView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASView.swift; sourceTree = "<group>"; };
 		26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooter.swift; sourceTree = "<group>"; };
 		26AC1B3629B3DF4800BFF78A /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
 		26AC1B3C29B4A91800BFF78A /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +77,6 @@
 		26B7B11D29A3A2C900D3C3F7 /* ColorLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiteral.swift; sourceTree = "<group>"; };
 		26B7B13929A68FD600D3C3F7 /* DeveloperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
 		26B85B40299C61850039C14A /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		432511532988140700F08BD2 /* ASCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCell.swift; sourceTree = "<group>"; };
 		4371022F2989312400EF992D /* PostingTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingTextViewController.swift; sourceTree = "<group>"; };
 		438BF0422977CA28005E4CF3 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		438E5B29297982E300FD947E /* HideKeyboard+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HideKeyboard+.swift"; sourceTree = "<group>"; };
@@ -95,10 +90,9 @@
 		9839F370298B5BD00058639F /* PostingPhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCoordinator.swift; sourceTree = "<group>"; };
 		98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoViewController.swift; sourceTree = "<group>"; };
 		98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCell.swift; sourceTree = "<group>"; };
-		9878A31E29B4E1EF0041664E /* LineDashPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineDashPattern.swift; sourceTree = "<group>"; };
+		9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineDashPattern+.swift"; sourceTree = "<group>"; };
 		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		988C56D32976D3BA00018F07 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
-		988C56D7297777E500018F07 /* ProgressHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHeader.swift; sourceTree = "<group>"; };
 		988C56D929779D2A00018F07 /* PostDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDateHeader.swift; sourceTree = "<group>"; };
 		988C56DB2978349D00018F07 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		98D44B6E2941DD4B00386AA4 /* GiwazipClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiwazipClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,16 +174,12 @@
 		260A63CE29710756004034AD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				260A63D7297107AA004034AD /* Cell.swift */,
-				432511532988140700F08BD2 /* ASCell.swift */,
 				988C56D32976D3BA00018F07 /* HistoryCell.swift */,
 				98F52B832982BA28002C1303 /* PostCell.swift */,
 				988C56D929779D2A00018F07 /* PostDateHeader.swift */,
 				98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */,
 				2614F24E2997DA1C0051EE51 /* ProgressCell.swift */,
-				988C56D7297777E500018F07 /* ProgressHeader.swift */,
 				26AC1B3429B3D57F00BFF78A /* SettingFooter.swift */,
-				2614F250299802BE0051EE51 /* WaveView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -224,11 +214,19 @@
 			isa = PBXGroup;
 			children = (
 				43E1F564297A16CD000A13D4 /* Alert+.swift */,
-				9878A31E29B4E1EF0041664E /* LineDashPattern.swift */,
-				260A63DD297107E4004034AD /* Extension+.swift */,
+				9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */,
 				438E5B29297982E300FD947E /* HideKeyboard+.swift */,
 			);
 			path = "Extensions+";
+			sourceTree = "<group>";
+		};
+		2677F63529C008420081FC90 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				2677F63329BFB57D0081FC90 /* ASView.swift */,
+				2614F250299802BE0051EE51 /* WaveView.swift */,
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		26B7B11A29A3A29C00D3C3F7 /* Literals */ = {
@@ -274,6 +272,7 @@
 				98D44B732941DD4B00386AA4 /* SceneDelegate.swift */,
 				260A63C829710707004034AD /* Models */,
 				260A63CB29710730004034AD /* Views */,
+				2677F63529C008420081FC90 /* UIComponents */,
 				260A63CC29710741004034AD /* ViewModels */,
 				260A63CD2971074B004034AD /* Coordinators */,
 				260A63CE29710756004034AD /* Cells */,
@@ -414,7 +413,6 @@
 				260A63D429710784004034AD /* ViewModel.swift in Sources */,
 				26AC1B3529B3D57F00BFF78A /* SettingFooter.swift in Sources */,
 				98197C0E29A264CA008C4C55 /* NetworkResult.swift in Sources */,
-				260A63DE297107E4004034AD /* Extension+.swift in Sources */,
 				988C56DC2978349D00018F07 /* HistoryViewController.swift in Sources */,
 				988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */,
 				437102302989312400EF992D /* PostingTextViewController.swift in Sources */,
@@ -425,7 +423,6 @@
 				2614F24F2997DA1C0051EE51 /* ProgressCell.swift in Sources */,
 				438BF0432977CA28005E4CF3 /* EnterViewController.swift in Sources */,
 				988C56D42976D3BA00018F07 /* HistoryCell.swift in Sources */,
-				260A63D8297107AA004034AD /* Cell.swift in Sources */,
 				26AC1B3D29B4A91800BFF78A /* NoticeViewController.swift in Sources */,
 				260A63E629710A5C004034AD /* SubViewController.swift in Sources */,
 				43997B052981367200C5A163 /* PostImageViewController.swift in Sources */,
@@ -440,18 +437,17 @@
 				260A63F22975E01F004034AD /* SplashViewController.swift in Sources */,
 				438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */,
 				260A63EA29711307004034AD /* BaseCoordinator.swift in Sources */,
+				2677F63429BFB57D0081FC90 /* ASView.swift in Sources */,
 				98F52B842982BA28002C1303 /* PostCell.swift in Sources */,
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
-				988C56D8297777E500018F07 /* ProgressHeader.swift in Sources */,
 				26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */,
-				9878A31F29B4E1EF0041664E /* LineDashPattern.swift in Sources */,
+				9878A31F29B4E1EF0041664E /* LineDashPattern+.swift in Sources */,
 				9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */,
 				26B85B41299C61850039C14A /* SettingViewController.swift in Sources */,
 				43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */,
 				98D44B742941DD4B00386AA4 /* SceneDelegate.swift in Sources */,
 				260A63CA29710725004034AD /* Models.swift in Sources */,
 				988C56DA29779D2A00018F07 /* PostDateHeader.swift in Sources */,
-				432511542988140700F08BD2 /* ASCell.swift in Sources */,
 				260A63DC297107C3004034AD /* BaseViewController.swift in Sources */,
 				98F52B822982B476002C1303 /* PostViewController.swift in Sources */,
 			);
