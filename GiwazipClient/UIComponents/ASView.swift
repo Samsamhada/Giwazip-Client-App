@@ -29,7 +29,7 @@ final class ASView: UIView {
         return $0
     }(UILabel())
 
-    let remainDateContainer = UIView()
+    let remainedDateContainer = UIView()
 
     let remainedDateLabel: UILabel = {
         $0.text = "000일"
@@ -75,17 +75,17 @@ final class ASView: UIView {
             $0.left.equalTo(asTitleLabel.snp.right)
         }
 
-        addSubview(remainDateContainer)
-        remainDateContainer.snp.makeConstraints {
+        addSubview(remainedDateContainer)
+        remainedDateContainer.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
 
-        remainDateContainer.addSubview(remainedDateLabel)
+        remainedDateContainer.addSubview(remainedDateLabel)
         remainedDateLabel.snp.makeConstraints {
             $0.left.verticalEdges.equalToSuperview()
         }
 
-        remainDateContainer.addSubview(remainedTextLabel)
+        remainedDateContainer.addSubview(remainedTextLabel)
         remainedTextLabel.snp.makeConstraints {
             $0.left.equalTo(remainedDateLabel.snp.right).offset(10)
             $0.right.verticalEdges.equalToSuperview()
