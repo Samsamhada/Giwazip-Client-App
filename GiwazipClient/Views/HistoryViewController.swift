@@ -146,10 +146,10 @@ extension HistoryViewController {
             let section: NSCollectionLayoutSection
 
             if collectionViewType == .category {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth / 6),
-                                                      heightDimension: .absolute(self.screenWidth / 6))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth/6 - 1),
+                                                      heightDimension: .absolute(self.screenWidth/6 - 1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: -0.5, trailing: -0.5)
 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                        heightDimension: .estimated(self.screenWidth/6))
@@ -157,7 +157,7 @@ extension HistoryViewController {
                                                                repeatingSubitem: item, count: 6)
 
                 section = NSCollectionLayoutSection(group: group)
-                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 2.5, bottom: 0, trailing: 0)
             } else {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(self.screenWidth),
                                                       heightDimension: .absolute(self.screenWidth/4*3))
