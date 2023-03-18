@@ -9,20 +9,22 @@ import UIKit
 
 import SnapKit
 
-protocol PostingTextViewControllerDelegate {
-    func popToPostingPhotoView()
-    func dismissPostingView()
+protocol EditingTextViewControllerDelegate {
+    func dismissPostingTextView()
+    func dismissEditingTextView()
 }
 
 class PostingTextViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: PostingTextViewControllerDelegate?
+    var delegate: EditingTextViewControllerDelegate?
     
     private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
     private let viewModel = NetworkManager.shared
     var imageDatas: [Data] = []
+    
+    var isEditView = false
     
     // MARK: - View
     
@@ -34,7 +36,7 @@ class PostingTextViewController: BaseViewController {
         return $0
     }(UILabel())
     
-    private lazy var textView : UITextView = {
+    lazy var textView : UITextView = {
         $0.text = textViewPlaceHolder
         $0.textColor = .white
         $0.backgroundColor = .lightGray
@@ -55,7 +57,7 @@ class PostingTextViewController: BaseViewController {
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
         $0.isEnabled = false
-        $0.addTarget(self, action: #selector(tapInquiryButton), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(didTapInquiryButton), for: .touchUpInside)
         return $0
     }(UIButton())
     
@@ -86,20 +88,23 @@ class PostingTextViewController: BaseViewController {
         super.attribute()
         
         navigationItem.title = TextLiteral.postingTextViewNavigationTitle
-        navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+
+        if isEditView {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(didTapCancelButton))
+        }
         
         setupNotificationCenter()
     }
     
     // MARK: - Button
-
-    @objc func didTapBackButton() {
-        delegate?.popToPostingPhotoView()
+    
+    @objc func didTapCancelButton() {
+        delegate?.dismissEditingTextView()
     }
     
-    @objc func tapInquiryButton() {
+    @objc func didTapInquiryButton() {
         viewModel.uploadPostData(description: textView.text, files: imageDatas)
-        delegate?.dismissPostingView()
+        delegate?.dismissPostingTextView()
     }
     
     // MARK: - Keyboard Setting
