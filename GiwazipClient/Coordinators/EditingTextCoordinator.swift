@@ -28,7 +28,7 @@ class EditingTextCoordinator: BaseCoordinator, EditingTextViewControllerDelegate
         rootViewController = UINavigationController(rootViewController: postingTextViewController)
         rootViewController.modalPresentationStyle = .fullScreen
 
-        self.navigationController.present(rootViewController, animated: true)
+        navigationController.present(rootViewController, animated: true)
     }
     
     func dismissPostingTextView() {
