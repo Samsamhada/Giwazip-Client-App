@@ -621,7 +621,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UDCS6NMGF8;
+				DEVELOPMENT_TEAM = N6LML762WM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GiwazipClient/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "짓다";
@@ -657,7 +657,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UDCS6NMGF8;
+				DEVELOPMENT_TEAM = N6LML762WM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GiwazipClient/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "짓다";

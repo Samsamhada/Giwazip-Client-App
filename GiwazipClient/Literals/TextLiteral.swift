@@ -105,6 +105,9 @@ enum TextLiteral {
                                          
                                          """
 
+    static let workEndingTitle = "시공을 마감하시겠습니까?"
+    static let workEndingMessage = "재접속 시 전화번호 및 초대코드를 다시 입력해야합니다."
+
     // MARK: - DeveloperView
 
     static let meenuNickname = "미뉴"

@@ -17,7 +17,7 @@ class SplashCoordinator: BaseCoordinator, SplashViewControllerDelegate {
         let splashViewController = SplashViewController()
         splashViewController.delegate = self
 
-        navigationController.pushViewController(splashViewController, animated: true)
+        navigationController.viewControllers = [splashViewController]
     }
     
     func pushToEnterViewController() {

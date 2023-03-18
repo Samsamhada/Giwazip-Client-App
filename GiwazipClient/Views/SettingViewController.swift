@@ -18,6 +18,7 @@ protocol SettingViewControllerDelegate {
     func pushToNoticeViewController()
     func pushToDeveloperViewController()
     func pushToLicenseViewController()
+    func showSplashViewController()
     func popToSegmentViewController()
 }
 
@@ -171,8 +172,10 @@ extension SettingViewController: UICollectionViewDelegate {
             // TODO: - 버전 정보
             break
         case (2, 0):
-            // TODO: - 시공 마감하기
-            break
+            makeAlert(title: TextLiteral.workEndingTitle,
+                      message: TextLiteral.workEndingMessage) { _ in
+                self.delegate?.showSplashViewController()
+            }
         default:
             break
         }

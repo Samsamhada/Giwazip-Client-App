@@ -27,7 +27,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
 
     // MARK: - ShowVC Method
 
-    private func showSplashViewController() {
+    func showSplashViewController() {
         let coordinator = SplashCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()

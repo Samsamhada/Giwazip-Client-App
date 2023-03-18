@@ -10,6 +10,7 @@ protocol SettingCoordinatorDelegate {
     func pushToNoticeViewController()
     func pushToDeveloperViewController()
     func pushToLicenseViewController()
+    func showSplashViewController()
     func popToViewController()
 }
 
@@ -46,5 +47,9 @@ class SettingCoordinator: BaseCoordinator, SettingViewControllerDelegate {
     
     func pushToLicenseViewController() {
         delegate?.pushToLicenseViewController()
+    }
+    
+    func showSplashViewController() {
+        delegate?.showSplashViewController()
     }
 }
