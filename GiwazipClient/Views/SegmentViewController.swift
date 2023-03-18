@@ -89,7 +89,7 @@ class SegmentViewController: BaseViewController {
         $0.configuration?.background.backgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
-        $0.addTarget(self, action: #selector(showPostingPhotoViewController), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(didTapInquiryButton), for: .touchUpInside)
         $0.isEnabled = false
         return $0
     }(UIButton(configuration: buttonConfiguration))
@@ -115,7 +115,7 @@ class SegmentViewController: BaseViewController {
             image: UIImage(systemName: "gearshape"),
             style: .plain,
             target: self,
-            action: #selector(showSettingViewController)
+            action: #selector(didTapSettingButton)
         )
         rightBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -215,11 +215,11 @@ class SegmentViewController: BaseViewController {
     
     // MARK: - ShowViewController
 
-    @objc func showPostingPhotoViewController() {
+    @objc func didTapInquiryButton() {
         delegate?.presentPostingPhotoViewController()
     }
     
-    @objc func showSettingViewController() {
+    @objc func didTapSettingButton() {
         delegate?.pushToSettingViewController()
     }
 }
