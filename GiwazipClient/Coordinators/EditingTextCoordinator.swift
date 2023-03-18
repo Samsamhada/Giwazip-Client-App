@@ -5,7 +5,6 @@
 //  Created by 지준용 on 2023/03/16.
 //
 
-import Foundation
 import UIKit
 
 protocol EditingTextCoordinatorDelegate {
