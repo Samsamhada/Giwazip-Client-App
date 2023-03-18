@@ -28,7 +28,7 @@ class PostingPhotoViewController: BaseViewController {
     private var selectedIndex = 0
     
     private let emptyImage = UIImage()
-    private var imageDatas: [Data] = []
+    var imageDatas: [Data] = []
     private lazy var images: [UIImage] = [emptyImage] {
         didSet {
             nextButton.isEnabled = (images.count > 1) ? true : false
