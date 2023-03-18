@@ -37,7 +37,7 @@
 		9839F371298B5BD00058639F /* PostingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingCoordinator.swift */; };
 		98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */; };
 		98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */; };
-		9878A31E29B4E1EF0041664E /* LineDashPattern+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */; };
+		9878A31F29B4E1EF0041664E /* LineDashPattern+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */; }; 
 		9859984E29C0536300B21BD7 /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859984D29C0536300B21BD7 /* SettingCoordinator.swift */; };
 		9859985029C05B1C00B21BD7 /* NoticeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859984F29C05B1C00B21BD7 /* NoticeCoordinator.swift */; };
 		9859985229C0AC4C00B21BD7 /* UIBackBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985129C0AC4C00B21BD7 /* UIBackBarButton.swift */; };
@@ -93,7 +93,7 @@
 		9839F370298B5BD00058639F /* PostingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCoordinator.swift; sourceTree = "<group>"; };
 		98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoViewController.swift; sourceTree = "<group>"; };
 		98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCell.swift; sourceTree = "<group>"; };
-		9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineDashPattern+.swift"; sourceTree = "<group>"; };
+		9878A31F29B4E1EF0041664E /* LineDashPattern+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineDashPattern+.swift"; sourceTree = "<group>"; };
 		9859984D29C0536300B21BD7 /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		9859984F29C05B1C00B21BD7 /* NoticeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCoordinator.swift; sourceTree = "<group>"; };
 		9859985129C0AC4C00B21BD7 /* UIBackBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBackBarButton.swift; sourceTree = "<group>"; };
