@@ -8,20 +8,21 @@
 class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinatorDelegate,
                       SegmentCoordinatorDelegate, PostCoordinatorDelegate,
                       PostImageCoordinatorDelegate,SettingCoordinatorDelegate,
-                      SettingContentCoordinatorDelegate, PostingPhotoCoordinatorDelegate {
+                      SettingContentCoordinatorDelegate, PostingPhotoCoordinatorDelegate,
+                      EditingTextCoordinatorDelegate{
 
     var isLoggedIn = true
 
     // MARK: - Method
 
     override func start() {
-//        if isLoggedIn {
-//        showPostViewController()
-        showSegmentViewController()
+        if isLoggedIn {
+            showSplashViewController()
+//            showSegmentViewController()
 //            showPostViewController()
-//        } else {
-//            showMainViewController()
-//        }
+        } else {
+            showSegmentViewController()
+        }
     }
 
     // MARK: - ShowVC Method
@@ -52,6 +53,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
     
     func presentEnterView() {
         let coordinator = EnterCoordinator(navigationController: navigationController)
+        coordinator.enterViewController.isEnterView = true
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
@@ -86,7 +88,8 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
     }
     
     func presentEditingView() {
-        let coordinator = PostingTextCoordinator(navigationController: navigationController)
+        let coordinator = EditingTextCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
@@ -100,6 +103,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
     
     func presentClientInfoView() {
         let coordinator = EnterCoordinator(navigationController: navigationController)
+        coordinator.enterViewController.isEnterView = false
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
@@ -146,6 +150,16 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
     // MARK: - Dismiss
 
     func dismissPostingView() {
+        self.childCoordinators.removeLast()
+        navigationController.dismiss(animated: true)
+    }
+    
+    func dismissPostingTextView() {
+        self.childCoordinators.removeLast()
+        navigationController.dismiss(animated: true)
+    }
+    
+    func dismissEditingTextView() {
         self.childCoordinators.removeLast()
         navigationController.dismiss(animated: true)
     }

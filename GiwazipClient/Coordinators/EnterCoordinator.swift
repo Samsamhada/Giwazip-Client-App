@@ -7,15 +7,15 @@
 
 protocol EnterCoordinatorDelegate {
     func presentSegmentView()
+    func popToSettingView()
 }
 
 class EnterCoordinator: BaseCoordinator, EnterViewControllerDelegate, SettingContentDelegate {
     
     var delegate: EnterCoordinatorDelegate?
-    var settingDelegate: SettingContentCoordinatorDelegate?
+    private let enterViewController = EnterViewController()
     
     override func start() {
-        let enterViewController = EnterViewController()
         enterViewController.delegate = self
 
         navigationController.pushViewController(enterViewController, animated: true)
@@ -26,7 +26,6 @@ class EnterCoordinator: BaseCoordinator, EnterViewControllerDelegate, SettingCon
     }
     
     func popToSettingView() {
-        settingDelegate?.popToSettingView()
+        delegate?.popToSettingView()
     }
-    
 }

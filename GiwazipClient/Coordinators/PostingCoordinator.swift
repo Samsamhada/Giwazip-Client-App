@@ -7,18 +7,17 @@
 
 import UIKit
 
-import UIKit
-
 protocol PostingPhotoCoordinatorDelegate {
     func dismissPostingView()
 }
 
-class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate, PostingTextViewControllerDelegate {
-    
+class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate {
+
     var delegate: PostingPhotoCoordinatorDelegate?
+    private let postingPhotoViewController = PostingPhotoViewController()
+    private let postingTextViewController = PostingTextViewController()
     
     override func start() {
-        let postingPhotoViewController = PostingPhotoViewController()
         postingPhotoViewController.delegate = self
 
         rootViewController = UINavigationController(rootViewController: postingPhotoViewController)
@@ -28,16 +27,12 @@ class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate, P
     }
 
     func presentPostingTextView() {
-        let postingTextViewController = PostingTextViewController()
-        postingTextViewController.delegate = self
-
+        postingTextViewController.isEditView = false
+        postingTextViewController.imageDatas = postingPhotoViewController.imageDatas
+        
         rootViewController.pushViewController(postingTextViewController, animated: true)
     }
-    
-    func popToPostingPhotoView() {
-        rootViewController.popViewController(animated: true)
-    }
-    
+
     func dismissPostingView() {
         delegate?.dismissPostingView()
     }
