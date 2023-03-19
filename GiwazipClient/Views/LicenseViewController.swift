@@ -16,6 +16,7 @@ class LicenseViewController: BaseViewController {
     // MARK: - Method
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
     }
     
