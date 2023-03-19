@@ -30,6 +30,7 @@
 		438E5B2A297982E300FD947E /* HideKeyboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E5B29297982E300FD947E /* HideKeyboard+.swift */; };
 		43997B052981367200C5A163 /* PostImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43997B042981367200C5A163 /* PostImageViewController.swift */; };
 		43E1F565297A16CD000A13D4 /* Alert+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E1F564297A16CD000A13D4 /* Alert+.swift */; };
+		98010A9129C6D0A300E2B9A1 /* LineDashPattern+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98010A9029C6D0A300E2B9A1 /* LineDashPattern+.swift */; };
 		98197C0C29A264AC008C4C55 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0B29A264AC008C4C55 /* APIEnvironment.swift */; };
 		98197C0E29A264CA008C4C55 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0D29A264CA008C4C55 /* NetworkResult.swift */; };
 		98197C1029A26562008C4C55 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98197C0F29A26562008C4C55 /* NetworkManager.swift */; };
@@ -37,7 +38,6 @@
 		9839F371298B5BD00058639F /* PostingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839F370298B5BD00058639F /* PostingCoordinator.swift */; };
 		98419D74297C0554005E0EF6 /* PostingPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */; };
 		98419D76297C1BF9005E0EF6 /* PostingPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */; };
-		9878A31F29B4E1EF0041664E /* LineDashPattern+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */; }; 
 		9859984E29C0536300B21BD7 /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859984D29C0536300B21BD7 /* SettingCoordinator.swift */; };
 		9859985029C05B1C00B21BD7 /* NoticeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859984F29C05B1C00B21BD7 /* NoticeCoordinator.swift */; };
 		9859985229C0AC4C00B21BD7 /* UIBackBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985129C0AC4C00B21BD7 /* UIBackBarButton.swift */; };
@@ -47,6 +47,7 @@
 		9859985A29C0BFA000B21BD7 /* EnterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */; };
 		9859985C29C0C29F00B21BD7 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985B29C0C29F00B21BD7 /* SplashCoordinator.swift */; };
 		9859986229C22A0800B21BD7 /* EditingTextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859986129C22A0800B21BD7 /* EditingTextCoordinator.swift */; };
+		98738E1229C61F4300377B70 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98738E1129C61F4300377B70 /* HistoryCoordinator.swift */; };
 		9881559D29BC7CEB0049949A /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881559C29BC7CEB0049949A /* PostCoordinator.swift */; };
 		9881559F29BC845A0049949A /* PostImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881559E29BC845A0049949A /* PostImageCoordinator.swift */; };
 		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
@@ -86,6 +87,7 @@
 		43997B042981367200C5A163 /* PostImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageViewController.swift; sourceTree = "<group>"; };
 		43E1F564297A16CD000A13D4 /* Alert+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+.swift"; sourceTree = "<group>"; };
 		8F07A553ABFFB36AAAC61128 /* Pods-GiwazipClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiwazipClient.release.xcconfig"; path = "Target Support Files/Pods-GiwazipClient/Pods-GiwazipClient.release.xcconfig"; sourceTree = "<group>"; };
+		98010A9029C6D0A300E2B9A1 /* LineDashPattern+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineDashPattern+.swift"; sourceTree = "<group>"; };
 		98197C0B29A264AC008C4C55 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
 		98197C0D29A264CA008C4C55 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		98197C0F29A26562008C4C55 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -93,7 +95,6 @@
 		9839F370298B5BD00058639F /* PostingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCoordinator.swift; sourceTree = "<group>"; };
 		98419D73297C0554005E0EF6 /* PostingPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoViewController.swift; sourceTree = "<group>"; };
 		98419D75297C1BF9005E0EF6 /* PostingPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingPhotoCell.swift; sourceTree = "<group>"; };
-		9878A31F29B4E1EF0041664E /* LineDashPattern+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineDashPattern+.swift"; sourceTree = "<group>"; };
 		9859984D29C0536300B21BD7 /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		9859984F29C05B1C00B21BD7 /* NoticeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCoordinator.swift; sourceTree = "<group>"; };
 		9859985129C0AC4C00B21BD7 /* UIBackBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBackBarButton.swift; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 		9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinator.swift; sourceTree = "<group>"; };
 		9859985B29C0C29F00B21BD7 /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
 		9859986129C22A0800B21BD7 /* EditingTextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingTextCoordinator.swift; sourceTree = "<group>"; };
+		98738E1129C61F4300377B70 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		9881559C29BC7CEB0049949A /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
 		9881559E29BC845A0049949A /* PostImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageCoordinator.swift; sourceTree = "<group>"; };
 		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				9859985329C0B50D00B21BD7 /* DeveloperCoordinator.swift */,
 				9859986129C22A0800B21BD7 /* EditingTextCoordinator.swift */,
 				9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */,
+				98738E1129C61F4300377B70 /* HistoryCoordinator.swift */,
 				9859985729C0BBD700B21BD7 /* LicenseCoordinator.swift */,
 				9881559C29BC7CEB0049949A /* PostCoordinator.swift */,
 				9881559E29BC845A0049949A /* PostImageCoordinator.swift */,
@@ -234,8 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				43E1F564297A16CD000A13D4 /* Alert+.swift */,
-				9878A31E29B4E1EF0041664E /* LineDashPattern+.swift */,
 				438E5B29297982E300FD947E /* HideKeyboard+.swift */,
+				98010A9029C6D0A300E2B9A1 /* LineDashPattern+.swift */,
 				9859985129C0AC4C00B21BD7 /* UIBackBarButton.swift */,
 			);
 			path = "Extensions+";
@@ -433,6 +436,7 @@
 				260A63E029710834004034AD /* AppCoordinator.swift in Sources */,
 				260A63D429710784004034AD /* ViewModel.swift in Sources */,
 				26AC1B3529B3D57F00BFF78A /* SettingFooter.swift in Sources */,
+				98010A9129C6D0A300E2B9A1 /* LineDashPattern+.swift in Sources */,
 				9859984E29C0536300B21BD7 /* SettingCoordinator.swift in Sources */,
 				9859985029C05B1C00B21BD7 /* NoticeCoordinator.swift in Sources */,
 				98197C0E29A264CA008C4C55 /* NetworkResult.swift in Sources */,
@@ -466,8 +470,8 @@
 				9859985A29C0BFA000B21BD7 /* EnterCoordinator.swift in Sources */,
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */,
-				9878A31E29B4E1EF0041664E /* LineDashPattern+.swift in Sources */,
 				9859985829C0BBD700B21BD7 /* LicenseCoordinator.swift in Sources */,
+				98738E1229C61F4300377B70 /* HistoryCoordinator.swift in Sources */,
 				9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */,
 				9881559F29BC845A0049949A /* PostImageCoordinator.swift in Sources */,
 				26B85B41299C61850039C14A /* SettingViewController.swift in Sources */,
