@@ -22,6 +22,7 @@ class EnterCoordinator: BaseCoordinator, EnterViewControllerDelegate, SettingCon
     }
     
     func pushToSegmentViewController() {
+        navigationController.viewControllers.removeAll()
         delegate?.pushToSegmentViewController()
     }
     
