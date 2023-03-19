@@ -11,7 +11,11 @@ protocol SplashCoordinatorDelegate {
 
 class SplashCoordinator: BaseCoordinator, SplashViewControllerDelegate {
     
+    // MARK: - Property
+    
     var delegate: SplashCoordinatorDelegate?
+    
+    // MARK: - Method
     
     override func start() {
         let splashViewController = SplashViewController()

@@ -13,9 +13,13 @@ protocol PostingPhotoCoordinatorDelegate {
 
 class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate {
 
+    // MARK: - Property
+    
     var delegate: PostingPhotoCoordinatorDelegate?
     private let postingPhotoViewController = PostingPhotoViewController()
     private let postingTextViewController = PostingTextViewController()
+    
+    // MARK: - Method
     
     override func start() {
         postingPhotoViewController.delegate = self

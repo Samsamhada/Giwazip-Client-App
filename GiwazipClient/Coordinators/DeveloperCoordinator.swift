@@ -7,7 +7,11 @@
 
 class DeveloperCoordinator: BaseCoordinator, SettingContentDelegate {
 
+    // MARK: - Property
+    
     var delegate: SettingContentCoordinatorDelegate?
+    
+    // MARK: - Method
     
     override func start() {
         let developerViewController = DeveloperViewController()

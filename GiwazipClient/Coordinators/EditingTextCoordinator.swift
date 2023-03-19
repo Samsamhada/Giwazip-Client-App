@@ -13,8 +13,12 @@ protocol EditingTextCoordinatorDelegate {
 
 class EditingTextCoordinator: BaseCoordinator, EditingTextViewControllerDelegate {
 
+    // MARK: - Property
+    
     var delegate: EditingTextCoordinatorDelegate?
 
+    // MARK: - Method
+    
     override func start() {
         let postingTextViewController = PostingTextViewController()
         let postViewController = PostViewController()

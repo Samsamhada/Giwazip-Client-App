@@ -12,8 +12,12 @@ protocol EnterCoordinatorDelegate {
 
 class EnterCoordinator: BaseCoordinator, EnterViewControllerDelegate, SettingContentDelegate {
     
+    // MARK: - Property
+    
     var delegate: EnterCoordinatorDelegate?
     let enterViewController = EnterViewController()
+    
+    // MARK: - Method
     
     override func start() {
         enterViewController.delegate = self

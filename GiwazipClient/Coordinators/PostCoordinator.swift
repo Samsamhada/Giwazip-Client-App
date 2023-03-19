@@ -12,8 +12,12 @@ protocol PostCoordinatorDelegate {
 
 class PostCoordinator: BaseCoordinator, PostViewControllerDelegate {
 
+    // MARK: - Property
+    
     var delegate: PostCoordinatorDelegate?
 
+    // MARK: - Method
+    
     override func start() {
         let postViewController = PostViewController()
         postViewController.delegate = self

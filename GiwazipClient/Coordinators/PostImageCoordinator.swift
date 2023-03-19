@@ -11,7 +11,11 @@ protocol PostImageCoordinatorDelegate {
 
 class PostImageCoordinator: BaseCoordinator, PostImageViewControllerDelegate {
 
+    // MARK: - Property
+    
     var delegate: PostImageCoordinatorDelegate?
+    
+    // MARK: - Method
     
     override func start() {
         let postImageViewController = PostImageViewController()
