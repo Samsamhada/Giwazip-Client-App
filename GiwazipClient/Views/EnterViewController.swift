@@ -53,6 +53,8 @@ class EnterViewController: BaseViewController {
         return $0
     }(UIView())
 
+    private let inviteContainer = UIView()
+    
     private let inviteCodeGuideLabel: UILabel = {
         $0.text = TextLiteral.inviteCodeGuideText
         $0.textColor = .black
@@ -96,14 +98,10 @@ class EnterViewController: BaseViewController {
 
         if isEnterView {
             enterButton.configuration?.title = TextLiteral.enterButtonText
-            inviteCodeInput.isHidden = false
-            inviteCodeUnderLine.isHidden = false
-            inviteCodeGuideLabel.isHidden = false
+            inviteContainer.isHidden = false
         } else {
             enterButton.configuration?.title = "수정 완료"
-            inviteCodeInput.isHidden = true
-            inviteCodeUnderLine.isHidden = true
-            inviteCodeGuideLabel.isHidden = true
+            inviteContainer.isHidden = true
 
             navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
         }
@@ -144,30 +142,36 @@ class EnterViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(1)
         }
-
-        view.addSubview(inviteCodeGuideLabel)
-        inviteCodeGuideLabel.snp.makeConstraints {
-            $0.top.equalTo(phoneNumberInput.snp.bottom).offset(20)
-            $0.horizontalEdges.equalToSuperview().inset(16)
-        }
-        
-        view.addSubview(inviteCodeInput)
-        inviteCodeInput.snp.makeConstraints {
-            $0.top.equalTo(inviteCodeGuideLabel.snp.bottom).offset(10)
-            $0.horizontalEdges.equalToSuperview().inset(16)
-        }
-        
-        view.addSubview(inviteCodeUnderLine)
-        inviteCodeUnderLine.snp.makeConstraints {
-            $0.top.equalTo(inviteCodeInput.snp.bottom).offset(3)
-            $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.height.equalTo(1)
-        }
         
         view.addSubview(enterButton)
         enterButton.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.height.equalTo(90)
+        }
+        
+        view.addSubview(inviteContainer)
+        inviteContainer.snp.makeConstraints {
+            $0.top.equalTo(phoneNumberUnderLine.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.bottom.equalTo(enterButton.snp.top)
+        }
+
+        inviteContainer.addSubview(inviteCodeGuideLabel)
+        inviteCodeGuideLabel.snp.makeConstraints {
+            $0.top.horizontalEdges.equalToSuperview()
+        }
+
+        inviteContainer.addSubview(inviteCodeInput)
+        inviteCodeInput.snp.makeConstraints {
+            $0.top.equalTo(inviteCodeGuideLabel.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview()
+        }
+
+        inviteContainer.addSubview(inviteCodeUnderLine)
+        inviteCodeUnderLine.snp.makeConstraints {
+            $0.top.equalTo(inviteCodeInput.snp.bottom).offset(3)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
     
