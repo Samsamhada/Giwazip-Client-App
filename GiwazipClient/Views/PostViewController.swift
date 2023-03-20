@@ -179,8 +179,6 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
                                          animated: true)
 
         if collectionView == imageCollectionView {
-            let postImageViewController = PostImageViewController()
-            postImageViewController.postImage.image! = cell.postImage.image!
             delegate?.pushToPostImageViewController()
         }
     }
