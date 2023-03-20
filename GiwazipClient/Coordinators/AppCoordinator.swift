@@ -21,7 +21,7 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
 //            showSegmentViewController()
 //            showPostViewController()
         } else {
-            showSegmentViewController()
+            showSplashViewController()
         }
     }
 
