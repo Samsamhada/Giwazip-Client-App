@@ -27,7 +27,7 @@ class EditingTextCoordinator: BaseCoordinator, EditingTextViewControllerDelegate
         
         postingTextViewController.textView.text = postViewController.postingDescription.text
         postingTextViewController.isEditView = true
-//
+
         rootViewController = UINavigationController(rootViewController: postingTextViewController)
         rootViewController.modalPresentationStyle = .fullScreen
 
