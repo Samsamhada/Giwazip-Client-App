@@ -51,7 +51,7 @@ class PostingTextViewController: BaseViewController {
     private let inquiryButton: UIButton = {
         $0.configuration = UIButton.Configuration.filled()
         $0.configuration?.title = TextLiteral.inquiryButtonText
-        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0

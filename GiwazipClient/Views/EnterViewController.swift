@@ -76,7 +76,7 @@ class EnterViewController: BaseViewController {
     
     private let enterButton: UIButton = {
         $0.configuration?.title = TextLiteral.enterButtonText
-        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
@@ -229,12 +229,12 @@ class EnterViewController: BaseViewController {
         
         switch isEnterView {
         case true:
-            if inviteCode == "aaabbb" {
+//            if inviteCode == "aaabbb" {
                 delegate?.pushToSegmentViewController()
-            } else {
-                makeAlert(title: TextLiteral.errorAlertTitle,
-                          message: TextLiteral.inviteCodeErrorAlertMessage)
-            }
+//            } else {
+//                makeAlert(title: TextLiteral.errorAlertTitle,
+//                          message: TextLiteral.inviteCodeErrorAlertMessage)
+//            }
         case false:
             delegate?.popToSettingViewController()
         }
