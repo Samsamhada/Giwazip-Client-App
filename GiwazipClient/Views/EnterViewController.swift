@@ -185,7 +185,8 @@ class EnterViewController: BaseViewController {
     }
     
     @objc func checkPhoneNumberLength() {
-        guard let phoneNumber = phoneNumberInput.text?.replacingOccurrences(of: " - ", with: "") else { return }
+        guard let phoneNumber = phoneNumberInput.text?.replacingOccurrences(of: " - ", with: "")
+        else { return }
 
         phoneNumberInput.text = checkStringLength(text: phoneNumber, count: 8).changePhoneNumberStyle()
     }
