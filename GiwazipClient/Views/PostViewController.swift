@@ -171,8 +171,6 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCell.identifier, for: indexPath) as! PostCell
-
         selectedIndex = indexPath.item
         imageCollectionView.scrollToItem(at: indexPath,
                                          at: .centeredHorizontally,
