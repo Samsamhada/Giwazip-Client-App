@@ -234,12 +234,12 @@ class EnterViewController: BaseViewController {
         
         switch isEnterView {
         case true:
-//            if inviteCode == "aaabbb" {
+            if inviteCode == "aaabbb" {
                 delegate?.pushToSegmentViewController()
-//            } else {
-//                makeAlert(title: TextLiteral.errorAlertTitle,
-//                          message: TextLiteral.inviteCodeErrorAlertMessage)
-//            }
+            } else {
+                makeAlert(title: TextLiteral.errorAlertTitle,
+                          message: TextLiteral.inviteCodeErrorAlertMessage)
+            }
         case false:
             delegate?.popToSettingViewController()
         }
