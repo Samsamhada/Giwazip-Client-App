@@ -7,37 +7,40 @@
 
 import UIKit
 
-protocol PostingPhotoCoordinatorDelegate {
+protocol PostingCoordinatorDelegate {
     func dismissViewController()
 }
 
-class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate {
-
+class PostingCoordinator: BaseCoordinator, PostingPhotoViewControllerDelegate, PostingTextCoordinatorDelegate  {
+    
     // MARK: - Property
     
-    var delegate: PostingPhotoCoordinatorDelegate?
+    var delegate: PostingCoordinatorDelegate?
     private let postingPhotoViewController = PostingPhotoViewController()
-    private let postingTextViewController = PostingTextViewController()
+    lazy var rootViewController = UINavigationController(rootViewController: self.postingPhotoViewController)
     
     // MARK: - Method
     
     override func start() {
         postingPhotoViewController.delegate = self
-
-        rootViewController = UINavigationController(rootViewController: postingPhotoViewController)
         rootViewController.modalPresentationStyle = .fullScreen
-
         navigationController.present(rootViewController, animated: true)
     }
 
     func pushToPostingTextViewController() {
-        postingTextViewController.isEditView = false
-        postingTextViewController.imageDatas = postingPhotoViewController.imageDatas
-        
-        rootViewController.pushViewController(postingTextViewController, animated: true)
+        let coordinator = PostingTextCoordinator(navigationController: rootViewController)
+        coordinator.isPostTextView = true
+        coordinator.delegate = self
+        coordinator.start()
+        childCoordinators.append(coordinator)
     }
-
-    func dismissPostingPhotoViewController() {
+    
+    func popToPostingPhotoViewController() {
+        childCoordinators.removeLast()
+        rootViewController.popViewController(animated: true)
+    }
+    
+    func dismissViewController() {
         delegate?.dismissViewController()
     }
 }
