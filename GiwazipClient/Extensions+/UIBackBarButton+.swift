@@ -8,8 +8,8 @@
 import UIKit
 
 extension UIViewController {
-    func backBarButton(_ didTapBackButton: Selector) -> UIBarButtonItem {
-        let backBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
+    func backBarButton(buttonShape: String = "chevron.backward", _ didTapBackButton: Selector) -> UIBarButtonItem {
+        let backBarButtonItem = UIBarButtonItem(image: UIImage(systemName: buttonShape),
                                                 style: .plain,
                                                 target: self,
                                                 action: didTapBackButton)
