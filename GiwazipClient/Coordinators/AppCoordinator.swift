@@ -5,11 +5,11 @@
 //  Created by 김민택 on 2023/01/13.
 //
 
-class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinatorDelegate,
-                      SegmentCoordinatorDelegate, PostCoordinatorDelegate,
-                      PostImageCoordinatorDelegate,SettingCoordinatorDelegate,
-                      SettingContentCoordinatorDelegate, PostingPhotoCoordinatorDelegate,
-                      EditingTextCoordinatorDelegate {
+class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,
+                      EnterCoordinatorDelegate, SegmentCoordinatorDelegate,
+                      PostCoordinatorDelegate, PostImageCoordinatorDelegate,
+                      SettingCoordinatorDelegate, SettingContentCoordinatorDelegate,
+                      PostingCoordinatorDelegate {
 
     var isLoggedIn = true
 
@@ -119,10 +119,9 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,EnterCoordinato
     // MARK: - Present
 
     func presentEditingTextView() {
-        let coordinator = EditingTextCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
+        let coordinator = PostingTextCoordinator(navigationController: navigationController)
+        coordinator.isPostTextView = false
         coordinator.start()
-        self.childCoordinators.append(coordinator)
     }
 
     func presentPostingView() {
