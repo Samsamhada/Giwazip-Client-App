@@ -9,22 +9,23 @@ import UIKit
 
 import SnapKit
 
-protocol EditingTextViewControllerDelegate {
+protocol PostingTextViewControllerDelegate {
     func dismissPostingTextViewController()
     func dismissEditingTextViewController()
+    func popToPostingPhotoViewController()
 }
 
 class PostingTextViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: EditingTextViewControllerDelegate?
+    var delegate: PostingTextViewControllerDelegate?
     
     private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
     private let viewModel = NetworkManager.shared
     var imageDatas: [Data] = []
     
-    var isEditView = false
+    var isPostTextView = true
     
     // MARK: - View
     
@@ -86,11 +87,16 @@ class PostingTextViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
-        
-        navigationItem.title = TextLiteral.postingTextViewNavigationTitle
 
-        if isEditView {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(didTapCancelButton))
+        if isPostTextView {
+            inquiryButton.configuration?.title = TextLiteral.inquiryButtonText
+            navigationItem.title = TextLiteral.postingTextViewNavigationTitle
+            navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+        } else {
+            inquiryButton.configuration?.title = TextLiteral.editDoneButon
+            navigationItem.title = TextLiteral.editingTextViewNavigationTitle
+            navigationItem.leftBarButtonItem = backBarButton(buttonShape: "xmark", #selector(didTapCancelButton))
+
         }
         
         setupNotificationCenter()
@@ -105,6 +111,10 @@ class PostingTextViewController: BaseViewController {
     @objc func didTapInquiryButton() {
         viewModel.uploadPostData(description: textView.text, files: imageDatas)
         delegate?.dismissPostingTextViewController()
+    }
+    
+    @objc func didTapBackButton() {
+        delegate?.popToPostingPhotoViewController()
     }
     
     // MARK: - Keyboard Setting
