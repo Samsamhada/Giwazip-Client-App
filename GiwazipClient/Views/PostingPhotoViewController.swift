@@ -79,7 +79,7 @@ class PostingPhotoViewController: BaseViewController {
                                                 style: .plain,
                                                 target: self,
                                                 action: #selector(didTapCancelButton))
-        backBarButtonItem.tintColor = .blue
+        backBarButtonItem.tintColor = .tintColor
         navigationItem.leftBarButtonItem = backBarButtonItem
         navigationItem.title = TextLiteral.postingPhotoViewNavigationTitle
         navigationController?.setNavigationBarHidden(false, animated: true)
