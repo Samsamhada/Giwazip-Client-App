@@ -11,14 +11,13 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,
                       SettingCoordinatorDelegate, SettingContentCoordinatorDelegate,
                       PostingCoordinatorDelegate {
 
-    var isLoggedIn = true
+    var isLoggedIn = false
 
     // MARK: - Method
 
     override func start() {
         if isLoggedIn {
-            showSplashViewController()
-//            showSegmentViewController()
+            showSegmentViewController()
 //            showPostViewController()
         } else {
             showSplashViewController()
