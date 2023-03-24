@@ -10,12 +10,17 @@ import UIKit
 import Alamofire
 import SnapKit
 
+protocol HistoryViewControllerDelegate {
+    func pushToPostViewController()
+}
+
 class HistoryViewController: BaseViewController {
 
     // MARK: - Property
 
     static let sectionHeaderElementKind = "section-header-element-kind"
 
+    var delegate: HistoryViewControllerDelegate?
     var isWorkView = true
     private var selectedCategoryID = 1
 

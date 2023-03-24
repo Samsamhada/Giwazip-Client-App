@@ -11,7 +11,8 @@ import UIKit
 import SnapKit
 
 protocol PostingPhotoViewControllerDelegate {
-    
+    func pushToPostingTextViewController()
+    func dismissViewController()
 }
 
 class PostingPhotoViewController: BaseViewController {
@@ -27,7 +28,7 @@ class PostingPhotoViewController: BaseViewController {
     private var selectedIndex = 0
     
     private let emptyImage = UIImage()
-    private var imageDatas: [Data] = []
+    var imageDatas: [Data] = []
     private lazy var images: [UIImage] = [emptyImage] {
         didSet {
             nextButton.isEnabled = (images.count > 1) ? true : false
@@ -74,11 +75,16 @@ class PostingPhotoViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText, style: .plain, target: self, action: #selector(didTapCancelButton))
-        backBarButtonItem.tintColor = .blue
+        let backBarButtonItem = UIBarButtonItem(title: TextLiteral.cancelButtonText,
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(didTapCancelButton))
+        backBarButtonItem.tintColor = .tintColor
         navigationItem.leftBarButtonItem = backBarButtonItem
         navigationItem.title = TextLiteral.postingPhotoViewNavigationTitle
         navigationController?.setNavigationBarHidden(false, animated: true)
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
 
     private func setupCollectionView() {
@@ -142,17 +148,16 @@ class PostingPhotoViewController: BaseViewController {
     // MARK: - Button Action
 
     @objc func didTapCancelButton() {
-        dismiss(animated: true)
+        delegate?.dismissViewController()
     }
     
     @objc func didTapNextButton() {
         convertImageToData()
-
-        let postingTextViewController = PostingTextViewController()
-        postingTextViewController.imageDatas = imageDatas
-        navigationController?.pushViewController(postingTextViewController, animated: true)
+        delegate?.pushToPostingTextViewController()
     }
-
+    
+    // MARK: - Image
+    
     private func convertImageToData() {
         imageDatas = []
 
@@ -160,8 +165,6 @@ class PostingPhotoViewController: BaseViewController {
             imageDatas.append(resizeImage(image: image))
         }
     }
-
-    // MARK: - Image
     
     private func resizeImage(image: UIImage, newSize: CGFloat = 880) -> Data {
         let maxSize = max(image.size.width, image.size.height)

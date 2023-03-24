@@ -60,12 +60,14 @@ enum TextLiteral {
     // MARK: - PostingTextView
 
     static let postingTextViewNavigationTitle = "시공내용 작성"
+    static let editingTextViewNavigationTitle = "시공내용 수정"
     
     static let textViewPlaceHolder = """
                                      예시)
                                      - 화장실이 빨강색이면 좋겠어요~!
                                      - 집이 커졌으면 좋겠어요~!
                                      """
+    static let editDoneButon = "수정 완료"
 
     // MARK: - PostView
 
@@ -104,6 +106,9 @@ enum TextLiteral {
                                          문의 내용을 작성해주세요.
                                          
                                          """
+
+    static let workEndingTitle = "시공을 마감하시겠습니까?"
+    static let workEndingMessage = "재접속 시 전화번호 및 초대코드를 다시 입력해야합니다."
 
     // MARK: - DeveloperView
 

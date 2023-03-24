@@ -9,9 +9,24 @@ import MessageUI
 import SafariServices
 import UIKit
 
+protocol SettingContentDelegate {
+    func popToSettingViewController()
+}
+
+protocol SettingViewControllerDelegate {
+    func pushToClientInfoViewController()
+    func pushToNoticeViewController()
+    func pushToDeveloperViewController()
+    func pushToLicenseViewController()
+    func showSplashViewController()
+    func popToSegmentViewController()
+}
+
 class SettingViewController: BaseViewController {
 
+    var delegate: SettingViewControllerDelegate?
     static let sectionFooterElementKind = "section-footer-element-kind"
+    private let backButton = UIButton()
 
     private enum Section: CaseIterable {
         case userSetting
@@ -34,15 +49,23 @@ class SettingViewController: BaseViewController {
     private lazy var collectionView: UICollectionView! = nil
 
     override func layout() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView = UICollectionView(frame: view.bounds,
+                                          collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        
         view.addSubview(collectionView)
         collectionView.delegate = self
-
         collectionView.isScrollEnabled = false
-
+        
         configureDataSource()
+    }
+    
+    override func attribute() {
+        navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+    }
+    
+    @objc func didTapBackButton() {
+        delegate?.popToSegmentViewController()
     }
 }
 
@@ -126,11 +149,9 @@ extension SettingViewController: UICollectionViewDelegate {
 
         switch (indexPath.section, indexPath.item) {
         case (0, 0):
-            // TODO: - 고객 정보 수정
-            break
+            delegate?.pushToClientInfoViewController()
         case (1, 0):
-            // TODO: - 공지사항
-            break
+            delegate?.pushToNoticeViewController()
         case (1, 1):
             if let url = URL(string: TextLiteral.termsConditionURL) {
                 let termsCondition = SFSafariViewController(url: url)
@@ -142,19 +163,19 @@ extension SettingViewController: UICollectionViewDelegate {
                 present(privacyPolicy, animated: true)
             }
         case (1, 3):
-            // TODO: - 개발자 정보
-            break
+            delegate?.pushToDeveloperViewController()
         case (1, 4):
-            // TODO: - 오픈소스 라이센스
-            break
+            delegate?.pushToLicenseViewController()
         case (1, 5):
             openCustomerServiceCenter()
         case (1, 6):
             // TODO: - 버전 정보
             break
         case (2, 0):
-            // TODO: - 시공 마감하기
-            break
+            makeAlert(title: TextLiteral.workEndingTitle,
+                      message: TextLiteral.workEndingMessage) { _ in
+                self.delegate?.showSplashViewController()
+            }
         default:
             break
         }

@@ -5,66 +5,143 @@
 //  Created by 김민택 on 2023/01/13.
 //
 
-import UIKit
+class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,
+                      EnterCoordinatorDelegate, SegmentCoordinatorDelegate,
+                      PostCoordinatorDelegate, PostImageCoordinatorDelegate,
+                      SettingCoordinatorDelegate, SettingContentCoordinatorDelegate,
+                      PostingCoordinatorDelegate {
 
-class AppCoordinator: BaseCoordinator, MainCoordinatorDelegate, SubCoordinatorDelegate, SegmentCoordinatorDelegate {
-
-    var isLoggedIn = true
+    var isLoggedIn = false
 
     // MARK: - Method
 
     override func start() {
         if isLoggedIn {
             showSegmentViewController()
+//            showPostViewController()
         } else {
-            showMainViewController()
+            showSplashViewController()
         }
     }
 
     // MARK: - ShowVC Method
 
-    private func showSubViewController() {
-        let coordinator = SubCoordinator(navigationController: navigationController)
+    func showSplashViewController() {
+        let coordinator = SplashCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
 
-    private func showMainViewController() {
-        let coordinator = MainCoordinator(navigationController: navigationController)
-        coordinator.delegate = self
-        coordinator.start()
-        self.childCoordinators.append(coordinator)
-    }
-    
     private func showSegmentViewController() {
         let coordinator = SegmentCoordinator(navigationController: navigationController)
         coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
-    
-    private func showPostingPhotoViewController() {
-        let coordinator = PostingPhotoCoordinator(navigationController: navigationController)
+
+    // TODO: 뷰 연결 후 삭제
+    private func showPostViewController() {
+        let coordinator = PostCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
 
-    // MARK: - Click Event
+    // MARK: - Push
 
-    func didLoggedIn(_ coordinator: MainCoordinator) {
-        self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
-        self.showSubViewController()
+    func pushToEnterViewController() {
+        let coordinator = EnterCoordinator(navigationController: navigationController)
+        coordinator.enterViewController.isEnterView = true
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
     }
 
-    func didLoggedOut(_ coordinator: SubCoordinator) {
-        self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
-        self.showMainViewController()
+    func pushToClientInfoViewController() {
+        let coordinator = EnterCoordinator(navigationController: navigationController)
+        coordinator.enterViewController.isEnterView = false
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
     }
     
-    func presentPostingPhotoView(_ coordinator: SegmentCoordinator) {
-        self.childCoordinators = self.childCoordinators.filter{ $0 !== coordinator }
-        showPostingPhotoViewController()
+    func pushToDeveloperViewController() {
+        let coordinator = DeveloperCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToLicenseViewController() {
+        let coordinator = LicenseCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToNoticeViewController() {
+        let coordinator = NoticeCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToPostViewController() {
+        let coordinator = PostCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    func pushToPostImageViewController() {
+        let coordinator = PostImageCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToSegmentViewController() {
+        let coordinator = SegmentCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    func pushToSettingViewController() {
+        let coordinator = SettingCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+
+    // MARK: - Present
+
+    func presentEditingTextView() {
+        let coordinator = PostingTextCoordinator(navigationController: navigationController)
+        coordinator.isPostTextView = false
+        coordinator.start()
+    }
+
+    func presentPostingView() {
+        let coordinator = PostingCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
+    // MARK: - Pop
+    
+    func popToViewController() {
+        self.childCoordinators.removeLast()
+        navigationController.popViewController(animated: true)
+    }
+
+    // MARK: - Dismiss
+
+    func dismissViewController() {
+        self.childCoordinators.removeLast()
+        navigationController.dismiss(animated: true)
     }
 }
 

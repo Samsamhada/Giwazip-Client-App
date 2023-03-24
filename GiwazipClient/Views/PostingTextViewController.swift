@@ -9,13 +9,22 @@ import UIKit
 
 import SnapKit
 
+protocol PostingTextViewControllerDelegate {
+    func dismissPostingTextViewController()
+    func dismissEditingTextViewController()
+    func popToPostingPhotoViewController()
+}
+
 class PostingTextViewController: BaseViewController {
     
     // MARK: - Property
     
+    var delegate: PostingTextViewControllerDelegate?
+    
     private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
-    private let viewModel = NetworkManager.shared
     var imageDatas: [Data] = []
+    
+    var isPostTextView = true
     
     // MARK: - View
     
@@ -27,7 +36,7 @@ class PostingTextViewController: BaseViewController {
         return $0
     }(UILabel())
     
-    private lazy var textView : UITextView = {
+    lazy var textView : UITextView = {
         $0.text = textViewPlaceHolder
         $0.textColor = .white
         $0.backgroundColor = .lightGray
@@ -42,13 +51,13 @@ class PostingTextViewController: BaseViewController {
     private let inquiryButton: UIButton = {
         $0.configuration = UIButton.Configuration.filled()
         $0.configuration?.title = TextLiteral.inquiryButtonText
-        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         $0.configuration?.baseForegroundColor = .white
         $0.configuration?.baseBackgroundColor = .blue
         $0.configuration?.background.cornerRadius = 0
         $0.configuration?.contentInsets.bottom = 20
         $0.isEnabled = false
-        $0.addTarget(self, action: #selector(tapInquiryButton), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(didTapInquiryButton), for: .touchUpInside)
         return $0
     }(UIButton())
     
@@ -77,14 +86,37 @@ class PostingTextViewController: BaseViewController {
     
     override func attribute() {
         super.attribute()
-        navigationItem.title = TextLiteral.postingTextViewNavigationTitle
+
+        if isPostTextView {
+            inquiryButton.configuration?.title = TextLiteral.inquiryButtonText
+            navigationItem.title = TextLiteral.postingTextViewNavigationTitle
+            navigationItem.leftBarButtonItem = backBarButton(#selector(didTapBackButton))
+        } else {
+            inquiryButton.configuration?.title = TextLiteral.editDoneButon
+            navigationItem.title = TextLiteral.editingTextViewNavigationTitle
+            navigationItem.leftBarButtonItem = backBarButton(buttonShape: "xmark", #selector(didTapCancelButton))
+
+        }
         
         setupNotificationCenter()
     }
     
-    @objc func tapInquiryButton() {
-        viewModel.uploadPostData(description: textView.text, files: imageDatas)
+    // MARK: - Button
+    
+    @objc func didTapCancelButton() {
+        delegate?.dismissEditingTextViewController()
     }
+    
+    @objc func didTapInquiryButton() {
+        networkManager.uploadPostData(description: textView.text ?? "", files: imageDatas)
+        delegate?.dismissPostingTextViewController()
+    }
+    
+    @objc func didTapBackButton() {
+        delegate?.popToPostingPhotoViewController()
+    }
+    
+    // MARK: - Keyboard Setting
     
     private func setupNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

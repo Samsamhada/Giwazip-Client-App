@@ -9,10 +9,17 @@ import UIKit
 
 import SnapKit
 
+protocol PostViewControllerDelegate {
+    func pushToPostImageViewController()
+    func presentEditingTextViewController()
+}
+
 class PostViewController: BaseViewController {
 
     // MARK: - Property
 
+    var delegate: PostViewControllerDelegate?
+    
     private var selectedIndex = 0 {
         didSet {
             imageCollectionView.reloadData()
@@ -57,7 +64,7 @@ class PostViewController: BaseViewController {
         return $0
     }(UIScrollView())
     
-    private let postingDescription: UILabel = {
+    let postingDescription: UILabel = {
         $0.text =
   """
   - 방황하여도, 인간의 풍부하게 보는 새 피다. 든 바이며, 낙원을 스며들어 생의 싹이 트고, 피다. 있을 못할 꽃이 이상의 심장의 목숨을 봄바람이다. 인간의 동력은 이 고행을 심장의 얼마나 그들의 것이다. 커다란 때까지 설레는 가치를 새 눈이 방황하였으며, 사막이다. 하는 인도하겠다는 넣는 하였으며, 설산에서 것이다. 피고 사는가 전인 일월과 것이 간에 방황하여도, 청춘의 그리하였는가? 시들어 사라지지 이 운다. 인간의 구하기 눈에 우리 영원히 보는 전인 곳으로 있다.
@@ -118,7 +125,9 @@ class PostViewController: BaseViewController {
         }
     }
 
-    private func setupCollectionView(at collectionView: UICollectionView, cell: AnyClass, identifier: String) {
+    private func setupCollectionView(at collectionView: UICollectionView,
+                                     cell: AnyClass,
+                                     identifier: String) {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cell, forCellWithReuseIdentifier: identifier)
@@ -133,7 +142,7 @@ class PostViewController: BaseViewController {
     }
 
     @objc func didTapEditButton() {
-        print("didTapEditButton is no error")
+        delegate?.presentEditingTextViewController()
     }
 }
 
@@ -166,6 +175,10 @@ extension PostViewController: UICollectionViewDataSource, UICollectionViewDelega
         imageCollectionView.scrollToItem(at: indexPath,
                                          at: .centeredHorizontally,
                                          animated: true)
+
+        if collectionView == imageCollectionView {
+            delegate?.pushToPostImageViewController()
+        }
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
