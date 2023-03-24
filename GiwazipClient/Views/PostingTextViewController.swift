@@ -22,7 +22,6 @@ class PostingTextViewController: BaseViewController {
     var delegate: PostingTextViewControllerDelegate?
     
     private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
-    private let viewModel = NetworkManager.shared
     var imageDatas: [Data] = []
     
     var isPostTextView = true
@@ -109,7 +108,7 @@ class PostingTextViewController: BaseViewController {
     }
     
     @objc func didTapInquiryButton() {
-        viewModel.uploadPostData(description: textView.text, files: imageDatas)
+        networkManager.uploadPostData(description: textView.text ?? "", files: imageDatas)
         delegate?.dismissPostingTextViewController()
     }
     
