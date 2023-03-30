@@ -11,7 +11,7 @@ class LicenseViewController: BaseViewController {
 
     // MARK: - Property
 
-    var delegate: SettingContentDelegate?
+    weak var delegate: SettingContentDelegate?
     
     // MARK: - Method
     

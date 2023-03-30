@@ -9,11 +9,11 @@ import MessageUI
 import SafariServices
 import UIKit
 
-protocol SettingContentDelegate {
+protocol SettingContentDelegate: AnyObject {
     func popToSettingViewController()
 }
 
-protocol SettingViewControllerDelegate {
+protocol SettingViewControllerDelegate: AnyObject {
     func pushToClientInfoViewController()
     func pushToNoticeViewController()
     func pushToDeveloperViewController()
@@ -24,7 +24,7 @@ protocol SettingViewControllerDelegate {
 
 class SettingViewController: BaseViewController {
 
-    var delegate: SettingViewControllerDelegate?
+    weak var delegate: SettingViewControllerDelegate?
     static let sectionFooterElementKind = "section-footer-element-kind"
     private let backButton = UIButton()
 

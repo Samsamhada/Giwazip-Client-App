@@ -20,7 +20,7 @@ class DeveloperViewController: UICollectionViewController {
 
     // MARK: - Property
 
-    var delegate: SettingContentDelegate?
+    weak var delegate: SettingContentDelegate?
     
     private enum Section: CaseIterable {
         case meenu

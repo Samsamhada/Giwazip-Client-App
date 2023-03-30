@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol EnterViewControllerDelegate {
+protocol EnterViewControllerDelegate: AnyObject {
     func pushToSegmentViewController()
     func popToSettingViewController()
 }
@@ -18,7 +18,7 @@ class EnterViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: EnterViewControllerDelegate?
+    weak var delegate: EnterViewControllerDelegate?
     var isEnterView = true
     
     // MARK: - View

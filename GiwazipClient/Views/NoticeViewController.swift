@@ -11,7 +11,7 @@ class NoticeViewController: UICollectionViewController {
 
     // MARK: - Property
 
-    var delegate: SettingContentDelegate?
+    weak var delegate: SettingContentDelegate?
     
     private enum Section: CaseIterable {
         case noticeList

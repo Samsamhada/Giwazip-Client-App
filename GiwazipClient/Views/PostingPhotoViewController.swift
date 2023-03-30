@@ -10,7 +10,7 @@ import UIKit
 
 import SnapKit
 
-protocol PostingPhotoViewControllerDelegate {
+protocol PostingPhotoViewControllerDelegate: AnyObject {
     func pushToPostingTextViewController()
     func dismissViewController()
 }
@@ -19,7 +19,7 @@ class PostingPhotoViewController: BaseViewController {
 
     // MARK: - Property
 
-    var delegate: PostingPhotoViewControllerDelegate?
+    weak var delegate: PostingPhotoViewControllerDelegate?
     
     private var buttonConfiguration = UIButton.Configuration.filled()
     private var pickerConfiguration = PHPickerConfiguration()
