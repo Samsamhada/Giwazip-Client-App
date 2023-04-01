@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol PostViewControllerDelegate {
+protocol PostViewControllerDelegate: AnyObject {
     func pushToPostImageViewController()
     func presentEditingTextViewController()
 }
@@ -18,7 +18,7 @@ class PostViewController: BaseViewController {
 
     // MARK: - Property
 
-    var delegate: PostViewControllerDelegate?
+    weak var delegate: PostViewControllerDelegate?
     
     private var selectedIndex = 0 {
         didSet {

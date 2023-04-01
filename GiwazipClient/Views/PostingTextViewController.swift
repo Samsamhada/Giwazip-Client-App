@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol PostingTextViewControllerDelegate {
+protocol PostingTextViewControllerDelegate: AnyObject {
     func dismissPostingTextViewController()
     func dismissEditingTextViewController()
     func popToPostingPhotoViewController()
@@ -19,7 +19,7 @@ class PostingTextViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: PostingTextViewControllerDelegate?
+    weak var delegate: PostingTextViewControllerDelegate?
     
     private let textViewPlaceHolder: String = TextLiteral.textViewPlaceHolder
     var imageDatas: [Data] = []

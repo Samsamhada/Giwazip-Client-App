@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol SegmentViewControllerDelegate {
+protocol SegmentViewControllerDelegate: AnyObject {
     func presentPostingPhotoViewController()
     func pushToSettingViewController()
 }
@@ -18,7 +18,7 @@ class SegmentViewController: BaseViewController {
 
     // MARK: - Property
 
-    var delegate: SegmentViewControllerDelegate?
+    weak var delegate: SegmentViewControllerDelegate?
     private var buttonConfiguration = UIButton.Configuration.plain()
     private lazy var segmentedViewControllers: [UIViewController] = [workView, inquiryView]
 

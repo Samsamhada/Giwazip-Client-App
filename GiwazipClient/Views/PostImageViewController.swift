@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol PostImageViewControllerDelegate {
+protocol PostImageViewControllerDelegate: AnyObject {
     func popToPostViewController()
 }
 
@@ -17,7 +17,7 @@ class PostImageViewController: BaseViewController {
     
     // MARK: - View
     
-    var delegate: PostImageViewControllerDelegate?
+    weak var delegate: PostImageViewControllerDelegate?
     
     private lazy var scrollView: UIScrollView = {
         $0.frame = self.view.frame

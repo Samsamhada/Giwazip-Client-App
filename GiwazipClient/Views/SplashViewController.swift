@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol SplashViewControllerDelegate {
+protocol SplashViewControllerDelegate: AnyObject {
     func pushToEnterViewController()
 }
 
@@ -17,7 +17,7 @@ class SplashViewController: BaseViewController {
 
     // MARK: - Property
 
-    var delegate: SplashViewControllerDelegate?
+    weak var delegate: SplashViewControllerDelegate?
     
     private let enterButton: UIButton = {
         $0.setTitle(TextLiteral.enterButtonText, for: .normal)
