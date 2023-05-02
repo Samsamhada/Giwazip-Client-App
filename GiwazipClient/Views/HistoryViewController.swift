@@ -309,6 +309,7 @@ extension HistoryViewController: UICollectionViewDelegate {
 
             applyPostSnapshot()
         } else {
+            delegate?.pushToPostViewController()
             print("현재 클릭된 부분은 게시물의 \(indexPath)입니다.")
         }
     }
