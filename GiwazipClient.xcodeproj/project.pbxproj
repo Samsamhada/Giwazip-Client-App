@@ -47,7 +47,6 @@
 		9859985A29C0BFA000B21BD7 /* EnterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */; };
 		9859985C29C0C29F00B21BD7 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859985B29C0C29F00B21BD7 /* SplashCoordinator.swift */; };
 		9859986229C22A0800B21BD7 /* PostingTextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859986129C22A0800B21BD7 /* PostingTextCoordinator.swift */; };
-		98738E1229C61F4300377B70 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98738E1129C61F4300377B70 /* HistoryCoordinator.swift */; };
 		9881559D29BC7CEB0049949A /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881559C29BC7CEB0049949A /* PostCoordinator.swift */; };
 		9881559F29BC845A0049949A /* PostImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9881559E29BC845A0049949A /* PostImageCoordinator.swift */; };
 		988C56D029768F2D00018F07 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C56CF29768F2D00018F07 /* SegmentViewController.swift */; };
@@ -104,7 +103,6 @@
 		9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCoordinator.swift; sourceTree = "<group>"; };
 		9859985B29C0C29F00B21BD7 /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
 		9859986129C22A0800B21BD7 /* PostingTextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingTextCoordinator.swift; sourceTree = "<group>"; };
-		98738E1129C61F4300377B70 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		9881559C29BC7CEB0049949A /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
 		9881559E29BC845A0049949A /* PostImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageCoordinator.swift; sourceTree = "<group>"; };
 		988C56CF29768F2D00018F07 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				260A63DF29710834004034AD /* AppCoordinator.swift */,
 				9859985329C0B50D00B21BD7 /* DeveloperCoordinator.swift */,
 				9859985929C0BFA000B21BD7 /* EnterCoordinator.swift */,
-				98738E1129C61F4300377B70 /* HistoryCoordinator.swift */,
 				9859985729C0BBD700B21BD7 /* LicenseCoordinator.swift */,
 				9881559C29BC7CEB0049949A /* PostCoordinator.swift */,
 				9881559E29BC845A0049949A /* PostImageCoordinator.swift */,
@@ -471,7 +468,6 @@
 				98D44B722941DD4B00386AA4 /* AppDelegate.swift in Sources */,
 				26B7B11C29A3A2C200D3C3F7 /* TextLiteral.swift in Sources */,
 				9859985829C0BBD700B21BD7 /* LicenseCoordinator.swift in Sources */,
-				98738E1229C61F4300377B70 /* HistoryCoordinator.swift in Sources */,
 				9839F36F298B55350058639F /* SegmentCoordinator.swift in Sources */,
 				9881559F29BC845A0049949A /* PostImageCoordinator.swift in Sources */,
 				26B85B41299C61850039C14A /* SettingViewController.swift in Sources */,
