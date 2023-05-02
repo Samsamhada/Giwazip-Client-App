@@ -5,11 +5,11 @@
 //  Created by 김민택 on 2023/01/13.
 //
 
-class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,
-                      EnterCoordinatorDelegate, SegmentCoordinatorDelegate,
+class AppCoordinator: BaseCoordinator, EnterCoordinatorDelegate,
                       PostCoordinatorDelegate, PostImageCoordinatorDelegate,
-                      SettingCoordinatorDelegate, SettingContentCoordinatorDelegate,
-                      PostingCoordinatorDelegate {
+                      PostingCoordinatorDelegate, SegmentCoordinatorDelegate,
+                      SplashCoordinatorDelegate, SettingContentCoordinatorDelegate,
+                      SettingCoordinatorDelegate {
 
     var isLoggedIn = false
 
@@ -18,7 +18,6 @@ class AppCoordinator: BaseCoordinator, SplashCoordinatorDelegate,
     override func start() {
         if isLoggedIn {
             showSegmentViewController()
-//            showPostViewController()
         } else {
             showSplashViewController()
         }
