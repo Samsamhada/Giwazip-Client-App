@@ -12,9 +12,10 @@ import SnapKit
 protocol SegmentViewControllerDelegate: AnyObject {
     func presentPostingPhotoViewController()
     func pushToSettingViewController()
+    func pushToPostViewController()
 }
 
-class SegmentViewController: BaseViewController {
+class SegmentViewController: BaseViewController, HistoryViewControllerDelegate {
 
     // MARK: - Property
 
@@ -65,10 +66,14 @@ class SegmentViewController: BaseViewController {
         return $0
     }(UIView())
 
-    private let workView = HistoryViewController()
+    private lazy var workView: HistoryViewController = {
+        $0.delegate = self
+        return $0
+    }(HistoryViewController())
 
-    private let inquiryView: HistoryViewController = {
+    private lazy var inquiryView: HistoryViewController = {
         $0.isWorkView = false
+        $0.delegate = self
         return $0
     }(HistoryViewController())
 
@@ -221,6 +226,10 @@ class SegmentViewController: BaseViewController {
     
     @objc func didTapSettingButton() {
         delegate?.pushToSettingViewController()
+    }
+    
+    func pushToPostViewController() {
+        delegate?.pushToPostViewController()
     }
 }
 
